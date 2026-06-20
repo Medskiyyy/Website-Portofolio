@@ -1,7 +1,5 @@
 # Ahmad Hidayatullah - Personal Portfolio
 
-![Portfolio Banner](./public/og-image.png)
-
 A high-performance, multilingual professional portfolio engineered by **Ahmad Hidayatullah**, a Full Stack Developer, Product Builder, and Information Systems student. This site is meticulously crafted to showcase my projects, technical skills, architectural decisions, and detailed case studies, optimized specifically to provide a premium experience for international recruiters, hiring managers, and prospective clients.
 
 **🌍 Live URL:** [website-portofolio-pi-ruby.vercel.app](https://website-portofolio-pi-ruby.vercel.app/)
