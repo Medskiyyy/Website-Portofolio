@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { getProjectBySlug, projects } from "@/content/projects";
 import { Link } from "@/i18n/navigation";
+import Image from "next/image";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ExternalLink, Github, ArrowLeft, CheckCircle2, Lightbulb, Rocket } from "lucide-react";
@@ -109,6 +110,19 @@ export default async function ProjectDetailPage({
           )}
         </div>
       </div>
+
+      {/* Project Image */}
+      {project.imageUrl && (
+        <div className="relative aspect-video w-full rounded-2xl border border-border bg-muted overflow-hidden mb-12 shadow-sm">
+          <Image
+            src={project.imageUrl}
+            alt={project.title}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      )}
 
       {/* Divider */}
       <div className="border-t border-border mb-12" />
