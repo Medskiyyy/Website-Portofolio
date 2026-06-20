@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Download } from "lucide-react";
+import { projects } from "@/content/projects";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -68,14 +69,19 @@ export default async function ResumePage({
         {/* Projects */}
         <ResumeSection title={t("projectsTitle")}>
           <div className="space-y-6">
-            <ProjectEntry
-              title="Pempek Cek Lis"
-              role={t("projectRole")}
-              period="2025"
-              description={t("projectDescription")}
-              tech={["Next.js", "TypeScript", "Tailwind CSS", "Supabase"]}
-              liveUrl="https://pempekceklist.com"
-            />
+            {projects
+              .filter((project) => project.slug !== "saas-dashboard")
+              .map((project) => (
+                <ProjectEntry
+                  key={project.slug}
+                  title={project.title}
+                  role={project.role}
+                  period={project.timeline}
+                  description={project.description}
+                  tech={project.techStack}
+                  liveUrl={project.liveUrl}
+                />
+              ))}
           </div>
         </ResumeSection>
 

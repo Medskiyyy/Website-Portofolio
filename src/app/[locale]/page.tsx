@@ -6,6 +6,7 @@ import SkillsSection from "@/features/home/SkillsSection";
 import FeaturedProjectSection from "@/features/home/FeaturedProjectSection";
 import AIWorkflowSection from "@/features/home/AIWorkflowSection";
 import ResumePreviewSection from "@/features/home/ResumePreviewSection";
+import GithubShowcaseSection from "@/features/home/GithubShowcaseSection";
 import ContactPreviewSection from "@/features/home/ContactPreviewSection";
 
 export async function generateMetadata({
@@ -37,6 +38,7 @@ export default function HomePage() {
       <FeaturedProjectSection />
       <AIWorkflowSection />
       <ResumePreviewSection />
+      <GithubShowcaseSection />
       <ContactPreviewSection />
     </main>
   );

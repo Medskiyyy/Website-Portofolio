@@ -4,10 +4,11 @@
     "projects": "Projects",
     "resume": "Resume",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "available": "Open to Roles"
   },
   "Hero": {
-    "badge": "Available For Opportunities",
+    "badge": "Open to Opportunities",
     "title": "Full Stack Developer & Product Builder",
     "subtitle": "Building modern web applications from concept to deployment using modern technologies and AI-assisted development workflows.",
     "ctaProjects": "View Projects",
@@ -15,12 +16,12 @@
   },
   "AboutPreview": {
     "label": "About Me",
-    "summary": "Information Systems student focused on building modern web applications and digital products. I combine technical implementation with product thinking to deliver solutions that solve real problems — from concept to deployment.",
+    "summary": "Information Systems student and Full Stack Developer focused on building high-performance web products. I bridge the gap between clean code and product design to build solutions that scale — from concept to production.",
     "cta": "Read More"
   },
   "Skills": {
     "label": "Technical Skills",
-    "title": "What I Work With",
+    "title": "Core Technologies",
     "frontend": "Frontend",
     "backend": "Backend",
     "tools": "Tools",
@@ -54,7 +55,7 @@
     "label": "Resume",
     "title": "Professional Background",
     "summaryLabel": "Summary",
-    "summaryValue": "Information Systems student with hands-on experience building full-stack web applications using Next.js, TypeScript, and Supabase. Focused on practical, production-ready development.",
+    "summaryValue": "Information Systems student and Full Stack Developer with hands-on experience building, testing, and deploying end-to-end web applications. Focused on delivering clean, type-safe, and production-ready code.",
     "educationLabel": "Education",
     "educationValue": "Bachelor of Information Systems — In Progress",
     "projectsLabel": "Projects",
@@ -68,6 +69,14 @@
     "subtitle": "Open to full-time positions, freelance projects, and collaboration opportunities. Reach out directly via email or GitHub.",
     "sendEmail": "Send an Email",
     "viewGithub": "View GitHub"
+  },
+  "GithubShowcase": {
+    "label": "Open Source",
+    "title": "Featured Repositories",
+    "subtitle": "Explore the codebases of my public projects directly on GitHub.",
+    "cta": "View GitHub Profile",
+    "portfolioDesc": "Professional responsive portfolio website built using Next.js 16, TypeScript, next-intl, and Tailwind CSS.",
+    "hitungDesc": "Offline-first personal finance Android application built with modern Kotlin, Jetpack Compose, Dagger Hilt, and Google ML Kit."
   },
   "ProjectsPage": {
     "metaTitle": "Projects | Ahmad Hidayatullah",
@@ -98,7 +107,7 @@
     "subtitle": "Full Stack Developer & Product Builder",
     "download": "Download PDF",
     "summaryTitle": "Professional Summary",
-    "summaryText": "Information Systems student with hands-on experience building full-stack web applications. I work across the entire product lifecycle — from architecture and design to development, testing, and deployment. Proficient in Next.js, TypeScript, and Supabase, with an AI-assisted development workflow that significantly accelerates delivery.",
+    "summaryText": "Information Systems student and Full Stack Developer with hands-on experience building, testing, and deploying end-to-end web applications. Proficient in Next.js, TypeScript, and Supabase, utilizing AI-assisted workflows to accelerate features while maintaining clean codebase architecture.",
     "skillsTitle": "Technical Skills",
     "skillsFrontend": "Frontend",
     "skillsBackend": "Backend",

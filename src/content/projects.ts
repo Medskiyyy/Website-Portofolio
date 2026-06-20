@@ -49,42 +49,44 @@ export const projects: Project[] = [
     slug: "hitung-uang",
     title: "HitungUang",
     description:
-      "A minimalist personal finance mobile application built to track expenses, count cash, and manage daily transactions offline.",
-    techStack: ["React Native", "Expo", "TypeScript", "SQLite", "Tailwind CSS"],
+      "An offline-first personal finance Android application built with modern Kotlin and Jetpack Compose to manage ledger, budgets, and scan receipts.",
+    techStack: ["Kotlin", "Jetpack Compose", "Room DB", "Dagger Hilt", "ML Kit"],
     liveUrl: "",
-    githubUrl: "https://github.com/Medskiyyy/hitung-uang",
+    githubUrl: "https://github.com/Medskiyyy/HitungUang",
     imageUrl: "/thumb-hitung.png",
     isFeatured: false,
     status: "in-progress",
-    role: "Mobile Developer & UI Designer",
+    role: "Android Developer & UI Designer",
     timeline: "2026",
     overview:
-      "HitungUang is a minimalist personal finance mobile application built to simplify daily budget tracking and cash counting. Operating fully offline to prioritize user privacy, it delivers instant load times and zero network dependency.",
+      "HitungUang is a personal finance Android application built with an offline-first architecture, prioritizing user privacy, performance, and data integrity. Built using Compose Material 3, Dagger Hilt, and Room FTS4 search.",
     problem:
-      "Many personal finance apps are bloated with ads, require online account synchronization, and lack simple features to assist with physical cash counting (calculating total monetary value from quantities of individual banknotes).",
+      "Most finance trackers require account syncing, display obtrusive ads, compromise privacy, and lack offline tools to parse receipts or manage physical wallets securely.",
     goal:
-      "Build a fast, secure, and offline-first mobile application that allows users to log expenses, calculate total cash values, and manage local budgets without cloud dependencies.",
+      "Build a fast, secure, and offline-first mobile app using Jetpack Compose that automates transaction inputs from receipt photos, secures records locally, and manages budgets with no cloud dependence.",
     solution:
-      "Developed a cross-platform React Native app using SQLite for local storage, Expo for fast cross-platform deployment, and a custom banknote calculator UI that computes total currency values instantly.",
+      "Developed a native Android app leveraging Room database for lightning-fast queries, Google ML Kit for offline OCR receipt scanning, WorkManager for background jobs, and Biometric authentication.",
     architecture:
-      "React Native framework with Expo SDK. SQLite database for secure local storage. NativeWind (Tailwind CSS) for responsive cross-platform styling. Local state management for real-time calculation updates.",
+      "Native Android built with Feature-First Clean Architecture. Room Persistence Library for structured local data, Dagger Hilt for Dependency Injection, and Jetpack Compose for reactive Material 3 UI.",
     challenges: [
-      "Designing a fast banknote counting calculator interface that dynamically updates the total ledger in real-time.",
-      "Optimizing local SQLite query performance on lower-end mobile devices to ensure a lag-free experience."
+      "Parsing and structure-matching unstructured text results from local Google ML Kit OCR scanner.",
+      "Optimizing database search query times to keep search suggestions under 100ms using Room FTS4.",
+      "Maintaining transactional integrity across multi-account transfers and balance checks."
     ],
     results: [
-      "Successful cross-platform MVP built and validated on Android and iOS.",
-      "100% offline functionality ensuring complete user data privacy.",
-      "Banknote calculator significantly reduces the time required for physical cash tallying."
+      "Built a fully functional offline-first Android MVP with ZIP backup and restore capabilities.",
+      "Successfully integrated offline OCR receipt parser extracting amounts and dates with high accuracy.",
+      "Ensured maximum privacy and speed with 100% on-device local storage and biometric lock."
     ],
     lessonsLearned: [
-      "Local-first databases eliminate network latency and drastically improve user experience for logging transactions.",
-      "Component rerenders in React Native must be carefully optimized during fast numeric inputs to avoid lags."
+      "Modular feature-first layouts enhance codebase organization and make UI testing far simpler.",
+      "Offline-first apps require thorough local synchronization locks to prevent database corruption during concurrent writes.",
+      "Google ML Kit performs incredibly well on-device without incurring any latency or cloud costs."
     ],
     futureImprovements: [
-      "Add encrypted local JSON export/import for budget backups.",
-      "Integrate biometric authentication (FaceID/TouchID) for local app security.",
-      "Add data visualization charts showing monthly budget breakdowns."
+      "Integrate local charts utilizing native Canvas API for detailed budget insights.",
+      "Add automated database migration tests to ensure zero data loss during schema updates.",
+      "Implement advanced categorization using local NLP models."
     ]
   },
   {

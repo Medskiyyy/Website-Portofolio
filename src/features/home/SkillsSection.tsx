@@ -59,16 +59,16 @@ export default function SkillsSection() {
                   {t(cat.titleKey)}
                 </h3>
               </div>
-              <ul className="flex flex-col gap-1.5">
+              <div className="flex flex-wrap gap-1.5">
                 {cat.skills.map((skill) => (
-                  <li
+                  <span
                     key={skill}
-                    className="text-sm text-muted-foreground leading-relaxed"
+                    className="rounded-full border border-border/80 bg-muted/50 px-2.5 py-0.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/30 hover:bg-muted/80"
                   >
                     {skill}
-                  </li>
+                  </span>
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
         </div>

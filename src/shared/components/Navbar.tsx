@@ -41,13 +41,22 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-zinc-200 bg-white/75 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/75 transition-colors duration-200">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-8">
-        {/* Logo / Brand Name */}
-        <Link 
-          href="/" 
-          className="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-50 hover:opacity-80 transition-opacity"
-        >
-          Ahmad H.
-        </Link>
+        {/* Logo & Availability Status */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Link 
+            href="/" 
+            className="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-50 hover:opacity-80 transition-opacity"
+          >
+            Ahmad H.
+          </Link>
+          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-600/10 dark:bg-emerald-500/10 dark:text-emerald-400 dark:ring-emerald-500/20">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            </span>
+            {t("available")}
+          </span>
+        </div>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-6">

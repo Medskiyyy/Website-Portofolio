@@ -4,7 +4,8 @@
     "projects": "Proyek",
     "resume": "Resume",
     "about": "Tentang",
-    "contact": "Kontak"
+    "contact": "Kontak",
+    "available": "Tersedia"
   },
   "Hero": {
     "badge": "Tersedia untuk Peluang Baru",
@@ -68,6 +69,14 @@
     "subtitle": "Terbuka untuk posisi full-time, proyek freelance, dan peluang kolaborasi. Hubungi langsung melalui email atau GitHub.",
     "sendEmail": "Kirim Email",
     "viewGithub": "Lihat GitHub"
+  },
+  "GithubShowcase": {
+    "label": "Sumber Terbuka",
+    "title": "Repositori Pilihan",
+    "subtitle": "Jelajahi kode sumber dari proyek publik saya langsung di GitHub.",
+    "cta": "Lihat Profil GitHub",
+    "portfolioDesc": "Website portofolio profesional yang dibangun menggunakan Next.js 16, TypeScript, next-intl, dan Tailwind CSS.",
+    "hitungDesc": "Aplikasi keuangan pribadi Android berbasis offline-first yang dibangun dengan Kotlin, Jetpack Compose, Dagger Hilt, dan Google ML Kit."
   },
   "ProjectsPage": {
     "metaTitle": "Proyek | Ahmad Hidayatullah",
