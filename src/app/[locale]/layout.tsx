@@ -18,6 +18,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'Metadata' });
 
   return {
+    metadataBase: new URL('https://website-portofolio-pi-ruby.vercel.app'),
     title: t('title'),
     description: t('description'),
     keywords: t('keywords'),
@@ -29,6 +30,14 @@ export async function generateMetadata({
       description: t('description'),
       type: 'website',
       locale: locale === 'id' ? 'id_ID' : 'en_US',
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: t('title'),
+        }
+      ]
     },
     twitter: {
       card: 'summary_large_image',
