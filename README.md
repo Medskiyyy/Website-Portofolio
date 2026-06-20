@@ -1,76 +1,58 @@
-# Personal Portfolio Codebase - Ahmad Hidayatullah
+# Ahmad Hidayatullah - Personal Portfolio
 
-This repository contains the source code for the professional portfolio website of Ahmad Hidayatullah. The site is designed to showcase projects, technical skills, and detailed case studies, optimized for international recruiters and hiring managers.
+![Portfolio Banner](./public/og-image.png)
 
-Live URL: [website-portofolio-pi-ruby.vercel.app](https://website-portofolio-pi-ruby.vercel.app/)
+A high-performance, multilingual professional portfolio engineered by **Ahmad Hidayatullah**, a Full Stack Developer, Product Builder, and Information Systems student. This site is meticulously crafted to showcase my projects, technical skills, architectural decisions, and detailed case studies, optimized specifically to provide a premium experience for international recruiters, hiring managers, and prospective clients.
+
+**🌍 Live URL:** [website-portofolio-pi-ruby.vercel.app](https://website-portofolio-pi-ruby.vercel.app/)
 
 ---
 
-## 🛠️ Tech Stack
+## 🎯 Project Goals & Architecture
 
-- **Framework**: Next.js 16 (App Router)
+This portfolio is built with a feature-first architectural mindset, prioritizing clean code, performance, and accessibility. It operates without a CMS, relying on a robust static content data structure to ensure lightning-fast load times and uncompromised SEO capabilities.
+
+### 🛠️ Tech Stack
+- **Framework**: Next.js 16 (App Router & Turbopack)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4
 - **Component Library**: shadcn/ui
-- **Internationalization**: next-intl (Fully localized dynamic routing for `/en` and `/id`)
+- **Internationalization (i18n)**: next-intl (Fully localized dynamic routing for `/en` and `/id` via middleware)
 - **Theme Manager**: next-themes (Light/Dark/System support)
 - **Icons**: lucide-react
 - **Deployment**: Vercel
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-- **Pulsing Availability Badge**: In the header, showing "Open to Opportunities" or "Tersedia" depending on the locale.
-- **Dynamic Projects Grid**: Responsive listing page showing custom visual thumbnails with hover zoom animations.
-- **Detailed Case Studies**: Structural write-ups detailing Project Overview, Problem, Goal, Solution, Architecture, Challenges, and measurable Results.
-- **GitHub Showcase Section**: Premium simulated GitHub repository cards on the home page highlighting active public codebases.
-- **Dynamic Resume System**: Displays professional background, education, and automatically syncs project details directly from content data, with support for ATS-friendly PDF download.
-- **SEO & Search Console Readiness**: Pre-configured robots.txt, dynamic sitemap.xml, custom OpenGraph meta imagery, and layout metadata tags.
+- **Global Internationalization**: Seamless toggling between English and Indonesian, with all copy professionally localized and dynamic routes automatically adapting to the active locale segment.
+- **Pulsing Availability Badge**: A dynamic visual indicator in the global navigation bar showing "Open to Roles" or "Tersedia" based on locale, immediately signaling availability to recruiters.
+- **GitHub Showcase Section**: Premium simulated GitHub repository cards on the home page highlighting my active public codebases (like the Android ML app *HitungUang* and this very portfolio).
+- **Dynamic Projects Grid**: A responsive listing page featuring custom visual thumbnails and smooth hover zoom animations.
+- **Detailed Case Studies**: Structural, deep-dive write-ups for each project detailing the Overview, Problem, Goal, Solution, Architecture, Challenges, and measurable Results.
+- **Dynamic Resume System**: Displays professional background, education, and automatically syncs project details directly from the codebase's content data. Includes support for downloading an ATS-friendly PDF.
+- **SEO & Search Console Readiness**: Pre-configured `robots.txt`, dynamic `sitemap.xml`, custom OpenGraph meta imagery (`metadataBase`), and semantic layout metadata tags.
 
 ---
 
-## 📐 Project Structure
+## 📐 Directory Structure
+
+The codebase is organized using a feature-based architecture to maintain scalability and clear domain boundaries:
 
 ```text
 portfolio/
 ├── messages/               # Localization strings (en.json, id.json)
-├── public/                 # Static assets (thumbnails, resume PDF, avatar image)
+├── public/                 # Static assets (thumbnails, resume PDF, OpenGraph image)
 └── src/
-    ├── app/                # Next.js App Router root layout & localized segments
-    ├── components/         # Global reusable UI primitives (buttons, input)
+    ├── app/                # Next.js App Router root layout & localized [locale] segments
+    ├── components/         # Global reusable UI primitives (shadcn/ui components)
     ├── content/            # Static project database and case study details
-    ├── features/           # Feature modules (home page sections, contact, projects)
-    ├── i18n/               # next-intl configuration, routing, and navigation helpers
-    ├── lib/                # Utility helpers (cn classes merger)
+    ├── features/           # Feature modules (home, projects, resume, showcase)
+    ├── i18n/               # next-intl configuration, routing, and navigation proxy handling
+    ├── lib/                # Utility helpers (e.g., Tailwind classes merger)
     ├── shared/             # Layout templates (Navbar, Footer, shell structures)
-    └── types/              # Global TypeScript declarations
-```
-
----
-
-## 📥 Local Development
-
-### 1. Install Dependencies
-Make sure you have [pnpm](https://pnpm.io/) installed:
-```bash
-pnpm install
-```
-
-### 2. Run Development Server
-```bash
-pnpm dev
-```
-Open [http://localhost:3000](http://localhost:3000) to view it.
-
-### 3. Build for Production
-```bash
-pnpm build
-```
-
-### 4. Run Linter
-```bash
-pnpm run lint
+    └── types/              # Global TypeScript type declarations
 ```
 
 ---
