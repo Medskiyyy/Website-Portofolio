@@ -1,0 +1,155 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "projects": "Projects",
+    "resume": "Resume",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "Hero": {
+    "badge": "Available For Opportunities",
+    "title": "Full Stack Developer & Product Builder",
+    "subtitle": "Building modern web applications from concept to deployment using modern technologies and AI-assisted development workflows.",
+    "ctaProjects": "View Projects",
+    "ctaResume": "Download Resume"
+  },
+  "AboutPreview": {
+    "label": "About Me",
+    "summary": "Information Systems student focused on building modern web applications and digital products. I combine technical implementation with product thinking to deliver solutions that solve real problems — from concept to deployment.",
+    "cta": "Read More"
+  },
+  "Skills": {
+    "label": "Technical Skills",
+    "title": "What I Work With",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Tools",
+    "aiWorkflow": "AI Workflow"
+  },
+  "FeaturedProject": {
+    "label": "Featured Project",
+    "title": "What I've Built",
+    "description": "A business website built to showcase products, improve online presence, and streamline customer ordering for a local food business. Designed and developed end-to-end as a full-stack web application.",
+    "liveDemo": "Live Demo",
+    "caseStudy": "Case Study"
+  },
+  "AIWorkflow": {
+    "label": "Development Approach",
+    "title": "AI-Assisted Workflow",
+    "subtitle": "I use AI tools to accelerate every phase of development — from research to deployment — while maintaining full ownership of architecture and product decisions.",
+    "research": "Research",
+    "researchDesc": "Problem analysis & technical research",
+    "planning": "Planning",
+    "planningDesc": "Architecture & task breakdown",
+    "development": "Development",
+    "developmentDesc": "AI-accelerated implementation",
+    "testing": "Testing",
+    "testingDesc": "Quality checks & validation",
+    "documentation": "Documentation",
+    "documentationDesc": "Clear, structured docs",
+    "deployment": "Deployment",
+    "deploymentDesc": "Vercel & CI/CD pipeline"
+  },
+  "ResumePreview": {
+    "label": "Resume",
+    "title": "Professional Background",
+    "summaryLabel": "Summary",
+    "summaryValue": "Information Systems student with hands-on experience building full-stack web applications using Next.js, TypeScript, and Supabase. Focused on practical, production-ready development.",
+    "educationLabel": "Education",
+    "educationValue": "Bachelor of Information Systems — In Progress",
+    "projectsLabel": "Projects",
+    "projectsValue": "Pempek Cek Lis — Full Stack Business Website",
+    "viewResume": "View Full Resume",
+    "download": "Download PDF"
+  },
+  "ContactPreview": {
+    "label": "Contact",
+    "title": "Let's Work Together",
+    "subtitle": "Open to full-time positions, freelance projects, and collaboration opportunities. Reach out directly via email or GitHub.",
+    "sendEmail": "Send an Email",
+    "viewGithub": "View GitHub"
+  },
+  "ProjectsPage": {
+    "metaTitle": "Projects | Ahmad Hidayatullah",
+    "metaDescription": "Showcased projects by Ahmad Hidayatullah — full-stack web applications built with Next.js, TypeScript, and Supabase.",
+    "title": "Projects",
+    "subtitle": "A collection of real-world projects I've designed and built from concept to deployment.",
+    "liveDemo": "Live Demo",
+    "caseStudy": "Case Study",
+    "empty": "Projects coming soon."
+  },
+  "ProjectDetail": {
+    "back": "All Projects",
+    "liveDemo": "Live Demo",
+    "overview": "Overview",
+    "problem": "Problem",
+    "goal": "Goal",
+    "solution": "Solution",
+    "architecture": "Architecture",
+    "challenges": "Challenges",
+    "results": "Results",
+    "lessonsLearned": "Lessons Learned",
+    "futureImprovements": "Future Improvements"
+  },
+  "ResumePage": {
+    "metaTitle": "Resume | Ahmad Hidayatullah",
+    "metaDescription": "Professional resume of Ahmad Hidayatullah — Full Stack Developer & Product Builder.",
+    "title": "Resume",
+    "subtitle": "Full Stack Developer & Product Builder",
+    "download": "Download PDF",
+    "summaryTitle": "Professional Summary",
+    "summaryText": "Information Systems student with hands-on experience building full-stack web applications. I work across the entire product lifecycle — from architecture and design to development, testing, and deployment. Proficient in Next.js, TypeScript, and Supabase, with an AI-assisted development workflow that significantly accelerates delivery.",
+    "skillsTitle": "Technical Skills",
+    "skillsFrontend": "Frontend",
+    "skillsBackend": "Backend",
+    "skillsTools": "Tools",
+    "skillsAI": "AI Workflow",
+    "projectsTitle": "Projects",
+    "projectRole": "Full Stack Developer",
+    "projectDescription": "Built a full-stack business website for a local food business. Designed and implemented product catalog, mobile-first responsive layout, WhatsApp ordering integration, and SEO optimization.",
+    "educationTitle": "Education",
+    "educationDegree": "Bachelor of Information Systems",
+    "educationSchool": "Universitas — In Progress",
+    "educationPeriod": "2022 – Present"
+  },
+  "AboutPage": {
+    "metaTitle": "About | Ahmad Hidayatullah",
+    "metaDescription": "Learn about Ahmad Hidayatullah — Full Stack Developer & Product Builder, development philosophy, and AI-assisted workflow.",
+    "title": "About",
+    "intro": "I'm Ahmad Hidayatullah, an Information Systems student and self-taught Full Stack Developer focused on building real web products with modern technologies.",
+    "backgroundTitle": "Background",
+    "backgroundText": "I started building web applications because I wanted to solve real problems, not just learn syntax. Early on I realized that building full products — handling both the technical and the product side — was where I thrived. I've since developed a practical workflow combining solid fundamentals with AI-assisted development to deliver faster without sacrificing quality.",
+    "philosophyTitle": "Development Philosophy",
+    "philosophyText": "I believe the best code is code that solves the stated problem clearly and maintainably. I avoid over-engineering and premature abstractions. Every line I write should trace directly to a user need.",
+    "principle1Title": "Simplicity First",
+    "principle1Desc": "The simplest solution that works is almost always the right one.",
+    "principle2Title": "Product Thinking",
+    "principle2Desc": "Every technical decision should serve user and business goals.",
+    "principle3Title": "Continuous Learning",
+    "principle3Desc": "Staying current through building, not just reading.",
+    "aiWorkflowTitle": "AI-Assisted Workflow",
+    "aiWorkflowText": "I use AI tools as a force multiplier across every phase of development — while retaining full ownership of architecture, design decisions, and product direction.",
+    "workflowStep1": "AI-assisted research to quickly understand problem space and existing solutions.",
+    "workflowStep2": "Structured planning with AI-generated task breakdowns and architecture reviews.",
+    "workflowStep3": "Development accelerated by AI pair programming — while I own every line that ships.",
+    "workflowStep4": "Automated and manual testing with AI-assisted debugging.",
+    "workflowStep5": "Auto-generated documentation maintained alongside code.",
+    "goalsTitle": "Career Goals",
+    "goalsText": "I'm looking to join a team where I can contribute as a Full Stack Developer, work on products with real impact, and continue growing my technical and product skills in a collaborative environment. Open to remote, hybrid, and on-site opportunities."
+  },
+  "ContactPage": {
+    "metaTitle": "Contact | Ahmad Hidayatullah",
+    "metaDescription": "Get in touch with Ahmad Hidayatullah — Full Stack Developer & Product Builder.",
+    "title": "Get In Touch",
+    "subtitle": "I'm open to full-time positions, freelance projects, and collaboration opportunities. The best way to reach me is via email.",
+    "emailDesc": "Preferred contact method. I aim to respond within 24–48 hours.",
+    "githubDesc": "Browse my open source work and project repositories.",
+    "linkedinComingSoon": "LinkedIn profile — coming soon.",
+    "note": "I'm currently open to new opportunities. If you have a project in mind or just want to connect, don't hesitate to reach out."
+  },
+  "Metadata": {
+    "title": "Ahmad Hidayatullah | Full Stack Developer & Product Builder",
+    "description": "Portfolio of Ahmad Hidayatullah, a Full Stack Developer and Product Builder creating modern web applications using Next.js, TypeScript, Supabase, and AI-assisted development workflows.",
+    "keywords": "Ahmad Hidayatullah, Full Stack Developer, Product Builder, Next.js Developer, TypeScript Developer, Portfolio Website"
+  }
+}

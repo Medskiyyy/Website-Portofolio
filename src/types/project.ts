@@ -1,0 +1,21 @@
+export type Project = {
+  slug: string;
+  title: string;
+  description: string;
+  techStack: string[];
+  liveUrl?: string;
+  githubUrl?: string;
+  isFeatured?: boolean;
+  status: "completed" | "in-progress" | "planned";
+  role: string;
+  timeline: string;
+  overview: string;
+  problem: string;
+  goal: string;
+  solution: string;
+  architecture: string;
+  challenges: string[];
+  results: string[];
+  lessonsLearned: string[];
+  futureImprovements: string[];
+};
