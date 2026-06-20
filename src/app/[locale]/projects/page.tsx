@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { projects } from "@/content/projects";
 import { Link } from "@/i18n/navigation";
+import Image from "next/image";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ExternalLink, Github, BookOpen } from "lucide-react";
@@ -44,9 +45,22 @@ export default async function ProjectsPage({
               key={project.slug}
               className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-shadow hover:shadow-md"
             >
-              {/* Thumbnail placeholder */}
-              <div className="h-44 bg-muted flex items-center justify-center">
-                <BookOpen className="h-10 w-10 text-muted-foreground/40" />
+              {/* Thumbnail */}
+              <div className="relative h-48 w-full bg-muted overflow-hidden">
+                {project.imageUrl ? (
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    priority={project.isFeatured}
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center">
+                    <BookOpen className="h-10 w-10 text-muted-foreground/40" />
+                  </div>
+                )}
               </div>
 
               <div className="flex flex-col flex-1 p-5 gap-4">

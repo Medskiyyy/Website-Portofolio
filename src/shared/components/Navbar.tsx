@@ -10,13 +10,21 @@ export default function Navbar() {
   const t = useTranslations("Navigation");
   const pathname = usePathname();
   const currentLocale = useLocale();
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   // Avoid hydration mismatch by rendering theme toggle only after mount
   useEffect(() => {
-    setMounted(true);
+    let active = true;
+    setTimeout(() => {
+      if (active) {
+        setMounted(true);
+      }
+    }, 0);
+    return () => {
+      active = false;
+    };
   }, []);
 
   const navLinks = [

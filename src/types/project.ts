@@ -5,6 +5,7 @@ export type Project = {
   techStack: string[];
   liveUrl?: string;
   githubUrl?: string;
+  imageUrl?: string;
   isFeatured?: boolean;
   status: "completed" | "in-progress" | "planned";
   role: string;

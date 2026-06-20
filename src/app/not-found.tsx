@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function GlobalNotFound() {
   return (
     <html lang="en">
@@ -24,7 +26,7 @@ export default function GlobalNotFound() {
         <p style={{ color: "#555", marginBottom: "2rem" }}>
           The page you&apos;re looking for doesn&apos;t exist.
         </p>
-        <a
+        <Link
           href="/en"
           style={{
             display: "inline-flex",
@@ -38,7 +40,7 @@ export default function GlobalNotFound() {
           }}
         >
           Go Home
-        </a>
+        </Link>
       </body>
     </html>
   );

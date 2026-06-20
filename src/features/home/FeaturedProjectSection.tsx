@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import Image from "next/image";
 import { ExternalLink, Github, BookOpen } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -22,12 +23,15 @@ export default function FeaturedProjectSection() {
 
         {/* Featured Project Card */}
         <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
-          {/* Project Image Placeholder */}
-          <div className="w-full h-56 bg-muted flex items-center justify-center md:h-72">
-            <div className="text-center text-muted-foreground">
-              <BookOpen className="h-12 w-12 mx-auto mb-3 opacity-40" />
-              <p className="text-sm">Pempek Cek Lis</p>
-            </div>
+          {/* Project Image */}
+          <div className="relative w-full h-56 md:h-72 bg-muted overflow-hidden">
+            <Image
+              src="/thumb-pempek.png"
+              alt="Pempek Cek Lis"
+              fill
+              priority
+              className="object-cover transition-transform duration-300 hover:scale-105"
+            />
           </div>
 
           {/* Project Info */}

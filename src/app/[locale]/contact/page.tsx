@@ -1,7 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { Mail, Github, ExternalLink } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
