@@ -29,6 +29,11 @@ export async function generateMetadata({
       description: t('description'),
       type: 'website',
       locale: locale === 'id' ? 'id_ID' : 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
     }
   };
 }
