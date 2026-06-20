@@ -15,15 +15,15 @@ export default function Footer() {
         {/* Contact Links */}
         <div className="flex items-center gap-6 order-1 md:order-2">
           <a
-            href="mailto:contact@ahmadhidayatullah.com" // You can substitute with user email later or keep generic
+            href="mailto:hidayatahmadd1377@gmail.com"
             className="flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
             aria-label="Email Address"
           >
             <Mail className="h-4 w-4" />
-            <span className="hidden sm:inline">contact@ahmadhidayatullah.com</span>
+            <span className="hidden sm:inline">hidayatahmadd1377@gmail.com</span>
           </a>
           <a
-            href="https://github.com" // Update when GitHub profile is set up
+            href="https://github.com/Medskiyyy"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"

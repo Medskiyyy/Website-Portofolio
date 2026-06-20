@@ -19,14 +19,14 @@ export default function ContactPreviewSection() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="mailto:contact@ahmadhidayatullah.com"
+            href="mailto:hidayatahmadd1377@gmail.com"
             className={cn(buttonVariants(), "gap-2 px-6")}
           >
             <Mail className="h-4 w-4" />
             {t("sendEmail")}
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/Medskiyyy"
             target="_blank"
             rel="noopener noreferrer"
             className={cn(buttonVariants({ variant: "outline" }), "gap-2 px-6")}

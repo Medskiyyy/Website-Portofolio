@@ -66,7 +66,7 @@ export default function FeaturedProjectSection() {
                   {t("liveDemo")}
                 </a>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/Medskiyyy/Website-Portofolio"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(buttonVariants({ variant: "outline", size: "sm" }), "gap-2 w-full justify-center")}

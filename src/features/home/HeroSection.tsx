@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import Image from "next/image";
 import { ArrowRight, Download, Github, Mail } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -15,6 +16,19 @@ export default function HeroSection() {
         className="pointer-events-none absolute inset-0 -z-10 flex items-start justify-center"
       >
         <div className="h-[400px] w-[700px] rounded-full bg-primary/5 blur-3xl" />
+      </div>
+
+      {/* Profile Photo */}
+      <div className="mb-6">
+        <div className="relative h-24 w-24 rounded-full border border-border overflow-hidden bg-muted shadow-sm">
+          <Image
+            src="/profile.jpg"
+            alt="Ahmad Hidayatullah"
+            fill
+            priority
+            className="object-cover"
+          />
+        </div>
       </div>
 
       {/* Available badge */}
@@ -58,7 +72,7 @@ export default function HeroSection() {
       {/* Social Links */}
       <div className="mt-8 flex items-center gap-6">
         <a
-          href="https://github.com"
+          href="https://github.com/Medskiyyy"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -68,7 +82,7 @@ export default function HeroSection() {
           <span>GitHub</span>
         </a>
         <a
-          href="mailto:contact@ahmadhidayatullah.com"
+          href="mailto:hidayatahmadd1377@gmail.com"
           className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
           aria-label="Email"
         >

@@ -8,7 +8,7 @@ export const projects: Project[] = [
       "A business website built to showcase products, improve online presence, and streamline customer ordering for a local food business.",
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
     liveUrl: "https://pempekceklist.com",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/Medskiyyy",
     isFeatured: true,
     status: "completed",
     role: "Full Stack Developer",
