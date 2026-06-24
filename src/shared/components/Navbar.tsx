@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTheme } from "next-themes";
-import { BriefcaseBusiness, Globe, Menu, Moon, Sun, X } from "lucide-react";
+import { Globe, Menu, Moon, Sun, X } from "lucide-react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 export default function Navbar() {
   const t = useTranslations("Navigation");
@@ -14,7 +15,6 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Avoid hydration mismatch by rendering theme toggle only after mount
   useEffect(() => {
     let active = true;
     setTimeout(() => {
@@ -36,131 +36,148 @@ export default function Navbar() {
   ];
 
   const nextLocale = currentLocale === "en" ? "id" : "en";
-  const localeLabel = currentLocale === "en" ? "ID" : "EN";
+
+  const menuVariants: Variants = {
+    closed: { opacity: 0, transition: { staggerChildren: 0.05, staggerDirection: -1 } },
+    open: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+  };
+
+  const itemVariants: Variants = {
+    closed: { opacity: 0, y: 20 },
+    open: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } },
+  };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/88 backdrop-blur-xl transition-colors duration-200">
-      <div className="section-shell flex h-16 items-center justify-between">
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Link 
-            href="/" 
-            className="font-heading text-base font-bold tracking-tight text-foreground transition-colors hover:text-primary"
-          >
-            Ahmad H.
-          </Link>
-          <span className="hidden items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 sm:inline-flex">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70 motion-reduce:animate-none" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            </span>
-            {t("available")}
-          </span>
-        </div>
+    <>
+      <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-2xl rounded-full border border-border/40 bg-background/60 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.05)] transition-all duration-300">
+        <div className="flex h-14 items-center justify-between px-2 sm:px-4">
+          <div className="pl-3">
+            <Link 
+              href="/" 
+              className="font-heading text-lg font-bold tracking-tight text-foreground transition-opacity hover:opacity-70"
+            >
+              Ahmad.
+            </Link>
+          </div>
 
-        <nav className="hidden items-center gap-1 rounded-full border border-border bg-card/80 p-1 shadow-sm md:flex">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
-                  isActive 
-                    ? "bg-secondary text-secondary-foreground shadow-sm" 
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="hidden items-center gap-2 md:flex">
-          <Link
-            href={pathname}
-            locale={nextLocale}
-            className="flex cursor-pointer items-center gap-1.5 rounded-md border border-border bg-card px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/30 hover:text-foreground"
-            aria-label="Switch Language"
-          >
-            <Globe className="h-3.5 w-3.5" />
-            <span>{localeLabel}</span>
-          </Link>
-
-          <button
-            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-            className="cursor-pointer rounded-md border border-border bg-card p-2 text-muted-foreground transition-colors hover:border-primary/30 hover:text-foreground"
-            aria-label="Toggle Theme"
-          >
-            {mounted && (resolvedTheme === "dark" ? (
-              <Sun className="h-4 w-4" />
-            ) : (
-              <Moon className="h-4 w-4" />
-            ))}
-          </button>
-        </div>
-
-        <div className="flex items-center gap-2 md:hidden">
-          <button
-            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-            className="cursor-pointer rounded-md border border-border bg-card p-2 text-muted-foreground transition-colors hover:text-foreground"
-            aria-label="Toggle Theme"
-          >
-            {mounted && (resolvedTheme === "dark" ? (
-              <Sun className="h-4 w-4" />
-            ) : (
-              <Moon className="h-4 w-4" />
-            ))}
-          </button>
-
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="cursor-pointer rounded-md border border-border bg-card p-2 text-muted-foreground transition-colors hover:text-foreground"
-            aria-expanded={isOpen}
-            aria-label="Main Menu"
-          >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </div>
-
-      {isOpen && (
-        <div className="fixed inset-0 top-16 z-40 h-[calc(100vh-4rem)] w-full border-t border-border bg-background md:hidden animate-fade-in">
-          <nav className="section-shell flex flex-col gap-2 py-6">
-            <div className="mb-3 flex items-center gap-2 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
-              <BriefcaseBusiness className="h-4 w-4" />
-              {t("available")}
-            </div>
+          {/* Desktop Nav */}
+          <nav className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`rounded-md px-3 py-3 text-base font-medium transition-colors ${
+                  className={`relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                     isActive 
-                      ? "bg-secondary text-secondary-foreground" 
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                      ? "text-foreground" 
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {link.label}
+                  {isActive && (
+                    <motion.div
+                      layoutId="nav-pill"
+                      className="absolute inset-0 -z-10 rounded-full bg-secondary/80 shadow-sm"
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{link.label}</span>
                 </Link>
               );
             })}
+          </nav>
 
+          <div className="hidden items-center md:flex pr-1">
             <Link
               href={pathname}
               locale={nextLocale}
-              onClick={() => setIsOpen(false)}
-              className="mt-3 flex items-center gap-2 rounded-md border border-border bg-card px-3 py-3 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
+              className="flex items-center justify-center w-9 h-9 rounded-full bg-transparent hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Switch Language"
             >
               <Globe className="h-4 w-4" />
-              <span>Switch to {currentLocale === "en" ? "Bahasa Indonesia" : "English"}</span>
             </Link>
-          </nav>
+
+            <button
+              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+              className="flex items-center justify-center w-9 h-9 rounded-full bg-transparent hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Toggle Theme"
+            >
+              {mounted && (resolvedTheme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />)}
+            </button>
+          </div>
+
+          {/* Mobile Toggle */}
+          <div className="flex items-center pr-1 md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="relative z-50 flex items-center justify-center w-10 h-10 rounded-full bg-transparent hover:bg-secondary text-foreground transition-colors"
+              aria-expanded={isOpen}
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
-      )}
-    </header>
+      </header>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(24px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-40 h-[100dvh] w-full bg-background/80 md:hidden flex flex-col justify-center px-8"
+          >
+            <motion.nav 
+              variants={menuVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              className="flex flex-col gap-6"
+            >
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <motion.div key={link.href} variants={itemVariants}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`text-4xl font-heading font-medium tracking-tight ${
+                        isActive ? "text-primary" : "text-foreground/70 hover:text-foreground"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
+
+              <motion.div variants={itemVariants} className="mt-8 flex items-center gap-4">
+                <Link
+                  href={pathname}
+                  locale={nextLocale}
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-2 text-sm font-medium"
+                >
+                  <Globe className="h-4 w-4" />
+                  {currentLocale === "en" ? "ID" : "EN"}
+                </Link>
+                <button
+                  onClick={() => {
+                    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+                    setIsOpen(false);
+                  }}
+                  className="flex items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-2 text-sm font-medium"
+                >
+                  {mounted && resolvedTheme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                  {mounted && resolvedTheme === "dark" ? "Light Mode" : "Dark Mode"}
+                </button>
+              </motion.div>
+            </motion.nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Search, LayoutList, Code2, TestTube2, FileText, Rocket } from "lucide-react";
+import { motion } from "framer-motion";
 
 type WorkflowStep = {
   icon: React.ReactNode;
@@ -20,8 +21,14 @@ export default function AIWorkflowSection() {
   const t = useTranslations("AIWorkflow");
 
   return (
-    <section className="w-full border-y border-border bg-card/60 py-20">
-      <div className="section-shell">
+    <section className="w-full border-y border-border/40 bg-card/20 py-32 md:py-40">
+      <motion.div 
+        className="section-shell"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
+      >
         <div className="mb-12 max-w-3xl">
           <p className="eyebrow">{t("label")}</p>
           <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight text-foreground">{t("title")}</h2>
@@ -53,7 +60,7 @@ export default function AIWorkflowSection() {
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

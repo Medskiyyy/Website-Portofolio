@@ -1,3 +1,4 @@
+import { Space_Grotesk, Playfair_Display } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import Script from 'next/script';
@@ -44,6 +45,16 @@ export async function generateMetadata({
   };
 }
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-heading',
+});
+
 export default async function LocaleLayout({
   children,
   params
@@ -71,7 +82,7 @@ export default async function LocaleLayout({
           `}
         </Script>
       </head>
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className={`min-h-full flex flex-col bg-background text-foreground ${spaceGrotesk.variable} ${playfair.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider messages={messages}>
             <Navbar />

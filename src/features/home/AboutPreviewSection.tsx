@@ -3,14 +3,21 @@ import { Link } from "@/i18n/navigation";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 export default function AboutPreviewSection() {
   const t = useTranslations("AboutPreview");
   const highlights = [t("highlightProduct"), t("highlightEngineering"), t("highlightDelivery")];
 
   return (
-    <section className="w-full py-20">
-      <div className="section-shell grid gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-start">
+    <section className="w-full py-32 md:py-40">
+      <motion.div 
+        className="section-shell grid gap-16 md:grid-cols-[0.8fr_1.2fr] md:items-start"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
+      >
         <div>
           <p className="eyebrow">{t("label")}</p>
           <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight text-foreground">
@@ -39,7 +46,7 @@ export default function AboutPreviewSection() {
             </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

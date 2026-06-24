@@ -1,9 +1,32 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { ArrowRight, Download, Github, Mail, ShieldCheck } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { motion, Variants } from "framer-motion";
+
+const fadeUpVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { type: "spring", stiffness: 100, damping: 20 }
+  }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    }
+  }
+};
 
 export default function HeroSection() {
   const t = useTranslations("Hero");
@@ -14,101 +37,122 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="relative overflow-hidden">
-      <div className="section-shell grid min-h-[calc(100vh-4rem)] items-center gap-12 py-16 md:grid-cols-[1.05fr_0.95fr] md:py-20">
-        <div>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-card px-3 py-1.5 text-sm font-medium text-muted-foreground shadow-sm">
-            <span className="relative flex h-2 w-2">
+    <section className="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
+      <motion.div 
+        className="section-shell grid min-h-[min(calc(100dvh-10rem),800px)] items-center gap-16 md:grid-cols-2"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <div className="flex flex-col items-start">
+          <motion.div variants={fadeUpVariants} className="mb-8 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-300">
+            <span className="relative flex h-1.5 w-1.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70 motion-reduce:animate-none" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
             </span>
             {t("badge")}
-          </div>
+          </motion.div>
 
-          <h1 className="font-heading max-w-3xl text-4xl font-bold leading-[1.03] tracking-tight text-foreground sm:text-5xl md:text-6xl">
+          <motion.h1 variants={fadeUpVariants} className="font-heading max-w-2xl text-5xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-[5.5rem] lg:text-[6rem]">
             {t("title")}
-          </h1>
+          </motion.h1>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
+          <motion.p variants={fadeUpVariants} className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
             {t("subtitle")}
-          </p>
+          </motion.p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <motion.div variants={fadeUpVariants} className="mt-10 flex flex-col gap-4 sm:flex-row w-full sm:w-auto">
             <Link
               href="/projects"
-              className={cn(buttonVariants({ size: "lg" }), "h-12 cursor-pointer gap-2 px-6")}
+              className={cn(buttonVariants({ size: "lg" }), "group h-14 rounded-full pl-8 pr-2 text-base shadow-[0_4px_14px_0_rgba(0,0,0,0.1)] transition-all hover:-translate-y-1 hover:shadow-[0_6px_20px_0_rgba(0,0,0,0.15)] active:scale-95")}
             >
               {t("ctaProjects")}
-              <ArrowRight className="h-4 w-4" />
+              <div className="ml-4 flex h-10 w-10 items-center justify-center rounded-full bg-background/20 dark:bg-white/20 transition-transform duration-300 group-hover:translate-x-1 group-hover:bg-background/30">
+                <ArrowRight className="h-4 w-4" />
+              </div>
             </Link>
             <a
               href="/resume.pdf"
               download
-              className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-12 cursor-pointer gap-2 px-6")}
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }), "group h-14 rounded-full px-8 text-base bg-background/50 backdrop-blur-md transition-all hover:-translate-y-1 active:scale-95")}
             >
               {t("ctaResume")}
-              <Download className="h-4 w-4" />
+              <Download className="ml-2 h-4 w-4 transition-transform group-hover:-translate-y-1" />
             </a>
-          </div>
+          </motion.div>
 
-          <div className="mt-8 grid max-w-xl grid-cols-3 divide-x divide-border rounded-lg border border-border bg-card shadow-sm">
-            {stats.map((stat) => (
-              <div key={stat.label} className="p-4">
-                <p className="font-heading text-2xl font-bold text-foreground">{stat.value}</p>
-                <p className="mt-1 text-xs font-medium leading-4 text-muted-foreground">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+          <motion.div variants={fadeUpVariants} className="mt-16 w-full max-w-md">
+            <div className="grid grid-cols-3 divide-x divide-border/40 rounded-[2rem] border border-border/40 bg-card/40 p-2 backdrop-blur-sm">
+              {stats.map((stat) => (
+                <div key={stat.label} className="flex flex-col items-center justify-center p-4">
+                  <p className="font-heading text-3xl font-bold text-foreground">{stat.value}</p>
+                  <p className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
 
-          <div className="mt-7 flex flex-wrap items-center gap-4">
+          <motion.div variants={fadeUpVariants} className="mt-10 flex flex-wrap items-center gap-6">
             <a
               href="https://github.com/Medskiyyy"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex cursor-pointer items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              aria-label="GitHub"
+              className="group flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              <Github className="h-4 w-4" />
-              <span>GitHub</span>
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-card border border-border/50 group-hover:border-foreground/20 transition-colors">
+                <Github className="h-4 w-4" />
+              </div>
+              <span className="tracking-wide">GitHub</span>
             </a>
             <a
               href="mailto:hidayatahmadd1377@gmail.com"
-              className="flex cursor-pointer items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              aria-label="Email"
+              className="group flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              <Mail className="h-4 w-4" />
-              <span>Email</span>
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-card border border-border/50 group-hover:border-foreground/20 transition-colors">
+                <Mail className="h-4 w-4" />
+              </div>
+              <span className="tracking-wide">Email</span>
             </a>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="relative">
-          <div className="surface-card relative overflow-hidden rounded-lg">
-            <div className="relative aspect-[4/5] min-h-[420px] bg-muted">
+        <motion.div 
+          className="relative mt-12 md:mt-0"
+          initial={{ opacity: 0, scale: 0.95, rotate: -2 }}
+          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          {/* Double-Bezel Architecture */}
+          <div className="relative mx-auto max-w-md w-full rounded-[2.5rem] border border-border/30 bg-black/5 dark:bg-white/5 p-2.5 sm:p-3 shadow-2xl">
+            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[calc(2.5rem-10px)] bg-muted shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]">
               <Image
                 src="/profile.jpg"
                 alt="Ahmad Hidayatullah"
                 fill
                 priority
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 44vw"
+                className="object-cover transition-transform duration-700 hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 border-t border-white/20 bg-zinc-950/82 p-5 text-white backdrop-blur-md">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-sm font-semibold">Ahmad Hidayatullah</p>
-                  <p className="mt-1 text-xs text-zinc-300">{t("profileRole")}</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="font-heading text-xl font-bold text-white">Ahmad Hidayatullah</h3>
+                    <p className="mt-1.5 text-sm font-medium text-white/70">{t("profileRole")}</p>
+                  </div>
+                  <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white/10 backdrop-blur-md px-3 py-1.5 text-[11px] font-semibold tracking-wide text-white ring-1 ring-white/20">
+                    <ShieldCheck className="h-3.5 w-3.5" />
+                    {t("profileBadge")}
+                  </span>
                 </div>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-medium text-zinc-100">
-                  <ShieldCheck className="h-3.5 w-3.5" />
-                  {t("profileBadge")}
-                </span>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

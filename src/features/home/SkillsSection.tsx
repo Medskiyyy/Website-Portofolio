@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Code2, Database, Wrench, Bot } from "lucide-react";
+import { motion } from "framer-motion";
 
 type SkillCategory = {
   icon: React.ReactNode;
@@ -34,8 +35,14 @@ export default function SkillsSection() {
   const t = useTranslations("Skills");
 
   return (
-    <section className="w-full border-y border-border bg-card/60 py-20">
-      <div className="section-shell">
+    <section className="w-full border-y border-border/40 bg-card/20 py-32 md:py-40">
+      <motion.div 
+        className="section-shell"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
+      >
         <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
             <p className="eyebrow">{t("label")}</p>
@@ -75,7 +82,7 @@ export default function SkillsSection() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
