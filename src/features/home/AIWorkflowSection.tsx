@@ -20,35 +20,29 @@ export default function AIWorkflowSection() {
   const t = useTranslations("AIWorkflow");
 
   return (
-    <section className="w-full py-20 px-6 bg-muted/30">
-      <div className="mx-auto max-w-5xl">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-            {t("label")}
-          </h2>
-          <p className="text-2xl font-bold text-foreground mb-3">{t("title")}</p>
-          <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
+    <section className="w-full border-y border-border bg-card/60 py-20">
+      <div className="section-shell">
+        <div className="mb-12 max-w-3xl">
+          <p className="eyebrow">{t("label")}</p>
+          <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight text-foreground">{t("title")}</h2>
+          <p className="mt-4 leading-7 text-muted-foreground">
             {t("subtitle")}
           </p>
         </div>
 
-        {/* Workflow Steps */}
         <div className="relative">
-          {/* Connector line (desktop) */}
           <div
             aria-hidden="true"
-            className="absolute top-8 left-8 right-8 h-px bg-border hidden lg:block"
+            className="absolute left-8 right-8 top-8 hidden h-px bg-border lg:block"
           />
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-6">
             {steps.map((step, index) => (
               <div key={step.titleKey} className="relative flex flex-col items-center text-center gap-3">
-                {/* Step number + icon */}
-                <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-card shadow-sm">
+                <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-lg border border-border bg-background shadow-sm">
                   <span className="text-primary">{step.icon}</span>
                 </div>
-                <span className="absolute -top-2 -right-2 z-20 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground hidden lg:flex">
+                <span className="absolute -right-2 -top-2 z-20 hidden h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground lg:flex">
                   {index + 1}
                 </span>
                 <div>

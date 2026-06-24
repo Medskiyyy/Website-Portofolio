@@ -1,13 +1,10 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
-import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/shared/components/Navbar';
 import Footer from '@/shared/components/Footer';
 import '@/app/globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export async function generateMetadata({
   params
@@ -74,7 +71,7 @@ export default async function LocaleLayout({
           `}
         </Script>
       </head>
-      <body className={`${inter.className} min-h-full flex flex-col bg-background text-foreground`}>
+      <body className="min-h-full flex flex-col bg-background text-foreground">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider messages={messages}>
             <Navbar />

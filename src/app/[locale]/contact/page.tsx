@@ -39,51 +39,50 @@ export default async function ContactPage({
   ];
 
   return (
-    <main className="mx-auto max-w-2xl px-6 py-16 md:py-24">
-      {/* Page Header */}
-      <div className="mb-12 text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          {t("title")}
-        </h1>
-        <p className="mt-4 text-lg text-muted-foreground leading-relaxed max-w-lg mx-auto">
-          {t("subtitle")}
+    <main className="py-16 md:py-24">
+      <div className="section-shell">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="eyebrow">{t("label")}</p>
+          <h1 className="font-heading mt-3 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            {t("title")}
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-muted-foreground">
+            {t("subtitle")}
+          </p>
+        </div>
+
+        <div className="mx-auto mt-12 grid max-w-4xl gap-4 md:grid-cols-2">
+          {contactMethods.map((method) => (
+            <a
+              key={method.label}
+              href={method.href}
+              target={method.external ? "_blank" : undefined}
+              rel={method.external ? "noopener noreferrer" : undefined}
+              className="surface-card group flex cursor-pointer items-start justify-between gap-4 rounded-lg p-6 transition-colors hover:border-primary/35"
+            >
+              <div className="flex items-start gap-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-accent text-primary">
+                  {method.icon}
+                </span>
+                <div>
+                  <p className="font-heading font-semibold text-card-foreground">{method.label}</p>
+                  <p className="mt-1 text-sm font-medium text-primary">{method.value}</p>
+                  <p className="mt-2 text-xs leading-5 text-muted-foreground">{method.description}</p>
+                </div>
+              </div>
+              <ExternalLink className="h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+            </a>
+          ))}
+        </div>
+
+        <div className="mx-auto mt-4 max-w-4xl rounded-lg border border-dashed border-border bg-card/70 p-5 text-center">
+          <p className="text-sm text-muted-foreground">{t("linkedinComingSoon")}</p>
+        </div>
+
+        <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-6 text-muted-foreground">
+          {t("note")}
         </p>
       </div>
-
-      {/* Contact Cards */}
-      <div className="space-y-4">
-        {contactMethods.map((method) => (
-          <a
-            key={method.label}
-            href={method.href}
-            target={method.external ? "_blank" : undefined}
-            rel={method.external ? "noopener noreferrer" : undefined}
-            className="group flex items-center justify-between gap-4 rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30"
-          >
-            <div className="flex items-start gap-4">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                {method.icon}
-              </span>
-              <div>
-                <p className="font-semibold text-card-foreground">{method.label}</p>
-                <p className="text-sm text-primary">{method.value}</p>
-                <p className="text-xs text-muted-foreground mt-1">{method.description}</p>
-              </div>
-            </div>
-            <ExternalLink className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-          </a>
-        ))}
-      </div>
-
-      {/* LinkedIn placeholder */}
-      <div className="mt-4 rounded-2xl border border-dashed border-border bg-muted/30 p-6 text-center">
-        <p className="text-sm text-muted-foreground">{t("linkedinComingSoon")}</p>
-      </div>
-
-      {/* Note */}
-      <p className="mt-10 text-center text-sm text-muted-foreground leading-relaxed">
-        {t("note")}
-      </p>
     </main>
   );
 }

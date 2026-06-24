@@ -15,7 +15,7 @@ export const projects: Project[] = [
     role: "Full Stack Developer",
     timeline: "2025",
     overview:
-      "Pempek Cek Lis is a full-stack business website built for a local pempek (Indonesian fishcake) business. The site allows customers to browse the full product catalog, view pricing, and reach out for orders via WhatsApp — removing the friction of manual, chat-based inquiries.",
+      "Pempek Cek Lis is a full-stack business website built for a local pempek (Indonesian fishcake) business. The site allows customers to browse the full product catalog, view pricing, and reach out for orders via WhatsApp - removing the friction of manual, chat-based inquiries.",
     problem:
       "The business had no online presence and relied entirely on word-of-mouth and direct messaging. Customers had no way to browse products independently, leading to repetitive manual inquiries and missed opportunities.",
     goal:
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     lessonsLearned: [
       "Keep the architecture simple when the project scope is clearly defined.",
       "Mobile-first design significantly improves usability for the target audience.",
-      "Prioritize performance early — images and fonts are the biggest bottlenecks.",
+      "Prioritize performance early - images and fonts are the biggest bottlenecks.",
     ],
     futureImprovements: [
       "Add an online ordering system with WhatsApp deep links per product.",

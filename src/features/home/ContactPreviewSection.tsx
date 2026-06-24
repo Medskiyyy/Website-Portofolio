@@ -7,33 +7,33 @@ export default function ContactPreviewSection() {
   const t = useTranslations("ContactPreview");
 
   return (
-    <section className="w-full py-20 px-6 bg-muted/30">
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-          {t("label")}
-        </h2>
-        <p className="text-2xl font-bold text-foreground mb-3">{t("title")}</p>
-        <p className="text-muted-foreground leading-relaxed mb-10">
-          {t("subtitle")}
-        </p>
+    <section className="w-full py-20">
+      <div className="section-shell">
+        <div className="surface-card mx-auto max-w-4xl rounded-lg p-6 text-center md:p-10">
+          <p className="eyebrow">{t("label")}</p>
+          <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight text-foreground">{t("title")}</h2>
+          <p className="mx-auto mt-4 max-w-2xl leading-7 text-muted-foreground">
+            {t("subtitle")}
+          </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="mailto:hidayatahmadd1377@gmail.com"
-            className={cn(buttonVariants(), "gap-2 px-6")}
-          >
-            <Mail className="h-4 w-4" />
-            {t("sendEmail")}
-          </a>
-          <a
-            href="https://github.com/Medskiyyy"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(buttonVariants({ variant: "outline" }), "gap-2 px-6")}
-          >
-            <Github className="h-4 w-4" />
-            {t("viewGithub")}
-          </a>
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href="mailto:hidayatahmadd1377@gmail.com"
+              className={cn(buttonVariants(), "cursor-pointer gap-2 px-6")}
+            >
+              <Mail className="h-4 w-4" />
+              {t("sendEmail")}
+            </a>
+            <a
+              href="https://github.com/Medskiyyy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(buttonVariants({ variant: "outline" }), "cursor-pointer gap-2 px-6")}
+            >
+              <Github className="h-4 w-4" />
+              {t("viewGithub")}
+            </a>
+          </div>
         </div>
       </div>
     </section>

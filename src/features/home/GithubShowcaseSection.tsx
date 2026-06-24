@@ -38,28 +38,26 @@ export default function GithubShowcaseSection() {
   const t = useTranslations("GithubShowcase");
 
   return (
-    <section className="w-full py-20 px-6 border-t border-border bg-muted/10">
-      <div className="mx-auto max-w-5xl">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-            {t("label")}
-          </h2>
-          <p className="text-2xl font-bold text-foreground mb-4">{t("title")}</p>
-          <p className="text-muted-foreground max-w-md mx-auto text-sm">
+    <section className="w-full border-t border-border bg-muted/30 py-20">
+      <div className="section-shell">
+        <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p className="eyebrow">{t("label")}</p>
+            <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight text-foreground">{t("title")}</h2>
+          </div>
+          <p className="max-w-md text-sm leading-6 text-muted-foreground">
             {t("subtitle")}
           </p>
         </div>
 
-        {/* Repositories Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 max-w-3xl mx-auto mb-10">
+        <div className="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {repositories.map((repo) => (
             <a
               key={repo.name}
               href={repo.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col justify-between rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/20 hover:scale-[1.01] duration-200"
+              className="surface-card group flex cursor-pointer flex-col justify-between rounded-lg p-6 transition-colors duration-200 hover:border-primary/35"
             >
               <div>
                 <div className="flex items-center gap-2 mb-3">
@@ -102,13 +100,12 @@ export default function GithubShowcaseSection() {
           ))}
         </div>
 
-        {/* CTA */}
         <div className="text-center">
           <a
             href="https://github.com/Medskiyyy"
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(buttonVariants({ variant: "outline" }), "gap-2")}
+            className={cn(buttonVariants({ variant: "outline" }), "cursor-pointer gap-2")}
           >
             <Github className="h-4 w-4" />
             {t("cta")}

@@ -4,7 +4,7 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ExternalLink, Github, BookOpen } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, BookOpen } from "lucide-react";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -26,121 +26,120 @@ export default async function ProjectsPage({
   const t = await getTranslations({ locale, namespace: "ProjectsPage" });
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16 md:py-24">
-      {/* Page Header */}
-      <div className="mb-12">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          {t("title")}
-        </h1>
-        <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
-          {t("subtitle")}
-        </p>
-      </div>
+    <main className="py-16 md:py-24">
+      <div className="section-shell">
+        <div className="mb-12 grid gap-6 md:grid-cols-[0.85fr_1.15fr] md:items-end">
+          <div>
+            <p className="eyebrow">{t("label")}</p>
+            <h1 className="font-heading mt-3 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              {t("title")}
+            </h1>
+          </div>
+          <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
+            {t("subtitle")}
+          </p>
+        </div>
 
-      {/* Projects Grid */}
-      {projects.length > 0 ? (
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <article
-              key={project.slug}
-              className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-shadow hover:shadow-md"
-            >
-              {/* Thumbnail */}
-              <div className="relative h-48 w-full bg-muted overflow-hidden">
-                {project.imageUrl ? (
-                  <Image
-                    src={project.imageUrl}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    priority={project.isFeatured}
-                  />
-                ) : (
-                  <div className="flex h-full w-full items-center justify-center">
-                    <BookOpen className="h-10 w-10 text-muted-foreground/40" />
+        {projects.length > 0 ? (
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {projects.map((project) => (
+              <article
+                key={project.slug}
+                className="surface-card group flex overflow-hidden rounded-lg transition-colors duration-200 hover:border-primary/35 lg:flex-col"
+              >
+                <div className="relative h-56 w-full bg-muted">
+                  {project.imageUrl ? (
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                      priority={project.isFeatured}
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center">
+                      <BookOpen className="h-10 w-10 text-muted-foreground/40" />
+                    </div>
+                  )}
+                  <span className="absolute left-3 top-3 rounded-full border border-white/20 bg-zinc-950/80 px-2.5 py-1 text-[11px] font-semibold capitalize text-white backdrop-blur-md">
+                    {project.status}
+                  </span>
+                </div>
+
+                <div className="flex flex-1 flex-col gap-4 p-5">
+                  <div className="flex-1">
+                    <div className="mb-3 flex items-center justify-between gap-3">
+                      <h2 className="font-heading text-xl font-bold text-card-foreground">
+                        {project.title}
+                      </h2>
+                      <span className="shrink-0 text-xs font-medium text-muted-foreground">{project.timeline}</span>
+                    </div>
+                    <p className="text-sm leading-6 text-muted-foreground line-clamp-3">
+                      {project.description}
+                    </p>
+                    <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                      {project.role}
+                    </p>
                   </div>
-                )}
-              </div>
 
-              <div className="flex flex-col flex-1 p-5 gap-4">
-                {/* Title + description */}
-                <div className="flex-1">
-                  <h2 className="font-bold text-card-foreground mb-1">
-                    {project.title}
-                  </h2>
-                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Tech tags */}
-                <div className="flex flex-wrap gap-1.5">
-                  {project.techStack.slice(0, 3).map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-full border border-border bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.techStack.length > 3 && (
-                    <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
-                      +{project.techStack.length - 3}
-                    </span>
-                  )}
-                </div>
-
-                {/* Actions */}
-                <div className="flex items-center gap-2 pt-1 border-t border-border">
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={cn(
-                        buttonVariants({ variant: "outline", size: "sm" }),
-                        "gap-1.5 flex-1 justify-center text-xs"
-                      )}
-                    >
-                      <ExternalLink className="h-3.5 w-3.5" />
-                      {t("liveDemo")}
-                    </a>
-                  )}
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={cn(
-                        buttonVariants({ variant: "ghost", size: "sm" }),
-                        "gap-1.5 flex-1 justify-center text-xs"
-                      )}
-                    >
-                      <Github className="h-3.5 w-3.5" />
-                      GitHub
-                    </a>
-                  )}
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className={cn(
-                      buttonVariants({ size: "sm" }),
-                      "gap-1.5 flex-1 justify-center text-xs"
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.techStack.slice(0, 4).map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-md border border-border bg-muted/60 px-2.5 py-1 text-xs font-medium text-muted-foreground"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.techStack.length > 4 && (
+                      <span className="rounded-md border border-border bg-muted/60 px-2.5 py-1 text-xs font-medium text-muted-foreground">
+                        +{project.techStack.length - 4}
+                      </span>
                     )}
-                  >
-                    <BookOpen className="h-3.5 w-3.5" />
-                    {t("caseStudy")}
-                  </Link>
+                  </div>
+
+                  <div className="flex items-center gap-2 border-t border-border pt-4">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={cn(buttonVariants({ variant: "outline", size: "sm" }), "cursor-pointer gap-1.5 text-xs")}
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" />
+                        {t("liveDemo")}
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "cursor-pointer gap-1.5 text-xs")}
+                      >
+                        <Github className="h-3.5 w-3.5" />
+                        GitHub
+                      </a>
+                    )}
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      className={cn(buttonVariants({ size: "sm" }), "ml-auto cursor-pointer gap-1.5 text-xs")}
+                    >
+                      {t("caseStudy")}
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      ) : (
-        <div className="flex items-center justify-center py-24 text-muted-foreground">
-          <p>{t("empty")}</p>
-        </div>
-      )}
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div className="flex items-center justify-center py-24 text-muted-foreground">
+            <p>{t("empty")}</p>
+          </div>
+        )}
+      </div>
     </main>
   );
 }

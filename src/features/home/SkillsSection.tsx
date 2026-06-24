@@ -34,25 +34,28 @@ export default function SkillsSection() {
   const t = useTranslations("Skills");
 
   return (
-    <section className="w-full py-20 px-6 bg-muted/30">
-      <div className="mx-auto max-w-5xl">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-            {t("label")}
-          </h2>
-          <p className="text-2xl font-bold text-foreground">{t("title")}</p>
+    <section className="w-full border-y border-border bg-card/60 py-20">
+      <div className="section-shell">
+        <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p className="eyebrow">{t("label")}</p>
+            <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight text-foreground">
+              {t("title")}
+            </h2>
+          </div>
+          <p className="max-w-xl text-sm leading-6 text-muted-foreground">
+            {t("subtitle")}
+          </p>
         </div>
 
-        {/* Skills Grid */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {skillCategories.map((cat) => (
             <div
               key={cat.titleKey}
-              className="flex flex-col gap-4 rounded-xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
+              className="surface-card flex flex-col gap-5 rounded-lg p-5 transition-colors duration-200 hover:border-primary/35"
             >
               <div className="flex items-center gap-3">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <span className="flex h-10 w-10 items-center justify-center rounded-md bg-accent text-primary">
                   {cat.icon}
                 </span>
                 <h3 className="font-semibold text-card-foreground">
@@ -63,7 +66,7 @@ export default function SkillsSection() {
                 {cat.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full border border-border/80 bg-muted/50 px-2.5 py-0.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/30 hover:bg-muted/80"
+                    className="rounded-md border border-border bg-muted/50 px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/30 hover:text-foreground"
                   >
                     {skill}
                   </span>

@@ -14,24 +14,21 @@ export default function ResumePreviewSection() {
   ];
 
   return (
-    <section className="w-full py-20 px-6">
-      <div className="mx-auto max-w-3xl">
-        {/* Section Header */}
-        <div className="text-center mb-10">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-            {t("label")}
-          </h2>
-          <p className="text-2xl font-bold text-foreground">{t("title")}</p>
+    <section className="w-full py-20">
+      <div className="section-shell grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-start">
+        <div>
+          <p className="eyebrow">{t("label")}</p>
+          <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight text-foreground">{t("title")}</h2>
+          <p className="mt-4 text-sm leading-6 text-muted-foreground">{t("subtitle")}</p>
         </div>
 
-        {/* Resume Card */}
-        <div className="rounded-2xl border border-border bg-card p-6 md:p-8 shadow-sm">
-          <div className="flex items-center gap-3 mb-6 pb-6 border-b border-border">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+        <div className="surface-card rounded-lg p-6 md:p-8">
+          <div className="mb-6 flex items-center gap-3 border-b border-border pb-6">
+            <div className="flex h-11 w-11 items-center justify-center rounded-md bg-accent">
               <FileText className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <p className="font-bold text-card-foreground">Ahmad Hidayatullah</p>
+              <p className="font-heading font-bold text-card-foreground">Ahmad Hidayatullah</p>
               <p className="text-sm text-muted-foreground">Full Stack Developer &amp; Product Builder</p>
             </div>
           </div>
@@ -50,7 +47,7 @@ export default function ResumePreviewSection() {
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <Link
               href="/resume"
-              className={cn(buttonVariants(), "gap-2 flex-1 justify-center")}
+              className={cn(buttonVariants(), "flex-1 cursor-pointer justify-center gap-2")}
             >
               {t("viewResume")}
               <ArrowRight className="h-4 w-4" />
@@ -58,7 +55,7 @@ export default function ResumePreviewSection() {
             <a
               href="/resume.pdf"
               download
-              className={cn(buttonVariants({ variant: "outline" }), "gap-2 flex-1 justify-center")}
+              className={cn(buttonVariants({ variant: "outline" }), "flex-1 cursor-pointer justify-center gap-2")}
             >
               {t("download")}
               <Download className="h-4 w-4" />
