@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import { Search, LayoutList, Code2, TestTube2, FileText, Rocket } from "lucide-react";
 import { motion } from "framer-motion";

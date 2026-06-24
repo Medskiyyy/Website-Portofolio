@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import { Mail, Github } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";

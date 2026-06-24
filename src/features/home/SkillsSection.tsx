@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import { Code2, Database, Wrench, Bot } from "lucide-react";
 import { motion } from "framer-motion";
