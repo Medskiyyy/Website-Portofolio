@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTheme } from "next-themes";
-import { Globe, Menu, Moon, Sun, X } from "lucide-react";
+import { Globe, Moon, Sun } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 
 export default function Navbar() {
@@ -14,6 +14,7 @@ export default function Navbar() {
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -25,6 +26,14 @@ export default function Navbar() {
     return () => {
       active = false;
     };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
@@ -49,7 +58,11 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-2xl rounded-full border border-border/40 bg-background/60 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.05)] transition-all duration-300">
+      <header className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-2xl rounded-full border transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+        isScrolled 
+          ? "border-primary/20 bg-background/80 shadow-[0_8px_30px_rgba(0,0,0,0.08)] backdrop-blur-3xl py-0.5" 
+          : "border-border/40 bg-background/50 shadow-[0_8px_32px_rgba(0,0,0,0.03)] backdrop-blur-xl"
+      }`}>
         <div className="flex h-14 items-center justify-between px-2 sm:px-4">
           <div className="pl-3">
             <Link 
@@ -106,14 +119,19 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Toggle */}
+          {/* Mobile Toggle with Morph Hamburger animation */}
           <div className="flex items-center pr-1 md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="relative z-50 flex items-center justify-center w-10 h-10 rounded-full bg-transparent hover:bg-secondary text-foreground transition-colors"
+              className="relative z-50 flex items-center justify-center w-10 h-10 rounded-full bg-transparent hover:bg-secondary text-foreground transition-all duration-300"
               aria-expanded={isOpen}
+              aria-label="Toggle Menu"
             >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              <div className="relative w-5 h-4 flex flex-col justify-between">
+                <span className={`absolute left-0 top-[1px] block w-full h-[1.5px] bg-current transition-all duration-300 ease-out ${isOpen ? "rotate-45 translate-y-[6.5px]" : ""}`} />
+                <span className={`absolute left-0 top-[7.5px] block w-full h-[1.5px] bg-current transition-all duration-200 ease-out ${isOpen ? "scale-x-0 opacity-0" : "scale-x-100 opacity-100"}`} />
+                <span className={`absolute left-0 bottom-[1px] block w-full h-[1.5px] bg-current transition-all duration-300 ease-out ${isOpen ? "-rotate-45 -translate-y-[6.5px]" : ""}`} />
+              </div>
             </button>
           </div>
         </div>
