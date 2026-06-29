@@ -11,7 +11,16 @@ import type { Metadata } from "next";
 import AnimatedSection from "@/components/AnimatedSection";
 
 export async function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  const locales = ["en", "id"];
+  const params: { locale: string; slug: string }[] = [];
+
+  for (const locale of locales) {
+    for (const project of projects) {
+      params.push({ locale, slug: project.slug });
+    }
+  }
+
+  return params;
 }
 
 export async function generateMetadata({
