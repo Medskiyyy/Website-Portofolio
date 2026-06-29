@@ -9,7 +9,7 @@
   },
   "Hero": {
     "badge": "Tersedia untuk Peluang Baru",
-    "title": "Ahmad Hidayatullah membangun produk full-stack dari ide hingga produksi.",
+    "title": "Ahmad Hidayatullah",
     "subtitle": "Full Stack Developer dan mahasiswa Sistem Informasi yang fokus pada produk web cepat, mudah dirawat, arsitektur praktis, dan studi kasus berbasis bukti.",
     "ctaProjects": "Lihat Proyek",
     "ctaResume": "Unduh Resume",
@@ -69,9 +69,9 @@
     "summaryLabel": "Ringkasan",
     "summaryValue": "Mahasiswa Sistem Informasi dan Full Stack Developer dengan pengalaman langsung membangun, menguji, dan men-deploy aplikasi web end-to-end. Fokus pada kode yang rapi, type-safe, dan siap produksi.",
     "educationLabel": "Pendidikan",
-    "educationValue": "Sarjana Sistem Informasi - Sedang Berjalan",
+    "educationValue": "Sarjana Sistem Informasi - Universitas Gunadarma (2025 - Sekarang)",
     "projectsLabel": "Proyek",
-    "projectsValue": "Pempek Cek Lis - Website Bisnis Full Stack",
+    "projectsValue": "Pempek Palembang Cek Lis Website - Web Storefront & CMS Full Stack",
     "viewResume": "Lihat Resume Lengkap",
     "download": "Unduh PDF"
   },
@@ -132,8 +132,8 @@
     "projectDescription": "Membangun website bisnis full-stack untuk bisnis kuliner lokal. Merancang dan mengimplementasikan katalog produk, layout responsif mobile-first, integrasi pemesanan WhatsApp, dan optimasi SEO.",
     "educationTitle": "Pendidikan",
     "educationDegree": "Sarjana Sistem Informasi",
-    "educationSchool": "Universitas - Sedang Berjalan",
-    "educationPeriod": "2022 - Sekarang"
+    "educationSchool": "Universitas Gunadarma",
+    "educationPeriod": "2025 - Sekarang"
   },
   "AboutPage": {
     "metaTitle": "Tentang | Ahmad Hidayatullah",

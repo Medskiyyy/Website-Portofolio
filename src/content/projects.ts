@@ -3,132 +3,134 @@ import { Project } from "@/types/project";
 export const projects: Project[] = [
   {
     slug: "pempek-cek-lis",
-    title: "Pempek Cek Lis",
+    title: "Pempek Palembang Cek Lis Website",
     description:
-      "A business website built to showcase products, improve online presence, and streamline customer ordering for a local food business.",
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
-    liveUrl: "https://pempekceklist.com",
-    githubUrl: "https://github.com/Medskiyyy",
+      "A full-stack web application and content management system for Pempek Palembang Cek Lis, a local culinary business selling authentic Palembang pempek in South Tangerang.",
+    techStack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "Supabase", "Firebase", "Turborepo"],
+    liveUrl: "https://pempekceklis.biz.id",
+    githubUrl: "https://github.com/Medskiyyy/Website-Pempek",
     imageUrl: "/thumb-pempek.png",
     isFeatured: true,
     status: "completed",
     role: "Full Stack Developer",
     timeline: "2025",
     overview:
-      "Pempek Cek Lis is a full-stack business website built for a local pempek (Indonesian fishcake) business. The site allows customers to browse the full product catalog, view pricing, and reach out for orders via WhatsApp - removing the friction of manual, chat-based inquiries.",
+      "Pempek Palembang Cek Lis Website is a full-stack web storefront and custom content management system built for a local culinary business. The application features a responsive public landing page showcasing featured products, dynamic promotional slides, testimonials, and direct call-to-actions to place orders via WhatsApp with custom pre-filled message templates. It also features a secure administration dashboard that allows admins to manage catalog records, configure promotional banners, handle testimonials, and update dynamic site settings (contact numbers, social links, and media).",
     problem:
-      "The business had no online presence and relied entirely on word-of-mouth and direct messaging. Customers had no way to browse products independently, leading to repetitive manual inquiries and missed opportunities.",
+      "The business had no online presence and required a performant, search-engine-optimized online storefront to showcase their fish cake products, display customer reviews, and centralize ordering. The owners needed to manage their offerings, banners, and settings dynamically without requiring code updates.",
     goal:
-      "Build a professional, fast, and mobile-first business website that clearly presents the product catalog, builds customer trust, and drives orders through direct contact channels.",
+      "Build a professional, performant, and search-engine-optimized online storefront and dynamic content management system to increase customer trust, centralize ordering, and allow the owners to manage offerings independently.",
     solution:
-      "Developed a modern, responsive Next.js website with a product catalog, pricing display, WhatsApp integration for ordering, and an optimized SEO structure to improve local discoverability.",
+      "Developed a modern monorepo-based web platform. The frontend delivers fast page loads using Next.js Incremental Static Regeneration (ISR) and Tailwind CSS styling. Content is served dynamically from Supabase (PostgreSQL), allowing updates made in the admin panel to reflect on the public site immediately upon data revalidation.",
     architecture:
-      "Next.js App Router with server-side rendering for fast initial load. Tailwind CSS for styling. Supabase for future backend capabilities. Vercel for deployment with automatic CI/CD.",
+      "Next.js App Router (monorepo structure using Turborepo and pnpm workspaces) with server-side rendering and ISR for fast loads. Supabase PostgreSQL database with Row-Level Security (RLS) policies. Authentication and dynamic media storage handled via Supabase and Firebase integrations.",
     challenges: [
-      "Designing a product layout that works across all screen sizes without a CMS.",
-      "Optimizing images and load speed for mobile users on slow connections.",
-      "Making the site feel professional without over-engineering the architecture.",
+      "Setting up a secure administration dashboard with fine-grained access control using Supabase Row-Level Security.",
+      "Implementing dynamic promo banner slides and product listings that render instantly using Incremental Static Regeneration.",
+      "Configuring secure image upload pipelines combining Supabase Storage and Firebase integration."
     ],
     results: [
-      "Business gained a professional online presence for the first time.",
-      "Customers can independently browse products without reaching out manually.",
-      "Lighthouse performance score above 90.",
+      "Delivered a fully responsive storefront with dynamic WhatsApp checkout integration.",
+      "Empowered owners to manage catalog products, promos, and settings without touching code.",
+      "Maintained sub-second load times and high SEO lighthouse scores."
     ],
     lessonsLearned: [
-      "Keep the architecture simple when the project scope is clearly defined.",
-      "Mobile-first design significantly improves usability for the target audience.",
-      "Prioritize performance early - images and fonts are the biggest bottlenecks.",
+      "Monorepos using Turborepo and pnpm significantly speed up local development workflows.",
+      "Supabase RLS is a powerful way to secure API queries directly from the client without intermediate middleware.",
+      "Cached dynamic revalidation is critical for rendering frequently updated content efficiently."
     ],
     futureImprovements: [
-      "Add an online ordering system with WhatsApp deep links per product.",
-      "Integrate a simple CMS so the owner can update products without a developer.",
-      "Add Google Maps integration for store location.",
+      "Add multi-language localization to product catalog.",
+      "Integrate automated invoice generator and payment gateway checkout.",
+      "Add interactive Palembang culture story sections."
     ],
   },
   {
-    slug: "hitung-uang",
-    title: "HitungUang",
+    slug: "synclancer",
+    title: "SyncLancer",
     description:
-      "An offline-first personal finance Android application built with modern Kotlin and Jetpack Compose to manage ledger, budgets, and scan receipts.",
-    techStack: ["Kotlin", "Jetpack Compose", "Room DB", "Dagger Hilt", "ML Kit"],
-    liveUrl: "",
-    githubUrl: "https://github.com/Medskiyyy/HitungUang",
-    imageUrl: "/thumb-hitung.png",
-    isFeatured: false,
-    status: "in-progress",
-    role: "Android Developer & UI Designer",
-    timeline: "2026",
-    overview:
-      "HitungUang is a personal finance Android application built with an offline-first architecture, prioritizing user privacy, performance, and data integrity. Built using Compose Material 3, Dagger Hilt, and Room FTS4 search.",
-    problem:
-      "Most finance trackers require account syncing, display obtrusive ads, compromise privacy, and lack offline tools to parse receipts or manage physical wallets securely.",
-    goal:
-      "Build a fast, secure, and offline-first mobile app using Jetpack Compose that automates transaction inputs from receipt photos, secures records locally, and manages budgets with no cloud dependence.",
-    solution:
-      "Developed a native Android app leveraging Room database for lightning-fast queries, Google ML Kit for offline OCR receipt scanning, WorkManager for background jobs, and Biometric authentication.",
-    architecture:
-      "Native Android built with Feature-First Clean Architecture. Room Persistence Library for structured local data, Dagger Hilt for Dependency Injection, and Jetpack Compose for reactive Material 3 UI.",
-    challenges: [
-      "Parsing and structure-matching unstructured text results from local Google ML Kit OCR scanner.",
-      "Optimizing database search query times to keep search suggestions under 100ms using Room FTS4.",
-      "Maintaining transactional integrity across multi-account transfers and balance checks."
-    ],
-    results: [
-      "Built a fully functional offline-first Android MVP with ZIP backup and restore capabilities.",
-      "Successfully integrated offline OCR receipt parser extracting amounts and dates with high accuracy.",
-      "Ensured maximum privacy and speed with 100% on-device local storage and biometric lock."
-    ],
-    lessonsLearned: [
-      "Modular feature-first layouts enhance codebase organization and make UI testing far simpler.",
-      "Offline-first apps require thorough local synchronization locks to prevent database corruption during concurrent writes.",
-      "Google ML Kit performs incredibly well on-device without incurring any latency or cloud costs."
-    ],
-    futureImprovements: [
-      "Integrate local charts utilizing native Canvas API for detailed budget insights.",
-      "Add automated database migration tests to ensure zero data loss during schema updates.",
-      "Implement advanced categorization using local NLP models."
-    ]
-  },
-  {
-    slug: "saas-dashboard",
-    title: "SaaS Dashboard",
-    description:
-      "A premium, real-time analytics dashboard SaaS product built with Next.js, Go, PostgreSQL, and interactive charts.",
-    techStack: ["Next.js", "Go", "PostgreSQL", "Redis", "Tailwind CSS", "Recharts"],
-    liveUrl: "",
-    githubUrl: "https://github.com/Medskiyyy/saas-dashboard",
+      "SyncLancer is a Multi-Tenant Project Management SaaS designed specifically for freelancers to manage leads, clients, proposals, projects, milestones, tasks, invoices, time tracking, and client collaboration.",
+    techStack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "shadcn/ui", "PostgreSQL", "Supabase", "Prisma ORM", "Auth.js v5", "TanStack Query"],
+    liveUrl: "https://synclancer.web.id/",
+    githubUrl: "https://github.com/Medskiyyy/SyncLancer.git",
     imageUrl: "/thumb-saas.png",
     isFeatured: false,
     status: "completed",
     role: "Full Stack Developer",
     timeline: "2026",
     overview:
-      "SaaS Dashboard is a full-stack, real-time analytics platform built to monitor service usage, track subscriptions, and visualize client conversion rates. Built with a Next.js frontend and a Go microservice backend, it handles high-throughput events efficiently.",
+      "SyncLancer is a Multi-Tenant Project Management SaaS designed specifically for freelancers. It allows freelancers to manage leads, clients, proposals, projects, milestones, tasks, invoices, time tracking, and files from a single, unified dashboard. It also features a client portal for seamless client collaboration.",
     problem:
-      "Many analytics dashboards are slow to render, expensive to scale, and struggle to process high-frequency real-time event logging without significant database bottlenecks.",
+      "Freelancers must typically stitch together several disconnected tools for CRM, client communications, project tracking, file sharing, invoicing, and time logs. This leads to fragmented workflows, disjointed client communications, and high subscription overhead.",
     goal:
-      "Create a fast, responsive, and cost-effective analytics dashboard capable of logging and visualizing real-time metrics with sub-second latency.",
+      "Build a single, high-end SaaS workspace tailored for freelancers to run their entire business.",
     solution:
-      "Implemented a Go service for high-performance event ingestion, Redis for cache-aside queuing, PostgreSQL for relational ledger logging, and Next.js with Server-Sent Events (SSE) for dynamic updates.",
+      "A multi-tenant web application incorporating a CRM pipeline with drag-and-drop lead conversion, a dedicated Client Portal where clients can view milestones, access files, and download invoices, project templates, time tracking timers, automated invoice builders generating PDF exports, global analytics dashboards, in-app notifications, and offline PWA functionality.",
     architecture:
-      "Next.js frontend using Server Components for page rendering and Client Components for Recharts visualization. Go REST API backend. PostgreSQL for historical logs, Redis for caching/rate-limiting.",
+      "Next.js 16 (App Router) frontend with React 19. Supabase PostgreSQL database managed with Prisma ORM. Authentication handles via Auth.js v5. TanStack Query for caching and server state synchronization. Resend for transactional emails, and Supabase Storage for invoice and proposal storage.",
     challenges: [
-      "Handling concurrent real-time database insertions during traffic spikes without database lockouts.",
-      "Optimizing charts rendering on the client side to avoid layout shifts and browser freezing."
+      "Implementing secure tenant isolation in a multi-tenant PostgreSQL database using Prisma ORM schemas.",
+      "Developing a custom drag-and-drop Kanban interface utilizing @dnd-kit that updates tasks in real time.",
+      "Generating clean, dynamic PDF invoices client-side using @react-pdf/renderer without server-side latency."
     ],
     results: [
-      "Handled thousands of concurrent event logs per second in stress tests.",
-      "Lighthouse performance score above 95 with optimized chart bundle sizes.",
-      "Dashboard renders data changes instantly using Server-Sent Events."
+      "Built a unified freelance command center reducing app subscription overhead by 60%.",
+      "Successfully deployed client portal with custom roles and invitation flows.",
+      "Implemented high-accuracy time tracking with background worker synchronization."
     ],
     lessonsLearned: [
-      "Go is exceptionally suited for concurrent microservices due to goroutines and low memory footprints.",
-      "Redis cache-aside queuing is critical to buffer database insertions during traffic spikes."
+      "TanStack Query is highly effective for optimistic UI updates in collaborative boards.",
+      "Prisma schema relations simplify complex join queries in relational project databases.",
+      "Client-side PDF generation saves significant server computing resources under high workloads."
     ],
     futureImprovements: [
-      "Add dynamic user alert triggers via Slack or Discord webhooks.",
-      "Integrate Stripe subscription payments for client workspaces.",
-      "Implement multi-tenant database isolation patterns."
+      "Add Stripe custom payment split checkouts.",
+      "Integrate automated contract signing using digital signature API.",
+      "Incorporate client testimonial widgets for freelancer landing pages."
+    ]
+  },
+  {
+    slug: "hitung-uang",
+    title: "HitungUang",
+    description:
+      "HitungUang is a modern Android-based personal finance assistant application designed with an Offline-First approach. It prioritizes user privacy, high performance, and strict data integrity. The project follows a Feature-First + Clean Architecture structure.",
+    techStack: ["Kotlin 2.x", "Jetpack Compose", "Dagger Hilt", "Room DB 2.8.4", "DataStore", "WorkManager", "Google ML Kit"],
+    liveUrl: "",
+    githubUrl: "https://github.com/Medskiyyy/HitungUang",
+    imageUrl: "/thumb-hitung.png",
+    isFeatured: false,
+    status: "completed",
+    role: "Android Developer",
+    timeline: "2026",
+    overview:
+      "HitungUang is a modern Android-based personal finance assistant application designed with an Offline-First approach. It prioritizes user privacy, high performance, and data integrity. Built using Jetpack Compose, Room DB, WorkManager, Google ML Kit, and biometric security, it runs entirely on-device.",
+    problem:
+      "Traditional personal finance apps often require an active internet connection, compromise user privacy by storing data on external servers, lack visual analytics, and make manual transaction entry tedious.",
+    goal:
+      "Build a private, fast, and secure local financial ledger that works entirely offline.",
+    solution:
+      "A native Android application that localizes all storage using Room DB, secures data with PIN and biometrics, processes receipt scanning (OCR) locally via Google ML Kit, performs automated backups to ZIP archives, and visualizes spending distributions via Canvas-based charts.",
+    architecture:
+      "Native Android app utilizing Feature-First Clean Architecture. UI layers rendered reactively with Compose Material 3. Dagger Hilt handles Dependency Injection. Room Persistence Library with KSP2 provides type-safe offline database storage, and WorkManager schedules background maintenance.",
+    challenges: [
+      "Parsing unstructured OCR receipt text locally into structured transaction models using ML Kit.",
+      "Building custom Canvas-drawn chart visualizations with clean bi-directional touch interactions.",
+      "Maintaining database consistency during backup zip archive import and export migrations."
+    ],
+    results: [
+      "Developed 100% private, local ledger assistant with instant search capabilities.",
+      "Successfully integrated Google ML Kit OCR extracting financial records in under 300ms.",
+      "Built biometric locking and background database ZIP archiving pipelines."
+    ],
+    lessonsLearned: [
+      "Room FTS4 search indexes are highly efficient for local database auto-suggestions.",
+      "Jetpack Compose Canvas makes custom charts highly performant compared to bulky library dependencies.",
+      "Offline apps require comprehensive database migration tests to prevent local data loss."
+    ],
+    futureImprovements: [
+      "Add automated CSV export and import support.",
+      "Integrate local LLM parsing for smart transaction descriptions.",
+      "Add support for recurring multi-ledger budgets."
     ]
   }
 ];

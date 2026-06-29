@@ -25,10 +25,18 @@ export default async function ResumePage({
   const t = await getTranslations({ locale, namespace: "ResumePage" });
 
   const skills = {
-    frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS", "HTML", "CSS"],
-    backend: ["Supabase", "PostgreSQL", "REST API", "Authentication"],
-    tools: ["Git", "GitHub", "Docker", "Figma", "Vercel"],
-    ai: ["ChatGPT", "Gemini CLI", "AI-Assisted Development"],
+    frontend: ["Next.js 16", "React 19", "TypeScript", "Jetpack Compose", "Tailwind CSS v4", "Kotlin 2.x"],
+    backend: ["Supabase (PostgreSQL)", "Prisma ORM", "Auth.js (NextAuth)", "Dagger Hilt", "Room DB 2.8.4"],
+    tools: ["Turborepo", "pnpm workspaces", "Firebase", "Git/GitHub", "Radix UI & shadcn", "Vercel & Resend"],
+    ai: [
+      "AI-driven Product Planning",
+      "Multi-Agent Development",
+      "Context Engineering",
+      "Prompt Engineering",
+      "Documentation Automation",
+      "Code Review Assistance",
+      "Test Case Generation"
+    ],
   };
 
   return (

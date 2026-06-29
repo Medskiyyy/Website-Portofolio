@@ -110,36 +110,39 @@ export default async function ProjectsPage({
                     </div>
 
                     {/* Actions bar */}
-                    <div className="flex items-center gap-3 border-t border-border/10 p-6 sm:p-8 mt-auto">
-                      {project.liveUrl && (
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={cn(buttonVariants({ variant: "outline", size: "sm" }), "rounded-full cursor-pointer gap-1.5 text-xs hover:border-primary/45 transition-colors")}
-                        >
-                          <ExternalLink className="h-3.5 w-3.5" />
-                          {t("liveDemo")}
-                        </a>
-                      )}
-                      {project.githubUrl && (
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "rounded-full cursor-pointer gap-1.5 text-xs transition-colors")}
-                        >
-                          <Github className="h-3.5 w-3.5" />
-                          GitHub
-                        </a>
-                      )}
+                    <div className="flex items-center justify-between border-t border-border/10 p-5 mt-auto">
                       <Link
                         href={`/projects/${project.slug}`}
-                        className={cn(buttonVariants({ size: "sm" }), "ml-auto rounded-full cursor-pointer gap-1.5 text-xs group/btn transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]")}
+                        className={cn(buttonVariants({ size: "sm" }), "rounded-full cursor-pointer gap-1.5 text-xs group/btn transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]")}
                       >
                         {t("caseStudy")}
                         <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
                       </Link>
+                      
+                      <div className="flex gap-2">
+                        {project.liveUrl && (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={cn(buttonVariants({ variant: "outline", size: "icon" }), "h-9 w-9 rounded-full cursor-pointer hover:border-primary/50 hover:text-primary transition-all duration-300 shadow-sm")}
+                            title={t("liveDemo")}
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                          </a>
+                        )}
+                        {project.githubUrl && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={cn(buttonVariants({ variant: "outline", size: "icon" }), "h-9 w-9 rounded-full cursor-pointer hover:border-primary/50 hover:text-primary transition-all duration-300 shadow-sm")}
+                            title="GitHub"
+                          >
+                            <Github className="h-4 w-4" />
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </article>
                 </div>

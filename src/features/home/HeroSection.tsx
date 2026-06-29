@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import { ArrowRight, Download, Github, Mail, ShieldCheck } from "lucide-react";
+import { ArrowRight, Download, Github, Mail } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion, Variants } from "framer-motion";
@@ -50,14 +50,6 @@ export default function HeroSection() {
         viewport={{ once: true, margin: "-100px" }}
       >
         <div className="flex flex-col items-start">
-          <motion.div variants={fadeUpVariants} className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70 motion-reduce:animate-none" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
-            </span>
-            {t("badge")}
-          </motion.div>
-
           <motion.h1 variants={fadeUpVariants} className="font-heading max-w-2xl text-5xl font-bold leading-[1.05] tracking-[-0.03em] md:tracking-[-0.04em] text-foreground sm:text-6xl md:text-[5.5rem] lg:text-[6rem] text-balance">
             {t("title")}
           </motion.h1>
@@ -155,10 +147,6 @@ export default function HeroSection() {
                       <h3 className="font-heading text-xl font-bold text-foreground">Ahmad Hidayatullah</h3>
                       <p className="mt-1.5 text-sm font-medium text-muted-foreground">{t("profileRole")}</p>
                     </div>
-                    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary/10 dark:bg-primary/20 backdrop-blur-md px-3 py-1.5 text-[11px] font-semibold tracking-wide text-primary ring-1 ring-primary/20">
-                      <ShieldCheck className="h-3.5 w-3.5" />
-                      {t("profileBadge")}
-                    </span>
                   </div>
                 </div>
               </div>

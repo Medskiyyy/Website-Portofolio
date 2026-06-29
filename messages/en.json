@@ -9,7 +9,7 @@
   },
   "Hero": {
     "badge": "Open to Opportunities",
-    "title": "Ahmad Hidayatullah builds full-stack products from idea to production.",
+    "title": "Ahmad Hidayatullah",
     "subtitle": "Full Stack Developer and Information Systems student focused on fast, maintainable web products, practical architecture, and evidence-backed case studies.",
     "ctaProjects": "View Projects",
     "ctaResume": "Download Resume",
@@ -69,9 +69,9 @@
     "summaryLabel": "Summary",
     "summaryValue": "Information Systems student and Full Stack Developer with hands-on experience building, testing, and deploying end-to-end web applications. Focused on delivering clean, type-safe, and production-ready code.",
     "educationLabel": "Education",
-    "educationValue": "Bachelor of Information Systems - In Progress",
+    "educationValue": "Bachelor of Information Systems - Gunadarma University (2025 - Present)",
     "projectsLabel": "Projects",
-    "projectsValue": "Pempek Cek Lis - Full Stack Business Website",
+    "projectsValue": "Pempek Palembang Cek Lis Website - Full Stack Storefront & CMS",
     "viewResume": "View Full Resume",
     "download": "Download PDF"
   },
@@ -132,8 +132,8 @@
     "projectDescription": "Built a full-stack business website for a local food business. Designed and implemented product catalog, mobile-first responsive layout, WhatsApp ordering integration, and SEO optimization.",
     "educationTitle": "Education",
     "educationDegree": "Bachelor of Information Systems",
-    "educationSchool": "Universitas - In Progress",
-    "educationPeriod": "2022 - Present"
+    "educationSchool": "Gunadarma University",
+    "educationPeriod": "2025 - Present"
   },
   "AboutPage": {
     "metaTitle": "About | Ahmad Hidayatullah",
