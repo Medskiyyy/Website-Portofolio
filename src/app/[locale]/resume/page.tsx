@@ -40,16 +40,13 @@ export default async function ResumePage({
   };
 
   return (
-    <main className="py-24 md:py-32 relative overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[450px] w-[450px] rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
-
+    <main className="border-b border-border bg-background py-28 md:py-36">
       <div className="section-shell">
         <AnimatedSection delay={0.05}>
           <div className="mb-16 flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between pb-8 border-b border-border/20">
             <div>
               <p className="eyebrow">{t("label")}</p>
-              <h1 className="font-heading mt-4 text-4xl font-bold tracking-[-0.03em] text-foreground sm:text-5xl md:text-6xl">
+              <h1 className="font-heading mt-4 text-5xl font-bold leading-tight text-foreground md:text-6xl">
                 {t("title")}
               </h1>
               <p className="mt-3 text-lg font-medium text-muted-foreground">{t("subtitle")}</p>
@@ -57,7 +54,7 @@ export default async function ResumePage({
             <a
               href="/resume.pdf"
               download
-              className={cn(buttonVariants({ size: "lg" }), "shrink-0 rounded-full cursor-pointer gap-2 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] shadow-sm")}
+              className={cn(buttonVariants({ size: "lg" }), "h-10 shrink-0 cursor-pointer gap-2 px-3 text-sm")}
             >
               <Download className="h-4.5 w-4.5" />
               {t("download")}
@@ -106,7 +103,7 @@ export default async function ResumePage({
 
             <AnimatedSection delay={0.3}>
               <ResumeSection title={t("educationTitle")}>
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between p-5 rounded-2xl bg-muted/20 border border-border/40 hover:border-primary/20 transition-all duration-300">
+                <div className="flex flex-col gap-2 rounded-lg border border-border bg-muted/30 p-5 transition-colors duration-200 hover:border-primary/35 sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <p className="font-heading font-bold text-foreground text-base">{t("educationDegree")}</p>
                     <p className="text-sm font-medium text-muted-foreground">{t("educationSchool")}</p>
@@ -124,12 +121,10 @@ export default async function ResumePage({
 
 function ResumeSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="double-bezel-wrapper h-full">
-      <div className="double-bezel-inner h-full flex flex-col">
-        <h2 className="font-heading text-lg font-bold text-foreground pb-4 border-b border-border/20 mb-6">{title}</h2>
-        {children}
-      </div>
-    </div>
+    <section className="surface-card h-full p-6">
+      <h2 className="font-heading text-lg font-bold text-foreground pb-4 border-b border-border mb-6">{title}</h2>
+      {children}
+    </section>
   );
 }
 
@@ -143,7 +138,7 @@ function SkillGroup({ label, items }: { label: string; items: string[] }) {
         {items.map((item) => (
           <span
             key={item}
-            className="rounded-full border border-border/50 bg-muted/30 px-3.5 py-1 text-xs font-semibold text-muted-foreground transition-all duration-300 hover:border-primary/30 hover:text-foreground hover:bg-muted/70 cursor-default"
+            className="rounded-md border border-border bg-muted/30 px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors duration-200 hover:border-primary/35 hover:text-foreground cursor-default"
           >
             {item}
           </span>
@@ -169,7 +164,7 @@ function ProjectEntry({
   liveUrl?: string;
 }) {
   return (
-    <div className="group rounded-2xl border border-border/40 bg-muted/20 p-5 sm:p-6 transition-all duration-300 hover:bg-muted/40 hover:border-primary/25">
+    <div className="rounded-lg border border-border bg-muted/30 p-5 transition-colors duration-200 hover:border-primary/35 sm:p-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-4">
         <div>
           <p className="font-heading font-bold text-lg text-foreground transition-colors group-hover:text-primary">{title}</p>
@@ -183,7 +178,7 @@ function ProjectEntry({
         {tech.map((t) => (
           <span
             key={t}
-            className="rounded-full border border-border/60 bg-card px-3 py-1 text-xs font-semibold text-muted-foreground"
+            className="rounded-md border border-border bg-card px-2.5 py-1 text-xs font-medium text-muted-foreground"
           >
             {t}
           </span>
