@@ -1,10 +1,24 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import Script from 'next/script';
+import { Inter, Space_Grotesk } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/shared/components/Navbar';
 import Footer from '@/shared/components/Footer';
 import '@/app/globals.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const grotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-grotesk',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+});
 
 export async function generateMetadata({
   params
@@ -55,7 +69,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className="h-full antialiased" suppressHydrationWarning>
+    <html lang={locale} className={`${inter.variable} ${grotesk.variable} h-full antialiased`} suppressHydrationWarning>
       <head>
         {/* Google Analytics */}
         <Script
