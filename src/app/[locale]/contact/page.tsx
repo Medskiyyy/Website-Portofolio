@@ -40,12 +40,13 @@ export default async function ContactPage({
   ];
 
   return (
-    <main className="border-b border-border bg-background py-28 md:py-36">
-      <div className="section-shell">
+    <main className="relative overflow-hidden border-b border-border bg-background py-28 md:py-36">
+      <div className="pointer-events-none absolute inset-0 aurora-mesh opacity-60" />
+      <div className="section-shell relative">
         <div className="mx-auto max-w-3xl text-center mb-16">
           <AnimatedSection delay={0.05}>
             <p className="eyebrow">{t("label")}</p>
-            <h1 className="font-heading mt-4 text-5xl font-bold leading-tight text-foreground md:text-6xl">
+            <h1 className="font-heading mt-4 text-5xl font-bold leading-[1.05] text-balance text-gradient md:text-6xl">
               {t("title")}
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground text-pretty">
@@ -61,11 +62,11 @@ export default async function ContactPage({
                 href={method.href}
                 target={method.external ? "_blank" : undefined}
                 rel={method.external ? "noopener noreferrer" : undefined}
-                className="surface-card block h-full p-6 transition-colors duration-200 hover:border-primary/35 sm:p-8"
+                className="group surface-card shine-border block h-full p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md sm:p-8"
               >
                 <div className="flex cursor-pointer items-start justify-between gap-4">
                   <div className="flex items-start gap-4">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-primary">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-primary transition-shadow duration-300 group-hover:glow-ring">
                       {method.icon}
                     </span>
                     <div>
@@ -74,7 +75,7 @@ export default async function ContactPage({
                       <p className="mt-3 text-xs leading-relaxed text-muted-foreground text-pretty">{method.description}</p>
                     </div>
                   </div>
-                  <ExternalLink className="h-4 w-4 shrink-0 text-muted-foreground" />
+                  <ExternalLink className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </a>
             </AnimatedSection>

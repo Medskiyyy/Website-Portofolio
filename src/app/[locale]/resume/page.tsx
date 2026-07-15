@@ -40,13 +40,14 @@ export default async function ResumePage({
   };
 
   return (
-    <main className="border-b border-border bg-background py-28 md:py-36">
-      <div className="section-shell">
+    <main className="relative overflow-hidden border-b border-border bg-background py-28 md:py-36">
+      <div className="pointer-events-none absolute inset-0 grid-backdrop opacity-50" />
+      <div className="section-shell relative">
         <AnimatedSection delay={0.05}>
           <div className="mb-16 flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between pb-8 border-b border-border/20">
             <div>
               <p className="eyebrow">{t("label")}</p>
-              <h1 className="font-heading mt-4 text-5xl font-bold leading-tight text-foreground md:text-6xl">
+              <h1 className="font-heading mt-4 text-5xl font-bold leading-[1.05] text-balance text-gradient md:text-6xl">
                 {t("title")}
               </h1>
               <p className="mt-3 text-lg font-medium text-muted-foreground">{t("subtitle")}</p>
@@ -103,7 +104,7 @@ export default async function ResumePage({
 
             <AnimatedSection delay={0.3}>
               <ResumeSection title={t("educationTitle")}>
-                <div className="flex flex-col gap-2 rounded-lg border border-border bg-muted/30 p-5 transition-colors duration-200 hover:border-primary/35 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex flex-col gap-2 rounded-lg border border-border bg-muted/30 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-sm sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <p className="font-heading font-bold text-foreground text-base">{t("educationDegree")}</p>
                     <p className="text-sm font-medium text-muted-foreground">{t("educationSchool")}</p>
@@ -121,7 +122,7 @@ export default async function ResumePage({
 
 function ResumeSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="surface-card h-full p-6">
+    <section className="surface-card shine-border h-full p-6">
       <h2 className="font-heading text-lg font-bold text-foreground pb-4 border-b border-border mb-6">{title}</h2>
       {children}
     </section>
@@ -164,7 +165,7 @@ function ProjectEntry({
   liveUrl?: string;
 }) {
   return (
-    <div className="rounded-lg border border-border bg-muted/30 p-5 transition-colors duration-200 hover:border-primary/35 sm:p-6">
+    <div className="group/entry rounded-lg border border-border bg-muted/30 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-sm sm:p-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-4">
         <div>
           <p className="font-heading font-bold text-lg text-foreground transition-colors group-hover:text-primary">{title}</p>

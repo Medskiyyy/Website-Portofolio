@@ -35,13 +35,15 @@ export default async function AboutPage({
   ];
 
   return (
-    <main className="border-b border-border bg-background py-28 md:py-36">
-      <div className="section-shell">
+    <main className="relative overflow-hidden border-b border-border bg-background py-28 md:py-36">
+      <div className="pointer-events-none absolute inset-0 aurora-mesh opacity-50" />
+      <div className="pointer-events-none absolute inset-0 grid-backdrop opacity-50" />
+      <div className="section-shell relative">
         <AnimatedSection delay={0.05}>
           <div className="mb-16 grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:items-end pb-8 border-b border-border/20">
             <div>
               <p className="eyebrow">{t("label")}</p>
-              <h1 className="font-heading mt-4 text-5xl font-bold leading-tight text-foreground md:text-6xl">
+              <h1 className="font-heading mt-4 text-5xl font-bold leading-[1.05] text-balance text-gradient md:text-6xl">
                 {t("title")}
               </h1>
             </div>
@@ -66,7 +68,7 @@ export default async function AboutPage({
                   {principles.map((p) => (
                     <div
                       key={p.title}
-                      className="rounded-lg border border-border bg-muted/30 p-5 transition-colors duration-200 hover:border-primary/35"
+                      className="group rounded-lg border border-border bg-muted/30 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-sm"
                     >
                       <p className="font-heading font-bold text-foreground mb-1.5 text-sm transition-colors group-hover:text-primary">{p.title}</p>
                       <p className="text-xs text-muted-foreground leading-relaxed text-pretty">{p.desc}</p>
@@ -83,8 +85,11 @@ export default async function AboutPage({
                 <p className="text-base text-muted-foreground leading-relaxed mb-6 text-pretty">{t("aiWorkflowText")}</p>
                 <ul className="space-y-3">
                   {workflowSteps.map((step, i) => (
-                    <li key={i} className="flex items-start gap-4 rounded-lg border border-border bg-muted/30 p-4 transition-colors duration-200 hover:border-primary/35">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-border bg-background text-xs font-bold text-primary">
+                    <li
+                      key={i}
+                      className="group flex items-start gap-4 rounded-lg border border-border bg-muted/30 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35"
+                    >
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-border bg-background text-xs font-bold text-primary transition-shadow duration-300 group-hover:glow-ring">
                         {i + 1}
                       </span>
                       <span className="text-sm text-muted-foreground leading-relaxed text-pretty">{step}</span>
@@ -108,7 +113,7 @@ export default async function AboutPage({
 
 function AboutSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="surface-card h-full p-6">
+    <section className="surface-card shine-border h-full p-6">
       <h2 className="font-heading text-lg font-bold text-foreground pb-4 border-b border-border mb-6">{title}</h2>
       {children}
     </section>
