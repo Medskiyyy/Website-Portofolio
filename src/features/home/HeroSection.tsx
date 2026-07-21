@@ -2,22 +2,20 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Download, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, Download, Github, Layers, Smartphone, Globe, Terminal, ShieldCheck } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { getFeaturedProject } from "@/content/projects";
-import { Counter, EASE_OUT, Magnetic } from "@/components/motion";
+import { EASE_OUT, Magnetic } from "@/components/motion";
 
 export default function HeroSection() {
   const t = useTranslations("Hero");
-  const project = getFeaturedProject();
 
-  const stats = [
-    { value: 3, label: t("statProjects") },
-    { value: 2, label: t("statPerformance") },
-    { value: 1, label: t("statLanguages") },
+  const techBadges = [
+    { name: "Next.js 16", icon: Globe },
+    { name: "Supabase & Prisma", icon: Layers },
+    { name: "Kotlin & Jetpack Compose", icon: Smartphone },
+    { name: "TypeScript", icon: Terminal },
   ];
 
   const proofPoints = [
@@ -27,90 +25,70 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="relative overflow-hidden border-b border-border bg-background pt-28 pb-16 md:pt-36 md:pb-24">
-      {/* aurora mesh + grid backdrops */}
-      <div className="pointer-events-none absolute inset-0 aurora-mesh opacity-70" />
+    <section className="relative overflow-hidden border-b border-border/60 bg-background pt-28 pb-16 md:pt-36 md:pb-24">
+      {/* Background grid + ambient backlight */}
+      <div className="pointer-events-none absolute inset-0 aurora-mesh opacity-80" />
       <div className="pointer-events-none absolute inset-0 grid-backdrop" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px hairline" />
 
-      <div className="section-shell relative grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_480px]">
+      <div className="section-shell relative grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="flex flex-col items-start">
-          <motion.p
-            className="eyebrow"
-            initial={{ opacity: 0, y: 14 }}
+          <motion.div
+            className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3.5 py-1 text-xs font-semibold text-primary backdrop-blur-md"
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: EASE_OUT }}
+            transition={{ duration: 0.5, ease: EASE_OUT }}
           >
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
+            </span>
             {t("badge")}
-          </motion.p>
+          </motion.div>
 
           <motion.h1
-            className="font-heading mt-5 max-w-3xl text-5xl font-bold leading-[1.05] text-balance text-gradient sm:text-6xl lg:text-7xl"
-            initial={{ opacity: 0, y: 26, filter: "blur(12px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.9, ease: EASE_OUT, delay: 0.08 }}
+            className="font-heading mt-6 max-w-3xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.08 }}
           >
             {t("title")}
           </motion.h1>
 
           <motion.p
-            className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground text-pretty"
-            initial={{ opacity: 0, y: 20 }}
+            className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg text-pretty"
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.2 }}
+            transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.18 }}
           >
             {t("subtitle")}
           </motion.p>
 
           <motion.div
-            className="mt-7 grid gap-3"
-            initial="hidden"
-            animate="show"
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: 0.08, delayChildren: 0.32 } },
-            }}
-          >
-            {proofPoints.map((item) => (
-              <motion.div
-                key={item}
-                variants={{
-                  hidden: { opacity: 0, x: -16 },
-                  show: { opacity: 1, x: 0, transition: { duration: 0.55, ease: EASE_OUT } },
-                }}
-                className="flex items-start gap-3 text-sm font-medium text-foreground"
-              >
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                <span>{item}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row"
-            initial={{ opacity: 0, y: 18 }}
+            className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row"
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.5 }}
+            transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.3 }}
           >
-            <Magnetic strength={0.25}>
+            <Magnetic strength={0.2}>
               <Link
                 href="/projects"
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "h-11 cursor-pointer gap-2 px-4 text-sm",
+                  "h-11 cursor-pointer gap-2 px-5 text-sm font-semibold shadow-sm transition-all hover:bg-primary/90",
                 )}
               >
                 {t("ctaProjects")}
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/button:translate-x-0.5" />
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </Magnetic>
-            <Magnetic strength={0.2}>
+            <Magnetic strength={0.15}>
               <a
                 href="/resume.pdf"
                 download
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
-                  "h-11 cursor-pointer gap-2 px-4 text-sm",
+                  "h-11 cursor-pointer gap-2 border-border/80 px-5 text-sm font-semibold transition-colors hover:border-primary/50",
                 )}
               >
                 {t("ctaResume")}
@@ -120,112 +98,72 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.div
-            className="mt-10 grid w-full max-w-2xl grid-cols-3 divide-x divide-border border-y border-border"
-            initial="hidden"
-            animate="show"
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: 0.12, delayChildren: 0.62 } },
-            }}
-          >
-            {stats.map((stat) => (
-              <motion.div
-                key={stat.label}
-                variants={{
-                  hidden: { opacity: 0, y: 16 },
-                  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT } },
-                }}
-                className="py-5 pr-4 pl-4 first:pl-0"
-              >
-                <Counter
-                  value={stat.value}
-                  className="font-heading text-3xl font-bold text-foreground"
-                />
-                <p className="mt-1 text-xs font-semibold text-muted-foreground">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            className="mt-7 flex flex-wrap items-center gap-4"
+            className="mt-10 flex flex-wrap items-center gap-3 pt-6 border-t border-border/50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.85 }}
+            transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.45 }}
           >
             <a
               href="https://github.com/Medskiyyy"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition-colors duration-200 hover:text-foreground"
+              className="inline-flex items-center gap-2 rounded-lg border border-border/60 bg-card/60 px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
             >
-              <Github className="h-4 w-4" />
-              GitHub
+              <Github className="h-3.5 w-3.5" />
+              GitHub Profile
             </a>
-            {project?.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition-colors duration-200 hover:text-foreground"
-              >
-                <ExternalLink className="h-4 w-4" />
-                {t("featuredLive")}
-              </a>
-            )}
+            {techBadges.map((badge) => {
+              const Icon = badge.icon;
+              return (
+                <span
+                  key={badge.name}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-border/40 bg-muted/40 px-3 py-1.5 text-xs font-medium text-muted-foreground"
+                >
+                  <Icon className="h-3.5 w-3.5 text-primary" />
+                  {badge.name}
+                </span>
+              );
+            })}
           </motion.div>
         </div>
 
-        {/* Featured card — parallax tilt on hover */}
+        {/* Clean Engineering Overview Card (Replaces redundant Pempek preview card) */}
         <motion.div
-          className="surface-card shine-border group relative overflow-hidden"
-          initial={{ opacity: 0, y: 40, rotate: 1.5 }}
-          animate={{ opacity: 1, y: 0, rotate: 0 }}
-          transition={{ duration: 1, ease: EASE_OUT, delay: 0.4 }}
-          whileHover={{ y: -6 }}
+          className="surface-card relative overflow-hidden rounded-2xl border border-border/80 bg-card/95 p-6 shadow-lg lg:p-8"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: EASE_OUT, delay: 0.25 }}
         >
-          {project?.imageUrl && (
-            <div className="relative aspect-[16/11] w-full overflow-hidden border-b border-border bg-muted">
-              <Image
-                src={project.imageUrl}
-                alt={project.title}
-                fill
-                priority
-                className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.05]"
-                sizes="(max-width: 1024px) 100vw, 480px"
-              />
-              <div className="shimmer absolute inset-0" />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+          <div className="flex items-center justify-between border-b border-border/60 pb-4">
+            <div className="flex items-center gap-2">
+              <div className="h-3 w-3 rounded-full bg-emerald-500/80" />
+              <div className="h-3 w-3 rounded-full bg-amber-500/80" />
+              <div className="h-3 w-3 rounded-full bg-rose-500/80" />
             </div>
-          )}
-          <div className="relative p-6">
-            <p className="eyebrow">{t("featuredLabel")}</p>
-            <h2 className="font-heading mt-3 text-2xl font-bold text-foreground">
-              {project?.title ?? t("featuredFallbackTitle")}
-            </h2>
-            <p className="mt-3 text-sm leading-6 text-muted-foreground">
-              {project?.description ?? t("featuredFallbackDesc")}
-            </p>
-            {project && (
-              <div className="mt-5 grid gap-3 border-t border-border pt-5">
-                {project.results.slice(0, 2).map((result) => (
-                  <div key={result} className="flex gap-3 text-sm leading-6 text-foreground">
-                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-primary" />
-                    <span>{result}</span>
-                  </div>
-                ))}
+            <span className="font-mono text-xs text-muted-foreground">engineering_stack.ts</span>
+          </div>
+
+          <div className="mt-6 space-y-4 font-mono text-xs leading-relaxed">
+            <div className="rounded-lg border border-border/40 bg-muted/30 p-4">
+              <p className="font-semibold text-primary">// Full-Stack Web Development</p>
+              <p className="mt-1 text-muted-foreground">Next.js 16 App Router · React 19 · TypeScript</p>
+              <p className="text-muted-foreground">Supabase PostgreSQL · Prisma ORM · Tailwind CSS v4</p>
+            </div>
+
+            <div className="rounded-lg border border-border/40 bg-muted/30 p-4">
+              <p className="font-semibold text-primary">// Native Android Development</p>
+              <p className="mt-1 text-muted-foreground">Kotlin 2.x · Jetpack Compose · Offline-First</p>
+              <p className="text-muted-foreground">Room Persistence DB · Dagger Hilt · Google ML Kit</p>
+            </div>
+          </div>
+
+          <div className="mt-6 space-y-2.5 border-t border-border/60 pt-5">
+            {proofPoints.map((point, idx) => (
+              <div key={idx} className="flex items-start gap-2.5 text-xs text-foreground/90 font-sans font-medium">
+                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <span>{point}</span>
               </div>
-            )}
-            {project && (
-              <Link
-                href={`/projects/${project.slug}`}
-                className="group/link mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary transition-colors duration-200 hover:text-foreground"
-              >
-                {t("featuredCaseStudy")}
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
-              </Link>
-            )}
+            ))}
           </div>
         </motion.div>
       </div>

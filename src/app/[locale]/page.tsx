@@ -1,10 +1,9 @@
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import HeroSection from "@/features/home/HeroSection";
-import ProofStripSection from "@/features/home/ProofStripSection";
-import AboutPreviewSection from "@/features/home/AboutPreviewSection";
-import SkillsSection from "@/features/home/SkillsSection";
 import FeaturedProjectSection from "@/features/home/FeaturedProjectSection";
+import SkillsSection from "@/features/home/SkillsSection";
+import AboutPreviewSection from "@/features/home/AboutPreviewSection";
 import ContactPreviewSection from "@/features/home/ContactPreviewSection";
 
 export async function generateMetadata({
@@ -31,7 +30,6 @@ export default function HomePage() {
   return (
     <main>
       <HeroSection />
-      <ProofStripSection />
       <FeaturedProjectSection />
       <SkillsSection />
       <AboutPreviewSection />

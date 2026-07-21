@@ -16,32 +16,32 @@ export default function AboutPreviewSection() {
   ];
 
   return (
-    <section className="w-full border-b border-border bg-background py-20 md:py-28">
-      <div className="section-shell grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+    <section className="w-full border-b border-border/60 bg-background py-20 md:py-28">
+      <div className="section-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
         <Reveal direction="up">
           <p className="eyebrow">{t("label")}</p>
-          <h2 className="font-heading mt-4 text-4xl font-bold leading-tight text-foreground md:text-5xl">
+          <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
             {t("title")}
           </h2>
         </Reveal>
 
-        <div className="max-w-4xl">
+        <div className="max-w-3xl">
           <Reveal direction="left" delay={0.1}>
-            <p className="text-xl font-medium leading-9 text-foreground text-pretty">
+            <p className="text-lg leading-relaxed text-foreground/90 sm:text-xl">
               {t("summary")}
             </p>
           </Reveal>
 
           <StaggerGroup
-            className="mt-8 grid gap-3 sm:grid-cols-3"
-            stagger={0.1}
-            amount={0.2}
+            className="mt-8 grid gap-4 sm:grid-cols-3"
+            stagger={0.08}
+            amount={0.1}
           >
             {highlights.map((item) => (
               <StaggerItem key={item} className="h-full">
-                <div className="surface-card shine-border group relative flex h-full flex-col overflow-hidden p-4 transition-transform duration-400 ease-[cubic-bezier(0.2,0.7,0.2,1)] hover:-translate-y-1">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
-                  <p className="mt-3 text-sm font-semibold leading-6 text-foreground">
+                <div className="surface-card flex h-full items-start gap-3 rounded-xl border border-border/80 bg-card p-4 transition-colors hover:border-primary/50">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <p className="text-xs font-semibold leading-relaxed text-foreground">
                     {item}
                   </p>
                 </div>
@@ -49,16 +49,16 @@ export default function AboutPreviewSection() {
             ))}
           </StaggerGroup>
 
-          <Reveal direction="up" delay={0.25}>
+          <Reveal direction="up" delay={0.2}>
             <Link
               href="/about"
               className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "group/link mt-8 h-10 cursor-pointer gap-2 px-3 text-sm",
+                buttonVariants({ variant: "outline", size: "sm" }),
+                "group/link mt-8 h-10 cursor-pointer gap-2 border-border/80 px-4 text-xs font-semibold transition-colors hover:border-primary/50",
               )}
             >
               {t("cta")}
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-1" />
             </Link>
           </Reveal>
         </div>
