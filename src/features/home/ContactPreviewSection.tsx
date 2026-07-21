@@ -10,7 +10,7 @@ export default function ContactPreviewSection() {
   const t = useTranslations("ContactPreview");
 
   return (
-    <section className="relative w-full overflow-hidden border-t border-border/60 bg-card py-16 md:py-24">
+    <section className="relative w-full overflow-hidden border-t border-border/60 bg-background py-16 md:py-24">
       <div className="section-shell relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
         <Reveal direction="up" className="max-w-2xl">
           <p className="eyebrow">{t("label")}</p>

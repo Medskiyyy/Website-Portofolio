@@ -42,7 +42,7 @@ export default function SkillsSection() {
   const t = useTranslations("Skills");
 
   return (
-    <section className="relative w-full overflow-hidden border-b border-border/60 bg-muted/20 py-20 md:py-28">
+    <section className="relative w-full overflow-hidden border-b border-border/60 bg-background py-20 md:py-28">
       <div className="section-shell relative">
         <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <Reveal direction="up">

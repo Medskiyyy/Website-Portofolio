@@ -20,8 +20,7 @@ export default function HeroSection() {
 
   return (
     <section className="relative overflow-hidden border-b border-border/60 bg-background pt-28 pb-16 md:pt-36 md:pb-24">
-      {/* Background grid + ambient backlight */}
-      <div className="pointer-events-none absolute inset-0 aurora-mesh opacity-80" />
+      {/* Engineering grid backdrop */}
       <div className="pointer-events-none absolute inset-0 grid-backdrop" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px hairline" />
 
