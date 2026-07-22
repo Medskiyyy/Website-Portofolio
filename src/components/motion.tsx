@@ -11,6 +11,7 @@ import {
 import {
   useEffect,
   useRef,
+  useState,
   type ReactNode,
 } from "react";
 import { cn } from "@/lib/utils";
@@ -272,3 +273,105 @@ export function Magnetic({ children, className, strength = 0.35 }: MagneticProps
     </motion.div>
   );
 }
+
+type TiltCardProps = {
+  children: ReactNode;
+  className?: string;
+  maxTilt?: number;
+};
+
+/* 3D Tilt container on hover */
+export function TiltCard({ children, className, maxTilt = 8 }: TiltCardProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [maxTilt, -maxTilt]), {
+    stiffness: 250,
+    damping: 22,
+  });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-maxTilt, maxTilt]), {
+    stiffness: 250,
+    damping: 22,
+  });
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    x.set(mouseX / width - 0.5);
+    y.set(mouseY / height - 0.5);
+  }
+
+  function handleMouseLeave() {
+    x.set(0);
+    y.set(0);
+  }
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      className={cn("transition-shadow duration-300 ease-out", className)}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+type SpotlightCardProps = {
+  children: ReactNode;
+  className?: string;
+  spotlightColor?: string;
+};
+
+/* Mouse-following spotlight glow background effect */
+export function SpotlightCard({
+  children,
+  className,
+  spotlightColor = "rgba(59, 130, 246, 0.12)",
+}: SpotlightCardProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [opacity, setOpacity] = useState(0);
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    setPosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  }
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setOpacity(1)}
+      onMouseLeave={() => setOpacity(0)}
+      className={cn("relative overflow-hidden", className)}
+    >
+      <div
+        className="pointer-events-none absolute -inset-px rounded-inherit transition-opacity duration-300 z-10"
+        style={{
+          opacity,
+          background: `radial-gradient(500px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 45%)`,
+        }}
+      />
+      {children}
+    </div>
+  );
+}
+
