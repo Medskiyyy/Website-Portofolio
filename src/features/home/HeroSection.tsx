@@ -22,14 +22,14 @@ export default function HeroSection() {
     <section className="relative overflow-hidden border-b border-border/60 bg-background pt-28 pb-16 md:pt-36 md:pb-24">
       {/* Background radial gradient & grid lines */}
       <div className="pointer-events-none absolute inset-0 grid-backdrop opacity-70" />
-      <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary/10 blur-[140px] rounded-full" />
+      <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/10 blur-[150px] rounded-full" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px hairline" />
 
       <div className="section-shell relative z-10">
-        <div className="flex max-w-3xl flex-col items-start">
+        <div className="flex w-full flex-col items-start">
           {/* Main Name Headline */}
           <motion.h1
-            className="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+            className="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl w-full"
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: EASE_OUT }}
@@ -39,7 +39,7 @@ export default function HeroSection() {
 
           {/* Subtitle */}
           <motion.p
-            className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg text-pretty"
+            className="mt-6 max-w-4xl text-base leading-relaxed text-muted-foreground sm:text-xl text-pretty"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.12 }}
@@ -49,7 +49,7 @@ export default function HeroSection() {
 
           {/* Action Buttons */}
           <motion.div
-            className="mt-8 flex w-full flex-col sm:w-auto sm:flex-row gap-3.5"
+            className="mt-10 flex w-full flex-col sm:w-auto sm:flex-row gap-4"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.22 }}
@@ -59,7 +59,7 @@ export default function HeroSection() {
                 href="/projects"
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "h-12 cursor-pointer gap-2.5 px-6 text-sm font-semibold shadow-md shadow-primary/20 transition-all hover:bg-primary/95 hover:shadow-lg hover:shadow-primary/30",
+                  "h-12 cursor-pointer gap-2.5 px-7 text-sm font-semibold shadow-md shadow-primary/20 transition-all hover:bg-primary/95 hover:shadow-lg hover:shadow-primary/30",
                 )}
               >
                 {t("ctaProjects")}
@@ -72,7 +72,7 @@ export default function HeroSection() {
                 download
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
-                  "h-12 cursor-pointer gap-2 border-border/80 px-6 text-sm font-semibold transition-all hover:border-primary/50 hover:bg-card/80",
+                  "h-12 cursor-pointer gap-2 border-border/80 px-7 text-sm font-semibold transition-all hover:border-primary/50 hover:bg-card/80",
                 )}
               >
                 {t("ctaResume")}
@@ -83,7 +83,7 @@ export default function HeroSection() {
 
           {/* Tech Badges & Github link */}
           <motion.div
-            className="mt-10 flex flex-wrap items-center gap-3 pt-6 border-t border-border/50 w-full"
+            className="mt-12 flex flex-wrap items-center gap-3 pt-6 border-t border-border/50 w-full"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.35 }}
@@ -92,7 +92,7 @@ export default function HeroSection() {
               href="https://github.com/Medskiyyy"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-border/70 bg-card/80 px-3.5 py-2 text-xs font-semibold text-muted-foreground transition-all hover:border-primary/40 hover:text-foreground hover:bg-card"
+              className="inline-flex items-center gap-2 rounded-lg border border-border/70 bg-card/80 px-4 py-2 text-xs font-semibold text-muted-foreground transition-all hover:border-primary/40 hover:text-foreground hover:bg-card"
             >
               <Github className="h-3.5 w-3.5" />
               GitHub Profile
@@ -102,7 +102,7 @@ export default function HeroSection() {
               return (
                 <span
                   key={badge.name}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-border/40 bg-muted/40 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-border/40 bg-muted/40 px-3.5 py-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   <Icon className="h-3.5 w-3.5 text-primary" />
                   {badge.name}
