@@ -1,59 +1,79 @@
-# Ahmad Hidayatullah - Personal Portofolio
+# Ahmad Hidayatullah — Portfolio
 
-A high-performance, multilingual professional portfolio engineered by **Ahmad Hidayatullah**, a Full Stack Developer, Product Builder, and Information Systems student. This site is meticulously crafted to showcase my projects, technical skills, architectural decisions, and detailed case studies, optimized specifically to provide a premium experience for international recruiters, hiring managers, and prospective clients.
+A bilingual (EN/ID) portfolio site for **Ahmad Hidayatullah**, an Information Systems student building
+full-stack web apps and native Android apps. It holds the project case studies, a resume page, and
+contact details.
 
-**🌍 Live URL:** [website-portofolio-pi-ruby.vercel.app](https://website-portofolio-pi-ruby.vercel.app/)
-
----
-
-## 🎯 Project Goals & Architecture
-
-This portfolio is built with a feature-first architectural mindset, prioritizing clean code, performance, and accessibility. It operates without a CMS, relying on a robust static content data structure to ensure lightning-fast load times and uncompromised SEO capabilities.
-
-### 🛠️ Tech Stack
-- **Framework**: Next.js 16 (App Router & Turbopack)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4
-- **Component Library**: shadcn/ui
-- **Internationalization (i18n)**: next-intl (Fully localized dynamic routing for `/en` and `/id` via middleware)
-- **Theme Manager**: next-themes (Light/Dark/System support)
-- **Icons**: lucide-react
-- **Deployment**: Vercel
+**Live:** https://website-portofolio-pi-ruby.vercel.app
 
 ---
 
-## ✨ Key Features
+## Stack
 
-- **Global Internationalization**: Seamless toggling between English and Indonesian, with all copy professionally localized and dynamic routes automatically adapting to the active locale segment.
-- **Pulsing Availability Badge**: A dynamic visual indicator in the global navigation bar showing "Open to Roles" or "Tersedia" based on locale, immediately signaling availability to recruiters.
-- **GitHub Showcase Section**: Premium simulated GitHub repository cards on the home page highlighting my active public codebases (like the Android ML app *HitungUang* and this very portfolio).
-- **Dynamic Projects Grid**: A responsive listing page featuring custom visual thumbnails and smooth hover zoom animations.
-- **Detailed Case Studies**: Structural, deep-dive write-ups for each project detailing the Overview, Problem, Goal, Solution, Architecture, Challenges, and measurable Results.
-- **Dynamic Resume System**: Displays professional background, education, and automatically syncs project details directly from the codebase's content data. Includes support for downloading an ATS-friendly PDF.
-- **SEO & Search Console Readiness**: Pre-configured `robots.txt`, dynamic `sitemap.xml`, custom OpenGraph meta imagery (`metadataBase`), and semantic layout metadata tags.
+- **Framework:** Next.js 16 (App Router, Turbopack)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Components:** shadcn/ui on Base UI primitives
+- **i18n:** next-intl — `/en` and `/id` prefixes, routed through `src/proxy.ts`
+- **Theming:** next-themes (light / dark / system)
+- **Animation:** Framer Motion, via the single `Reveal` / `Stagger` primitive in `src/components/motion.tsx`
+- **Icons:** lucide-react
+- **Hosting:** Vercel
 
----
+## Getting started
 
-## 📐 Directory Structure
+```bash
+pnpm install
+pnpm dev          # http://localhost:3000 → redirects to /en
+pnpm build        # production build + type check
+pnpm lint
+```
 
-The codebase is organized using a feature-based architecture to maintain scalability and clear domain boundaries:
+## Configuration
+
+| Variable | Purpose | Default |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical origin used by metadata, `sitemap.xml`, and `robots.txt`. Set this when moving to a custom domain. | the current Vercel URL |
+
+Everything else is static. There is no CMS and no database — content lives in
+`src/content/`.
+
+## Content
+
+Editing the site means editing three places:
+
+- `src/content/projects.ts` — the case studies. Adding an object here adds a card to the
+  projects grid, an entry on the resume page, a `/projects/<slug>` page, and a sitemap URL.
+- `src/content/profile.ts` — email, GitHub URL, resume path. Single source of truth.
+- `messages/en.json` + `messages/id.json` — all user-facing copy. The two files must have the
+  same key set; a key present in only one locale throws at render time.
+
+## Structure
 
 ```text
 portfolio/
-├── messages/               # Localization strings (en.json, id.json)
-├── public/                 # Static assets (thumbnails, resume PDF, OpenGraph image)
+├── messages/               # en.json, id.json — all copy, no strings in components
+├── public/                 # thumbnails (webp), resume.pdf, og-image.png, profile.webp
 └── src/
-    ├── app/                # Next.js App Router root layout & localized [locale] segments
-    ├── components/         # Global reusable UI primitives (shadcn/ui components)
-    ├── content/            # Static project database and case study details
-    ├── features/           # Feature modules (home, projects, resume, showcase)
-    ├── i18n/               # next-intl configuration, routing, and navigation proxy handling
-    ├── lib/                # Utility helpers (e.g., Tailwind classes merger)
-    ├── shared/             # Layout templates (Navbar, Footer, shell structures)
-    └── types/              # Global TypeScript type declarations
+    ├── app/                # root layout, [locale] segments, sitemap.ts, robots.ts
+    ├── components/         # motion primitives + shadcn/ui
+    ├── content/            # projects.ts, profile.ts
+    ├── features/           # home/ and projects/ section components
+    ├── i18n/               # next-intl routing, navigation, request config
+    ├── lib/                # site.ts (canonical URL), utils.ts
+    ├── shared/             # Navbar, Footer
+    └── types/              # shared type declarations
 ```
 
----
+## Conventions
 
-## 📝 License
-Personal Portfolio Project. All rights reserved.
+- **One entrance animation per element.** `Reveal` and `StaggerGroup`/`StaggerItem` are the only
+  motion primitives. No pointer-tracking, tilt, or layered hover effects.
+- **No hardcoded user-facing strings** in components, including `aria-label`s — they go in
+  `messages/`.
+- **Claims must be checkable.** Case study results describe what shipped and what it does;
+  performance numbers are only included when there is a way for a reader to verify them.
+
+## License
+
+Personal project. All rights reserved.
