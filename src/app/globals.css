@@ -147,37 +147,14 @@
   }
 
   .eyebrow {
-    @apply text-[11px] font-bold uppercase tracking-[0.14em] text-primary;
-  }
-
-  .double-bezel-wrapper {
-    @apply relative h-full;
-  }
-
-  .double-bezel-inner {
-    @apply relative h-full rounded-xl border border-border bg-card p-6 shadow-sm;
+    @apply text-xs font-bold uppercase tracking-[0.14em] text-primary;
   }
 
   .surface-card {
-    @apply rounded-xl border border-border bg-card/90 backdrop-blur-sm shadow-sm transition-all duration-200;
+    @apply rounded-xl border border-border bg-card shadow-sm;
   }
 
-  .spring-transition {
-    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .card-hover-lift {
-    @apply hover:border-primary/40 hover:shadow-md hover:-translate-y-0.5;
-  }
-
-  /* Subtly ambient background mesh — clean, not colorful AI blur */
-  .aurora-mesh {
-    background-image:
-      radial-gradient(40% 40% at 20% 10%, color-mix(in oklch, var(--primary) 8%, transparent) 0%, transparent 100%),
-      radial-gradient(35% 35% at 80% 90%, color-mix(in oklch, var(--primary) 5%, transparent) 0%, transparent 100%);
-  }
-
-  /* Fine engineering grid backdrop */
+  /* Fine grid backdrop — the only ambient background effect on the site. */
   .grid-backdrop {
     background-image:
       linear-gradient(to right, color-mix(in oklch, var(--foreground) 3.5%, transparent) 1px, transparent 1px),
@@ -190,22 +167,6 @@
   /* Subtle accent glow ring */
   .glow-ring {
     box-shadow: 0 0 0 1px color-mix(in oklch, var(--primary) 25%, transparent);
-  }
-
-  /* Gradient text for display headings */
-  .text-gradient {
-    background: linear-gradient(180deg,
-      color-mix(in oklch, var(--foreground) 100%, transparent) 0%,
-      color-mix(in oklch, var(--foreground) 75%, var(--muted-foreground)) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  /* Clean subtle card border hover */
-  .shine-border {
-    position: relative;
-    isolation: isolate;
   }
 
   /* Hairline divider */
