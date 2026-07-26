@@ -13,11 +13,13 @@ import {
 } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { EASE_OUT, Reveal, StaggerGroup, StaggerItem, TextReveal } from "@/components/motion";
+import { EASE_OUT, Reveal, StaggerGroup, StaggerItem } from "@/components/motion";
 import type { Project } from "@/types/project";
 
 type ProjectDetailClientProps = {
   project: Project;
+  statusLabel: string;
+  inDevelopmentLabel: string;
   back: string;
   liveDemo: string;
   overview: string;
@@ -33,6 +35,8 @@ type ProjectDetailClientProps = {
 
 export default function ProjectDetailClient({
   project,
+  statusLabel,
+  inDevelopmentLabel,
   back,
   liveDemo,
   overview,
@@ -64,9 +68,14 @@ export default function ProjectDetailClient({
         <div>
           <Reveal direction="up">
             <div className="mb-5 flex flex-wrap gap-2">
-              <span className="rounded-md border border-border bg-muted px-2.5 py-1 text-xs font-semibold capitalize text-muted-foreground">
-                {project.status}
+              <span className="rounded-md border border-primary/25 bg-primary/5 px-2.5 py-1 text-xs font-semibold text-primary">
+                {statusLabel}
               </span>
+              {project.activeDevelopment && (
+                <span className="rounded-md border border-border bg-muted px-2.5 py-1 text-xs font-semibold text-muted-foreground">
+                  {inDevelopmentLabel}
+                </span>
+              )}
               <span className="rounded-md border border-border bg-muted px-2.5 py-1 text-xs font-semibold text-muted-foreground">
                 {project.role}
               </span>
@@ -77,8 +86,8 @@ export default function ProjectDetailClient({
           </Reveal>
 
           <Reveal direction="up" delay={0.05}>
-            <h1 className="font-heading text-5xl font-bold leading-[1.05] text-balance text-gradient md:text-6xl">
-              <TextReveal text={project.title} />
+            <h1 className="font-heading text-4xl font-bold leading-[1.1] text-balance text-foreground sm:text-5xl">
+              {project.title}
             </h1>
           </Reveal>
 
@@ -92,7 +101,7 @@ export default function ProjectDetailClient({
         {project.imageUrl && (
           <Reveal direction="left" delay={0.1} amount={0.1}>
             <motion.div
-              className="surface-card shine-border group overflow-hidden"
+              className="surface-card group overflow-hidden"
               whileHover={{ y: -4 }}
               transition={{ duration: 0.4, ease: EASE_OUT }}
             >
@@ -105,7 +114,6 @@ export default function ProjectDetailClient({
                   priority
                   sizes="(max-width: 1024px) 100vw, 52vw"
                 />
-                <div className="shimmer absolute inset-0" />
               </div>
             </motion.div>
           </Reveal>
@@ -210,7 +218,7 @@ export default function ProjectDetailClient({
 
 function TextSection({ title, text }: { title: string; text: string }) {
   return (
-    <section className="surface-card shine-border p-5 md:p-6">
+    <section className="surface-card p-5 md:p-6">
       <h2 className="font-heading border-b border-border pb-4 text-xl font-bold text-foreground">
         {title}
       </h2>
@@ -221,7 +229,7 @@ function TextSection({ title, text }: { title: string; text: string }) {
 
 function SummaryCard({ title, text }: { title: string; text: string }) {
   return (
-    <section className="surface-card shine-border h-full p-5 md:p-6">
+    <section className="surface-card h-full p-5 md:p-6">
       <h2 className="font-heading text-xl font-bold text-foreground">{title}</h2>
       <p className="mt-4 text-sm leading-7 text-muted-foreground">{text}</p>
     </section>
@@ -242,7 +250,7 @@ function ListSection({
   const Icon = icon === "rocket" ? Rocket : icon === "check" ? CheckCircle2 : Lightbulb;
 
   return (
-    <section className="surface-card shine-border p-5 md:p-6">
+    <section className="surface-card p-5 md:p-6">
       <h2 className="font-heading border-b border-border pb-4 text-xl font-bold text-foreground">
         {title}
       </h2>

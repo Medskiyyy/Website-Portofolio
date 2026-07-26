@@ -3,36 +3,34 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, ExternalLink, Github, Layers, Smartphone, Store } from "lucide-react";
-import { projects } from "@/content/projects";
+import { ArrowRight, ExternalLink, Github, Layers, Smartphone, Store } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Reveal, StaggerGroup, StaggerItem, TiltCard, SpotlightCard } from "@/components/motion";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion";
+import type { Project } from "@/types/project";
 
-export default function FeaturedProjectSection() {
+/** Only the icon is fixed per project; the label comes from localised copy. */
+const categoryIcons: Record<string, React.ElementType> = {
+  "pempek-cek-lis": Store,
+  synclancer: Layers,
+  "hitung-uang": Smartphone,
+};
+
+export default function FeaturedProjectSection({ projects }: { projects: Project[] }) {
   const t = useTranslations("FeaturedProject");
 
-  const projectBadges: Record<string, { label: string; icon: React.ElementType }> = {
-    "pempek-cek-lis": { label: "Web Storefront & CMS", icon: Store },
-    synclancer: { label: "Multi-Tenant SaaS", icon: Layers },
-    "hitung-uang": { label: "Offline-First Android", icon: Smartphone },
-  };
-
   return (
-    <section className="w-full border-b border-border/60 bg-background py-20 md:py-28 relative overflow-hidden">
-      {/* Background glow overlay */}
-      <div className="pointer-events-none absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[300px] bg-primary/5 blur-[120px] rounded-full" />
-
-      <div className="section-shell relative z-10">
+    <section className="w-full border-b border-border/60 bg-background py-20 md:py-28">
+      <div className="section-shell">
         <div className="mb-14 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <Reveal direction="up">
             <span className="eyebrow">{t("label")}</span>
-            <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+            <h2 className="font-heading mt-3 max-w-2xl text-3xl font-bold tracking-tight text-balance text-foreground sm:text-4xl">
               {t("title")}
             </h2>
           </Reveal>
           <Reveal direction="left" delay={0.1}>
-            <p className="max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <p className="max-w-md text-base leading-relaxed text-muted-foreground">
               {t("intro")}
             </p>
           </Reveal>
@@ -44,117 +42,102 @@ export default function FeaturedProjectSection() {
           amount={0.1}
         >
           {projects.map((project, index) => {
-            const badge = projectBadges[project.slug] || { label: project.role, icon: Layers };
-            const CategoryIcon = badge.icon;
+            const CategoryIcon = categoryIcons[project.slug] ?? Layers;
 
             return (
               <StaggerItem key={project.slug} className="h-full">
-                <TiltCard maxTilt={6} className="h-full">
-                  <SpotlightCard className="h-full rounded-2xl border border-border/80 bg-card/90 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-xl shadow-black/5">
-                    <article className="group flex h-full flex-col overflow-hidden">
-                      <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/60 bg-muted">
-                        {project.imageUrl ? (
-                          <Image
-                            src={project.imageUrl}
-                            alt={project.title}
-                            fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            priority={index === 0}
-                          />
-                        ) : (
-                          <div className="flex h-full items-center justify-center text-sm font-semibold text-muted-foreground">
-                            {project.title}
-                          </div>
+                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border/80 bg-card transition-colors duration-200 hover:border-primary/50">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/60 bg-muted">
+                    {project.imageUrl ? (
+                      <Image
+                        src={project.imageUrl}
+                        alt={`${project.title} interface`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        priority={index === 0}
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-sm font-semibold text-muted-foreground">
+                        {project.title}
+                      </div>
+                    )}
+                    <span className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-background/90 px-3 py-1 text-xs font-semibold text-foreground backdrop-blur-sm">
+                      <CategoryIcon className="h-3.5 w-3.5 text-primary" />
+                      {project.category}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="mb-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+                      <span className="font-medium text-foreground">{project.role}</span>
+                      <span aria-hidden>·</span>
+                      <span>{project.timeline}</span>
+                    </div>
+
+                    <h3 className="font-heading text-xl font-bold tracking-tight text-foreground">
+                      {project.title}
+                    </h3>
+                    <p className="mt-2.5 line-clamp-4 text-sm leading-relaxed text-muted-foreground">
+                      {project.description}
+                    </p>
+
+                    <ul className="mt-5 flex flex-wrap gap-1.5">
+                      {project.techStack.slice(0, 4).map((tech) => (
+                        <li
+                          key={tech}
+                          className="rounded-md border border-border/60 bg-muted/50 px-2 py-0.5 text-xs font-medium text-muted-foreground"
+                        >
+                          {tech}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-auto flex items-center justify-between gap-3 pt-6">
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        className={cn(
+                          buttonVariants({ size: "lg" }),
+                          "h-10 cursor-pointer gap-1.5 px-4 text-sm font-semibold",
                         )}
-                        <div className="absolute top-3 left-3 z-10">
-                          <span className="inline-flex items-center gap-1.5 rounded-full border border-background/20 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground backdrop-blur-md shadow-sm">
-                            <CategoryIcon className="h-3.5 w-3.5 text-primary" />
-                            {badge.label}
-                          </span>
-                        </div>
-                      </div>
+                      >
+                        {t("caseStudy")}
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                      </Link>
 
-                      <div className="flex flex-1 flex-col p-6">
-                        <div className="mb-3 flex items-center justify-between text-xs text-muted-foreground">
-                          <span className="font-semibold text-primary">{project.role}</span>
-                          <span className="font-mono text-[11px]">{project.timeline}</span>
-                        </div>
-
-                        <h3 className="font-heading text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
-                          {project.title}
-                        </h3>
-                        <p className="mt-2 text-xs leading-relaxed text-muted-foreground line-clamp-3">
-                          {project.description}
-                        </p>
-
-                        <div className="mt-4 space-y-2 border-t border-border/40 pt-4">
-                          {project.results.slice(0, 2).map((result) => (
-                            <div key={result} className="flex gap-2 text-xs leading-normal text-foreground/90">
-                              <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
-                              <span>{result}</span>
-                            </div>
-                          ))}
-                        </div>
-
-                        <div className="mt-4 flex flex-wrap gap-1.5">
-                          {project.techStack.slice(0, 4).map((tech) => (
-                            <span
-                              key={tech}
-                              className="rounded-md border border-border/60 bg-muted/50 px-2 py-0.5 text-[11px] font-medium text-muted-foreground"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-
-                        <div className="mt-auto flex items-center justify-between gap-3 pt-6">
-                          <Link
-                            href={`/projects/${project.slug}`}
+                      <div className="flex items-center gap-2">
+                        {project.liveUrl && (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className={cn(
-                              buttonVariants({ size: "sm" }),
-                              "h-9 cursor-pointer gap-1.5 px-4 text-xs font-semibold shadow-none group-hover:bg-primary/90",
+                              buttonVariants({ variant: "outline", size: "icon-lg" }),
+                              "h-10 w-10 cursor-pointer border-border/80",
                             )}
+                            aria-label={`${t("liveDemo")} — ${project.title}`}
                           >
-                            {t("caseStudy")}
-                            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                          </Link>
-
-                          <div className="flex items-center gap-2">
-                            {project.liveUrl && (
-                              <a
-                                href={project.liveUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={cn(
-                                  buttonVariants({ variant: "outline", size: "icon-sm" }),
-                                  "h-9 w-9 cursor-pointer border-border/80 transition-colors hover:border-primary/50 hover:bg-muted",
-                                )}
-                                title={t("liveDemo")}
-                              >
-                                <ExternalLink className="h-3.5 w-3.5" />
-                              </a>
+                            <ExternalLink className="h-4 w-4" />
+                          </a>
+                        )}
+                        {project.githubUrl && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={cn(
+                              buttonVariants({ variant: "outline", size: "icon-lg" }),
+                              "h-10 w-10 cursor-pointer border-border/80",
                             )}
-                            {project.githubUrl && (
-                              <a
-                                href={project.githubUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={cn(
-                                  buttonVariants({ variant: "outline", size: "icon-sm" }),
-                                  "h-9 w-9 cursor-pointer border-border/80 transition-colors hover:border-primary/50 hover:bg-muted",
-                                )}
-                                title="GitHub Repository"
-                              >
-                                <Github className="h-3.5 w-3.5" />
-                              </a>
-                            )}
-                          </div>
-                        </div>
+                            aria-label={`GitHub repository — ${project.title}`}
+                          >
+                            <Github className="h-4 w-4" />
+                          </a>
+                        )}
                       </div>
-                    </article>
-                  </SpotlightCard>
-                </TiltCard>
+                    </div>
+                  </div>
+                </article>
               </StaggerItem>
             );
           })}
