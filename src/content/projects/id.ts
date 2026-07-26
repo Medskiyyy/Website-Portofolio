@@ -9,7 +9,7 @@ export const projectCopyId: Record<string, ProjectCopy> = {
   "pempek-cek-lis": {
     title: "Pempek Palembang Cek Lis",
     category: "Storefront & CMS",
-    role: "Developer tunggal — bisnis nyata, tanpa bayaran",
+    role: "Developer tunggal, bisnis nyata, tanpa bayaran",
     timeline: "Jun – Jul 2025",
     description:
       "Storefront dan CMS custom untuk kedai pempek di Serpong, Tangerang Selatan. Pemiliknya mengelola menu, banner promo, ulasan, dan data kontak dari admin panel, tanpa perlu minta saya mengubah kodenya.",
@@ -24,17 +24,17 @@ export const projectCopyId: Record<string, ProjectCopy> = {
     architecture:
       "Monorepo Turborepo dengan pnpm workspaces yang memuat situs publik dan admin panel. Postgres di Supabase untuk kontennya, dengan Row-Level Security supaya client anonim bisa membaca baris yang dipublikasikan tapi hanya admin terautentikasi yang bisa menulis. Supabase Auth untuk login admin, Supabase Storage dan Firebase untuk gambar produk dan banner. Dideploy di Vercel.",
     challenges: [
-      "Menyusun policy Row-Level Security supaya situs publik bisa membaca katalog dengan anon key sementara akses tulis tetap terkunci ke sesi admin — versi pertamanya membocorkan akses tulis lewat policy yang hanya memeriksa autentikasi, bukan role.",
+      "Menyusun policy Row-Level Security supaya situs publik bisa membaca katalog dengan anon key sementara akses tulis tetap terkunci ke sesi admin. Versi pertamanya membocorkan akses tulis lewat policy yang hanya memeriksa autentikasi, bukan role.",
       "Menentukan jeda revalidasi per jenis konten. Harga harus cepat berubah; teks profil tidak. Merevalidasi semuanya secara agresif justru menghilangkan gunanya static generation.",
       "Dua backend gambar (Supabase Storage dan Firebase) lebih banyak dari yang proyek ini butuhkan. Jalan sih, tapi kalau saya bangun ulang sekarang saya akan pilih satu saja.",
     ],
     results: [
-      "Live di pempekceklis.biz.id dengan 6 item menu, 3 banner promo, 4 ulasan pelanggan, dan 5 area pengiriman — semuanya tersimpan di Postgres dan bisa diubah dari admin panel.",
+      "Live di pempekceklis.biz.id dengan 6 item menu, 3 banner promo, 4 ulasan pelanggan, dan 5 area pengiriman, semuanya tersimpan di Postgres dan bisa diubah dari admin panel.",
       "Pemiliknya bisa mengubah harga, mengganti banner, atau memperbarui nomor WhatsApp tanpa perubahan kode dan tanpa deploy ulang.",
       "Pesanan membuka WhatsApp dengan produknya sudah tertulis di dalam pesan, jadi tidak ada form order atau cart yang perlu dirawat.",
     ],
     lessonsLearned: [
-      "Row-Level Security layak dibayar dengan waktu setup — aturan aksesnya tinggal di sebelah datanya, bukan ditulis ulang di setiap query.",
+      "Row-Level Security layak dibayar dengan waktu setup, karena aturan aksesnya tinggal di sebelah datanya, bukan ditulis ulang di setiap query.",
       "Kliennya tidak menginginkan fitur, dia ingin berhenti menjawab DM yang sama terus-menerus. Membaca permintaannya seperti itu mengubah apa yang akhirnya saya bangun.",
       "Monorepo memudahkan berbagi tipe antara situs publik dan admin panel, tapi itu lebih banyak tooling daripada yang sebenarnya dibutuhkan proyek berisi dua aplikasi.",
     ],
@@ -48,12 +48,12 @@ export const projectCopyId: Record<string, ProjectCopy> = {
   synclancer: {
     title: "SyncLancer",
     category: "SaaS multi-tenant",
-    role: "Developer tunggal — produk pribadi",
+    role: "Developer tunggal, produk pribadi",
     timeline: "Jun 2026 – sekarang",
     description:
       "Aplikasi manajemen proyek multi-tenant untuk freelancer, inisiatif sendiri: lead, klien, proposal, proyek, tugas, invoice, dan pencatatan waktu di satu tempat, lengkap dengan portal yang bisa diakses klien.",
     overview:
-      "SyncLancer adalah produk saya sendiri, bukan pekerjaan klien — saya membangunnya untuk tahu apa sebenarnya yang terlibat dalam multi-tenancy. Setiap freelancer mendapat workspace terisolasi yang mencakup pipeline lead, klien, proposal, proyek, milestone, tugas, invoice, pencatatan waktu, dan berkas. Klien mendapat login terpisah dengan cakupan terbatas, tempat mereka bisa melihat milestone sendiri, mengunduh berkas, dan melihat invoice.",
+      "SyncLancer adalah produk saya sendiri, bukan pekerjaan klien. Saya membangunnya untuk tahu apa sebenarnya yang terlibat dalam multi-tenancy. Setiap freelancer mendapat workspace terisolasi yang mencakup pipeline lead, klien, proposal, proyek, milestone, tugas, invoice, pencatatan waktu, dan berkas. Klien mendapat login terpisah dengan cakupan terbatas, tempat mereka bisa melihat milestone sendiri, mengunduh berkas, dan melihat invoice.",
     problem:
       "Freelancer biasanya menjalankan usahanya tersebar di CRM, aplikasi chat, drive berkas, tool invoice, dan spreadsheet. Tidak ada yang saling terhubung, jadi satu klien yang sama tercatat lima kali. Saya ingin tahu apakah satu skema bisa menampung seluruh alur kerjanya tanpa jadi tidak terpakai.",
     goal:
@@ -64,7 +64,7 @@ export const projectCopyId: Record<string, ProjectCopy> = {
       "Next.js App Router dengan React di frontend. Postgres di Supabase diakses lewat Prisma, dengan foreign key workspace di setiap tabel yang bercakupan tenant. Auth.js menangani autentikasi dan membedakan sesi pemilik dari sesi portal klien. TanStack Query mengelola server state dan optimistic update, @dnd-kit menjalankan board pipeline, @react-pdf/renderer membuat invoice di sisi client, Resend mengirim email transaksional, dan berkas disimpan di Supabase Storage.",
     challenges: [
       "Isolasi tenant hanya sekuat query terlemahnya. Menegakkannya satu per satu di setiap panggilan itu rapuh, jadi pencakupannya saya pindahkan ke satu lapisan query bersama yang menolak menyusun query tanpa workspace id.",
-      "Optimistic update di board Kanban butuh rollback yang tetap benar ketika reorder gagal di tengah drag — versi naifnya meninggalkan kartu di kolom yang salah setelah error.",
+      "Optimistic update di board Kanban butuh rollback yang tetap benar ketika reorder gagal di tengah drag. Versi naifnya meninggalkan kartu di kolom yang salah setelah error.",
       "Portal klien memakai tabel yang sama dengan tampilan pemilik, jadi setiap field harus diklasifikasikan boleh dilihat klien atau tidak. Klasifikasi itulah pekerjaan sebenarnya, bukan UI-nya.",
     ],
     results: [
@@ -74,11 +74,11 @@ export const projectCopyId: Record<string, ProjectCopy> = {
     ],
     lessonsLearned: [
       "Multi-tenancy itu persoalan akses data, bukan fitur. Menentukan di mana batasnya ditegakkan adalah keseluruhan desainnya.",
-      "Optimistic update TanStack Query sangat bagus sampai titik di mana Anda harus membatalkan kegagalan — jalur rollback-nya layak diperhatikan sebesar jalur suksesnya.",
+      "Optimistic update TanStack Query sangat bagus sampai titik di mana Anda harus membatalkan kegagalan. Jalur rollback-nya layak diperhatikan sebesar jalur suksesnya.",
       "Cakupan proyek ini saya buat jauh terlalu lebar untuk dikerjakan sendiri. Versi yang lebih sempit, dirilis lebih cepat, akan mengajarkan hal yang sama lebih awal.",
     ],
     futureImprovements: [
-      "Mencoba menaruhnya di depan freelancer sungguhan — sekarang penggunanya cuma saya, jadi belum ada bagian alur kerjanya yang benar-benar diuji ke kenyataan.",
+      "Mencoba menaruhnya di depan freelancer sungguhan. Sekarang penggunanya cuma saya, jadi belum ada bagian alur kerjanya yang benar-benar diuji ke kenyataan.",
       "Menambahkan penerimaan pembayaran supaya invoice bisa diselesaikan langsung di aplikasinya.",
       "Menulis tes integrasi di sekitar batas tenant, yang saat ini masih diperiksa manual.",
     ],
@@ -87,12 +87,12 @@ export const projectCopyId: Record<string, ProjectCopy> = {
   "hitung-uang": {
     title: "HitungUang",
     category: "Android offline-first",
-    role: "Developer tunggal — proyek pribadi",
+    role: "Developer tunggal, proyek pribadi",
     timeline: "Jun 2026 – sekarang",
     description:
-      "Pencatat pengeluaran Android offline-first yang menyimpan semuanya di perangkat — tanpa akun, tanpa server, tanpa sinkronisasi. Pemindaian struk dan grafiknya berjalan lokal.",
+      "Pencatat pengeluaran Android offline-first yang menyimpan semuanya di perangkat: tanpa akun, tanpa server, tanpa sinkronisasi. Pemindaian struk dan grafiknya berjalan lokal.",
     overview:
-      "Aplikasi keuangan pribadi Android native tanpa backend sama sekali. Transaksi tinggal di Room di dalam perangkat, aplikasinya terkunci di balik PIN atau biometrik, struk dipindai dengan OCR on-device, grafik pengeluaran digambar dengan Compose Canvas, dan backup diekspor ke berkas ZIP yang dipegang penggunanya. Belum dipublikasikan ke Play Store — kodenya ada di GitHub, dan masih terus saya kembangkan.",
+      "Aplikasi keuangan pribadi Android native tanpa backend sama sekali. Transaksi tinggal di Room di dalam perangkat, aplikasinya terkunci di balik PIN atau biometrik, struk dipindai dengan OCR on-device, grafik pengeluaran digambar dengan Compose Canvas, dan backup diekspor ke berkas ZIP yang dipegang penggunanya. Belum dipublikasikan ke Play Store, tapi kodenya ada di GitHub dan masih terus saya kembangkan.",
     problem:
       "Sebagian besar aplikasi pencatat pengeluaran meminta Anda membuat akun dan mengunggah riwayat pengeluaran ke server orang lain, lalu tetap butuh koneksi hanya untuk dibuka. Saya ingin tahu apakah versi yang tetap berguna bisa ada tanpa server sama sekali, dan apa harga yang harus dibayar sebagai gantinya.",
     goal:
@@ -103,7 +103,7 @@ export const projectCopyId: Record<string, ProjectCopy> = {
       "Clean Architecture feature-first dengan lapisan domain di antara UI Compose dan Room. Dagger Hilt untuk dependency injection, Room dengan KSP untuk basis data lokal, DataStore untuk preferensi, WorkManager untuk pekerjaan terjadwal, ML Kit untuk pengenalan teks di perangkat, dan AndroidX Biometric untuk kunci aplikasinya.",
     challenges: [
       "Keluaran OCR itu teks tak berstruktur, bukan field. Memetakan struk ke nominal dan nama merchant butuh heuristik, dan solusi yang jujur adalah selalu menampilkan hasil bacanya untuk dikoreksi pengguna alih-alih mempercayainya.",
-      "Grafik Canvas custom menghindari satu dependency, tapi hit-testing, label, dan aksesibilitasnya jadi tanggungan sendiri — library akan jadi pilihan yang benar begitu grafiknya perlu melakukan lebih dari yang sekarang.",
+      "Grafik Canvas custom menghindari satu dependency, tapi hit-testing, label, dan aksesibilitasnya jadi tanggungan sendiri. Library akan jadi pilihan yang benar begitu grafiknya perlu melakukan lebih dari yang sekarang.",
       "Tanpa server, satu migrasi basis data yang salah berarti data hilang permanen. Tes migrasi jauh lebih berarti di sini dibanding di proyek lain yang pernah saya kerjakan.",
     ],
     results: [

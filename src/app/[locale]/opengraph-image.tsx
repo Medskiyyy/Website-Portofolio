@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { profile } from "@/content/profile";
 
-export const alt = "Ahmad Hidayatullah — Full-stack web & Android developer";
+export const alt = "Ahmad Hidayatullah, full-stack web and Android developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

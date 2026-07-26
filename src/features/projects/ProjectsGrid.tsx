@@ -133,7 +133,7 @@ export default function ProjectsGrid({
                               buttonVariants({ variant: "outline", size: "icon-lg" }),
                               "h-10 w-10 cursor-pointer border-border/80",
                             )}
-                            aria-label={`${liveDemoLabel} — ${project.title}`}
+                            aria-label={`${liveDemoLabel}: ${project.title}`}
                           >
                             <ExternalLink className="h-4 w-4" />
                           </a>
@@ -147,7 +147,7 @@ export default function ProjectsGrid({
                               buttonVariants({ variant: "outline", size: "icon-lg" }),
                               "h-10 w-10 cursor-pointer border-border/80",
                             )}
-                            aria-label={`GitHub repository — ${project.title}`}
+                            aria-label={`GitHub repository: ${project.title}`}
                           >
                             <Github className="h-4 w-4" />
                           </a>

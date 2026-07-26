@@ -21,22 +21,11 @@ export default function HeroSection() {
 
       <div className="section-shell relative z-10">
         <div className="flex w-full max-w-4xl flex-col items-start">
-          {/* Availability — the one thing a recruiter needs to know first */}
-          <motion.p
-            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, ease: EASE_OUT }}
-          >
-            <span aria-hidden className="h-2 w-2 rounded-full bg-primary" />
-            {t("availability")}
-          </motion.p>
-
           <motion.h1
-            className="font-heading mt-5 text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+            className="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.06 }}
+            transition={{ duration: 0.8, ease: EASE_OUT }}
           >
             {t("title")}
           </motion.h1>

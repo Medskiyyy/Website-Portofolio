@@ -115,7 +115,7 @@ export default function FeaturedProjectSection({ projects }: { projects: Project
                               buttonVariants({ variant: "outline", size: "icon-lg" }),
                               "h-10 w-10 cursor-pointer border-border/80",
                             )}
-                            aria-label={`${t("liveDemo")} — ${project.title}`}
+                            aria-label={`${t("liveDemo")}: ${project.title}`}
                           >
                             <ExternalLink className="h-4 w-4" />
                           </a>
@@ -129,7 +129,7 @@ export default function FeaturedProjectSection({ projects }: { projects: Project
                               buttonVariants({ variant: "outline", size: "icon-lg" }),
                               "h-10 w-10 cursor-pointer border-border/80",
                             )}
-                            aria-label={`GitHub repository — ${project.title}`}
+                            aria-label={`GitHub repository: ${project.title}`}
                           >
                             <Github className="h-4 w-4" />
                           </a>

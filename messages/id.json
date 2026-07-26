@@ -13,8 +13,7 @@
   },
   "Hero": {
     "title": "Ahmad Hidayatullah",
-    "subtitle": "Mahasiswa Sistem Informasi yang membangun aplikasi web full-stack dengan Next.js dan TypeScript, serta aplikasi Android native dengan Kotlin — termasuk storefront dan CMS custom untuk usaha kuliner di Serpong, dan aplikasi keuangan yang berjalan sepenuhnya di perangkat.",
-    "availability": "Tersedia sekarang untuk internship part-time atau freelance — sekitar 20 jam per minggu di samping kuliah",
+    "subtitle": "Mahasiswa Sistem Informasi yang membangun aplikasi web full-stack dengan Next.js dan TypeScript, serta aplikasi Android native dengan Kotlin. Di antaranya storefront dan CMS custom untuk usaha kuliner di Serpong, dan aplikasi keuangan yang berjalan sepenuhnya di perangkat.",
     "ctaProjects": "Lihat proyek",
     "ctaResume": "Unduh resume (PDF)",
     "githubLink": "Profil GitHub"
@@ -29,13 +28,13 @@
     "cta": "Selengkapnya tentang saya",
     "glanceLabel": "Ringkasan",
     "glanceLocation": "Domisili",
-    "glanceLocationValue": "Bekasi, Jawa Barat — WIB (UTC+7). Terbuka untuk remote maupun on-site di sekitar Jakarta.",
+    "glanceLocationValue": "Bekasi, Jawa Barat (WIB, UTC+7). Terbuka untuk remote maupun on-site di sekitar Jakarta.",
     "glanceEducation": "Pendidikan",
     "glanceEducationValue": "Sistem Informasi, Universitas Gunadarma (2025 – sekarang)",
     "glanceFocus": "Fokus",
     "glanceFocusValue": "Web full-stack (Next.js, TypeScript, Postgres) dan Android native (Kotlin, Compose)",
     "glanceOpenTo": "Terbuka untuk",
-    "glanceOpenToValue": "Internship part-time (~20 jam/minggu, bisa mulai sekarang), proyek freelance, dan kenalan dengan developer lain",
+    "glanceOpenToValue": "Internship part-time sekitar 20 jam per minggu, proyek freelance, dan kenalan dengan developer lain.",
     "glanceLanguages": "Bahasa",
     "glanceLanguagesValue": "Indonesia (native), Inggris (profesional)",
     "glanceLinks": "Tautan"
@@ -98,14 +97,14 @@
   },
   "ResumePage": {
     "metaTitle": "Resume | Ahmad Hidayatullah",
-    "metaDescription": "Resume Ahmad Hidayatullah — mahasiswa Sistem Informasi, developer web full-stack dan Android native.",
+    "metaDescription": "Resume Ahmad Hidayatullah, mahasiswa Sistem Informasi dan developer web full-stack serta Android native.",
     "label": "Resume",
     "title": "Resume",
-    "subtitle": "Developer web full-stack & Android · Mahasiswa Sistem Informasi · Tersedia sekarang, ~20 jam/minggu",
+    "subtitle": "Developer web full-stack & Android · Mahasiswa Sistem Informasi · Sekitar 20 jam/minggu",
     "location": "Bekasi, Jawa Barat, Indonesia",
     "download": "Unduh PDF",
     "summaryTitle": "Ringkasan",
-    "summaryText": "Mahasiswa Sistem Informasi Universitas Gunadarma (2025 – sekarang), berdomisili di Bekasi. Saya membangun aplikasi web full-stack dengan Next.js, TypeScript, dan Postgres, serta aplikasi Android native dengan Kotlin dan Jetpack Compose. Tiga proyek sejauh ini — dua live di domain masing-masing, dan dua di antaranya masih aktif saya kembangkan. Tersedia sekarang untuk internship part-time atau proyek freelance, sekitar 20 jam per minggu bersamaan dengan kuliah.",
+    "summaryText": "Mahasiswa Sistem Informasi Universitas Gunadarma (2025 sampai sekarang), berdomisili di Bekasi. Saya membangun aplikasi web full-stack dengan Next.js, TypeScript, dan Postgres, serta aplikasi Android native dengan Kotlin dan Jetpack Compose. Tiga proyek sejauh ini, dua live di domain masing-masing, dan dua di antaranya masih aktif dikembangkan. Saya punya sekitar 20 jam per minggu dan bisa mulai sekarang.",
     "skillsTitle": "Keahlian",
     "skillsFrontend": "Frontend web",
     "skillsBackend": "Backend & database",
@@ -137,13 +136,13 @@
     "principle3Desc": "Admin panel Pempek Cek Lis ada supaya pemiliknya tidak perlu menghubungi saya hanya untuk mengubah harga.",
     "workflowTitle": "Cara saya bekerja",
     "workflowText": "Kurang lebih alur yang sama di setiap proyek.",
-    "workflowStep1": "Mendiskusikan apa yang sebenarnya dibutuhkan — biasanya lebih sempit dari permintaan awal.",
+    "workflowStep1": "Mendiskusikan apa yang sebenarnya dibutuhkan, yang biasanya lebih sempit dari permintaan awal.",
     "workflowStep2": "Merancang datanya lebih dulu: tabel, relasi, dan siapa yang boleh membaca apa.",
     "workflowStep3": "Membangunnya, dengan tipe sebagai kontrak antar lapisan.",
     "workflowStep4": "Menguji di ponsel asli dan koneksi lambat, bukan cuma di laptop saya.",
     "workflowStep5": "Merilis, lalu memperbaiki apa yang benar-benar bermasalah.",
     "goalsTitle": "Yang saya cari",
-    "goalsText": "Internship part-time atau proyek freelance di mana saya bisa bekerja bersama engineer yang lebih berpengalaman dan mendapat review kode yang layak. Saya punya sekitar 20 jam per minggu dan bisa mulai segera. Full-time harus menunggu sampai saya lulus — tapi saya lebih ingin belajar di tim nyata daripada terus membangun sendiri."
+    "goalsText": "Internship part-time atau proyek freelance di mana saya bisa bekerja bersama engineer yang lebih berpengalaman dan mendapat review kode yang layak. Saya punya sekitar 20 jam per minggu dan bisa mulai segera. Full-time harus menunggu sampai saya lulus, tapi saya lebih ingin belajar di tim nyata daripada terus membangun sendiri."
   },
   "ContactPreview": {
     "label": "Kontak",
@@ -159,10 +158,10 @@
     "metaDescription": "Hubungi Ahmad Hidayatullah soal internship, proyek freelance, atau hal teknis apa pun.",
     "label": "Kontak",
     "title": "Mari terhubung",
-    "subtitle": "Internship, proyek freelance, atau pertanyaan soal sesuatu yang saya bangun — semuanya boleh. Saya punya sekitar 20 jam per minggu dan bisa mulai sekarang; full-time harus menunggu sampai saya lulus.",
+    "subtitle": "Internship, proyek freelance, atau pertanyaan soal sesuatu yang saya bangun, semuanya boleh. Saya punya sekitar 20 jam per minggu dan bisa mulai sekarang; full-time harus menunggu sampai saya lulus.",
     "emailDesc": "Cara tercepat menghubungi saya. Biasanya saya balas dalam sehari.",
     "githubDesc": "Kode sumber semua yang ada di situs ini, termasuk situs ini sendiri.",
-    "note": "Kalau Anda mahasiswa atau developer yang sekadar ingin bertukar pikiran, itu juga dihitung — tidak perlu ada tawaran kerja untuk mengirim email."
+    "note": "Kalau Anda mahasiswa atau developer yang sekadar ingin bertukar pikiran, itu juga dihitung. Tidak perlu ada tawaran kerja untuk mengirim email."
   },
   "Footer": {
     "bio": "Mahasiswa Sistem Informasi di Bekasi yang membangun aplikasi web full-stack dan Android native. Tersedia sekarang untuk internship part-time atau freelance, sekitar 20 jam per minggu.",
@@ -179,7 +178,7 @@
   },
   "Metadata": {
     "title": "Ahmad Hidayatullah | Developer Web Full-Stack & Android",
-    "description": "Portofolio Ahmad Hidayatullah — mahasiswa Sistem Informasi di Bekasi yang membangun aplikasi web full-stack dengan Next.js dan TypeScript, serta aplikasi Android native dengan Kotlin. Tersedia sekarang untuk internship part-time atau freelance.",
+    "description": "Portofolio Ahmad Hidayatullah, mahasiswa Sistem Informasi di Bekasi yang membangun aplikasi web full-stack dengan Next.js dan TypeScript, serta aplikasi Android native dengan Kotlin. Terbuka untuk internship part-time dan freelance.",
     "keywords": "Ahmad Hidayatullah, full stack developer, Android developer, web developer Bekasi, developer Jakarta, Next.js, TypeScript, Kotlin, Jetpack Compose, Supabase, Postgres, portofolio, internship, freelance"
   }
 }
