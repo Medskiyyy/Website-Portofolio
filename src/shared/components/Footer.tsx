@@ -4,17 +4,19 @@ import React from "react";
 import { Mail, Github, ArrowUp } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import { profile } from "@/content/profile";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const t = useTranslations("Navigation");
+  const nav = useTranslations("Navigation");
+  const t = useTranslations("Footer");
 
   const footerLinks = [
-    { href: "/", label: t("home") },
-    { href: "/projects", label: t("projects") },
-    { href: "/resume", label: t("resume") },
-    { href: "/about", label: t("about") },
-    { href: "/contact", label: t("contact") },
+    { href: "/", label: nav("home") },
+    { href: "/projects", label: nav("projects") },
+    { href: "/resume", label: nav("resume") },
+    { href: "/about", label: nav("about") },
+    { href: "/contact", label: nav("contact") },
   ];
 
   const scrollToTop = () => {
@@ -22,26 +24,28 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full border-t border-border/30 bg-card/40 py-16 transition-colors duration-500">
+    <footer className="w-full border-t border-border/30 bg-card/40 py-16">
       <div className="section-shell">
-        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr] lg:grid-cols-[2fr_1fr] pb-12 border-b border-border/20">
+        <div className="grid gap-10 border-b border-border/20 pb-12 md:grid-cols-[1.5fr_1fr] lg:grid-cols-[2fr_1fr]">
           <div>
             <Link href="/" className="font-heading text-xl font-bold tracking-tight text-foreground">
               Ahmad.
             </Link>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              Information Systems student and Full Stack Developer focused on building high-performance web products, clean architecture, and deployment-ready workflows.
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+              {t("bio")}
             </p>
           </div>
 
           <div className="flex flex-col gap-6 md:items-end">
-            <p className="text-xs font-bold uppercase tracking-widest text-primary">Sitemap</p>
+            <p className="text-xs font-bold tracking-widest text-primary uppercase">
+              {t("sitemap")}
+            </p>
             <nav className="flex flex-wrap gap-x-6 gap-y-3 md:justify-end">
               {footerLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
                 </Link>
@@ -51,33 +55,33 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-6 pt-8 sm:flex-row">
-          <p className="text-xs text-muted-foreground order-2 sm:order-1">
-            &copy; {currentYear} Ahmad Hidayatullah. All rights reserved.
+          <p className="order-2 text-sm text-muted-foreground sm:order-1">
+            &copy; {currentYear} {profile.name}. {t("rights")}
           </p>
 
-          <div className="flex items-center gap-4 order-1 sm:order-2">
+          <div className="order-1 flex items-center gap-4 sm:order-2">
             <a
-              href="mailto:hidayatahmadd1377@gmail.com"
-              className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/50 bg-card text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors duration-300 shadow-sm"
-              aria-label="Email Profile"
+              href={`mailto:${profile.email}`}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/50 bg-card text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+              aria-label={t("email")}
             >
-              <Mail className="h-4.5 w-4.5" />
+              <Mail className="h-4 w-4" />
             </a>
             <a
-              href="https://github.com/Medskiyyy"
+              href={profile.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/50 bg-card text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors duration-300 shadow-sm"
-              aria-label="GitHub Profile"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/50 bg-card text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+              aria-label={t("github")}
             >
-              <Github className="h-4.5 w-4.5" />
+              <Github className="h-4 w-4" />
             </a>
             <button
               onClick={scrollToTop}
-              className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/50 bg-card text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors duration-300 shadow-sm cursor-pointer"
-              aria-label="Scroll to Top"
+              className="group flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border/50 bg-card text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+              aria-label={t("toTop")}
             >
-              <ArrowUp className="h-4.5 w-4.5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+              <ArrowUp className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
             </button>
           </div>
         </div>
