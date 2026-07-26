@@ -1,36 +1,28 @@
-import { getTranslations } from "next-intl/server";
-import type { Metadata } from "next";
+import { getProjects } from "@/content/projects";
 import HeroSection from "@/features/home/HeroSection";
 import FeaturedProjectSection from "@/features/home/FeaturedProjectSection";
 import SkillsSection from "@/features/home/SkillsSection";
 import AboutPreviewSection from "@/features/home/AboutPreviewSection";
 import ContactPreviewSection from "@/features/home/ContactPreviewSection";
 
-export async function generateMetadata({
+/*
+ * No generateMetadata here on purpose. The [locale] layout already sets the
+ * title, description, and the full openGraph object — and because Next.js
+ * shallow-replaces metadata fields rather than merging them, redeclaring
+ * `openGraph` on this page silently dropped og:image and og:url from the
+ * home page, which is the page most likely to be shared.
+ */
+export default async function HomePage({
   params,
 }: {
   params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+}) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "Metadata" });
-  return {
-    title: t("title"),
-    description: t("description"),
-    keywords: t("keywords"),
-    openGraph: {
-      title: t("title"),
-      description: t("description"),
-      type: "website",
-      locale: locale === "id" ? "id_ID" : "en_US",
-    },
-  };
-}
 
-export default function HomePage() {
   return (
     <main>
       <HeroSection />
-      <FeaturedProjectSection />
+      <FeaturedProjectSection projects={getProjects(locale)} />
       <SkillsSection />
       <AboutPreviewSection />
       <ContactPreviewSection />

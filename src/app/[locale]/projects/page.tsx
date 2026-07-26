@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { projects } from "@/content/projects";
+import { getProjects } from "@/content/projects";
 import type { Metadata } from "next";
 import ProjectsGrid from "@/features/projects/ProjectsGrid";
 
@@ -26,7 +26,7 @@ export default async function ProjectsPage({
       <div className="pointer-events-none absolute inset-0 grid-backdrop opacity-60" />
       <div className="section-shell relative">
         <ProjectsGrid
-          projects={projects}
+          projects={getProjects(locale)}
           caseStudyLabel={t("caseStudy")}
           liveDemoLabel={t("liveDemo")}
           emptyLabel={t("empty")}

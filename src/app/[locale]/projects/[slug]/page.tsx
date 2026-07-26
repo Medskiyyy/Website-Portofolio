@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { getProjectBySlug, projects } from "@/content/projects";
+import { getProjectBySlug, projectSlugs } from "@/content/projects";
 import type { Metadata } from "next";
 import ProjectDetailClient from "@/features/projects/ProjectDetailClient";
 
@@ -9,8 +9,8 @@ export async function generateStaticParams() {
   const params: { locale: string; slug: string }[] = [];
 
   for (const locale of locales) {
-    for (const project of projects) {
-      params.push({ locale, slug: project.slug });
+    for (const slug of projectSlugs) {
+      params.push({ locale, slug });
     }
   }
 
@@ -22,8 +22,8 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { slug, locale } = await params;
+  const project = getProjectBySlug(locale, slug);
   if (!project) return {};
   return {
     title: `${project.title} | Case Study`,
@@ -37,10 +37,17 @@ export default async function ProjectDetailPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { slug, locale } = await params;
-  const project = getProjectBySlug(slug);
+  const project = getProjectBySlug(locale, slug);
   if (!project) notFound();
 
   const t = await getTranslations({ locale, namespace: "ProjectDetail" });
+
+  const statusKey = {
+    live: "statusLive",
+    "source available": "statusSourceAvailable",
+    "in-progress": "statusInProgress",
+    planned: "statusPlanned",
+  }[project.status];
 
   return (
     <main className="relative overflow-hidden border-b border-border bg-background py-28 md:py-36">
@@ -48,6 +55,8 @@ export default async function ProjectDetailPage({
       <div className="section-shell relative">
         <ProjectDetailClient
           project={project}
+          statusLabel={t(statusKey)}
+          inDevelopmentLabel={t("inDevelopment")}
           back={t("back")}
           liveDemo={t("liveDemo")}
           overview={t("overview")}
