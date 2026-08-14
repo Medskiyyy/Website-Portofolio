@@ -85,11 +85,24 @@ export default async function LocaleLayout({
       className={`${jakarta.variable} ${jetbrains.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-primary/20 selection:text-foreground">
+      <body className="relative min-h-full flex flex-col bg-background text-foreground selection:bg-primary/20 selection:text-foreground">
+        {/* Multi-point atmospheric ambient lighting wash */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+        >
+          {/* Top center soft amber glow */}
+          <div className="absolute -top-[15%] left-1/2 h-[650px] w-[900px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px] dark:bg-primary/[0.14]" />
+          {/* Middle left subtle warmth */}
+          <div className="absolute top-[35%] -left-[12%] h-[500px] w-[500px] rounded-full bg-primary/[0.06] blur-[150px] dark:bg-primary/[0.09]" />
+          {/* Bottom right subtle warmth */}
+          <div className="absolute -bottom-[10%] -right-[10%] h-[600px] w-[600px] rounded-full bg-primary/[0.07] blur-[160px] dark:bg-primary/[0.10]" />
+        </div>
+
         {/* Film grain noise overlay */}
         <div
           aria-hidden="true"
-          className="pointer-events-none fixed inset-0 z-50 h-full w-full opacity-[0.03] dark:opacity-[0.045] mix-blend-difference"
+          className="pointer-events-none fixed inset-0 z-40 h-full w-full opacity-[0.035] dark:opacity-[0.05] mix-blend-difference"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           }}
@@ -105,7 +118,7 @@ export default async function LocaleLayout({
               {locale === 'id' ? 'Lewati ke konten' : 'Skip to content'}
             </a>
             <Navbar />
-            <div id="content" className="flex-1 flex flex-col">
+            <div id="content" className="relative z-10 flex-1 flex flex-col">
               {children}
             </div>
             <Footer />
