@@ -56,7 +56,7 @@ export default function ProjectDetailClient({
           href="/projects"
           className={cn(
             buttonVariants({ variant: "ghost", size: "sm" }),
-            "-ml-2 mb-8 cursor-pointer gap-2",
+            "-ml-2 mb-8 cursor-pointer gap-2 active:scale-[0.985]",
           )}
         >
           <ArrowLeft className="h-4 w-4" />
@@ -126,7 +126,7 @@ export default function ProjectDetailClient({
             {project.techStack.map((tech) => (
               <span
                 key={tech}
-                className="rounded-md border border-border bg-card px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors duration-200 hover:border-primary/30 hover:text-foreground"
+                className="rounded-md border border-border bg-card px-2.5 py-1 font-mono text-xs font-medium text-muted-foreground transition-colors duration-200 hover:border-primary/30 hover:text-foreground"
               >
                 {tech}
               </span>
@@ -141,7 +141,7 @@ export default function ProjectDetailClient({
                 rel="noopener noreferrer"
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "h-10 cursor-pointer gap-2 px-3 text-sm",
+                  "h-10 cursor-pointer gap-2 px-3 text-sm active:scale-[0.985]",
                 )}
               >
                 {liveDemo}
@@ -155,7 +155,7 @@ export default function ProjectDetailClient({
                 rel="noopener noreferrer"
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
-                  "h-10 cursor-pointer gap-2 px-3 text-sm",
+                  "h-10 cursor-pointer gap-2 px-3 text-sm active:scale-[0.985]",
                 )}
               >
                 <Github className="h-4 w-4" />
@@ -218,7 +218,7 @@ export default function ProjectDetailClient({
 
 function TextSection({ title, text }: { title: string; text: string }) {
   return (
-    <section className="surface-card p-5 md:p-6">
+    <section className="surface-card p-5 md:p-6 shadow-sm">
       <h2 className="font-heading border-b border-border pb-4 text-xl font-bold text-foreground">
         {title}
       </h2>
@@ -229,7 +229,7 @@ function TextSection({ title, text }: { title: string; text: string }) {
 
 function SummaryCard({ title, text }: { title: string; text: string }) {
   return (
-    <section className="surface-card h-full p-5 md:p-6">
+    <section className="surface-card h-full p-5 md:p-6 shadow-sm">
       <h2 className="font-heading text-xl font-bold text-foreground">{title}</h2>
       <p className="mt-4 text-sm leading-7 text-muted-foreground">{text}</p>
     </section>
@@ -250,14 +250,14 @@ function ListSection({
   const Icon = icon === "rocket" ? Rocket : icon === "check" ? CheckCircle2 : Lightbulb;
 
   return (
-    <section className="surface-card p-5 md:p-6">
+    <section className="surface-card p-5 md:p-6 shadow-sm">
       <h2 className="font-heading border-b border-border pb-4 text-xl font-bold text-foreground">
         {title}
       </h2>
       <ul className="mt-5 grid gap-3">
         {items.map((item, index) => (
           <li key={item} className="flex gap-3 text-sm leading-7 text-muted-foreground">
-            <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-border bg-background text-xs font-bold text-primary">
+            <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-border bg-background text-xs font-bold text-primary font-mono">
               {ordered ? index + 1 : <Icon className="h-4 w-4" />}
             </span>
             <span>{item}</span>

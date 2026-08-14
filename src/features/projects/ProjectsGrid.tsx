@@ -59,14 +59,14 @@ export default function ProjectsGrid({
 
             return (
               <StaggerItem key={project.slug} className="h-full">
-                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border/80 bg-card transition-colors duration-200 hover:border-primary/50">
+                <article className="group surface-card flex h-full flex-col overflow-hidden rounded-2xl border border-border/80 bg-card transition-all duration-200 hover:border-primary/50 hover:shadow-md">
                   <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/60 bg-muted">
                     {project.imageUrl ? (
                       <Image
                         src={project.imageUrl}
                         alt={`${project.title} interface`}
                         fill
-                        className="object-cover"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         priority={index === 0}
                       />
@@ -75,7 +75,7 @@ export default function ProjectsGrid({
                         {project.title}
                       </div>
                     )}
-                    <span className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-background/90 px-3 py-1 text-xs font-semibold text-foreground backdrop-blur-sm">
+                    <span className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-background/90 px-3 py-1 text-xs font-semibold text-foreground backdrop-blur-sm shadow-sm">
                       <CategoryIcon className="h-3.5 w-3.5 text-primary" />
                       {project.category}
                     </span>
@@ -99,13 +99,13 @@ export default function ProjectsGrid({
                       {project.techStack.slice(0, 4).map((tech) => (
                         <li
                           key={tech}
-                          className="rounded-md border border-border/60 bg-muted/50 px-2 py-0.5 text-xs font-medium text-muted-foreground"
+                          className="rounded-md border border-border/60 bg-muted/50 px-2 py-0.5 font-mono text-xs font-medium text-muted-foreground"
                         >
                           {tech}
                         </li>
                       ))}
                       {project.techStack.length > 4 && (
-                        <li className="rounded-md border border-border/60 bg-muted/50 px-2 py-0.5 text-xs font-medium text-muted-foreground">
+                        <li className="rounded-md border border-border/60 bg-muted/50 px-2 py-0.5 font-mono text-xs font-medium text-muted-foreground">
                           +{project.techStack.length - 4}
                         </li>
                       )}
@@ -116,7 +116,7 @@ export default function ProjectsGrid({
                         href={`/projects/${project.slug}`}
                         className={cn(
                           buttonVariants({ size: "lg" }),
-                          "h-10 cursor-pointer gap-1.5 px-4 text-sm font-semibold",
+                          "h-10 cursor-pointer gap-1.5 px-4 text-sm font-semibold active:scale-[0.985]",
                         )}
                       >
                         {caseStudyLabel}
@@ -131,7 +131,7 @@ export default function ProjectsGrid({
                             rel="noopener noreferrer"
                             className={cn(
                               buttonVariants({ variant: "outline", size: "icon-lg" }),
-                              "h-10 w-10 cursor-pointer border-border/80",
+                              "h-10 w-10 cursor-pointer border-border/80 active:scale-[0.985]",
                             )}
                             aria-label={`${liveDemoLabel}: ${project.title}`}
                           >
@@ -145,7 +145,7 @@ export default function ProjectsGrid({
                             rel="noopener noreferrer"
                             className={cn(
                               buttonVariants({ variant: "outline", size: "icon-lg" }),
-                              "h-10 w-10 cursor-pointer border-border/80",
+                              "h-10 w-10 cursor-pointer border-border/80 active:scale-[0.985]",
                             )}
                             aria-label={`GitHub repository: ${project.title}`}
                           >

@@ -36,7 +36,7 @@ export default async function AboutPage({
 
   return (
     <main className="relative overflow-hidden border-b border-border/60 bg-background py-24 md:py-32">
-      <div className="pointer-events-none absolute inset-0 grid-backdrop opacity-60" />
+      <div className="pointer-events-none absolute inset-0 ambient-warm-glow opacity-70" />
       <div className="section-shell relative">
         <Reveal delay={0.05}>
           <div className="mb-14 grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:items-end pb-8 border-b border-border/40">
@@ -88,7 +88,7 @@ export default async function AboutPage({
                       key={i}
                       className="flex items-start gap-3.5 rounded-xl border border-border/60 bg-muted/30 p-3.5 transition-colors hover:border-primary/40"
                     >
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-primary/30 bg-primary/10 text-xs font-bold text-primary">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-primary/30 bg-primary/10 font-mono text-xs font-bold text-primary">
                         {i + 1}
                       </span>
                       <span className="text-sm leading-relaxed text-muted-foreground">{step}</span>

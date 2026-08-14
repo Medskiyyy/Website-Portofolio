@@ -40,7 +40,7 @@ export default function ContactPreviewSection() {
             href={`mailto:${profile.email}`}
             className={cn(
               buttonVariants({ size: "lg" }),
-              "h-12 cursor-pointer gap-2.5 px-6 text-sm font-semibold",
+              "h-12 cursor-pointer gap-2.5 px-6 text-sm font-semibold shadow-sm active:scale-[0.985]",
             )}
           >
             <Mail className="h-4 w-4" />
@@ -51,7 +51,7 @@ export default function ContactPreviewSection() {
             onClick={copyEmail}
             className={cn(
               buttonVariants({ variant: "outline", size: "lg" }),
-              "h-12 cursor-pointer gap-2 border-border/80 px-5 text-sm font-semibold",
+              "h-12 cursor-pointer gap-2 border-border/80 px-5 text-sm font-semibold active:scale-[0.985]",
             )}
           >
             {copied ? (
@@ -73,7 +73,7 @@ export default function ContactPreviewSection() {
             rel="noopener noreferrer"
             className={cn(
               buttonVariants({ variant: "outline", size: "lg" }),
-              "h-12 cursor-pointer gap-2 border-border/80 px-5 text-sm font-semibold",
+              "h-12 cursor-pointer gap-2 border-border/80 px-5 text-sm font-semibold active:scale-[0.985]",
             )}
           >
             <Github className="h-4 w-4" />

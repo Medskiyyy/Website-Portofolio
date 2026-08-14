@@ -51,7 +51,7 @@ export default async function ProjectDetailPage({
 
   return (
     <main className="relative overflow-hidden border-b border-border bg-background py-28 md:py-36">
-      <div className="pointer-events-none absolute inset-0 grid-backdrop opacity-60" />
+      <div className="pointer-events-none absolute inset-0 ambient-warm-glow opacity-70" />
       <div className="section-shell relative">
         <ProjectDetailClient
           project={project}

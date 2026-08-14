@@ -46,7 +46,7 @@ export default async function ResumePage({
 
   return (
     <main className="relative overflow-hidden border-b border-border bg-background py-28 md:py-36">
-      <div className="pointer-events-none absolute inset-0 grid-backdrop opacity-50" />
+      <div className="pointer-events-none absolute inset-0 ambient-warm-glow opacity-60" />
       <div className="section-shell relative">
         <Reveal delay={0.05}>
           <div className="mb-16 flex flex-col gap-6 border-b border-border/30 pb-8 sm:flex-row sm:items-start sm:justify-between">
@@ -81,7 +81,7 @@ export default async function ResumePage({
               download
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-11 shrink-0 cursor-pointer gap-2 px-5 text-sm font-semibold",
+                "h-11 shrink-0 cursor-pointer gap-2 px-5 text-sm font-semibold active:scale-[0.985]",
               )}
             >
               <Download className="h-4 w-4" />
@@ -142,7 +142,7 @@ export default async function ResumePage({
                     </p>
                     <p className="text-sm text-muted-foreground">{t("educationSchool")}</p>
                   </div>
-                  <span className="shrink-0 text-sm font-semibold text-primary">
+                  <span className="shrink-0 text-sm font-semibold text-primary font-mono">
                     {t("educationPeriod")}
                   </span>
                 </div>
@@ -157,7 +157,7 @@ export default async function ResumePage({
 
 function ResumeSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="h-full rounded-2xl border border-border/80 bg-card p-6">
+    <section className="h-full rounded-2xl border border-border/80 bg-card p-6 shadow-sm">
       <h2 className="font-heading mb-6 border-b border-border pb-4 text-lg font-bold text-foreground">
         {title}
       </h2>
@@ -208,7 +208,7 @@ function ProjectEntry({
           <p className="font-heading text-lg font-bold text-foreground">{title}</p>
           <p className="mt-0.5 text-sm text-muted-foreground">{role}</p>
         </div>
-        <span className="shrink-0 text-sm font-semibold text-primary">{period}</span>
+        <span className="shrink-0 text-sm font-semibold text-primary font-mono">{period}</span>
       </div>
       <p className="mb-4 text-sm leading-relaxed text-pretty text-muted-foreground">{description}</p>
 
@@ -216,7 +216,7 @@ function ProjectEntry({
         {tech.map((item) => (
           <li
             key={item}
-            className="rounded-md border border-border bg-card px-2.5 py-1 text-xs font-medium text-muted-foreground"
+            className="rounded-md border border-border bg-card px-2.5 py-1 text-xs font-medium text-muted-foreground font-mono"
           >
             {item}
           </li>

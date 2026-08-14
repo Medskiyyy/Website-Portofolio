@@ -9,9 +9,9 @@ export default async function NotFound() {
 
   return (
     <main className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-6 py-24 text-center">
-      <div className="pointer-events-none absolute inset-0 grid-backdrop opacity-60" />
+      <div className="pointer-events-none absolute inset-0 ambient-warm-glow opacity-70" />
       <div className="relative">
-        <p className="mb-4 text-sm font-bold tracking-widest text-primary uppercase">404</p>
+        <p className="mb-4 text-sm font-bold tracking-widest text-primary uppercase font-mono">404</p>
         <h1 className="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
           {t("title")}
         </h1>
@@ -22,7 +22,7 @@ export default async function NotFound() {
           href="/"
           className={cn(
             buttonVariants({ size: "lg" }),
-            "h-11 cursor-pointer gap-2 px-5 text-sm font-semibold",
+            "h-11 cursor-pointer gap-2 px-5 text-sm font-semibold active:scale-[0.985]",
           )}
         >
           <Home className="h-4 w-4" />

@@ -5,21 +5,11 @@ export const alt = "Ahmad Hidayatullah, full-stack web and Android developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-/*
- * Lives inside [locale] rather than at the app root: a root-level
- * /opengraph-image.png collides with the [locale] dynamic segment, which the
- * i18n proxy skips for any path containing a dot, so the route resolved to a
- * page instead of an image. Being in the segment also means each locale gets
- * its own copy.
- *
- * Generated rather than hand-designed so the preview can never drift from the
- * site. Colours mirror the dark theme in globals.css.
- */
-const BG = "#16191c";
-const FG = "#f4f5f6";
-const PRIMARY = "#45bdd8";
-const MUTED = "#a2a7ac";
-const BORDER = "rgba(255,255,255,0.10)";
+const BG = "#141312";
+const FG = "#f5f3f0";
+const PRIMARY = "#d97706";
+const MUTED = "#a8a29e";
+const BORDER = "rgba(255,255,255,0.12)";
 
 const STACK = ["Next.js", "TypeScript", "Postgres", "Kotlin", "Jetpack Compose"];
 
@@ -55,30 +45,29 @@ export default async function OpengraphImage({
           justifyContent: "space-between",
           background: BG,
           padding: 72,
-          // Echoes the .grid-backdrop utility used across the site.
-          backgroundImage: `linear-gradient(to right, ${BORDER} 1px, transparent 1px), linear-gradient(to bottom, ${BORDER} 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
+          border: `1px solid ${BORDER}`,
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <div style={{ width: 12, height: 12, borderRadius: 99, background: PRIMARY }} />
-          <div style={{ fontSize: 26, color: MUTED }}>{copy.availability}</div>
+          <div style={{ fontSize: 24, color: MUTED, fontFamily: "sans-serif" }}>{copy.availability}</div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
-              fontSize: 94,
+              fontSize: 90,
               fontWeight: 700,
               color: FG,
               letterSpacing: -2.5,
               lineHeight: 1.05,
+              fontFamily: "sans-serif",
             }}
           >
             {profile.name}
           </div>
-          <div style={{ fontSize: 40, color: PRIMARY, marginTop: 18 }}>{copy.role}</div>
-          <div style={{ fontSize: 28, color: MUTED, marginTop: 16 }}>{copy.student}</div>
+          <div style={{ fontSize: 38, color: PRIMARY, marginTop: 18, fontFamily: "sans-serif", fontWeight: 600 }}>{copy.role}</div>
+          <div style={{ fontSize: 26, color: MUTED, marginTop: 14, fontFamily: "sans-serif" }}>{copy.student}</div>
         </div>
 
         <div
@@ -95,18 +84,19 @@ export default async function OpengraphImage({
               <div
                 key={tech}
                 style={{
-                  fontSize: 23,
+                  fontSize: 20,
                   color: MUTED,
                   border: `1px solid ${BORDER}`,
-                  borderRadius: 9,
-                  padding: "9px 17px",
+                  borderRadius: 8,
+                  padding: "8px 16px",
+                  fontFamily: "monospace",
                 }}
               >
                 {tech}
               </div>
             ))}
           </div>
-          <div style={{ fontSize: 23, color: MUTED }}>{profile.githubHandle}</div>
+          <div style={{ fontSize: 22, color: MUTED, fontFamily: "monospace" }}>{profile.githubHandle}</div>
         </div>
       </div>
     ),

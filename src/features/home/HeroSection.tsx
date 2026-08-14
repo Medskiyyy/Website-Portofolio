@@ -16,8 +16,8 @@ export default function HeroSection() {
 
   return (
     <section className="relative overflow-hidden border-b border-border/60 bg-background pt-28 pb-16 md:pt-36 md:pb-24">
-      {/* Single ambient backdrop — the grid alone, no stacked glows. */}
-      <div className="pointer-events-none absolute inset-0 grid-backdrop opacity-60" />
+      {/* Warm ambient vignette glow — no harsh grid */}
+      <div className="pointer-events-none absolute inset-0 ambient-warm-glow opacity-80" />
 
       <div className="section-shell relative z-10">
         <div className="flex w-full max-w-4xl flex-col items-start">
@@ -49,7 +49,7 @@ export default function HeroSection() {
               href="/projects"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-12 cursor-pointer gap-2.5 px-7 text-sm font-semibold",
+                "h-12 cursor-pointer gap-2.5 px-7 text-sm font-semibold shadow-sm active:scale-[0.985] active:translate-y-[1px] transition-all",
               )}
             >
               {t("ctaProjects")}
@@ -60,7 +60,7 @@ export default function HeroSection() {
               download
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
-                "h-12 cursor-pointer gap-2 border-border/80 px-7 text-sm font-semibold",
+                "h-12 cursor-pointer gap-2 border-border/80 px-7 text-sm font-semibold active:scale-[0.985] active:translate-y-[1px] transition-all",
               )}
             >
               {t("ctaResume")}
@@ -78,15 +78,15 @@ export default function HeroSection() {
               href={profile.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-border/70 bg-card px-4 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+              className="inline-flex items-center gap-2 rounded-lg border border-border/70 bg-card px-4 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground active:scale-[0.985]"
             >
-              <Github className="h-4 w-4" />
+              <Github className="h-4 w-4 text-primary" />
               {t("githubLink")}
             </a>
             {techBadges.map((name) => (
               <span
                 key={name}
-                className="rounded-lg border border-border/40 bg-muted/40 px-3 py-2 text-sm font-medium text-muted-foreground"
+                className="rounded-lg border border-border/50 bg-muted/40 px-3 py-2 font-mono text-xs font-medium text-muted-foreground"
               >
                 {name}
               </span>

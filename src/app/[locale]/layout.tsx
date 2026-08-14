@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { Analytics } from '@vercel/analytics/next';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/shared/components/Navbar';
 import Footer from '@/shared/components/Footer';
@@ -11,17 +11,18 @@ import { siteUrl } from '@/lib/site';
 import PersonSchema from '@/components/PersonSchema';
 import '@/app/globals.css';
 
-const inter = Inter({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-jakarta',
   display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
 });
 
-const grotesk = Space_Grotesk({
+const jetbrains = JetBrains_Mono({
   subsets: ['latin'],
-  variable: '--font-grotesk',
+  variable: '--font-jetbrains',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600'],
 });
 
 export async function generateMetadata({
@@ -54,9 +55,6 @@ export async function generateMetadata({
       type: 'website',
       url: `/${locale}`,
       locale: locale === 'id' ? 'id_ID' : 'en_US',
-      // The image is injected by ./opengraph-image.tsx via the file convention,
-      // which appends its own cache-busting hash. Declaring `images` here would
-      // only duplicate it with a stale URL.
     },
     twitter: {
       card: 'summary_large_image',
@@ -75,12 +73,6 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  /*
-   * The [locale] segment otherwise matches anything the i18n proxy skips —
-   * which is every path containing a dot. Without this check, /anything.png
-   * returned 200 and rendered the home page under <html lang="anything.png">,
-   * producing unlimited duplicate home pages for crawlers.
-   */
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
@@ -88,8 +80,21 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${inter.variable} ${grotesk.variable} h-full antialiased`} suppressHydrationWarning>
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+    <html
+      lang={locale}
+      className={`${jakarta.variable} ${jetbrains.variable} h-full antialiased`}
+      suppressHydrationWarning
+    >
+      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-primary/20 selection:text-foreground">
+        {/* Film grain noise overlay */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-50 h-full w-full opacity-[0.03] dark:opacity-[0.045] mix-blend-difference"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
+
         <PersonSchema locale={locale} />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider messages={messages}>
@@ -107,11 +112,6 @@ export default async function LocaleLayout({
           </NextIntlClientProvider>
         </ThemeProvider>
 
-        {/*
-          Vercel Analytics rather than Google Analytics: it sets no cookies and
-          stores no personal data, so the site needs no consent banner for the
-          EU visitors this portfolio is partly aimed at.
-        */}
         <Analytics />
       </body>
     </html>

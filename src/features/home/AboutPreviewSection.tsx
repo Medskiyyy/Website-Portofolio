@@ -40,7 +40,7 @@ export default function AboutPreviewSection() {
                   alt={profile.name}
                   width={64}
                   height={64}
-                  className="h-16 w-16 shrink-0 rounded-full border border-border object-cover"
+                  className="h-16 w-16 shrink-0 rounded-full border border-border object-cover shadow-sm"
                 />
               )}
               <p className="font-heading text-lg font-bold text-foreground">{profile.name}</p>
@@ -72,7 +72,7 @@ export default function AboutPreviewSection() {
               href="/about"
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
-                "group/link mt-8 h-11 cursor-pointer gap-2 border-border/80 px-5 text-sm font-semibold",
+                "group/link mt-8 h-11 cursor-pointer gap-2 border-border/80 px-5 text-sm font-semibold active:scale-[0.985]",
               )}
             >
               {t("cta")}
@@ -84,7 +84,7 @@ export default function AboutPreviewSection() {
         {/* Right: at-a-glance facts */}
         <div className="lg:col-span-6 lg:pl-4">
           <Reveal direction="up" delay={0.15}>
-            <div className="rounded-2xl border border-border/80 bg-card p-6 sm:p-8">
+            <div className="surface-card rounded-2xl border border-border/80 bg-card p-6 sm:p-8 shadow-sm">
               <p className="eyebrow">{t("glanceLabel")}</p>
 
               <dl className="mt-6 divide-y divide-border/60">
@@ -100,7 +100,7 @@ export default function AboutPreviewSection() {
                   <dd className="flex flex-wrap gap-2">
                     <a
                       href={`mailto:${profile.email}`}
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-muted/40 px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-muted/40 px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground active:scale-[0.985]"
                     >
                       <Mail className="h-3.5 w-3.5" />
                       Email
@@ -109,7 +109,7 @@ export default function AboutPreviewSection() {
                       href={profile.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-muted/40 px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-muted/40 px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground active:scale-[0.985]"
                     >
                       <Github className="h-3.5 w-3.5" />
                       GitHub
@@ -117,7 +117,7 @@ export default function AboutPreviewSection() {
                     <a
                       href={profile.resumeUrl}
                       download
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-muted/40 px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-muted/40 px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground active:scale-[0.985]"
                     >
                       <Download className="h-3.5 w-3.5" />
                       Resume

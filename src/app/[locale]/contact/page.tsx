@@ -42,7 +42,7 @@ export default async function ContactPage({
 
   return (
     <main className="relative overflow-hidden border-b border-border bg-background py-28 md:py-36">
-      <div className="pointer-events-none absolute inset-0 grid-backdrop opacity-60" />
+      <div className="pointer-events-none absolute inset-0 ambient-warm-glow opacity-70" />
       <div className="section-shell relative">
         <div className="mx-auto max-w-3xl text-center mb-16">
           <Reveal delay={0.05}>
@@ -63,7 +63,7 @@ export default async function ContactPage({
                 href={method.href}
                 target={method.external ? "_blank" : undefined}
                 rel={method.external ? "noopener noreferrer" : undefined}
-                className="group surface-card block h-full rounded-2xl p-6 transition-colors duration-200 hover:border-primary/50 sm:p-8"
+                className="group surface-card block h-full rounded-2xl p-6 transition-colors duration-200 hover:border-primary/50 sm:p-8 active:scale-[0.985]"
               >
                 <div className="flex cursor-pointer items-start justify-between gap-4">
                   <div className="flex items-start gap-4">

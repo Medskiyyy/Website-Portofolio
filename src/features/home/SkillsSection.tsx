@@ -135,10 +135,10 @@ export default function SkillsSection() {
                 onClick={() => setActiveFilter(filter.id)}
                 aria-pressed={activeFilter === filter.id}
                 className={cn(
-                  "cursor-pointer rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                  "cursor-pointer rounded-full px-4 py-2 text-sm font-medium transition-all active:scale-[0.985]",
                   activeFilter === filter.id
-                    ? "bg-primary text-primary-foreground"
-                    : "border border-border/60 bg-card/60 text-muted-foreground hover:border-primary/40 hover:text-foreground",
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "border border-border/60 bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground",
                 )}
               >
                 {t(filter.labelKey)}
@@ -165,7 +165,7 @@ export default function SkillsSection() {
               return (
                 <div
                   key={cat.id}
-                  className="flex h-full flex-col rounded-2xl border border-border/80 bg-card p-6 transition-colors duration-200 hover:border-primary/40"
+                  className="surface-card flex h-full flex-col rounded-2xl border border-border/80 bg-card p-6 transition-all duration-200 hover:border-primary/40 hover:shadow-md"
                 >
                   <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-border/60 bg-primary/10 text-primary">
                     {cat.icon}
