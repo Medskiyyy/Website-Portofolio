@@ -9,11 +9,6 @@ import { cn } from "@/lib/utils";
 
 type CategoryKey = "all" | "frontend" | "backend" | "mobile" | "tools";
 
-/**
- * Where a tool has actually been used, rather than a self-assigned score.
- * "production" = shipped on a live site; "personal" = a project of mine that
- * isn't deployed for anyone else; "learning" = used, but not yet in anything.
- */
 type Usage = "production" | "personal" | "learning";
 
 const USAGE_ORDER: Usage[] = ["production", "personal", "learning"];
@@ -110,7 +105,7 @@ export default function SkillsSection() {
       : skillCategories.filter((cat) => cat.id === activeFilter);
 
   return (
-    <section className="relative w-full border-b border-border/60 bg-background py-20 md:py-28">
+    <section className="relative w-full border-b border-border/60 bg-transparent py-20 md:py-28">
       <div className="section-shell">
         <div className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <Reveal direction="up">
@@ -138,7 +133,7 @@ export default function SkillsSection() {
                   "cursor-pointer rounded-full px-4 py-2 text-sm font-medium transition-all active:scale-[0.985]",
                   activeFilter === filter.id
                     ? "bg-primary text-primary-foreground shadow-sm"
-                    : "border border-border/60 bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground",
+                    : "border border-border/60 bg-card/80 text-muted-foreground hover:border-primary/40 hover:text-foreground",
                 )}
               >
                 {t(filter.labelKey)}
@@ -165,7 +160,7 @@ export default function SkillsSection() {
               return (
                 <div
                   key={cat.id}
-                  className="surface-card flex h-full flex-col rounded-2xl border border-border/80 bg-card p-6 transition-all duration-200 hover:border-primary/40 hover:shadow-md"
+                  className="surface-card flex h-full flex-col rounded-2xl border border-border/80 bg-card/90 backdrop-blur-xs p-6 transition-all duration-200 hover:border-primary/40 hover:shadow-md"
                 >
                   <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-border/60 bg-primary/10 text-primary">
                     {cat.icon}

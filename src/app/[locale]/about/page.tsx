@@ -35,7 +35,7 @@ export default async function AboutPage({
   ];
 
   return (
-    <main className="relative overflow-hidden border-b border-border/60 bg-background py-24 md:py-32">
+    <main className="relative overflow-hidden border-b border-border/60 bg-transparent py-24 md:py-32">
       <div className="pointer-events-none absolute inset-0 ambient-warm-glow opacity-70" />
       <div className="section-shell relative">
         <Reveal delay={0.05}>
@@ -112,7 +112,7 @@ export default async function AboutPage({
 
 function AboutSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="surface-card h-full rounded-2xl border border-border/80 bg-card p-6 shadow-sm">
+    <section className="surface-card h-full rounded-2xl border border-border/80 bg-card/90 backdrop-blur-xs p-6 shadow-sm">
       <h2 className="font-heading text-lg font-bold text-foreground pb-3 border-b border-border/50 mb-5">{title}</h2>
       {children}
     </section>

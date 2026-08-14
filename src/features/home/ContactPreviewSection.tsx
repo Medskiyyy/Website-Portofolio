@@ -23,7 +23,7 @@ export default function ContactPreviewSection() {
   };
 
   return (
-    <section className="w-full border-t border-border/60 bg-card/40 py-16 md:py-24">
+    <section className="w-full border-t border-border/60 bg-transparent py-16 md:py-24">
       <div className="section-shell flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
         <Reveal direction="up" className="max-w-2xl">
           <span className="eyebrow">{t("label")}</span>

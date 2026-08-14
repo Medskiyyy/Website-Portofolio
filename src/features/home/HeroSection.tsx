@@ -15,8 +15,8 @@ export default function HeroSection() {
   const t = useTranslations("Hero");
 
   return (
-    <section className="relative overflow-hidden border-b border-border/60 bg-background pt-28 pb-16 md:pt-36 md:pb-24">
-      {/* Warm ambient vignette glow — no harsh grid */}
+    <section className="relative overflow-hidden border-b border-border/60 bg-transparent pt-28 pb-16 md:pt-36 md:pb-24">
+      {/* Warm ambient vignette glow */}
       <div className="pointer-events-none absolute inset-0 ambient-warm-glow opacity-80" />
 
       <div className="section-shell relative z-10">

@@ -8,7 +8,7 @@ export default async function NotFound() {
   const t = await getTranslations("NotFound");
 
   return (
-    <main className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-6 py-24 text-center">
+    <main className="relative flex flex-1 flex-col items-center justify-center overflow-hidden bg-transparent px-6 py-24 text-center">
       <div className="pointer-events-none absolute inset-0 ambient-warm-glow opacity-70" />
       <div className="relative">
         <p className="mb-4 text-sm font-bold tracking-widest text-primary uppercase font-mono">404</p>

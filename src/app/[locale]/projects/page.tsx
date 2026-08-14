@@ -22,7 +22,7 @@ export default async function ProjectsPage({
   const t = await getTranslations({ locale, namespace: "ProjectsPage" });
 
   return (
-    <main className="relative overflow-hidden border-b border-border bg-background py-28 md:py-36">
+    <main className="relative overflow-hidden border-b border-border bg-transparent py-28 md:py-36">
       <div className="pointer-events-none absolute inset-0 ambient-warm-glow opacity-70" />
       <div className="section-shell relative">
         <ProjectsGrid

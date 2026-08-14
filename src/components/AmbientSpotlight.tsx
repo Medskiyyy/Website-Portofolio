@@ -14,7 +14,7 @@ export default function AmbientSpotlight() {
   const smoothY = useSpring(mouseY, springConfig);
   const smoothOpacity = useSpring(opacity, { damping: 20, stiffness: 120 });
 
-  const background = useMotionTemplate`radial-gradient(650px circle at ${smoothX}px ${smoothY}px, color-mix(in oklch, var(--primary) 12%, transparent) 0%, color-mix(in oklch, var(--primary) 4%, transparent) 40%, transparent 70%)`;
+  const background = useMotionTemplate`radial-gradient(750px circle at ${smoothX}px ${smoothY}px, color-mix(in oklch, var(--primary) 18%, transparent) 0%, color-mix(in oklch, var(--primary) 6%, transparent) 45%, transparent 75%)`;
 
   useEffect(() => {
     // Only enable on devices that support hover / fine pointers

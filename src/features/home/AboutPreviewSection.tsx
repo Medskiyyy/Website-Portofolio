@@ -27,7 +27,7 @@ export default function AboutPreviewSection() {
   ];
 
   return (
-    <section className="w-full border-b border-border/60 bg-background py-20 md:py-28">
+    <section className="w-full border-b border-border/60 bg-transparent py-20 md:py-28">
       <div className="section-shell grid gap-12 lg:grid-cols-12 lg:items-start">
         {/* Left: summary */}
         <div className="lg:col-span-6">
@@ -84,7 +84,7 @@ export default function AboutPreviewSection() {
         {/* Right: at-a-glance facts */}
         <div className="lg:col-span-6 lg:pl-4">
           <Reveal direction="up" delay={0.15}>
-            <div className="surface-card rounded-2xl border border-border/80 bg-card p-6 sm:p-8 shadow-sm">
+            <div className="surface-card rounded-2xl border border-border/80 bg-card/90 backdrop-blur-xs p-6 sm:p-8 shadow-sm">
               <p className="eyebrow">{t("glanceLabel")}</p>
 
               <dl className="mt-6 divide-y divide-border/60">

@@ -17,10 +17,6 @@ export async function generateMetadata({
   return { title: t("metaTitle"), description: t("metaDescription") };
 }
 
-/**
- * Grouped by area rather than by proficiency claim — the resume mirrors the
- * home page skills section, which records where each tool was actually used.
- */
 const skills = {
   frontend: ["Next.js (App Router)", "React", "TypeScript", "Tailwind CSS", "shadcn/ui"],
   backend: ["PostgreSQL", "Supabase", "Row-Level Security", "Prisma ORM", "Auth.js", "TanStack Query"],
@@ -45,7 +41,7 @@ export default async function ResumePage({
   const t = await getTranslations({ locale, namespace: "ResumePage" });
 
   return (
-    <main className="relative overflow-hidden border-b border-border bg-background py-28 md:py-36">
+    <main className="relative overflow-hidden border-b border-border bg-transparent py-28 md:py-36">
       <div className="pointer-events-none absolute inset-0 ambient-warm-glow opacity-60" />
       <div className="section-shell relative">
         <Reveal delay={0.05}>
@@ -157,7 +153,7 @@ export default async function ResumePage({
 
 function ResumeSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="h-full rounded-2xl border border-border/80 bg-card p-6 shadow-sm">
+    <section className="h-full rounded-2xl border border-border/80 bg-card/90 backdrop-blur-xs p-6 shadow-sm">
       <h2 className="font-heading mb-6 border-b border-border pb-4 text-lg font-bold text-foreground">
         {title}
       </h2>

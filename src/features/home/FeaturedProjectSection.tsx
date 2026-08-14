@@ -20,7 +20,7 @@ export default function FeaturedProjectSection({ projects }: { projects: Project
   const t = useTranslations("FeaturedProject");
 
   return (
-    <section className="w-full border-b border-border/60 bg-background py-20 md:py-28">
+    <section className="w-full border-b border-border/60 bg-transparent py-20 md:py-28">
       <div className="section-shell">
         <div className="mb-14 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <Reveal direction="up">
@@ -46,8 +46,8 @@ export default function FeaturedProjectSection({ projects }: { projects: Project
 
             return (
               <StaggerItem key={project.slug} className="h-full">
-                <article className="group surface-card flex h-full flex-col overflow-hidden rounded-2xl border border-border/80 bg-card transition-all duration-200 hover:border-primary/50 hover:shadow-md">
-                  <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/60 bg-muted">
+                <article className="group surface-card flex h-full flex-col overflow-hidden rounded-2xl border border-border/80 bg-card/90 backdrop-blur-xs transition-all duration-200 hover:border-primary/50 hover:shadow-md">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/60 bg-muted/40">
                     {project.imageUrl ? (
                       <Image
                         src={project.imageUrl}
