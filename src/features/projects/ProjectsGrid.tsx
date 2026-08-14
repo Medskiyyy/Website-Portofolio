@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import { ArrowRight, ExternalLink, Github, Layers, Smartphone, Store } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, Layers, Smartphone, Store, Timer } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { StaggerGroup, StaggerItem } from "@/components/motion";
@@ -22,6 +22,7 @@ type ProjectsGridProps = {
 const categoryIcons: Record<string, React.ElementType> = {
   "pempek-cek-lis": Store,
   synclancer: Layers,
+  mother: Timer,
   "hitung-uang": Smartphone,
 };
 

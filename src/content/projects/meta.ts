@@ -35,6 +35,21 @@ export const projectMeta: ProjectMeta[] = [
     activeDevelopment: true,
   },
   {
+    slug: "mother",
+    techStack: [
+      "Kotlin",
+      "Jetpack Compose",
+      "Material 3",
+      "Room DB",
+      "Coroutines & Flow",
+      "Foreground Service",
+    ],
+    githubUrl: "https://github.com/Medskiyyy/Mother.git",
+    imageUrl: "/thumb-mother.webp",
+    status: "source available",
+    activeDevelopment: true,
+  },
+  {
     slug: "hitung-uang",
     techStack: ["Kotlin", "Jetpack Compose", "Dagger Hilt", "Room DB", "DataStore", "WorkManager", "Google ML Kit"],
     githubUrl: "https://github.com/Medskiyyy/HitungUang",

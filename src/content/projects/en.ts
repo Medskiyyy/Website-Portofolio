@@ -79,6 +79,45 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
     ],
   },
 
+  mother: {
+    title: "Mother",
+    category: "Productivity & Focus",
+    role: "Solo developer, personal product",
+    timeline: "2025 – present",
+    description:
+      "A Neobrutalist Android habit tracker, task manager, and focus timer designed for intentional productivity. Features background persistent timer services and dynamic task urgency prioritization.",
+    overview:
+      "Mother is a native Android productivity system combining habit tracking, focus sessions, task prioritization, and schedule planning into a single bold interface. Built with Jetpack Compose following Neobrutalism design principles (high contrast, bold borders, and offset shadows), it features a persistent background focus chronometer that continues tracking across screens and device lock states with live lock-screen controls.",
+    problem:
+      "Many productivity setups require juggling separate habit trackers, Pomodoro timers, and todo apps. Furthermore, background timers on modern Android often get suspended by aggressive OS battery managers, leading to lost session data.",
+    goal:
+      "Create a unified, distraction-free productivity app that runs reliably in the background with lock-screen notification controls, tracks habit streaks with recovery options, and visualizes task urgency without fluff.",
+    solution:
+      "A native Android app built with Kotlin, Jetpack Compose, Material 3, and Room DB. Focus tracking is powered by an Android Foreground Service tied to a live Chronometer notification with pause/resume actions. Tasks dynamically change their visual urgency color based on impending deadlines.",
+    architecture:
+      "Clean Architecture with MVI/MVVM StateFlow patterns. Jetpack Compose for UI components, Room Database with SQLite for local persistence, Kotlin Coroutines & Flow for reactive data streams, and Android Foreground Service with custom notification channels for background timer execution.",
+    challenges: [
+      "Ensuring the Foreground Service timer survives Android's aggressive battery optimizations (Doze mode) without drifting or losing session state when controlled from lock-screen action buttons.",
+      "Designing a dynamic task urgency algorithm that calculates deadline proximity and updates card color hierarchies reactively without heavy re-renders.",
+      "Implementing streak calculation and missed-day recovery logic accurately across device timezone shifts and calendar boundaries.",
+    ],
+    results: [
+      "Full habit tracking with streak counter, zero-timer quick completion, and streak recovery.",
+      "Persistent background focus timer with live lock-screen controls and non-blocking in-app active banner.",
+      "Dynamic visual task priority engine (Urgent, Tight, Warning, Safe) and automated daily study analytics.",
+    ],
+    lessonsLearned: [
+      "Foreground Services paired with Live Notification Chronometers provide the most reliable way to handle critical user sessions on modern Android versions.",
+      "Neobrutalism's high-contrast, flat layout drastically improves scannability for fast, deliberate daily task management.",
+      "StateFlow combined with Room Database creates seamless reactive UI updates across multi-screen state transitions.",
+    ],
+    futureImprovements: [
+      "Add cloud backup sync options for cross-device migration.",
+      "Introduce customizable Pomodoro interval presets and break notifications.",
+      "Publish APK releases on GitHub and prepare for Play Store distribution.",
+    ],
+  },
+
   "hitung-uang": {
     title: "HitungUang",
     category: "Offline-first Android",
