@@ -7,6 +7,7 @@ import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/shared/components/Navbar';
 import Footer from '@/shared/components/Footer';
+import AmbientSpotlight from '@/components/AmbientSpotlight';
 import { siteUrl } from '@/lib/site';
 import PersonSchema from '@/components/PersonSchema';
 import '@/app/globals.css';
@@ -98,6 +99,9 @@ export default async function LocaleLayout({
           {/* Bottom right subtle warmth */}
           <div className="absolute -bottom-[10%] -right-[10%] h-[600px] w-[600px] rounded-full bg-primary/[0.07] blur-[160px] dark:bg-primary/[0.10]" />
         </div>
+
+        {/* Interactive mouse spotlight follower */}
+        <AmbientSpotlight />
 
         {/* Film grain noise overlay */}
         <div
