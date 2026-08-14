@@ -13,6 +13,7 @@ export const projectMeta: ProjectMeta[] = [
     imageUrl: "/thumb-pempek.webp",
     isFeatured: true,
     status: "live",
+    aspectRatio: "landscape",
   },
   {
     slug: "synclancer",
@@ -33,6 +34,7 @@ export const projectMeta: ProjectMeta[] = [
     imageUrl: "/thumb-saas.webp",
     status: "live",
     activeDevelopment: true,
+    aspectRatio: "landscape",
   },
   {
     slug: "mother",
@@ -48,6 +50,7 @@ export const projectMeta: ProjectMeta[] = [
     imageUrl: "/thumb-mother.webp",
     status: "source available",
     activeDevelopment: true,
+    aspectRatio: "portrait",
   },
   {
     slug: "hitung-uang",
@@ -56,6 +59,7 @@ export const projectMeta: ProjectMeta[] = [
     imageUrl: "/thumb-hitung.webp",
     status: "source available",
     activeDevelopment: true,
+    aspectRatio: "portrait",
   },
 ];
 

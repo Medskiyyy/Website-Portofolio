@@ -49,6 +49,8 @@ export default function ProjectDetailClient({
   lessonsLearned,
   futureImprovements,
 }: ProjectDetailClientProps) {
+  const isPortrait = project.aspectRatio === "portrait";
+
   return (
     <>
       <Reveal direction="left" amount={0.05}>
@@ -64,7 +66,12 @@ export default function ProjectDetailClient({
         </Link>
       </Reveal>
 
-      <header className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+      <header
+        className={cn(
+          "grid gap-10 lg:items-center",
+          isPortrait ? "lg:grid-cols-[1.15fr_0.85fr]" : "lg:grid-cols-[0.92fr_1.08fr]",
+        )}
+      >
         <div>
           <Reveal direction="up">
             <div className="mb-5 flex flex-wrap gap-2">
@@ -100,22 +107,52 @@ export default function ProjectDetailClient({
 
         {project.imageUrl && (
           <Reveal direction="left" delay={0.1} amount={0.1}>
-            <motion.div
-              className="surface-card group overflow-hidden"
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.4, ease: EASE_OUT }}
-            >
-              <div className="relative aspect-video overflow-hidden bg-muted">
-                <Image
-                  src={project.imageUrl}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.04]"
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 52vw"
-                />
+            {isPortrait ? (
+              /* Dynamic Android Phone Frame for Mobile Projects */
+              <div className="relative flex items-center justify-center py-4">
+                {/* Ambient dynamic back-glow */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="h-[380px] w-[240px] rounded-full bg-primary/20 blur-[90px]" />
+                </div>
+
+                <motion.div
+                  className="relative z-10 h-[440px] sm:h-[500px] aspect-[9/18.5] rounded-[32px] border-[4px] border-border/90 bg-background shadow-2xl overflow-hidden flex flex-col"
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.4, ease: EASE_OUT }}
+                >
+                  {/* Speaker & Punch-hole notch */}
+                  <div className="absolute top-2.5 left-1/2 -translate-x-1/2 z-20 h-2.5 w-2.5 rounded-full bg-foreground/35 shadow-inner" />
+                  <div className="relative flex-1 w-full h-full">
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      fill
+                      className="object-cover object-top"
+                      priority
+                      sizes="(max-width: 768px) 260px, 320px"
+                    />
+                  </div>
+                </motion.div>
               </div>
-            </motion.div>
+            ) : (
+              /* Standard Desktop/Browser Card for Web Projects */
+              <motion.div
+                className="surface-card group overflow-hidden"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.4, ease: EASE_OUT }}
+              >
+                <div className="relative aspect-video overflow-hidden bg-muted">
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.04]"
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 52vw"
+                  />
+                </div>
+              </motion.div>
+            )}
           </Reveal>
         )}
       </header>
