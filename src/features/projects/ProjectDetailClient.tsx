@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -10,11 +11,14 @@ import {
   Github,
   Lightbulb,
   Rocket,
+  Smartphone,
+  Image as ImageIcon,
 } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { EASE_OUT, Reveal, StaggerGroup, StaggerItem } from "@/components/motion";
 import type { Project } from "@/types/project";
+import MotherAppPrototype from "@/components/prototypes/MotherAppPrototype";
 
 type ProjectDetailClientProps = {
   project: Project;
@@ -50,6 +54,10 @@ export default function ProjectDetailClient({
   futureImprovements,
 }: ProjectDetailClientProps) {
   const isPortrait = project.aspectRatio === "portrait";
+  const hasPrototype = project.slug === "mother";
+  const [viewMode, setViewMode] = useState<"prototype" | "screenshot">(
+    hasPrototype ? "prototype" : "screenshot",
+  );
 
   return (
     <>
@@ -69,7 +77,7 @@ export default function ProjectDetailClient({
       <header
         className={cn(
           "grid gap-10 lg:items-center",
-          isPortrait ? "lg:grid-cols-[1.15fr_0.85fr]" : "lg:grid-cols-[0.92fr_1.08fr]",
+          isPortrait ? "lg:grid-cols-[1.1fr_0.9fr]" : "lg:grid-cols-[0.92fr_1.08fr]",
         )}
       >
         <div>
@@ -105,43 +113,84 @@ export default function ProjectDetailClient({
           </Reveal>
         </div>
 
-        {project.imageUrl && (
-          <Reveal direction="left" delay={0.1} amount={0.1}>
-            {isPortrait ? (
-              /* Dynamic Android Phone Frame for Mobile Projects */
-              <div className="relative flex items-center justify-center py-4">
-                {/* Ambient dynamic back-glow */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="h-[380px] w-[240px] rounded-full bg-primary/20 blur-[90px]" />
+        {/* Project Visual Showcase (Interactive Phone Frame or Browser Frame) */}
+        <Reveal direction="left" delay={0.1} amount={0.1}>
+          {isPortrait ? (
+            <div className="relative flex flex-col items-center justify-center py-2">
+              {/* Toggle header between interactive prototype & screenshot */}
+              {hasPrototype && (
+                <div className="mb-3 flex items-center gap-1 rounded-full border border-border/80 bg-card/90 p-1 shadow-sm">
+                  <button
+                    onClick={() => setViewMode("prototype")}
+                    className={cn(
+                      "flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all",
+                      viewMode === "prototype"
+                        ? "bg-primary text-primary-foreground shadow-sm"
+                        : "text-muted-foreground hover:text-foreground",
+                    )}
+                  >
+                    <Smartphone className="h-3.5 w-3.5" />
+                    <span>Live Interactive Demo</span>
+                  </button>
+                  <button
+                    onClick={() => setViewMode("screenshot")}
+                    className={cn(
+                      "flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all",
+                      viewMode === "screenshot"
+                        ? "bg-primary text-primary-foreground shadow-sm"
+                        : "text-muted-foreground hover:text-foreground",
+                    )}
+                  >
+                    <ImageIcon className="h-3.5 w-3.5" />
+                    <span>Screenshot</span>
+                  </button>
                 </div>
+              )}
 
-                <motion.div
-                  className="relative z-10 h-[440px] sm:h-[500px] aspect-[9/18.5] rounded-[32px] border-[4px] border-border/90 bg-background shadow-2xl overflow-hidden flex flex-col"
-                  whileHover={{ y: -6 }}
-                  transition={{ duration: 0.4, ease: EASE_OUT }}
-                >
-                  {/* Speaker & Punch-hole notch */}
-                  <div className="absolute top-2.5 left-1/2 -translate-x-1/2 z-20 h-2.5 w-2.5 rounded-full bg-foreground/35 shadow-inner" />
-                  <div className="relative flex-1 w-full h-full">
+              {/* Ambient dynamic back-glow */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="h-[420px] w-[260px] rounded-full bg-primary/20 blur-[90px]" />
+              </div>
+
+              {/* Android Smartphone Device Frame */}
+              <motion.div
+                className="relative z-10 h-[520px] sm:h-[560px] aspect-[9/18.5] rounded-[34px] border-[4px] border-border/90 bg-background shadow-2xl overflow-hidden flex flex-col"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.4, ease: EASE_OUT }}
+              >
+                {/* Camera punch-hole notch */}
+                <div className="absolute top-2.5 left-1/2 -translate-x-1/2 z-40 h-2.5 w-2.5 rounded-full bg-foreground/30 shadow-inner pointer-events-none" />
+
+                <div className="relative flex-1 w-full h-full">
+                  {viewMode === "prototype" && hasPrototype ? (
+                    <MotherAppPrototype />
+                  ) : project.imageUrl ? (
                     <Image
                       src={project.imageUrl}
                       alt={project.title}
                       fill
                       className="object-cover object-top"
                       priority
-                      sizes="(max-width: 768px) 260px, 320px"
+                      sizes="(max-width: 768px) 280px, 340px"
                     />
-                  </div>
-                </motion.div>
-              </div>
-            ) : (
-              /* Standard Desktop/Browser Card for Web Projects */
-              <motion.div
-                className="surface-card group overflow-hidden"
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.4, ease: EASE_OUT }}
-              >
-                <div className="relative aspect-video overflow-hidden bg-muted">
+                  ) : (
+                    <div className="flex h-full flex-col items-center justify-center p-6 text-center text-muted-foreground">
+                      <Smartphone className="h-10 w-10 text-primary mb-2 opacity-50" />
+                      <p className="text-xs font-semibold">Screenshot belum diunggah</p>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            </div>
+          ) : (
+            /* Standard Desktop/Browser Card for Web Projects */
+            <motion.div
+              className="surface-card group overflow-hidden"
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.4, ease: EASE_OUT }}
+            >
+              <div className="relative aspect-video overflow-hidden bg-muted">
+                {project.imageUrl && (
                   <Image
                     src={project.imageUrl}
                     alt={project.title}
@@ -150,11 +199,11 @@ export default function ProjectDetailClient({
                     priority
                     sizes="(max-width: 1024px) 100vw, 52vw"
                   />
-                </div>
-              </motion.div>
-            )}
-          </Reveal>
-        )}
+                )}
+              </div>
+            </motion.div>
+          )}
+        </Reveal>
       </header>
 
       <Reveal direction="up" delay={0.15} amount={0.1}>

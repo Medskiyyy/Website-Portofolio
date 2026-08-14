@@ -7,6 +7,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { StaggerGroup, StaggerItem } from "@/components/motion";
 import type { Project } from "@/types/project";
+import MotherAppPrototype from "@/components/prototypes/MotherAppPrototype";
 
 type ProjectsGridProps = {
   projects: Project[];
@@ -58,6 +59,7 @@ export default function ProjectsGrid({
           {projects.map((project, index) => {
             const CategoryIcon = categoryIcons[project.slug] ?? Layers;
             const isPortrait = project.aspectRatio === "portrait";
+            const isMother = project.slug === "mother";
 
             return (
               <StaggerItem key={project.slug} className="h-full">
@@ -65,37 +67,37 @@ export default function ProjectsGrid({
                   {/* Dynamic Project Thumbnail (Landscape vs Portrait Phone Mockup) */}
                   {isPortrait ? (
                     <div className="relative h-64 sm:h-72 w-full overflow-hidden border-b border-border/60 bg-muted/30 flex items-center justify-center p-3">
-                      {project.imageUrl ? (
-                        <>
-                          {/* Ambient soft glow from screenshot colors */}
-                          <Image
-                            src={project.imageUrl}
-                            alt=""
-                            aria-hidden="true"
-                            fill
-                            className="object-cover blur-2xl opacity-30 scale-125"
-                          />
-                          {/* Sleek Android device frame mockup */}
-                          <div className="relative z-10 h-full aspect-[9/18.5] rounded-[20px] border-[3px] border-border/90 bg-background shadow-md overflow-hidden flex flex-col transition-transform duration-500 group-hover:scale-[1.03]">
-                            {/* Camera punch-hole */}
-                            <div className="absolute top-1.5 left-1/2 -translate-x-1/2 z-20 h-2 w-2 rounded-full bg-foreground/30" />
-                            <div className="relative flex-1 w-full h-full">
-                              <Image
-                                src={project.imageUrl}
-                                alt={`${project.title} interface`}
-                                fill
-                                className="object-cover object-top"
-                                sizes="(max-width: 768px) 180px, 220px"
-                                priority={index === 0}
-                              />
+                      {/* Ambient soft glow */}
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div className="h-44 w-32 rounded-full bg-primary/25 blur-2xl" />
+                      </div>
+
+                      {/* Sleek Android device frame mockup */}
+                      <div className="relative z-10 h-full aspect-[9/18.5] rounded-[20px] border-[3px] border-border/90 bg-background shadow-md overflow-hidden flex flex-col transition-transform duration-500 group-hover:scale-[1.03]">
+                        {/* Camera punch-hole */}
+                        <div className="absolute top-1.5 left-1/2 -translate-x-1/2 z-30 h-2 w-2 rounded-full bg-foreground/30 pointer-events-none" />
+                        <div className="relative flex-1 w-full h-full overflow-hidden">
+                          {isMother ? (
+                            <div className="pointer-events-none transform scale-[0.98] origin-top h-full">
+                              <MotherAppPrototype />
                             </div>
-                          </div>
-                        </>
-                      ) : (
-                        <div className="flex h-full items-center justify-center text-sm font-semibold text-muted-foreground">
-                          {project.title}
+                          ) : project.imageUrl ? (
+                            <Image
+                              src={project.imageUrl}
+                              alt={`${project.title} interface`}
+                              fill
+                              className="object-cover object-top"
+                              sizes="(max-width: 768px) 180px, 220px"
+                              priority={index === 0}
+                            />
+                          ) : (
+                            <div className="flex h-full items-center justify-center text-sm font-semibold text-muted-foreground">
+                              {project.title}
+                            </div>
+                          )}
                         </div>
-                      )}
+                      </div>
+
                       <span className="absolute top-3 left-3 z-20 inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-background/90 px-3 py-1 text-xs font-semibold text-foreground backdrop-blur-sm shadow-sm">
                         <CategoryIcon className="h-3.5 w-3.5 text-primary" />
                         {project.category}
