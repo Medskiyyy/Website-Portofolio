@@ -5,10 +5,10 @@ export const alt = "Ahmad Hidayatullah, full-stack web and Android developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const BG = "#141312";
-const FG = "#f5f3f0";
-const PRIMARY = "#d97706";
-const MUTED = "#a8a29e";
+const BG = "#0c0d0e";
+const FG = "#f8fafc";
+const PRIMARY = "#3b82f6";
+const MUTED = "#94a3b8";
 const BORDER = "rgba(255,255,255,0.12)";
 
 const STACK = ["Next.js", "TypeScript", "Postgres", "Kotlin", "Jetpack Compose"];
