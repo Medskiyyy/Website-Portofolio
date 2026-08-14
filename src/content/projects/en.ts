@@ -82,39 +82,38 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
   mother: {
     title: "Mother",
     category: "Productivity & Focus",
-    role: "Solo developer, personal product",
-    timeline: "2025 – present",
+    role: "Solo developer, personal project",
+    timeline: "Aug 2026 – present",
     description:
-      "A Neobrutalist Android habit tracker, task manager, and focus timer designed for intentional productivity. Features background persistent timer services and dynamic task urgency prioritization.",
+      "A personal productivity Android app combining daily habit tracking, focus sessions with persistent background timer, and visual task urgency in a Neobrutalist design.",
     overview:
-      "Mother is a native Android productivity system combining habit tracking, focus sessions, task prioritization, and schedule planning into a single bold interface. Built with Jetpack Compose following Neobrutalism design principles (high contrast, bold borders, and offset shadows), it features a persistent background focus chronometer that continues tracking across screens and device lock states with live lock-screen controls.",
+      "Mother is a personal productivity system I built in August 2026 to consolidate my daily habits, study focus sessions, and task scheduling into a single distraction-free app. Designed with a high-contrast Neobrutalist UI in Jetpack Compose, it prioritizes immediate scannability and reliable execution. Its focus timer runs as a Foreground Service that never drops sessions when switching apps or locking the phone, complete with live lock-screen controls.",
     problem:
-      "Many productivity setups require juggling separate habit trackers, Pomodoro timers, and todo apps. Furthermore, background timers on modern Android often get suspended by aggressive OS battery managers, leading to lost session data.",
+      "Most productivity workflows are scattered across standalone habit trackers, Pomodoro timers, and todo apps. On Android, background timers frequently get terminated by system battery optimization, causing lost study records, while overly decorated apps introduce unnecessary friction.",
     goal:
-      "Create a unified, distraction-free productivity app that runs reliably in the background with lock-screen notification controls, tracks habit streaks with recovery options, and visualizes task urgency without fluff.",
+      "Build a focused, robust Android productivity app that combines streak-based habit tracking, a bulletproof background focus chronometer with lock-screen controls, and an urgency-coded task list in a bold Neobrutalist interface.",
     solution:
-      "A native Android app built with Kotlin, Jetpack Compose, Material 3, and Room DB. Focus tracking is powered by an Android Foreground Service tied to a live Chronometer notification with pause/resume actions. Tasks dynamically change their visual urgency color based on impending deadlines.",
+      "A native Android app built with Kotlin, Jetpack Compose, Material 3, and Room DB. Focus tracking uses an Android Foreground Service tied to a Live Chronometer Notification with interactive controls. Daily habits support streak tracking with recovery, and task cards automatically adapt their color based on deadline urgency.",
     architecture:
-      "Clean Architecture with MVI/MVVM StateFlow patterns. Jetpack Compose for UI components, Room Database with SQLite for local persistence, Kotlin Coroutines & Flow for reactive data streams, and Android Foreground Service with custom notification channels for background timer execution.",
+      "Clean Architecture with MVI/MVVM StateFlow patterns. Jetpack Compose for UI components, Room Database for local structured persistence, Kotlin Coroutines and Flow for reactive data streams, and Android Foreground Service with custom notification channels for persistent background execution.",
     challenges: [
-      "Ensuring the Foreground Service timer survives Android's aggressive battery optimizations (Doze mode) without drifting or losing session state when controlled from lock-screen action buttons.",
-      "Designing a dynamic task urgency algorithm that calculates deadline proximity and updates card color hierarchies reactively without heavy re-renders.",
-      "Implementing streak calculation and missed-day recovery logic accurately across device timezone shifts and calendar boundaries.",
+      "Keeping the Foreground Service timer running reliably without drift or state loss under Android's aggressive battery optimizations (Doze mode), and syncing state bi-directionally with lock-screen notification action buttons.",
+      "Building a custom Neobrutalism design system in Jetpack Compose from scratch: implementing bold borders, solid offset shadows, and tabular numbers for timers and statistics without relying on skeuomorphic or bloated libraries.",
     ],
     results: [
-      "Full habit tracking with streak counter, zero-timer quick completion, and streak recovery.",
-      "Persistent background focus timer with live lock-screen controls and non-blocking in-app active banner.",
-      "Dynamic visual task priority engine (Urgent, Tight, Warning, Safe) and automated daily study analytics.",
+      "Habit tracking with streak counter, one-tap instant completion for routine tasks, and missed-day streak recovery.",
+      "Rock-solid background focus timer with live lock-screen action buttons and an active in-app bottom banner.",
+      "Visual task priority matrix that dynamically color-codes urgency (Urgent, Tight, Warning, Safe) and logs daily study stats.",
     ],
     lessonsLearned: [
-      "Foreground Services paired with Live Notification Chronometers provide the most reliable way to handle critical user sessions on modern Android versions.",
-      "Neobrutalism's high-contrast, flat layout drastically improves scannability for fast, deliberate daily task management.",
-      "StateFlow combined with Room Database creates seamless reactive UI updates across multi-screen state transitions.",
+      "Foreground Services paired with Live Notification Chronometers are essential for reliable time-tracking on modern Android versions.",
+      "Neobrutalism's flat, high-contrast visual style drastically improves scannability and keeps the focus purely on getting things done.",
+      "Reactive StateFlow paired with Room makes multi-screen state synchronization clean and predictable.",
     ],
     futureImprovements: [
-      "Add cloud backup sync options for cross-device migration.",
-      "Introduce customizable Pomodoro interval presets and break notifications.",
-      "Publish APK releases on GitHub and prepare for Play Store distribution.",
+      "Add cloud backup and restore options for device migration.",
+      "Introduce customizable Pomodoro interval presets.",
+      "Prepare and publish signed APK releases on GitHub.",
     ],
   },
 

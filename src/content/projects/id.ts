@@ -87,39 +87,38 @@ export const projectCopyId: Record<string, ProjectCopy> = {
   mother: {
     title: "Mother",
     category: "Produktivitas & Fokus",
-    role: "Developer tunggal, produk pribadi",
-    timeline: "2025 – sekarang",
+    role: "Developer tunggal, proyek pribadi",
+    timeline: "Agu 2026 – sekarang",
     description:
-      "Aplikasi Android manajemen kebiasaan, tugas, dan timer fokus berdesain Neobrutalism untuk produktivitas yang terarah. Dilengkapi persistent background service dan visual task priority matrix.",
+      "Aplikasi produktivitas pribadi Android yang menggabungkan pelacak kebiasaan (streak), sesi fokus (background timer), dan matriks prioritas tugas berdesain Neobrutalism yang kontras dan fungsional.",
     overview:
-      "Mother adalah sistem produktivitas Android native yang menggabungkan pelacakan kebiasaan, sesi fokus, prioritas tugas, dan agenda harian ke dalam satu antarmuka yang tegas dan berani. Dibangun dengan Jetpack Compose mengusung gaya Neobrutalism (kontras tinggi, border tebal, bayangan offset), aplikasi ini memiliki timer fokus persisten di latar belakang yang terus berjalan melintasi berbagai layar dan status layar kunci dengan kontrol notifikasi langsung.",
+      "Mother adalah aplikasi produktivitas pribadi yang saya kembangkan pada Agustus 2026 untuk menyatukan kebiasaan harian, sesi belajar fokus, dan daftar tugas ke dalam satu antarmuka yang terarah dan bebas distraksi. Dibangun dengan Jetpack Compose mengusung gaya Neobrutalism (kontras tinggi, border tebal, bayangan offset), aplikasi ini mengutamakan keterbacaan cepat dan ketahanan eksekusi. Timer sesi fokusnya berjalan sebagai Foreground Service yang tidak pernah terputus saat berpindah aplikasi atau layar terkunci, lengkap dengan kontrol notifikasi langsung.",
     problem:
-      "Sebagian besar pengguna harus berpindah-pindah antara aplikasi habit tracker, pomodoro timer, dan to-do list terpisah. Selain itu, timer latar belakang pada Android modern sering kali dihentikan paksa oleh manajemen baterai sistem operasi (Doze mode) sehingga data sesi hilang.",
+      "Banyak aplikasi produktivitas terpecah-pecah antara pelacak kebiasaan, timer Pomodoro, dan to-do list terpisah. Pada sistem operasi Android, timer latar belakang sering kali dimatikan oleh sistem manajemen baterai yang agresif sehingga catatan belajar hilang, sementara aplikasi yang terlalu banyak ornamen grafis justru menimbulkan distraksi.",
     goal:
-      "Membangun satu aplikasi produktivitas terintegrasi dan bebas distraksi yang dapat berjalan andal di latar belakang dengan kontrol layar kunci, melacak streak kebiasaan harian dengan opsi pemulihan, dan memvisualisasikan prioritas tugas tanpa elemen dekoratif yang tidak perlu.",
+      "Membangun aplikasi produktivitas Android yang andal dan terintegrasi, yang menggabungkan pelacak streak kebiasaan harian dengan opsi pemulihan, background chronometer yang kebal sleep mode dengan kontrol layar kunci, serta matriks tugas berbasis urgensi dalam desain Neobrutalism yang tegas.",
     solution:
-      "Aplikasi Android native menggunakan Kotlin, Jetpack Compose, Material 3, dan Room DB. Sesi fokus dijalankan melalui Android Foreground Service yang terhubung ke Live Chronometer Notification dengan tombol jeda/lanjutkan. Kartu tugas secara dinamis menyesuaikan warna urgensinya berdasarkan kedekatan tenggat waktu.",
+      "Aplikasi Android native yang dibangun dengan Kotlin, Jetpack Compose, Material 3, dan Room DB. Sesi fokus dikelola oleh Android Foreground Service yang terhubung ke Live Chronometer Notification dengan kontrol interaktif. Kebiasaan harian mendukung pelacakan streak dengan pemulihan, dan kartu tugas secara otomatis menyesuaikan warna urgensinya berdasarkan kedekatan tenggat waktu.",
     architecture:
-      "Clean Architecture dengan pola MVI/MVVM StateFlow. Jetpack Compose untuk komponen antarmuka, Room Database untuk basis data lokal terstruktur, Kotlin Coroutines dan Flow untuk aliran data reaktif, serta Android Foreground Service dengan channel notifikasi kustom untuk eksekusi timer di latar belakang.",
+      "Clean Architecture dengan pola MVI/MVVM StateFlow. Jetpack Compose untuk komponen antarmuka, Room Database untuk penyimpanan lokal terstruktur, Kotlin Coroutines dan Flow untuk aliran data reaktif, serta Android Foreground Service dengan channel notifikasi kustom untuk eksekusi timer di latar belakang.",
     challenges: [
-      "Memastikan timer Foreground Service tetap berjalan akurat saat optimasi baterai agresif Android (Doze mode) aktif tanpa terjadi jeda atau kehilangan state sesi saat dikontrol dari tombol layar kunci.",
-      "Merancang algoritma urgensi tugas dinamis yang menghitung kedekatan tenggat waktu dan memperbarui hierarki warna kartu secara reaktif tanpa re-render berlebihan.",
-      "Mengimplementasikan kalkulasi streak dan logika pemulihan hari terlewat secara akurat melintasi pergantian zona waktu dan batas kalender.",
+      "Menjaga timer Foreground Service tetap berjalan akurat dan stabil di latar belakang tanpa mengalami drifting atau kehilangan state saat sistem Android menerapkan optimasi baterai agresif (Doze mode), serta menyinkronkan state dua arah dengan tombol aksi di notifikasi layar kunci.",
+      "Membangun sistem desain Neobrutalism custom di Jetpack Compose dari nol: mengimplementasikan border tebal, bayangan offset solid, dan angka tabular untuk timer/statistik tanpa bergantung pada library grafis yang berat.",
     ],
     results: [
-      "Pelacakan kebiasaan harian lengkap dengan streak counter, penyelesaian cepat satu ketukan, dan pemulihan streak.",
-      "Timer fokus persisten di latar belakang dengan kontrol layar kunci interaktif dan banner aktif di dalam aplikasi.",
-      "Engine prioritas visual tugas otomatis (Urgent, Mepet, Waspada, Aman) serta rekap statistik belajar otomatis.",
+      "Pelacakan kebiasaan harian lengkap dengan streak counter, penyelesaian cepat satu ketukan untuk rutinitas tanpa durasi, dan fitur pemulihan streak.",
+      "Timer fokus latar belakang yang stabil dengan kontrol notifikasi layar kunci dan banner aktif di dalam aplikasi.",
+      "Matriks prioritas visual tugas otomatis (Urgent, Mepet, Waspada, Aman) serta rekap statistik belajar harian dan mingguan.",
     ],
     lessonsLearned: [
-      "Foreground Service yang dipadukan dengan Live Notification Chronometer adalah cara paling andal untuk menangani sesi penting pengguna di versi Android modern.",
-      "Layout Neobrutalism yang kontras dan tegas sangat meningkatkan kecepatan pemindaian informasi untuk manajemen tugas harian yang fokus.",
-      "StateFlow yang dipadukan dengan Room Database menciptakan pembaruan UI reaktif yang mulus di berbagai transisi layar.",
+      "Foreground Service yang dipadukan dengan Live Notification Chronometer adalah pendekatan paling andal untuk menangani sesi penting pengguna di versi Android modern.",
+      "Gaya visual Neobrutalism yang kontras dan flat sangat mempermudah pemindaian informasi secara cepat dan menjaga fokus murni pada penyelesaian tugas.",
+      "StateFlow reaktif yang dipadukan dengan Room Database membuat sinkronisasi state antar layar menjadi bersih dan mudah diprediksi.",
     ],
     futureImprovements: [
-      "Menambahkan opsi sinkronisasi backup cloud untuk migrasi antar perangkat.",
-      "Memperkenalkan preset interval Pomodoro kustom dan notifikasi istirahat.",
-      "Merilis rilis APK di GitHub dan mempersiapkan distribusi ke Google Play Store.",
+      "Menambahkan opsi backup dan restore cloud untuk migrasi data antar perangkat.",
+      "Memperkenalkan preset interval sesi fokus kustom.",
+      "Menyiapkan dan merilis file APK yang sudah ditandatangani di GitHub.",
     ],
   },
 
