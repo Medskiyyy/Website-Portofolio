@@ -1,8 +1,6 @@
-# Ahmad Hidayatullah, Portfolio
+# Ahmad Hidayatullah — Portfolio
 
-A bilingual (EN/ID) portfolio site for **Ahmad Hidayatullah**, an Information Systems student building
-full-stack web apps and native Android apps. It holds the project case studies, a resume page, and
-contact details.
+Bilingual (EN/ID) portfolio. Four projects with case studies, a resume page, and contact details.
 
 **Live:** https://website-portofolio-pi-ruby.vercel.app
 
@@ -10,75 +8,37 @@ contact details.
 
 ## Stack
 
-- **Framework:** Next.js 16 (App Router, Turbopack)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS v4
-- **Components:** shadcn/ui on Base UI primitives
-- **i18n:** next-intl, with `/en` and `/id` prefixes routed through `src/proxy.ts`
-- **Theming:** next-themes (light / dark / system)
-- **Animation:** Framer Motion, via the single `Reveal` / `Stagger` primitive in `src/components/motion.tsx`
-- **Icons:** lucide-react
-- **Hosting:** Vercel
+![Next.js](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat-square)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=fff&style=flat-square)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?logo=framer&logoColor=fff&style=flat-square)
+![next-intl](https://img.shields.io/badge/next--intl-000?logo=next.js&logoColor=fff&style=flat-square)
+![Vercel](https://img.shields.io/badge/Vercel-000?logo=vercel&logoColor=fff&style=flat-square)
 
-## Getting started
+---
 
-```bash
-pnpm install
-pnpm dev          # http://localhost:3000 → redirects to /en
-pnpm build        # production build + type check
-pnpm lint
-```
+## Projects
 
-## Configuration
+| Project | Type | Status | Links |
+| :--- | :--- | :--- | :--- |
+| **Pempek Palembang Cek Lis** | Full-stack web (Next.js + Supabase) | Live | [Site](https://pempekceklis.biz.id) · [GitHub](https://github.com/Medskiyyy/Website-Pempek) |
+| **SyncLancer** | Full-stack SaaS (Next.js + Supabase) | Live | [Site](https://synclancer.web.id) · [GitHub](https://github.com/Medskiyyy/SyncLancer) |
+| **Mother** | Native Android (Kotlin + Jetpack Compose) | In progress | [GitHub](https://github.com/Medskiyyy/Mother) |
+| **HitungUang** | Native Android (Kotlin + Jetpack Compose) | In progress | [GitHub](https://github.com/Medskiyyy/HitungUang) |
 
-| Variable | Purpose | Default |
-| --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical origin used by metadata, `sitemap.xml`, and `robots.txt`. Set this when moving to a custom domain. | the current Vercel URL |
+The Mother project card on the site shows a live interactive prototype built directly from the Jetpack Compose source, so visitors can see the actual app UI without installing anything.
 
-Everything else is static. There is no CMS and no database. Content lives in
-`src/content/`.
+---
 
 ## Content
 
-Editing the site means editing three places:
+Three places to edit when updating the site:
 
-- `src/content/projects/`. The case studies, split so prose can be translated without
-  duplicating the facts. `meta.ts` holds what does not vary by language (slug, stack,
-  links, status); `en.ts` and `id.ts` hold the prose. Adding a slug to all three adds a
-  card to the projects grid, an entry on the resume page, a `/projects/<slug>` page, and
-  a sitemap URL.
-- `src/content/profile.ts`. Email, GitHub URL, resume path, location, photo. Single
-  source of truth.
-- `messages/en.json` and `messages/id.json`. All interface copy. The two files must have
-  the same key set; a key present in only one locale throws at render time.
+- **`src/content/projects/`** — Case studies split by language. `meta.ts` holds the facts that do not vary (slug, stack, links, status); `en.ts` and `id.ts` hold the prose. Adding a slug to all three files is enough to create a project card, a case study page, and a sitemap URL.
+- **`src/content/profile.ts`** — Email, GitHub link, resume path, location. Shared across all pages and the JSON-LD schema.
+- **`messages/en.json` and `messages/id.json`** — All interface copy. No strings live inside components. Both files must have the same keys.
 
-## Structure
-
-```text
-portfolio/
-├── messages/               # en.json, id.json: all copy, no strings in components
-├── public/                 # project thumbnails (webp), resume.pdf
-└── src/
-    ├── app/                # root layout, [locale] segments, sitemap, robots, manifest,
-    │                       # generated opengraph-image and apple-icon
-    ├── components/         # motion primitives, Person schema, shadcn/ui
-    ├── content/            # projects/ (meta + per-locale prose), profile.ts
-    ├── features/           # home/ and projects/ section components
-    ├── i18n/               # next-intl routing, navigation, request config
-    ├── lib/                # site.ts (canonical URL), utils.ts
-    ├── shared/             # Navbar, Footer
-    └── types/              # shared type declarations
-```
-
-## Conventions
-
-- **One entrance animation per element.** `Reveal` and `StaggerGroup`/`StaggerItem` are the only
-  motion primitives. No pointer-tracking, tilt, or layered hover effects.
-- **No hardcoded user-facing strings** in components, `aria-label`s included. They belong in
-  `messages/`.
-- **Claims must be checkable.** Case study results describe what shipped and what it does.
-  Performance numbers are only included when there is a way for a reader to verify them.
-- **No em dashes in copy.** They read as machine-written. Restructure the sentence instead.
+---
 
 ## License
 
