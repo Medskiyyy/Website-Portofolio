@@ -1,4 +1,4 @@
-# Ahmad Hidayatullah — Portfolio
+# Ahmad Hidayatullah | Portfolio
 
 Bilingual (EN/ID) portfolio. Four projects with case studies, a resume page, and contact details.
 
