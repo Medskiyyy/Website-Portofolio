@@ -1,6 +1,4 @@
 "use client";
-
-import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -12,7 +10,6 @@ import {
   Lightbulb,
   Rocket,
   Smartphone,
-  Image as ImageIcon,
 } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -55,9 +52,6 @@ export default function ProjectDetailClient({
 }: ProjectDetailClientProps) {
   const isPortrait = project.aspectRatio === "portrait";
   const hasPrototype = project.slug === "mother";
-  const [viewMode, setViewMode] = useState<"prototype" | "screenshot">(
-    hasPrototype ? "prototype" : "screenshot",
-  );
 
   return (
     <>
@@ -117,52 +111,19 @@ export default function ProjectDetailClient({
         <Reveal direction="left" delay={0.1} amount={0.1}>
           {isPortrait ? (
             <div className="relative flex flex-col items-center justify-center py-2">
-              {/* Toggle header between interactive prototype & screenshot */}
-              {hasPrototype && (
-                <div className="mb-3 flex items-center gap-1 rounded-full border border-border/80 bg-card/90 p-1 shadow-sm">
-                  <button
-                    onClick={() => setViewMode("prototype")}
-                    className={cn(
-                      "flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all",
-                      viewMode === "prototype"
-                        ? "bg-primary text-primary-foreground shadow-sm"
-                        : "text-muted-foreground hover:text-foreground",
-                    )}
-                  >
-                    <Smartphone className="h-3.5 w-3.5" />
-                    <span>Live Interactive Demo</span>
-                  </button>
-                  <button
-                    onClick={() => setViewMode("screenshot")}
-                    className={cn(
-                      "flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all",
-                      viewMode === "screenshot"
-                        ? "bg-primary text-primary-foreground shadow-sm"
-                        : "text-muted-foreground hover:text-foreground",
-                    )}
-                  >
-                    <ImageIcon className="h-3.5 w-3.5" />
-                    <span>Screenshot</span>
-                  </button>
-                </div>
-              )}
-
               {/* Ambient dynamic back-glow */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="h-[420px] w-[260px] rounded-full bg-primary/20 blur-[90px]" />
+                <div className="h-[460px] w-[280px] rounded-full bg-primary/20 blur-[90px]" />
               </div>
 
-              {/* Android Smartphone Device Frame */}
+              {/* Android Smartphone Device Frame (9:20 exact Android aspect ratio) */}
               <motion.div
-                className="relative z-10 h-[520px] sm:h-[560px] aspect-[9/18.5] rounded-[34px] border-[4px] border-border/90 bg-background shadow-2xl overflow-hidden flex flex-col"
+                className="relative z-10 h-[580px] sm:h-[640px] aspect-[9/20] rounded-[34px] border-[4px] border-border/90 bg-background shadow-2xl overflow-hidden flex flex-col"
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.4, ease: EASE_OUT }}
               >
-                {/* Camera punch-hole notch */}
-                <div className="absolute top-2.5 left-1/2 -translate-x-1/2 z-40 h-2.5 w-2.5 rounded-full bg-foreground/30 shadow-inner pointer-events-none" />
-
-                <div className="relative flex-1 w-full h-full">
-                  {viewMode === "prototype" && hasPrototype ? (
+                <div className="relative flex-1 w-full h-full overflow-hidden">
+                  {hasPrototype ? (
                     <MotherAppPrototype />
                   ) : project.imageUrl ? (
                     <Image
@@ -171,7 +132,7 @@ export default function ProjectDetailClient({
                       fill
                       className="object-cover object-top"
                       priority
-                      sizes="(max-width: 768px) 280px, 340px"
+                      sizes="(max-width: 768px) 300px, 360px"
                     />
                   ) : (
                     <div className="flex h-full flex-col items-center justify-center p-6 text-center text-muted-foreground">

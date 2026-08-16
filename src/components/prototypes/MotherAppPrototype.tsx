@@ -187,7 +187,7 @@ export default function MotherAppPrototype() {
         )}
 
         {/* 4. BOTTOM NAVIGATION BAR HOTSPOTS (5 Tabs) */}
-        <div className="absolute bottom-0 left-0 right-0 h-[14%] z-30 flex">
+        <div className="absolute bottom-0 left-0 right-0 h-[13%] z-30 flex">
           <button
             onClick={() => {
               setActiveTab("dashboard");
@@ -217,67 +217,6 @@ export default function MotherAppPrototype() {
             title="Tab Pengaturan"
           />
         </div>
-      </div>
-
-      {/* ================= TOP INTERACTIVE SUB-NAV CONTROLLER ================= */}
-      {/* Provides a clear UI controller so users can easily tap specific sub-screens */}
-      {activeTab === "progress" && (
-        <div className="absolute top-8 left-2 right-2 z-40 flex items-center justify-between gap-1 overflow-x-auto rounded-[10px] border-[2px] border-black bg-white/95 p-1 shadow-[2px_2px_0px_#000000] backdrop-blur-xs scrollbar-none">
-          {[
-            { id: "habits" as const, label: "Kebiasaan" },
-            { id: "study" as const, label: "Belajar" },
-            { id: "stats" as const, label: "Statistik" },
-            { id: "heatmap" as const, label: "Heatmap" },
-            { id: "achieve" as const, label: "Pencapaian" },
-          ].map((sub) => (
-            <button
-              key={sub.id}
-              onClick={() => setProgressSubTab(sub.id)}
-              className={cn(
-                "rounded-[6px] px-2 py-0.5 text-[9px] font-black transition-all whitespace-nowrap cursor-pointer",
-                progressSubTab === sub.id
-                  ? "bg-[#FFD43F] text-black shadow-[1px_1px_0px_#000000]"
-                  : "text-zinc-700 hover:bg-zinc-100",
-              )}
-            >
-              {sub.label}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {activeTab === "tasks" && (
-        <div className="absolute top-8 left-12 right-12 z-40 flex items-center justify-center gap-1.5 rounded-[10px] border-[2px] border-black bg-white/95 p-1 shadow-[2px_2px_0px_#000000] backdrop-blur-xs">
-          <button
-            onClick={() => setTasksSubTab("active")}
-            className={cn(
-              "flex-1 rounded-[6px] py-0.5 text-[10px] font-black transition-all cursor-pointer",
-              tasksSubTab === "active"
-                ? "bg-[#FFD43F] text-black shadow-[1px_1px_0px_#000000]"
-                : "text-zinc-700 hover:bg-zinc-100",
-            )}
-          >
-            Aktif
-          </button>
-          <button
-            onClick={() => setTasksSubTab("completed")}
-            className={cn(
-              "flex-1 rounded-[6px] py-0.5 text-[10px] font-black transition-all cursor-pointer",
-              tasksSubTab === "completed"
-                ? "bg-[#FFD43F] text-black shadow-[1px_1px_0px_#000000]"
-                : "text-zinc-700 hover:bg-zinc-100",
-            )}
-          >
-            Selesai
-          </button>
-        </div>
-      )}
-
-      {/* ================= INTERACTIVE HINT BADGE ================= */}
-      <div className="absolute top-2 left-1/2 -translate-x-1/2 z-40 pointer-events-none">
-        <span className="inline-flex items-center gap-1 rounded-full border border-black/40 bg-black/75 px-2.5 py-0.5 text-[8px] font-black tracking-wider text-white uppercase backdrop-blur-xs shadow-xs">
-          Interactive Live Preview
-        </span>
       </div>
     </div>
   );
