@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 import { EASE_OUT, Reveal, StaggerGroup, StaggerItem } from "@/components/motion";
 import type { Project } from "@/types/project";
 import MotherAppPrototype from "@/components/prototypes/MotherAppPrototype";
+import HitungUangPrototype from "@/components/prototypes/HitungUangPrototype";
 
 type ProjectDetailClientProps = {
   project: Project;
@@ -51,7 +52,6 @@ export default function ProjectDetailClient({
   futureImprovements,
 }: ProjectDetailClientProps) {
   const isPortrait = project.aspectRatio === "portrait";
-  const hasPrototype = project.slug === "mother";
 
   return (
     <>
@@ -123,8 +123,10 @@ export default function ProjectDetailClient({
                 transition={{ duration: 0.4, ease: EASE_OUT }}
               >
                 <div className="relative flex-1 w-full h-full overflow-hidden">
-                  {hasPrototype ? (
+                  {project.slug === "mother" ? (
                     <MotherAppPrototype />
+                  ) : project.slug === "hitung-uang" ? (
+                    <HitungUangPrototype />
                   ) : project.imageUrl ? (
                     <Image
                       src={project.imageUrl}
