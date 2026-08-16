@@ -57,8 +57,8 @@ export default function FeaturedProjectSection({ projects }: { projects: Project
                         <div className="h-44 w-32 rounded-full bg-primary/25 blur-2xl" />
                       </div>
 
-                      {/* Sleek Android device frame mockup */}
-                      <div className="relative z-10 h-full aspect-[9/18.5] rounded-[20px] border-[3px] border-border/90 bg-background shadow-md overflow-hidden flex flex-col transition-transform duration-500 group-hover:scale-[1.03]">
+                      {/* Sleek Android device frame mockup (exact 9:20 aspect ratio) */}
+                      <div className="relative z-10 h-full aspect-[9/20] rounded-[20px] border-[3px] border-border/90 bg-background shadow-md overflow-hidden flex flex-col transition-transform duration-500 group-hover:scale-[1.03]">
                         {/* Camera punch-hole */}
                         <div className="absolute top-1.5 left-1/2 -translate-x-1/2 z-30 h-2 w-2 rounded-full bg-foreground/30 pointer-events-none" />
                         <div className="relative flex-1 w-full h-full overflow-hidden">
