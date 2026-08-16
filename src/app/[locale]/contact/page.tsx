@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Mail, Github, ExternalLink } from "lucide-react";
+import { Mail, Github, Phone, ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import { Reveal } from "@/components/motion";
 import { profile } from "@/content/profile";
@@ -31,6 +31,14 @@ export default async function ContactPage({
       description: t("emailDesc"),
     },
     {
+      icon: <Phone className="h-6 w-6" />,
+      label: "WhatsApp / Phone",
+      value: profile.phone,
+      href: profile.whatsappUrl,
+      description: t("phoneDesc"),
+      external: true,
+    },
+    {
       icon: <Github className="h-6 w-6" />,
       label: "GitHub",
       value: profile.githubHandle,
@@ -56,7 +64,7 @@ export default async function ContactPage({
           </Reveal>
         </div>
 
-        <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
+        <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
           {contactMethods.map((method, idx) => (
             <Reveal key={method.label} delay={0.1 + idx * 0.1} className="h-full">
               <a

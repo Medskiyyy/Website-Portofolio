@@ -5,9 +5,14 @@
 export const profile = {
   name: "Ahmad Hidayatullah",
   email: "hidayatahmadd1377@gmail.com",
+  phone: "+62 877-1896-9089",
+  phoneRaw: "+6287718969089",
+  whatsappUrl: "https://wa.me/6287718969089",
   githubUrl: "https://github.com/Medskiyyy",
   githubHandle: "github.com/Medskiyyy",
   resumeUrl: "/resume.pdf",
+  gpa: "3.88 / 4.00",
+  educationPeriod: "2025 - Present (Expected 2029)",
 
   /**
    * A real photograph, or null. Deliberately null right now: the file that used

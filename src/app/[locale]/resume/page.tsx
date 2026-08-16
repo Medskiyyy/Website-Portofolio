@@ -18,17 +18,45 @@ export async function generateMetadata({
 }
 
 const skills = {
-  frontend: ["Next.js (App Router)", "React", "TypeScript", "Tailwind CSS", "shadcn/ui"],
-  backend: ["PostgreSQL", "Supabase", "Row-Level Security", "Prisma ORM", "Auth.js", "TanStack Query"],
-  mobile: ["Kotlin", "Jetpack Compose", "Room DB", "Dagger Hilt", "WorkManager", "ML Kit"],
-  tools: ["Git & GitHub", "Turborepo", "pnpm workspaces", "Vercel", "Resend", "Firebase"],
-  practices: [
-    "Relational schema design",
-    "Feature-first module structure",
-    "Clean Architecture (Android)",
-    "Incremental static regeneration & caching",
-    "Conventional commits",
-    "Internationalisation (next-intl)",
+  languages: ["TypeScript", "JavaScript", "Kotlin", "SQL", "Python"],
+  backend: [
+    "Next.js (App Router / Server Actions)",
+    "Node.js",
+    "RESTful API",
+    "Prisma ORM",
+    "Auth.js v5 (NextAuth)",
+    "Argon2",
+    "Cron Jobs / Automated Endpoints",
+  ],
+  database: [
+    "PostgreSQL (Supabase)",
+    "Room Database (FTS4)",
+    "DataStore Preferences",
+    "Row Level Security (RLS)",
+    "Supabase Storage",
+    "Triggers & Functions",
+  ],
+  frontend: [
+    "React 19",
+    "Jetpack Compose",
+    "Material 3",
+    "Tailwind CSS v4",
+    "shadcn/ui",
+    "Radix UI",
+    "Dagger Hilt",
+    "Coroutines & Flow",
+  ],
+  tools: [
+    "Git & GitHub",
+    "Turborepo (Monorepo)",
+    "Google ML Kit (OCR)",
+    "Android Foreground Service",
+    "WorkManager",
+    "Postman",
+    "Vitest",
+    "Playwright",
+    "JUnit4",
+    "CMS",
   ],
 };
 
@@ -60,6 +88,10 @@ export default async function ResumePage({
                 <span aria-hidden>·</span>
                 <a href={`mailto:${profile.email}`} className="hover:text-foreground hover:underline">
                   {profile.email}
+                </a>
+                <span aria-hidden>·</span>
+                <a href={`tel:${profile.phoneRaw}`} className="hover:text-foreground hover:underline">
+                  {profile.phone}
                 </a>
                 <span aria-hidden>·</span>
                 <a
@@ -99,11 +131,11 @@ export default async function ResumePage({
             <Reveal delay={0.25}>
               <ResumeSection title={t("skillsTitle")}>
                 <div className="grid grid-cols-1 gap-6">
-                  <SkillGroup label={t("skillsFrontend")} items={skills.frontend} />
+                  <SkillGroup label={t("skillsLanguages")} items={skills.languages} />
                   <SkillGroup label={t("skillsBackend")} items={skills.backend} />
-                  <SkillGroup label={t("skillsMobile")} items={skills.mobile} />
+                  <SkillGroup label={t("skillsDatabase")} items={skills.database} />
+                  <SkillGroup label={t("skillsFrontend")} items={skills.frontend} />
                   <SkillGroup label={t("skillsTools")} items={skills.tools} />
-                  <SkillGroup label={t("skillsPractices")} items={skills.practices} />
                 </div>
               </ResumeSection>
             </Reveal>
@@ -137,6 +169,7 @@ export default async function ResumePage({
                       {t("educationDegree")}
                     </p>
                     <p className="text-sm text-muted-foreground">{t("educationSchool")}</p>
+                    <p className="mt-1 text-xs font-semibold text-primary font-mono">GPA: {profile.gpa}</p>
                   </div>
                   <span className="shrink-0 text-sm font-semibold text-primary font-mono">
                     {t("educationPeriod")}
