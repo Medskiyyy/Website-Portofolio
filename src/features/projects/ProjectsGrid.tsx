@@ -98,13 +98,13 @@ export default function ProjectsGrid({
                       </span>
                     </div>
                   ) : (
-                    <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border/60 bg-muted">
+                    <div className="relative aspect-video w-full overflow-hidden border-b border-border/60 bg-muted">
                       {project.imageUrl ? (
                         <Image
                           src={project.imageUrl}
                           alt={`${project.title} interface`}
                           fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="object-cover object-top transition-opacity duration-300 group-hover:opacity-95"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           priority={index === 0}
                         />

@@ -158,7 +158,7 @@ export default function ProjectDetailClient({
                     src={project.imageUrl}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.04]"
+                    className="object-cover object-top transition-opacity duration-300"
                     priority
                     sizes="(max-width: 1024px) 100vw, 52vw"
                   />
