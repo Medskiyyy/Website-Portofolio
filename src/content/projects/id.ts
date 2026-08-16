@@ -10,7 +10,7 @@ export const projectCopyId: Record<string, ProjectCopy> = {
     title: "Pempek Palembang Cek Lis",
     category: "Storefront & CMS",
     role: "Developer tunggal, bisnis nyata, tanpa bayaran",
-    timeline: "Jun – Jul 2025",
+    timeline: "Mei - Juli 2026",
     description:
       "Storefront dan CMS custom untuk kedai pempek di Serpong, Tangerang Selatan. Pemiliknya mengelola menu, banner promo, ulasan, dan data kontak dari admin panel, tanpa perlu minta saya mengubah kodenya.",
     overview:
@@ -22,11 +22,11 @@ export const projectCopyId: Record<string, ProjectCopy> = {
     solution:
       "Situs Next.js App Router yang membaca konten dari Postgres di Supabase. Halamannya di-generate statis lalu direvalidasi, jadi sisi publik tetap cepat tapi tetap menangkap perubahan dari admin panel tanpa build ulang. Pesanan sengaja tidak lewat cart: setiap produk menautkan ke WhatsApp dengan pesan yang sudah terisi, karena begitulah kedai ini memang sudah menerima pesanan.",
     architecture:
-      "Monorepo Turborepo dengan pnpm workspaces yang memuat situs publik dan admin panel. Postgres di Supabase untuk kontennya, dengan Row-Level Security supaya client anonim bisa membaca baris yang dipublikasikan tapi hanya admin terautentikasi yang bisa menulis. Supabase Auth untuk login admin, Supabase Storage dan Firebase untuk gambar produk dan banner. Dideploy di Vercel.",
+      "Monorepo Turborepo dengan pnpm workspaces yang memuat situs publik dan admin panel. Postgres di Supabase untuk kontennya, dengan Row-Level Security supaya client anonim bisa membaca baris yang dipublikasikan tapi hanya admin terautentikasi yang bisa menulis. Supabase Auth untuk login admin, dan Supabase Storage untuk gambar produk dan banner. Dideploy di Vercel.",
     challenges: [
       "Menyusun policy Row-Level Security supaya situs publik bisa membaca katalog dengan anon key sementara akses tulis tetap terkunci ke sesi admin. Versi pertamanya membocorkan akses tulis lewat policy yang hanya memeriksa autentikasi, bukan role.",
       "Menentukan jeda revalidasi per jenis konten. Harga harus cepat berubah; teks profil tidak. Merevalidasi semuanya secara agresif justru menghilangkan gunanya static generation.",
-      "Dua backend gambar (Supabase Storage dan Firebase) lebih banyak dari yang proyek ini butuhkan. Jalan sih, tapi kalau saya bangun ulang sekarang saya akan pilih satu saja.",
+      "Merancang alur CMS kustom yang ringan dan intuitif agar pemilik kedai dapat mengelola menu, banner promo, dan area pengiriman secara mandiri tanpa kendala teknis.",
     ],
     results: [
       "Live di pempekceklis.biz.id dengan 6 item menu, 3 banner promo, 4 ulasan pelanggan, dan 5 area pengiriman, semuanya tersimpan di Postgres dan bisa diubah dari admin panel.",
@@ -38,17 +38,14 @@ export const projectCopyId: Record<string, ProjectCopy> = {
       "Kliennya tidak menginginkan fitur, dia ingin berhenti menjawab DM yang sama terus-menerus. Membaca permintaannya seperti itu mengubah apa yang akhirnya saya bangun.",
       "Monorepo memudahkan berbagi tipe antara situs publik dan admin panel, tapi itu lebih banyak tooling daripada yang sebenarnya dibutuhkan proyek berisi dua aplikasi.",
     ],
-    futureImprovements: [
-      "Menyatukan penyimpanan gambar ke Supabase dan melepas ketergantungan pada Firebase.",
-      "Menambahkan deskripsi menu versi Indonesia dan Inggris.",
-    ],
+    futureImprovements: [],
   },
 
   synclancer: {
     title: "SyncLancer",
     category: "SaaS multi-tenant",
     role: "Developer tunggal, produk pribadi",
-    timeline: "Jun 2026 – sekarang",
+    timeline: "Jun 2026 - sekarang",
     description:
       "Aplikasi manajemen proyek multi-tenant untuk freelancer, inisiatif sendiri: lead, klien, proposal, proyek, tugas, invoice, dan pencatatan waktu di satu tempat, lengkap dengan portal yang bisa diakses klien.",
     overview:
@@ -87,7 +84,7 @@ export const projectCopyId: Record<string, ProjectCopy> = {
     title: "Mother",
     category: "Produktivitas & Fokus",
     role: "Developer tunggal, proyek pribadi",
-    timeline: "Agu 2026 – sekarang",
+    timeline: "Agu 2026 - sekarang",
     description:
       "Aplikasi produktivitas pribadi Android yang menggabungkan pelacak kebiasaan (streak), sesi fokus (background timer), dan matriks prioritas tugas berdesain Neobrutalism yang kontras dan fungsional.",
     overview:
@@ -115,9 +112,7 @@ export const projectCopyId: Record<string, ProjectCopy> = {
       "StateFlow reaktif yang dipadukan dengan Room Database membuat sinkronisasi state antar layar menjadi bersih dan mudah diprediksi.",
     ],
     futureImprovements: [
-      "Menambahkan opsi backup dan restore cloud untuk migrasi data antar perangkat.",
-      "Memperkenalkan preset interval sesi fokus kustom.",
-      "Menyiapkan dan merilis file APK yang sudah ditandatangani di GitHub.",
+      "Menambahkan push notification untuk alarm dan pengingat yang terlewat.",
     ],
   },
 
@@ -125,7 +120,7 @@ export const projectCopyId: Record<string, ProjectCopy> = {
     title: "HitungUang",
     category: "Android offline-first",
     role: "Developer tunggal, proyek pribadi",
-    timeline: "Jun 2026 – sekarang",
+    timeline: "Jun 2026 - sekarang",
     description:
       "Pencatat pengeluaran Android offline-first yang menyimpan semuanya di perangkat: tanpa akun, tanpa server, tanpa sinkronisasi. Pemindaian struk dan grafiknya berjalan lokal.",
     overview:

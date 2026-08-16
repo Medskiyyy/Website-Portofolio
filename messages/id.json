@@ -30,7 +30,7 @@
     "glanceLocation": "Domisili",
     "glanceLocationValue": "Bekasi, Jawa Barat (WIB, UTC+7). Terbuka untuk remote maupun on-site di sekitar Jakarta.",
     "glanceEducation": "Pendidikan",
-    "glanceEducationValue": "Sistem Informasi, Universitas Gunadarma (2025 – sekarang)",
+    "glanceEducationValue": "Sistem Informasi, Universitas Gunadarma (2025 - sekarang)",
     "glanceFocus": "Fokus",
     "glanceFocusValue": "Web full-stack (Next.js, TypeScript, Postgres) dan Android native (Kotlin, Compose)",
     "glanceOpenTo": "Terbuka untuk",
@@ -115,7 +115,7 @@
     "educationTitle": "Pendidikan",
     "educationDegree": "Sarjana Sistem Informasi",
     "educationSchool": "Universitas Gunadarma",
-    "educationPeriod": "2025 – sekarang",
+    "educationPeriod": "2025 - sekarang",
     "visitLive": "Kunjungi situs"
   },
   "AboutPage": {

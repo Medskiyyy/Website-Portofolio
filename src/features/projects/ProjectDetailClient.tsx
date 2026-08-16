@@ -249,14 +249,16 @@ export default function ProjectDetailClient({
           <Reveal direction="up" delay={0.12} amount={0.1}>
             <ListSection title={lessonsLearned} icon="lightbulb" items={project.lessonsLearned} />
           </Reveal>
-          <Reveal direction="up" delay={0.18} amount={0.1}>
-            <ListSection
-              title={futureImprovements}
-              icon="check"
-              items={project.futureImprovements}
-              ordered
-            />
-          </Reveal>
+          {project.futureImprovements && project.futureImprovements.length > 0 && (
+            <Reveal direction="up" delay={0.18} amount={0.1}>
+              <ListSection
+                title={futureImprovements}
+                icon="check"
+                items={project.futureImprovements}
+                ordered
+              />
+            </Reveal>
+          )}
         </div>
       </section>
     </>

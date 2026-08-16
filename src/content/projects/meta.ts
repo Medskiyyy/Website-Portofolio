@@ -7,7 +7,7 @@ import type { ProjectMeta } from "@/types/project";
 export const projectMeta: ProjectMeta[] = [
   {
     slug: "pempek-cek-lis",
-    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "Firebase", "Turborepo"],
+    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "Turborepo"],
     liveUrl: "https://pempekceklis.biz.id",
     githubUrl: "https://github.com/Medskiyyy/Website-Pempek",
     imageUrl: "/thumb-pempek.webp",

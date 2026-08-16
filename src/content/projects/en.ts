@@ -5,7 +5,7 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
     title: "Pempek Palembang Cek Lis",
     category: "Storefront & CMS",
     role: "Solo developer, real business, unpaid",
-    timeline: "Jun – Jul 2025",
+    timeline: "May - Jul 2026",
     description:
       "A storefront and custom CMS for a pempek shop in Serpong, South Tangerang. The owner manages the menu, promo banners, reviews, and contact details from an admin panel instead of asking me to change the code.",
     overview:
@@ -17,11 +17,11 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
     solution:
       "A Next.js App Router site reading content from Postgres on Supabase. Pages are statically generated and revalidated, so the public site stays fast but picks up admin edits without a rebuild. Orders skip a custom cart entirely: each product links to WhatsApp with a pre-filled message, which is how the shop already took orders.",
     architecture:
-      "Turborepo monorepo with pnpm workspaces holding the public site and the admin panel. Supabase Postgres for content, with Row-Level Security so the anonymous client can read published rows but only an authenticated admin can write. Supabase Auth for admin login, Supabase Storage and Firebase for product and banner images. Deployed on Vercel.",
+      "Turborepo monorepo with pnpm workspaces holding the public site and the admin panel. Supabase Postgres for content, with Row-Level Security so the anonymous client can read published rows but only an authenticated admin can write. Supabase Auth for admin login, and Supabase Storage for product and banner images. Deployed on Vercel.",
     challenges: [
       "Getting the Row-Level Security policies right so the public site could read the catalogue with the anon key while writes stayed locked to the admin session. The first version leaked write access through a policy that only checked authentication, not role.",
       "Choosing revalidation windows per content type. Prices need to update quickly; the about text does not. Revalidating everything aggressively removed the point of static generation.",
-      "Two image backends (Supabase Storage and Firebase) is more moving parts than this project needed. It works, but if I rebuilt it today I would pick one.",
+      "Designing a lightweight custom CMS flow so the business owner can manage menus, banners, and delivery areas intuitively without technical knowledge.",
     ],
     results: [
       "Live at pempekceklis.biz.id with a 6-item menu, 3 promo banners, 4 customer reviews, and 5 delivery areas, all of it stored in Postgres and editable from the admin panel.",
@@ -33,17 +33,14 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
       "The owner did not want features, they wanted to stop answering the same DM. Reading the request that way changed what I built.",
       "A monorepo made sharing types between the public site and the admin panel easy, but it is more tooling than a two-app project strictly needs.",
     ],
-    futureImprovements: [
-      "Consolidate image storage onto Supabase and drop the Firebase dependency.",
-      "Add Indonesian and English versions of the menu descriptions.",
-    ],
+    futureImprovements: [],
   },
 
   synclancer: {
     title: "SyncLancer",
     category: "Multi-tenant SaaS",
     role: "Solo developer, personal product",
-    timeline: "Jun 2026 – present",
+    timeline: "Jun 2026 - present",
     description:
       "A self-initiated multi-tenant project management app for freelancers: leads, clients, proposals, projects, tasks, invoices, and time tracking in one place, with a portal clients can log into.",
     overview:
@@ -82,7 +79,7 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
     title: "Mother",
     category: "Productivity & Focus",
     role: "Solo developer, personal project",
-    timeline: "Aug 2026 – present",
+    timeline: "Aug 2026 - present",
     description:
       "A personal productivity Android app combining daily habit tracking, focus sessions with persistent background timer, and visual task urgency in a Neobrutalist design.",
     overview:
@@ -110,9 +107,7 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
       "Reactive StateFlow paired with Room makes multi-screen state synchronization clean and predictable.",
     ],
     futureImprovements: [
-      "Add cloud backup and restore options for device migration.",
-      "Introduce customizable Pomodoro interval presets.",
-      "Prepare and publish signed APK releases on GitHub.",
+      "Add push notifications and alarms for missed or overdue reminders.",
     ],
   },
 
@@ -120,7 +115,7 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
     title: "HitungUang",
     category: "Offline-first Android",
     role: "Solo developer, personal project",
-    timeline: "Jun 2026 – present",
+    timeline: "Jun 2026 - present",
     description:
       "An offline-first Android expense tracker that keeps everything on the device: no account, no server, no sync. Receipt scanning and charts run locally.",
     overview:

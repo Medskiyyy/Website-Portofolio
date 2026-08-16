@@ -30,7 +30,7 @@
     "glanceLocation": "Based in",
     "glanceLocationValue": "Bekasi, West Java, Indonesia (WIB, UTC+7). Happy to work remotely or on-site around Jakarta.",
     "glanceEducation": "Education",
-    "glanceEducationValue": "Information Systems, Gunadarma University (2025 – present)",
+    "glanceEducationValue": "Information Systems, Gunadarma University (2025 - present)",
     "glanceFocus": "Focus",
     "glanceFocusValue": "Full-stack web (Next.js, TypeScript, Postgres) and native Android (Kotlin, Compose)",
     "glanceOpenTo": "Open to",
@@ -115,7 +115,7 @@
     "educationTitle": "Education",
     "educationDegree": "Bachelor of Information Systems",
     "educationSchool": "Gunadarma University",
-    "educationPeriod": "2025 – present",
+    "educationPeriod": "2025 - present",
     "visitLive": "Visit live site"
   },
   "AboutPage": {
