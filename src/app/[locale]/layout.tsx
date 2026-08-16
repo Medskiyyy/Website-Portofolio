@@ -113,7 +113,7 @@ export default async function LocaleLayout({
         />
 
         <PersonSchema locale={locale} />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <NextIntlClientProvider messages={messages}>
             <a
               href="#content"
