@@ -7,6 +7,6 @@
  */
 export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-  "https://website-portofolio-pi-ruby.vercel.app";
+  "https://ahmadhidayatullah.my.id";
 
 export const locales = ["en", "id"] as const;

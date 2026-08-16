@@ -4,151 +4,102 @@ import React, { useState, useEffect } from "react";
 import {
   Home,
   Calendar as CalendarIcon,
-  CheckSquare,
-  BarChart3,
+  CheckCircle2,
+  Sparkles,
   Settings as SettingsIcon,
   Search,
   Flame,
-  Clock,
-  Play,
-  Pause,
-  X,
-  Edit2,
-  ChevronLeft,
-  ChevronRight,
   Plus,
   CalendarDays,
   Timer,
+  Pencil,
+  Trash2,
+  Lock,
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause,
+  X,
+  Check,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type TopTab = "dashboard" | "calendar" | "tasks" | "progress" | "settings";
-type Priority = "URGENT" | "MEPET" | "WASPADA" | "AMAN";
-
-interface TaskItem {
-  id: string;
-  title: string;
-  deadline: string;
-  priority: Priority;
-  category: string;
-  description: string;
-  completed: boolean;
-}
-
-interface ScheduleItem {
-  id: string;
-  title: string;
-  startTime: string;
-  endTime: string;
-  status: "Belum Mulai" | "Selesai" | "Berlangsung";
-}
+type MainTab = "dashboard" | "calendar" | "tasks" | "progress" | "settings";
+type ProgressSubTab = "habits" | "study" | "stats" | "heatmap" | "achieve";
 
 interface HabitItem {
   id: string;
   name: string;
-  target: string;
+  type: "routine" | "timer";
+  subtitle: string;
   streak: number;
+  bestStreak: number;
+  duration?: string;
   completed: boolean;
-  icon: string;
 }
 
-const initialTasks: TaskItem[] = [
-  {
-    id: "1",
-    title: "Selesaikan Room Database Migration",
-    deadline: "14 Agu 2026, 23:59",
-    priority: "URGENT",
-    category: "Android",
-    description: "Migrasi skema Room DB ke v3.4.0 dengan AutoMigrationSpec.",
-    completed: false,
-  },
-  {
-    id: "2",
-    title: "Tugas Kuliah Sistem Informasi",
-    deadline: "15 Agu 2026, 12:00",
-    priority: "MEPET",
-    category: "Kuliah",
-    description: "Analisis kebutuhan sistem enterprise architecture.",
-    completed: false,
-  },
-  {
-    id: "3",
-    title: "Review PR Neobrutalism UI Specs",
-    deadline: "18 Agu 2026, 17:00",
-    priority: "WASPADA",
-    category: "Mother",
-    description: "Validasi ketebalan border 3.5dp dan offset shadow 4dp.",
-    completed: true,
-  },
-  {
-    id: "4",
-    title: "Perbarui Dokumentasi README & API",
-    deadline: "20 Agu 2026, 20:00",
-    priority: "AMAN",
-    category: "Dokumentasi",
-    description: "Dokumentasikan Foreground Service Live Notification Chronometer.",
-    completed: false,
-  },
-];
-
-const initialSchedules: ScheduleItem[] = [
-  {
-    id: "s1",
-    title: "Sesi Belajar Jetpack Compose",
-    startTime: "09:00",
-    endTime: "11:00",
-    status: "Berlangsung",
-  },
-  {
-    id: "s2",
-    title: "Review Habit & Target Streak",
-    startTime: "14:30",
-    endTime: "15:00",
-    status: "Belum Mulai",
-  },
-];
-
-const initialHabits: HabitItem[] = [
-  { id: "h1", name: "Mandi Pagi & Sholat", target: "Setiap hari", streak: 12, completed: true, icon: "🌅" },
-  { id: "h2", name: "Belajar Kotlin & Compose", target: "1j 30m / hari", streak: 7, completed: false, icon: "💻" },
-  { id: "h3", name: "Olahraga / Workout", target: "20m / hari", streak: 5, completed: false, icon: "🏋️" },
-  { id: "h4", name: "Baca Dokumentasi Tech", target: "15m / hari", streak: 4, completed: true, icon: "📖" },
-];
-
 export default function MotherAppPrototype() {
-  const [activeTab, setActiveTab] = useState<TopTab>("dashboard");
-  const [tasks, setTasks] = useState<TaskItem[]>(initialTasks);
-  const [schedules] = useState<ScheduleItem[]>(initialSchedules);
-  const [habits, setHabits] = useState<HabitItem[]>(initialHabits);
-  const [taskTab, setTaskTab] = useState<"ACTIVE" | "COMPLETED">("ACTIVE");
-  const [progressSubTab, setProgressSubTab] = useState<"habits" | "study" | "stats" | "achieve">("habits");
+  const [activeTab, setActiveTab] = useState<MainTab>("dashboard");
+  const [taskSubTab, setTaskSubTab] = useState<"active" | "completed">("active");
+  const [progressSubTab, setProgressSubTab] = useState<ProgressSubTab>("habits");
+  const [themeMode, setThemeMode] = useState<"light" | "dark" | "system">("light");
 
-  // Selected task detail dialog
-  const [selectedTask, setSelectedTask] = useState<TaskItem | null>(null);
+  // Interactive Task
+  const [tasks, setTasks] = useState([
+    {
+      id: "t1",
+      title: "Hackathon USB",
+      deadline: "Kamis, 1 Oktober 2026",
+      status: "AMAN",
+      completed: false,
+    },
+  ]);
 
-  // Calendar State
-  const [selectedDay, setSelectedDay] = useState<number>(14);
+  // Interactive Habits
+  const [habits, setHabits] = useState<HabitItem[]>([
+    {
+      id: "h1",
+      name: "Bangun",
+      type: "routine",
+      subtitle: "Pengingat Rutinitas",
+      streak: 0,
+      bestStreak: 2,
+      completed: false,
+    },
+    {
+      id: "h2",
+      name: "Learning Cyber Security",
+      type: "timer",
+      subtitle: "Belum mulai",
+      duration: "0m / 3j",
+      streak: 0,
+      bestStreak: 3,
+      completed: false,
+    },
+    {
+      id: "h3",
+      name: "Mandi",
+      type: "routine",
+      subtitle: "Pengingat Rutinitas",
+      streak: 0,
+      bestStreak: 1,
+      completed: false,
+    },
+  ]);
 
-  // Live Focus Timer State
-  const [isFocusOpen, setIsFocusOpen] = useState(false);
-  const [timerSeconds, setTimerSeconds] = useState(1500); // 25m
+  // Calendar selected day
+  const [selectedDay, setSelectedDay] = useState<number>(17);
+
+  // Live Timer State (Simulates Foreground Service)
+  const [isTimerOpen, setIsTimerOpen] = useState(false);
+  const [timerSeconds, setTimerSeconds] = useState(1500); // 25:00
   const [isTimerRunning, setIsTimerRunning] = useState(false);
-  const habitFocusTitle = "Belajar Jetpack Compose";
+  const [timerHabitTitle, setTimerHabitTitle] = useState("Learning Cyber Security");
 
-  // Mockup internal theme
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  // Timer runner
   useEffect(() => {
     if (!isTimerRunning) return;
     const interval = setInterval(() => {
-      setTimerSeconds((prev) => {
-        if (prev <= 1) {
-          setIsTimerRunning(false);
-          return 0;
-        }
-        return prev - 1;
-      });
+      setTimerSeconds((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
     return () => clearInterval(interval);
   }, [isTimerRunning]);
@@ -159,275 +110,204 @@ export default function MotherAppPrototype() {
     return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
   };
 
-  const toggleTask = (id: string) => {
-    setTasks((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)),
-    );
-  };
-
-  const toggleHabit = (id: string) => {
-    setHabits((prev) =>
-      prev.map((h) =>
-        h.id === id
-          ? {
-              ...h,
-              completed: !h.completed,
-              streak: !h.completed ? h.streak + 1 : Math.max(0, h.streak - 1),
-            }
-          : h,
-      ),
-    );
-  };
-
-  // Priority color mapper directly from Color.kt
-  const getPriorityColor = (p: Priority) => {
-    switch (p) {
-      case "URGENT":
-        return "#FF6B6B"; // Coral Red
-      case "MEPET":
-        return "#FF9F43";  // Bright Orange
-      case "WASPADA":
-        return "#FECA57"; // Bright Gold
-      case "AMAN":
-        return "#1DD1A1";   // Mint Green
-    }
-  };
-
-  const activeTasks = tasks.filter((t) => !t.completed);
-  const completedTasks = tasks.filter((t) => t.completed);
-  const displayedTasks = taskTab === "ACTIVE" ? activeTasks : completedTasks;
+  const isDark = themeMode === "dark";
 
   return (
     <div
       className={cn(
         "relative flex h-full w-full flex-col font-sans select-none overflow-hidden text-xs transition-colors duration-150",
-        isDarkMode ? "bg-[#141210] text-[#F0EBDF]" : "bg-[#F5F1E8] text-[#1B1B1B]",
+        isDark ? "bg-[#18181B] text-[#F4F4F5]" : "bg-[#FAF7F2] text-[#121212]",
       )}
     >
-      {/* 1. Android Top System Status Bar */}
-      <div className="flex h-7 shrink-0 items-center justify-between px-4 pt-1 text-[10px] font-mono font-bold tracking-tight opacity-75">
-        <span>09:41</span>
-        <div className="flex items-center gap-1.5">
-          <span>5G</span>
-          <span>100%</span>
+      {/* ================= 1. ANDROID STATUS BAR ================= */}
+      <div className="flex h-7 shrink-0 items-center justify-between px-4 pt-1 text-[11px] font-bold tracking-tight opacity-80">
+        <span className="font-mono">6:36</span>
+        <div className="flex items-center gap-1.5 font-mono text-[10px]">
+          <span>4G</span>
+          <span>📶</span>
+          <span className="rounded-full bg-black/10 dark:bg-white/20 px-1">30</span>
         </div>
       </div>
 
-      {/* 2. Main Scrollable Container */}
-      <div className="flex-1 overflow-y-auto px-3.5 pb-16 pt-1">
+      {/* ================= 2. MAIN SCROLLABLE BODY ================= */}
+      <div className="flex-1 overflow-y-auto px-3.5 pb-20 pt-1.5 scrollbar-none">
         {/* ========================================================= */}
-        {/* ================= 1. TAB: DASHBOARD SCREEN ============= */}
+        {/* ================= TAB 1: DASHBOARD ===================== */}
         {/* ========================================================= */}
         {activeTab === "dashboard" && (
-          <div className="space-y-3.5">
-            {/* Header: Greeting & Search Icon (DashboardScreen.kt §143) */}
+          <div className="space-y-4">
+            {/* Header: Greeting & Search */}
             <div className="flex items-center justify-between pt-1">
               <div>
-                <h1 className="text-lg font-black tracking-tight leading-tight">Selamat Pagi, Ahmad! 👋</h1>
-                <p className="text-[10px] font-bold opacity-60">Kamis, 14 Agustus 2026</p>
+                <h1 className="text-2xl font-black tracking-tight leading-none text-[#121212] dark:text-white">
+                  Selamat Pagi
+                </h1>
+                <p className="text-xs font-bold text-zinc-700 dark:text-zinc-300 mt-1">
+                  Senin, 17 Agustus 2026
+                </p>
               </div>
               <button
-                onClick={() => setIsDarkMode(!isDarkMode)}
-                title="Toggle Demo Dark Mode"
-                className={cn(
-                  "flex h-8 w-8 items-center justify-center rounded-full border-[2.5px] shadow-[2px_2px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all",
-                  isDarkMode
-                    ? "border-[#F0EBDF] bg-[#201D18] text-amber-300"
-                    : "border-[#1B1B1B] bg-white text-zinc-900",
-                )}
+                className="flex h-10 w-10 items-center justify-center rounded-full border-[2.5px] border-black bg-white dark:bg-zinc-800 text-black dark:text-white shadow-[2px_2px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
+                title="Cari"
               >
-                <Search className="h-3.5 w-3.5" />
+                <Search className="h-4 w-4 stroke-[2.5]" />
               </button>
             </div>
 
-            {/* Streak Hero Card (DashboardScreen.kt §180) */}
-            <div
-              className={cn(
-                "rounded-[14px] border-[3.5px] p-4 text-[#121212] shadow-[4px_4px_0px_#121212] transition-all bg-[#FEE140] border-[#1B1B1B]",
-              )}
-            >
+            {/* Hero Card: STREAK BELAJAR */}
+            <div className="rounded-[20px] border-[3px] border-black bg-[#FFD43F] p-4 text-black shadow-[4px_4px_0px_#000000]">
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="inline-block rounded-[6px] bg-[#121212] px-2 py-0.5 text-[9px] font-black tracking-wider text-[#FEE140] uppercase">
-                    STREAK HARI INI
+                  <span className="inline-block rounded-md bg-black px-2.5 py-0.5 text-[9px] font-black tracking-wider text-[#FFD43F] uppercase">
+                    STREAK BELAJAR
                   </span>
-                  <div className="mt-1 flex items-baseline gap-1.5">
-                    <span className="font-mono text-4xl font-black leading-none tracking-tight">7</span>
-                    <span className="text-sm font-black">HARI</span>
+                  <div className="mt-2 flex items-baseline gap-1.5">
+                    <span className="font-mono text-4xl font-black leading-none tracking-tight">0</span>
+                    <span className="text-base font-black">HARI</span>
                   </div>
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border-[3px] border-[#121212] bg-[#121212]">
-                  <Flame className="h-7 w-7 text-[#FEE140] fill-[#FEE140]" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-black">
+                  <Flame className="h-7 w-7 text-white fill-white" />
                 </div>
               </div>
             </div>
 
-            {/* Target Card (DashboardScreen.kt §249) */}
-            <div
-              className={cn(
-                "rounded-[14px] border-[3.5px] p-3.5 shadow-[4px_4px_0px_#121212]",
-                isDarkMode
-                  ? "border-[#F0EBDF] bg-[#201D18] text-[#F0EBDF]"
-                  : "border-[#1B1B1B] bg-white text-[#1B1B1B]",
-              )}
-            >
+            {/* Target Hari Ini */}
+            <div className="rounded-[20px] border-[3px] border-black bg-white dark:bg-zinc-900 p-4 shadow-[4px_4px_0px_#000000]">
               <div className="flex items-center justify-between">
-                <span className="font-bold text-[11px]">Target Hari Ini</span>
-                <span className="font-mono text-[11px] font-black text-[#3E63DD] dark:text-[#7C93FF]">
-                  1j 25m / 2j 00m
-                </span>
+                <span className="font-black text-xs text-black dark:text-white">Target Hari Ini</span>
+                <span className="font-mono text-xs font-black text-[#EAB308]">0m / 3j</span>
               </div>
-              <div className="mt-2 h-3 w-full overflow-hidden rounded-full border-2 border-[#1B1B1B] bg-zinc-200 dark:bg-zinc-800">
-                <div className="h-full bg-[#3E63DD] dark:bg-[#7C93FF]" style={{ width: "70%" }} />
+              <div className="mt-2.5 h-3.5 w-full overflow-hidden rounded-full border-[2px] border-black bg-[#F5EFE6] dark:bg-zinc-800">
+                <div className="h-full bg-[#FFD43F] w-0" />
               </div>
             </div>
 
-            {/* Deadlines Section (DashboardScreen.kt §323) */}
+            {/* Section: Deadline Terdekat */}
             <div className="space-y-2">
-              <h2 className="font-black text-xs uppercase tracking-wider opacity-90">Deadline Terdekat</h2>
-              <div className="space-y-2">
-                {tasks.slice(0, 2).map((task) => (
-                  <div
-                    key={task.id}
-                    onClick={() => setSelectedTask(task)}
-                    style={{ backgroundColor: getPriorityColor(task.priority) }}
-                    className="flex cursor-pointer items-center justify-between rounded-[14px] border-[3.5px] border-[#1B1B1B] p-3 text-[#121212] shadow-[4px_4px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
-                  >
-                    <div className="pr-2 truncate">
-                      <p className="font-black text-[11px] truncate leading-tight">{task.title}</p>
-                      <p className="text-[9px] font-bold opacity-80 mt-0.5">{task.deadline}</p>
-                    </div>
-                    <span className="shrink-0 rounded-[8px] border-2 border-[#121212] bg-[#121212] px-2 py-0.5 text-[9px] font-black tracking-wider text-white uppercase">
-                      {task.priority}
-                    </span>
+              <h2 className="text-sm font-black text-black dark:text-white tracking-tight">
+                Deadline Terdekat
+              </h2>
+              {tasks.map((task) => (
+                <div
+                  key={task.id}
+                  className="flex items-center justify-between rounded-[20px] border-[3px] border-black bg-[#2DD4BF] p-3.5 text-black shadow-[4px_4px_0px_#000000]"
+                >
+                  <div>
+                    <p className="font-black text-xs leading-snug">{task.title}</p>
+                    <p className="text-[10px] font-bold opacity-80 mt-0.5">{task.deadline}</p>
                   </div>
-                ))}
-              </div>
+                  <span className="rounded-xl border-[2px] border-black bg-[#2DD4BF] px-3 py-1 text-[10px] font-black uppercase">
+                    {task.status}
+                  </span>
+                </div>
+              ))}
             </div>
 
-            {/* Jadwal Hari Ini (DashboardScreen.kt §368) */}
+            {/* Section: Jadwal Hari Ini */}
             <div className="space-y-2">
-              <h2 className="font-black text-xs uppercase tracking-wider opacity-90">Jadwal Hari Ini</h2>
-              <div className="space-y-2">
-                {schedules.map((schedule) => (
-                  <div
-                    key={schedule.id}
-                    className={cn(
-                      "flex items-center gap-3 rounded-[14px] border-[3.5px] p-3 shadow-[4px_4px_0px_#121212]",
-                      isDarkMode
-                        ? "border-[#F0EBDF] bg-[#201D18] text-[#F0EBDF]"
-                        : "border-[#1B1B1B] bg-white text-[#1B1B1B]",
-                    )}
-                  >
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] border-2 border-[#1B1B1B] bg-[#3E63DD] text-white">
-                      <Clock className="h-4 w-4" />
-                    </div>
-                    <div className="flex-1 truncate">
-                      <p className="font-bold text-[11px] truncate">{schedule.title}</p>
-                      <p className="text-[9px] opacity-70 font-mono">
-                        {schedule.startTime} - {schedule.endTime}
-                      </p>
-                    </div>
-                    <span className="text-[9px] font-bold opacity-75">{schedule.status}</span>
-                  </div>
-                ))}
+              <h2 className="text-sm font-black text-black dark:text-white tracking-tight">
+                Jadwal Hari Ini
+              </h2>
+              <div className="rounded-[20px] border-[3px] border-black bg-[#F5EFE6] dark:bg-zinc-800 p-4 shadow-[4px_4px_0px_#000000]">
+                <p className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+                  Belum ada aktivitas hari ini.
+                </p>
               </div>
             </div>
 
-            {/* Quick Actions (DashboardScreen.kt §418) */}
-            <div className="grid grid-cols-3 gap-2 pt-1">
+            {/* Quick Actions (3 Buttons) */}
+            <div className="grid grid-cols-3 gap-2.5 pt-1">
               <button
                 onClick={() => {
                   setActiveTab("tasks");
-                  setTaskTab("ACTIVE");
+                  setTaskSubTab("active");
                 }}
-                className={cn(
-                  "flex flex-col items-center justify-center rounded-[14px] border-[3.5px] p-2.5 text-center shadow-[3px_3px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all",
-                  isDarkMode ? "border-[#F0EBDF] bg-[#201D18]" : "border-[#1B1B1B] bg-white",
-                )}
+                className="flex flex-col items-center justify-center rounded-[18px] border-[2.5px] border-black bg-white dark:bg-zinc-900 p-3 text-center shadow-[3px_3px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
               >
-                <Plus className="h-4 w-4 mb-1" />
-                <span className="font-bold text-[9px] leading-tight">+ Task</span>
+                <Plus className="h-5 w-5 mb-1 stroke-[3]" />
+                <span className="font-black text-[9px] leading-tight">Tambah Tugas</span>
               </button>
               <button
                 onClick={() => setActiveTab("calendar")}
-                className={cn(
-                  "flex flex-col items-center justify-center rounded-[14px] border-[3.5px] p-2.5 text-center shadow-[3px_3px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all",
-                  isDarkMode ? "border-[#F0EBDF] bg-[#201D18]" : "border-[#1B1B1B] bg-white",
-                )}
+                className="flex flex-col items-center justify-center rounded-[18px] border-[2.5px] border-black bg-white dark:bg-zinc-900 p-3 text-center shadow-[3px_3px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
               >
-                <CalendarDays className="h-4 w-4 mb-1" />
-                <span className="font-bold text-[9px] leading-tight">+ Jadwal</span>
+                <CalendarDays className="h-5 w-5 mb-1 stroke-[2.5]" />
+                <span className="font-black text-[9px] leading-tight">Tambah Jadwal</span>
               </button>
               <button
-                onClick={() => setIsFocusOpen(true)}
-                className="flex flex-col items-center justify-center rounded-[14px] border-[3.5px] border-[#1B1B1B] bg-[#3E63DD] p-2.5 text-center text-white shadow-[3px_3px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
+                onClick={() => {
+                  setTimerHabitTitle("Belajar Fokus");
+                  setIsTimerOpen(true);
+                }}
+                className="flex flex-col items-center justify-center rounded-[18px] border-[2.5px] border-black bg-white dark:bg-zinc-900 p-3 text-center shadow-[3px_3px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
               >
-                <Timer className="h-4 w-4 mb-1" />
-                <span className="font-black text-[9px] leading-tight">Start Timer</span>
+                <Timer className="h-5 w-5 mb-1 stroke-[2.5]" />
+                <span className="font-black text-[9px] leading-tight">Mulai Timer</span>
               </button>
             </div>
           </div>
         )}
 
         {/* ========================================================= */}
-        {/* ================= 2. TAB: CALENDAR SCREEN ============== */}
+        {/* ================= TAB 2: KALENDER ====================== */}
         {/* ========================================================= */}
         {activeTab === "calendar" && (
-          <div className="space-y-3.5 pt-1">
-            {/* Month Header (CalendarScreen.kt §297) */}
-            <div className="flex items-center justify-between">
-              <button className="rounded-lg p-1 hover:bg-black/10">
-                <ChevronLeft className="h-4 w-4" />
-              </button>
-              <div className="text-center">
-                <p className="font-black text-xs">Agustus 2026</p>
-                <button
-                  onClick={() => setSelectedDay(14)}
-                  className="font-bold text-[10px] text-[#3E63DD] dark:text-[#7C93FF]"
-                >
-                  Hari Ini
+          <div className="space-y-4 pt-1">
+            {/* Header: Month & Navigation */}
+            <div className="text-center relative">
+              <div className="flex items-center justify-between px-2">
+                <button className="p-1 hover:opacity-70">
+                  <ChevronLeft className="h-5 w-5 stroke-[2.5]" />
+                </button>
+                <h2 className="text-base font-black">Agustus 2026</h2>
+                <button className="p-1 hover:opacity-70">
+                  <ChevronRight className="h-5 w-5 stroke-[2.5]" />
                 </button>
               </div>
-              <button className="rounded-lg p-1 hover:bg-black/10">
-                <ChevronRight className="h-4 w-4" />
+              <button
+                onClick={() => setSelectedDay(17)}
+                className="text-xs font-black text-[#EAB308] mt-0.5"
+              >
+                Hari Ini
               </button>
             </div>
 
-            {/* Month Grid (CalendarScreen.kt §327) */}
-            <div
-              className={cn(
-                "rounded-[14px] border-[3.5px] p-2.5 shadow-[4px_4px_0px_#121212]",
-                isDarkMode ? "border-[#F0EBDF] bg-[#201D18]" : "border-[#1B1B1B] bg-white",
-              )}
-            >
-              <div className="grid grid-cols-7 gap-1 text-center font-bold text-[9px] mb-1">
+            {/* Calendar Matrix */}
+            <div className="rounded-[20px] border-[3px] border-black bg-white dark:bg-zinc-900 p-3.5 shadow-[4px_4px_0px_#000000]">
+              <div className="grid grid-cols-7 gap-1 text-center font-bold text-[10px] mb-2 text-zinc-600 dark:text-zinc-400">
                 {["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"].map((d) => (
-                  <span key={d} className="opacity-60">
-                    {d}
-                  </span>
+                  <span key={d}>{d}</span>
                 ))}
               </div>
               <div className="grid grid-cols-7 gap-1">
+                {/* Blank days before Aug 1 (starts Saturday) */}
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
                 {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => {
                   const isSelected = selectedDay === day;
-                  const isToday = day === 14;
+                  const isToday = day === 17;
+                  const hasStreak = [5, 6, 7, 11, 12, 14].includes(day);
+
                   return (
                     <button
                       key={day}
                       onClick={() => setSelectedDay(day)}
                       className={cn(
-                        "flex h-8 flex-col items-center justify-center rounded-lg font-mono text-[10px] font-bold transition-all",
+                        "flex h-9 flex-col items-center justify-center rounded-lg font-mono text-[11px] font-bold transition-all relative",
                         isSelected
-                          ? "border-2 border-[#1B1B1B] bg-[#3E63DD] text-white shadow-[2px_2px_0px_#121212]"
+                          ? "border-[2px] border-black bg-[#FFD43F] text-black shadow-[1.5px_1.5px_0px_#000]"
                           : isToday
-                            ? "font-black text-[#3E63DD] underline"
+                            ? "text-[#EAB308] font-black"
                             : "hover:bg-black/5 dark:hover:bg-white/5",
                       )}
                     >
                       <span>{day}</span>
-                      {[12, 14, 15, 18].includes(day) && (
-                        <span className="h-1 w-2.5 rounded-full bg-orange-500" />
+                      {hasStreak && (
+                        <span className="absolute bottom-1 h-1 w-3 rounded-full bg-[#FFD43F] border-[0.5px] border-black/50" />
                       )}
                     </button>
                   );
@@ -435,311 +315,435 @@ export default function MotherAppPrototype() {
               </div>
             </div>
 
-            {/* Day Activities List */}
-            <div className="space-y-2">
-              <h3 className="font-black text-xs uppercase tracking-wider opacity-90">
-                Aktivitas {selectedDay} Agustus 2026
+            {/* Day Activity Details */}
+            <div className="space-y-1.5 pt-2">
+              <h3 className="font-black text-sm">
+                Senin, {selectedDay} Agustus 2026
               </h3>
-              <div className="space-y-2">
-                <div
-                  className={cn(
-                    "flex items-center justify-between rounded-[14px] border-[3.5px] p-3 shadow-[4px_4px_0px_#121212]",
-                    isDarkMode ? "border-[#F0EBDF] bg-[#201D18]" : "border-[#1B1B1B] bg-white",
-                  )}
-                >
-                  <div>
-                    <p className="font-bold text-[11px]">Sesi Belajar Jetpack Compose</p>
-                    <p className="text-[9px] opacity-70 font-mono">09:00 - 11:00 (Berlangsung)</p>
-                  </div>
-                </div>
-                <div
-                  style={{ backgroundColor: getPriorityColor("URGENT") }}
-                  className="flex items-center justify-between rounded-[14px] border-[3.5px] border-[#1B1B1B] p-3 text-[#121212] shadow-[4px_4px_0px_#121212]"
-                >
-                  <div>
-                    <p className="font-black text-[11px]">Selesaikan Room Database Migration</p>
-                    <p className="text-[9px] font-bold opacity-80">Deadline: 23:59</p>
-                  </div>
-                  <span className="rounded-[8px] border-2 border-[#121212] bg-[#121212] px-2 py-0.5 text-[8px] font-black text-white uppercase">
-                    URGENT
-                  </span>
-                </div>
-              </div>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400">
+                Tidak ada aktivitas pada tanggal ini.
+              </p>
             </div>
           </div>
         )}
 
         {/* ========================================================= */}
-        {/* ================= 3. TAB: TASKS SCREEN ================= */}
+        {/* ================= TAB 3: TUGAS ========================= */}
         {/* ========================================================= */}
         {activeTab === "tasks" && (
-          <div className="space-y-3 pt-1">
-            {/* TabRow: Aktif / Selesai (TasksScreen.kt §107) */}
-            <div className="grid grid-cols-2 rounded-[10px] border-[2.5px] border-[#1B1B1B] p-0.5 bg-zinc-200 dark:bg-zinc-800">
+          <div className="space-y-4 pt-1">
+            {/* Top input/search box */}
+            <div className="rounded-[12px] border-[2.5px] border-black bg-white dark:bg-zinc-900 p-3 shadow-[3px_3px_0px_#000000]">
+              <span className="text-xs font-semibold text-zinc-500">Tugas</span>
+            </div>
+
+            {/* Subtabs: Aktif vs Selesai */}
+            <div className="flex border-b-[2px] border-zinc-300 dark:border-zinc-700">
               <button
-                onClick={() => setTaskTab("ACTIVE")}
+                onClick={() => setTaskSubTab("active")}
                 className={cn(
-                  "rounded-[8px] py-1.5 font-black text-xs transition-all",
-                  taskTab === "ACTIVE"
-                    ? "border-2 border-[#1B1B1B] bg-white text-[#1B1B1B] shadow-[2px_2px_0px_#121212]"
-                    : "opacity-60",
+                  "flex-1 py-2 text-center text-xs font-black transition-all relative",
+                  taskSubTab === "active" ? "text-[#EAB308]" : "text-zinc-600 dark:text-zinc-400",
                 )}
               >
-                Aktif ({activeTasks.length})
+                Aktif
+                {taskSubTab === "active" && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#EAB308]" />
+                )}
               </button>
               <button
-                onClick={() => setTaskTab("COMPLETED")}
+                onClick={() => setTaskSubTab("completed")}
                 className={cn(
-                  "rounded-[8px] py-1.5 font-black text-xs transition-all",
-                  taskTab === "COMPLETED"
-                    ? "border-2 border-[#1B1B1B] bg-white text-[#1B1B1B] shadow-[2px_2px_0px_#121212]"
-                    : "opacity-60",
+                  "flex-1 py-2 text-center text-xs font-black transition-all relative",
+                  taskSubTab === "completed" ? "text-[#EAB308]" : "text-zinc-600 dark:text-zinc-400",
                 )}
               >
-                Selesai ({completedTasks.length})
+                Selesai
+                {taskSubTab === "completed" && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#EAB308]" />
+                )}
               </button>
             </div>
 
-            {/* Task List (TasksScreen.kt §222) */}
-            <div className="space-y-2.5">
-              {displayedTasks.map((task) => (
-                <div
-                  key={task.id}
-                  onClick={() => setSelectedTask(task)}
-                  style={{
-                    backgroundColor: task.completed
-                      ? isDarkMode
-                        ? "#242424"
-                        : "#E5E5E5"
-                      : getPriorityColor(task.priority),
-                  }}
-                  className={cn(
-                    "flex cursor-pointer items-center justify-between rounded-[14px] border-[3.5px] border-[#1B1B1B] p-3 text-[#121212] shadow-[4px_4px_0px_#121212] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all",
-                    task.completed && "opacity-60 text-zinc-600 dark:text-zinc-400",
-                  )}
-                >
-                  <div className="flex-1 pr-2 truncate">
-                    <p className={cn("font-black text-[11px] truncate", task.completed && "line-through")}>
-                      {task.title}
-                    </p>
-                    <p className="text-[9px] font-bold opacity-80 mt-0.5">{task.deadline}</p>
+            {/* Tasks Content */}
+            {taskSubTab === "active" ? (
+              <div className="space-y-2">
+                {tasks.map((task) => (
+                  <div
+                    key={task.id}
+                    className="flex items-center justify-between rounded-[20px] border-[3px] border-black bg-[#2DD4BF] p-4 text-black shadow-[4px_4px_0px_#000000]"
+                  >
+                    <div>
+                      <p className="font-black text-xs leading-snug">{task.title}</p>
+                      <p className="text-[10px] font-bold opacity-80 mt-0.5">{task.deadline}</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="rounded-xl border-[2px] border-black bg-[#2DD4BF] px-3 py-1 text-[10px] font-black uppercase">
+                        {task.status}
+                      </span>
+                      <button className="p-1 text-black hover:opacity-75">
+                        <Pencil className="h-4 w-4 stroke-[2.5]" />
+                      </button>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="shrink-0 rounded-[8px] border-2 border-[#121212] bg-[#121212] px-2 py-0.5 text-[8px] font-black text-white uppercase">
-                      {task.priority}
-                    </span>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleTask(task.id);
-                      }}
-                      className="flex h-7 w-7 items-center justify-center rounded-[8px] border-2 border-[#121212] bg-white"
-                    >
-                      <Edit2 className="h-3 w-3 text-[#121212]" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-16 text-center">
+                <Check className="h-10 w-10 stroke-[3] text-black dark:text-white mb-3" />
+                <p className="font-black text-sm text-black dark:text-white">Belum ada tugas selesai</p>
+                <p className="text-xs text-zinc-500 mt-1">Tugas yang diselesaikan akan muncul di sini.</p>
+              </div>
+            )}
           </div>
         )}
 
         {/* ========================================================= */}
-        {/* ================= 4. TAB: PROGRESS SCREEN ============== */}
+        {/* ================= TAB 4: PROGRES ======================= */}
         {/* ========================================================= */}
         {activeTab === "progress" && (
-          <div className="space-y-3 pt-1">
-            {/* Scrollable Sub-tabs (ProgressScreen.kt §47) */}
-            <div className="flex gap-1.5 overflow-x-auto pb-1">
+          <div className="space-y-4 pt-1">
+            {/* Top Sub-tabs */}
+            <div className="flex gap-4 overflow-x-auto border-b-[2px] border-zinc-300 dark:border-zinc-700 pb-1 scrollbar-none">
               {[
-                { id: "habits" as const, label: "Habit" },
-                { id: "study" as const, label: "Study" },
+                { id: "habits" as const, label: "Kebiasaan" },
+                { id: "study" as const, label: "Belajar" },
                 { id: "stats" as const, label: "Statistik" },
+                { id: "heatmap" as const, label: "Heatmap" },
                 { id: "achieve" as const, label: "Pencapaian" },
               ].map((sub) => (
                 <button
                   key={sub.id}
                   onClick={() => setProgressSubTab(sub.id)}
                   className={cn(
-                    "shrink-0 rounded-[8px] border-2 px-3 py-1 text-[10px] font-black transition-all",
+                    "shrink-0 pb-1.5 text-xs font-black transition-all relative",
                     progressSubTab === sub.id
-                      ? "border-[#1B1B1B] bg-[#3E63DD] text-white shadow-[2px_2px_0px_#121212]"
-                      : isDarkMode
-                        ? "border-[#F0EBDF] bg-[#201D18]"
-                        : "border-[#1B1B1B] bg-white",
+                      ? "text-[#EAB308]"
+                      : "text-zinc-600 dark:text-zinc-400",
                   )}
                 >
                   {sub.label}
+                  {progressSubTab === sub.id && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#EAB308]" />
+                  )}
                 </button>
               ))}
             </div>
 
-            {/* Habit Sub-Tab Content */}
+            {/* 1. Kebiasaan Sub-tab */}
             {progressSubTab === "habits" && (
-              <div className="space-y-2">
-                <h3 className="font-black text-xs uppercase tracking-wider opacity-90">
-                  Daftar Kebiasaan Harian
-                </h3>
+              <div className="space-y-3">
                 {habits.map((habit) => (
                   <div
                     key={habit.id}
-                    onClick={() => toggleHabit(habit.id)}
-                    className={cn(
-                      "flex cursor-pointer items-center justify-between rounded-[14px] border-[3.5px] p-3 shadow-[4px_4px_0px_#121212] transition-all",
-                      habit.completed
-                        ? "border-[#1B1B1B] bg-[#1DD1A1] text-[#121212]"
-                        : isDarkMode
-                          ? "border-[#F0EBDF] bg-[#201D18]"
-                          : "border-[#1B1B1B] bg-white",
-                    )}
+                    className="rounded-[20px] border-[3px] border-black bg-white dark:bg-zinc-900 p-4 shadow-[4px_4px_0px_#000000]"
                   >
-                    <div className="flex items-center gap-2.5 truncate pr-2">
-                      <span className="text-base">{habit.icon}</span>
+                    <div className="flex items-start justify-between">
                       <div>
-                        <p className="font-black text-[11px] truncate">{habit.name}</p>
-                        <p className="text-[9px] opacity-75 font-mono">{habit.target}</p>
+                        <h3 className="font-black text-sm text-black dark:text-white">{habit.name}</h3>
+                        <p className="text-[10px] font-bold text-[#EAB308] mt-0.5">{habit.subtitle}</p>
                       </div>
+                      <button
+                        onClick={() => {
+                          if (habit.type === "timer") {
+                            setTimerHabitTitle(habit.name);
+                            setIsTimerOpen(true);
+                          } else {
+                            setHabits((prev) =>
+                              prev.map((h) => (h.id === habit.id ? { ...h, completed: !h.completed } : h)),
+                            );
+                          }
+                        }}
+                        className="rounded-[12px] border-[2px] border-black bg-white dark:bg-zinc-800 px-3.5 py-1.5 font-black text-xs text-black dark:text-white shadow-[2px_2px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
+                      >
+                        {habit.type === "timer" ? "Mulai" : habit.completed ? "Selesai ✓" : "Tandai Selesai"}
+                      </button>
                     </div>
-                    <span className="shrink-0 rounded-[8px] border-2 border-[#121212] bg-[#121212] px-2 py-0.5 font-mono text-[9px] font-black text-[#FEE140]">
-                      🔥 {habit.streak} Hari
-                    </span>
+
+                    {habit.duration && (
+                      <div className="mt-2">
+                        <p className="font-mono text-[10px] text-zinc-600 dark:text-zinc-400 mb-1">{habit.duration}</p>
+                        <div className="h-1.5 w-full rounded-full bg-[#E5E5E5] overflow-hidden">
+                          <div className="h-full bg-[#FFD43F] w-0" />
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-zinc-700 dark:text-zinc-300">
+                      <Flame className="h-3.5 w-3.5 text-[#EAB308] fill-[#EAB308]" />
+                      <span>{habit.streak} hari</span>
+                      <span className="opacity-50">·</span>
+                      <span className="opacity-75">Terbaik: {habit.bestStreak} hari</span>
+                    </div>
                   </div>
                 ))}
               </div>
             )}
 
-            {/* Study / Stats Sub-Tab Content */}
-            {progressSubTab !== "habits" && (
+            {/* 2. Belajar Sub-tab */}
+            {progressSubTab === "study" && (
               <div className="space-y-3">
-                <div
-                  className={cn(
-                    "rounded-[14px] border-[3.5px] p-3.5 shadow-[4px_4px_0px_#121212]",
-                    isDarkMode ? "border-[#F0EBDF] bg-[#201D18]" : "border-[#1B1B1B] bg-white",
-                  )}
-                >
-                  <div className="flex justify-between items-baseline mb-2">
-                    <span className="font-bold text-[11px]">Total Waktu Fokus</span>
-                    <span className="font-mono text-xs font-black text-[#3E63DD]">18j 40m</span>
+                <p className="font-black text-sm">Total belajar: 3j 11m</p>
+                {[
+                  { title: "Mandi", date: "Jumat, 14 Agustus 2026", time: "13:15 - 13:15 (1m)" },
+                  { title: "Bangun", date: "Jumat, 14 Agustus 2026", time: "13:15 - 13:15 (1m)" },
+                  { title: "Bangun", date: "Rabu, 12 Agustus 2026", time: "19:18 - 19:18 (1m)" },
+                  { title: "Learning Cyber Security", date: "Rabu, 12 Agustus 2026", time: "08:04 - 09:07 (1j 3m)" },
+                  { title: "Mandi", date: "Selasa, 11 Agustus 2026", time: "18:30 - 18:30 (1m)" },
+                  { title: "Bangun", date: "Selasa, 11 Agustus 2026", time: "10:24 - 10:24 (1m)" },
+                ].map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center justify-between rounded-[20px] border-[3px] border-black bg-white dark:bg-zinc-900 p-4 shadow-[4px_4px_0px_#000000]"
+                  >
+                    <div>
+                      <p className="font-black text-xs">{item.title}</p>
+                      <p className="text-[10px] text-zinc-600 dark:text-zinc-400 mt-0.5">{item.date}</p>
+                      <p className="text-[10px] font-mono text-zinc-600 dark:text-zinc-400">{item.time}</p>
+                    </div>
+                    <button className="p-1 text-black dark:text-white hover:opacity-75">
+                      <Trash2 className="h-4 w-4 stroke-[2.5]" />
+                    </button>
                   </div>
-                  <div className="flex items-end justify-between gap-1.5 h-20 pt-2 border-b-2 border-black/20 pb-1">
-                    {[
-                      { d: "S", h: "60%" },
-                      { d: "S", h: "85%" },
-                      { d: "R", h: "45%" },
-                      { d: "K", h: "95%" },
-                      { d: "J", h: "70%" },
-                      { d: "S", h: "30%" },
-                      { d: "M", h: "50%" },
-                    ].map((item, idx) => (
-                      <div key={idx} className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
-                        <div
-                          className={cn(
-                            "w-full rounded-t border-2 border-[#121212] transition-all",
-                            idx === 3 ? "bg-[#3E63DD]" : "bg-[#FECA57]",
-                          )}
-                          style={{ height: item.h }}
-                        />
-                        <span className="text-[8px] font-bold font-mono opacity-70">{item.d}</span>
-                      </div>
-                    ))}
+                ))}
+              </div>
+            )}
+
+            {/* 3. Statistik Sub-tab */}
+            {progressSubTab === "stats" && (
+              <div className="space-y-3">
+                <div className="rounded-[12px] border-[2.5px] border-black bg-white dark:bg-zinc-900 p-3 shadow-[3px_3px_0px_#000000] flex justify-between items-center">
+                  <span className="text-xs font-bold">Minggu Ini</span>
+                  <span className="text-xs">▼</span>
+                </div>
+
+                <div className="rounded-[20px] border-[3px] border-black bg-white dark:bg-zinc-900 p-4 shadow-[4px_4px_0px_#000000] space-y-2">
+                  <h4 className="font-black text-sm">Belajar</h4>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div>
+                      <p className="text-zinc-500 text-[10px]">Total Jam Belajar</p>
+                      <p className="font-black text-sm font-mono">0m</p>
+                    </div>
+                    <div>
+                      <p className="text-zinc-500 text-[10px]">Jumlah Sesi</p>
+                      <p className="font-black text-sm font-mono">0</p>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-zinc-500 text-[10px]">Rata-rata Durasi</p>
+                    <p className="font-black text-sm font-mono">0m</p>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2">
-                  <div
-                    className={cn(
-                      "rounded-[14px] border-[3.5px] p-3 shadow-[3px_3px_0px_#121212] bg-[#3E63DD] text-white border-[#1B1B1B]",
-                    )}
-                  >
-                    <p className="text-[9px] font-black uppercase opacity-90">Total Sesi</p>
-                    <p className="font-mono text-xl font-black mt-0.5">34 Sesi</p>
-                  </div>
-                  <div
-                    className={cn(
-                      "rounded-[14px] border-[3.5px] p-3 shadow-[3px_3px_0px_#121212] bg-[#FEE140] text-[#121212] border-[#1B1B1B]",
-                    )}
-                  >
-                    <p className="text-[9px] font-black uppercase opacity-90">Streak Terbaik</p>
-                    <p className="font-mono text-xl font-black mt-0.5">14 Hari</p>
+                <div className="rounded-[20px] border-[3px] border-black bg-white dark:bg-zinc-900 p-4 shadow-[4px_4px_0px_#000000] space-y-2">
+                  <h4 className="font-black text-sm">Kebiasaan</h4>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div>
+                      <p className="text-zinc-500 text-[10px]">Hari Selesai</p>
+                      <p className="font-black text-sm font-mono">0</p>
+                    </div>
+                    <div>
+                      <p className="text-zinc-500 text-[10px]">Hari Gagal</p>
+                      <p className="font-black text-sm font-mono">0</p>
+                    </div>
+                    <div>
+                      <p className="text-zinc-500 text-[10px]">Streak Aktif</p>
+                      <p className="font-black text-sm font-mono">0</p>
+                    </div>
+                    <div>
+                      <p className="text-zinc-500 text-[10px]">Streak Tertinggi</p>
+                      <p className="font-black text-sm font-mono">3</p>
+                    </div>
                   </div>
                 </div>
+              </div>
+            )}
+
+            {/* 4. Heatmap Sub-tab */}
+            {progressSubTab === "heatmap" && (
+              <div className="space-y-4">
+                <div className="rounded-[20px] border-[3px] border-black bg-white dark:bg-zinc-900 p-4 shadow-[4px_4px_0px_#000000]">
+                  {/* Heatmap Grid */}
+                  <div className="grid grid-cols-12 gap-1.5">
+                    {Array.from({ length: 72 }, (_, i) => {
+                      const isActive = [34, 45, 46, 57, 58, 69].includes(i);
+                      const isHigh = [46, 58].includes(i);
+                      return (
+                        <div
+                          key={i}
+                          className={cn(
+                            "aspect-square rounded-sm border-[0.5px] border-black/20 transition-all",
+                            isHigh
+                              ? "bg-[#FFD43F]"
+                              : isActive
+                                ? "bg-[#FFE793]"
+                                : "bg-[#F5EFE6] dark:bg-zinc-800",
+                          )}
+                        />
+                      );
+                    })}
+                  </div>
+                  <div className="mt-3 flex items-center justify-between text-[10px] font-bold text-zinc-500">
+                    <span>Sedikit</span>
+                    <div className="flex gap-1">
+                      <span className="h-2.5 w-2.5 rounded-xs bg-[#F5EFE6]" />
+                      <span className="h-2.5 w-2.5 rounded-xs bg-[#FFF3C4]" />
+                      <span className="h-2.5 w-2.5 rounded-xs bg-[#FFE793]" />
+                      <span className="h-2.5 w-2.5 rounded-xs bg-[#FFD43F]" />
+                    </div>
+                    <span>Banyak</span>
+                  </div>
+                </div>
+
+                {/* Ringkasan */}
+                <div className="rounded-[20px] border-[3px] border-black bg-white dark:bg-zinc-900 p-4 shadow-[4px_4px_0px_#000000] space-y-2.5">
+                  <h4 className="font-black text-sm">Ringkasan</h4>
+                  <div className="space-y-1.5 text-xs">
+                    <div className="flex justify-between">
+                      <span className="text-zinc-600 dark:text-zinc-400">Total Hari Aktif</span>
+                      <span className="font-black font-mono">6</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-600 dark:text-zinc-400">Hari Terbaik</span>
+                      <span className="font-black">Kamis, 6 Agustus 2026</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-600 dark:text-zinc-400">Durasi Terlama</span>
+                      <span className="font-black font-mono">1j 23m</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* 5. Pencapaian Sub-tab */}
+            {progressSubTab === "achieve" && (
+              <div className="space-y-3">
+                {[
+                  { title: "Streak 7 Hari", progress: "3 / 7" },
+                  { title: "Belajar 10 Jam", progress: "3 / 10" },
+                  { title: "Streak 30 Hari", progress: "3 / 30" },
+                  { title: "Belajar 100 Jam", progress: "3 / 100" },
+                  { title: "Streak 100 Hari", progress: "3 / 100" },
+                  { title: "100 Task Selesai", progress: "0 / 100" },
+                ].map((ach, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded-[20px] border-[3px] border-black bg-white dark:bg-zinc-900 p-4 shadow-[4px_4px_0px_#000000]"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <Lock className="h-4 w-4 text-black dark:text-white stroke-[2.5]" />
+                        <h4 className="font-black text-xs">{ach.title}</h4>
+                      </div>
+                      <span className="text-[10px] font-bold text-zinc-500">Terkunci</span>
+                    </div>
+                    <div className="mt-2.5 h-1.5 w-full rounded-full bg-[#E5E5E5] overflow-hidden">
+                      <div className="h-full bg-[#FFD43F] w-[40%]" />
+                    </div>
+                    <p className="mt-1.5 font-mono text-[9px] text-zinc-500">{ach.progress}</p>
+                  </div>
+                ))}
               </div>
             )}
           </div>
         )}
 
         {/* ========================================================= */}
-        {/* ================= 5. TAB: SETTINGS SCREEN ============== */}
+        {/* ================= TAB 5: PENGATURAN ==================== */}
         {/* ========================================================= */}
         {activeTab === "settings" && (
-          <div className="space-y-3 pt-1">
-            <h2 className="font-black text-sm">Pengaturan</h2>
-            <div
-              className={cn(
-                "rounded-[14px] border-[3.5px] divide-y-[2.5px] shadow-[4px_4px_0px_#121212]",
-                isDarkMode
-                  ? "border-[#F0EBDF] bg-[#201D18] divide-[#F0EBDF]/20"
-                  : "border-[#1B1B1B] bg-white divide-[#1B1B1B]/20",
-              )}
-            >
-              <div className="flex items-center justify-between p-3.5">
-                <div>
-                  <p className="font-bold text-[11px]">Tema Tampilan</p>
-                  <p className="text-[9px] opacity-70">Mode Gelap / Terang Neobrutalism</p>
-                </div>
-                <button
-                  onClick={() => setIsDarkMode(!isDarkMode)}
-                  className="rounded-[8px] border-2 border-[#1B1B1B] bg-[#3E63DD] px-3 py-1 font-black text-white text-[10px] shadow-[2px_2px_0px_#121212]"
-                >
-                  {isDarkMode ? "Dark" : "Light"}
+          <div className="space-y-4 pt-1">
+            {/* Tampilan (Theme) */}
+            <div className="rounded-[20px] border-[3px] border-black bg-white dark:bg-zinc-900 p-4 shadow-[4px_4px_0px_#000000] space-y-3">
+              <h3 className="font-black text-sm">Tampilan</h3>
+              <div className="space-y-2">
+                {[
+                  { id: "light" as const, label: "Terang" },
+                  { id: "dark" as const, label: "Gelap" },
+                  { id: "system" as const, label: "Ikuti Sistem" },
+                ].map((opt) => (
+                  <label
+                    key={opt.id}
+                    onClick={() => setThemeMode(opt.id)}
+                    className="flex cursor-pointer items-center gap-3"
+                  >
+                    <div className="flex h-5 w-5 items-center justify-center rounded-full border-[2px] border-black">
+                      {themeMode === opt.id && (
+                        <div className="h-2.5 w-2.5 rounded-full bg-[#EAB308]" />
+                      )}
+                    </div>
+                    <span className="font-bold text-xs">{opt.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Cadangan & Pulihkan */}
+            <div className="rounded-[20px] border-[3px] border-black bg-white dark:bg-zinc-900 p-4 shadow-[4px_4px_0px_#000000] space-y-3">
+              <h3 className="font-black text-sm">Cadangan & Pulihkan</h3>
+              <p className="text-[11px] text-zinc-600 dark:text-zinc-400">
+                Backup terakhir: Selasa, 11 Agustus 2026
+              </p>
+              <div className="flex gap-3">
+                <button className="flex-1 rounded-[12px] border-[2.5px] border-black bg-white dark:bg-zinc-800 py-2 font-black text-xs shadow-[2px_2px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none">
+                  Ekspor Data
+                </button>
+                <button className="flex-1 rounded-[12px] border-[2.5px] border-black bg-white dark:bg-zinc-800 py-2 font-black text-xs shadow-[2px_2px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none">
+                  Impor Data
                 </button>
               </div>
+            </div>
 
-              <div className="flex items-center justify-between p-3.5">
-                <div>
-                  <p className="font-bold text-[11px]">Foreground Timer Service</p>
-                  <p className="text-[9px] opacity-70">Notifikasi & Live Chronometer</p>
-                </div>
-                <span className="rounded-[6px] border-2 border-[#121212] bg-[#1DD1A1] px-2 py-0.5 text-[8px] font-black text-[#121212] uppercase">
-                  AKTIF
-                </span>
-              </div>
-
-              <div className="flex items-center justify-between p-3.5">
-                <div>
-                  <p className="font-bold text-[11px]">Versi Aplikasi</p>
-                  <p className="text-[9px] font-mono opacity-70">Mother v3.4.0 (Jetpack Compose)</p>
-                </div>
-                <span className="font-mono text-[10px] font-bold">Release</span>
-              </div>
+            {/* Tentang */}
+            <div className="rounded-[20px] border-[3px] border-black bg-white dark:bg-zinc-900 p-4 shadow-[4px_4px_0px_#000000] space-y-1">
+              <p className="text-[10px] font-bold text-zinc-500">Tentang</p>
+              <h3 className="font-black text-lg">Mother</h3>
+              <p className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">Versi 3.4.0</p>
             </div>
           </div>
         )}
       </div>
 
-      {/* ================= FOCUS MODE OVERLAY (FocusModeScreen.kt) ================= */}
-      {isFocusOpen && (
-        <div className="absolute inset-0 z-40 flex flex-col justify-between bg-[#141210] p-5 text-[#F0EBDF] animate-in fade-in duration-150">
+      {/* ================= FLOATING ACTION BUTTON (FAB) ================= */}
+      <button
+        onClick={() => {
+          if (activeTab === "dashboard" || activeTab === "tasks") {
+            setTaskSubTab("active");
+            setActiveTab("tasks");
+          } else {
+            setTimerHabitTitle("Belajar Fokus");
+            setIsTimerOpen(true);
+          }
+        }}
+        className="absolute bottom-16 right-4 z-20 flex h-12 w-12 items-center justify-center rounded-[16px] border-[3px] border-black bg-[#FFD43F] text-black shadow-[3px_3px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
+      >
+        <Plus className="h-6 w-6 stroke-[3]" />
+      </button>
+
+      {/* ================= LIVE TIMER OVERLAY ================= */}
+      {isTimerOpen && (
+        <div className="absolute inset-0 z-40 flex flex-col justify-between bg-[#121212] p-5 text-white animate-in fade-in duration-150">
           <div className="flex items-center justify-between">
-            <span className="rounded-[6px] border-2 border-[#F0EBDF] bg-[#3E63DD] px-2 py-0.5 font-mono text-[9px] font-black uppercase text-white shadow-[2px_2px_0px_#F0EBDF]">
+            <span className="rounded-md border-2 border-white bg-[#FFD43F] px-2 py-0.5 font-mono text-[9px] font-black uppercase text-black">
               ⚡ FOREGROUND SERVICE
             </span>
             <button
-              onClick={() => setIsFocusOpen(false)}
-              className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#F0EBDF] bg-[#201D18]"
+              onClick={() => setIsTimerOpen(false)}
+              className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-zinc-800"
             >
               <X className="h-4 w-4" />
             </button>
           </div>
 
           <div className="my-auto text-center space-y-3">
-            <h3 className="text-sm font-black text-[#FECA57] uppercase tracking-wider">
-              {habitFocusTitle}
+            <h3 className="text-sm font-black text-[#FFD43F] uppercase tracking-wider">
+              {timerHabitTitle}
             </h3>
-            <div className="font-mono text-5xl font-black tracking-tight text-white drop-shadow-[0_4px_24px_rgba(62,99,221,0.6)]">
+            <div className="font-mono text-5xl font-black tracking-tight text-white drop-shadow-[0_4px_24px_rgba(255,212,63,0.5)]">
               {formatTimer(timerSeconds)}
             </div>
-            <p className="text-[9px] font-mono text-zinc-400">
+            <p className="text-[10px] font-mono text-zinc-400">
               {isTimerRunning ? "Sesi Berjalan di Background..." : "Sesi Dijeda"}
             </p>
           </div>
@@ -748,112 +752,41 @@ export default function MotherAppPrototype() {
             <div className="flex gap-2">
               <button
                 onClick={() => setIsTimerRunning(!isTimerRunning)}
-                className="flex-1 flex h-11 items-center justify-center gap-1.5 rounded-[10px] border-2 border-white bg-[#3E63DD] font-black text-white shadow-[3px_3px_0px_#FFFFFF] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
+                className="flex-1 flex h-11 items-center justify-center gap-1.5 rounded-[12px] border-2 border-white bg-[#FFD43F] font-black text-black shadow-[3px_3px_0px_#FFFFFF] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
               >
-                {isTimerRunning ? <Pause className="h-4 w-4 fill-white" /> : <Play className="h-4 w-4 fill-white" />}
+                {isTimerRunning ? <Pause className="h-4 w-4 fill-black" /> : <Play className="h-4 w-4 fill-black" />}
                 <span>{isTimerRunning ? "Jeda" : "Mulai"}</span>
               </button>
               <button
                 onClick={() => {
                   setIsTimerRunning(false);
                   setTimerSeconds(1500);
-                  setIsFocusOpen(false);
+                  setIsTimerOpen(false);
                 }}
-                className="flex-1 flex h-11 items-center justify-center rounded-[10px] border-2 border-white bg-[#FF6B6B] font-black text-[#121212] shadow-[3px_3px_0px_#FFFFFF] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
+                className="flex-1 flex h-11 items-center justify-center rounded-[12px] border-2 border-white bg-[#FF6B6B] font-black text-black shadow-[3px_3px_0px_#FFFFFF] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
               >
                 Selesai
               </button>
             </div>
-            <button
-              onClick={() => setIsFocusOpen(false)}
-              className="w-full text-center text-[10px] font-bold text-zinc-400 hover:text-white"
-            >
-              Kecilkan ke Background Banner ↓
-            </button>
           </div>
         </div>
       )}
 
-      {/* ================= ACTIVE TIMER BANNER (ActiveTimerBanner.kt) ================= */}
-      {isTimerRunning && !isFocusOpen && (
-        <div
-          onClick={() => setIsFocusOpen(true)}
-          className="absolute bottom-14 left-3 right-3 z-30 flex cursor-pointer items-center justify-between rounded-[10px] border-2 border-[#121212] bg-[#3E63DD] px-3 py-2 text-white shadow-[3px_3px_0px_#121212] active:scale-[0.98]"
-        >
-          <div className="flex items-center gap-2 truncate">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
-            </span>
-            <span className="font-black text-[9px] truncate">Timer: {habitFocusTitle}</span>
-          </div>
-          <span className="font-mono text-[10px] font-black">{formatTimer(timerSeconds)}</span>
-        </div>
-      )}
-
-      {/* ================= DETAIL TASK ALERT DIALOG (TasksScreen.kt §275) ================= */}
-      {selectedTask && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70 p-4 animate-in fade-in duration-150">
-          <div
-            className={cn(
-              "w-full rounded-[14px] border-[3.5px] p-4 shadow-[5px_5px_0px_#121212]",
-              isDarkMode
-                ? "border-[#F0EBDF] bg-[#201D18] text-[#F0EBDF]"
-                : "border-[#1B1B1B] bg-white text-[#1B1B1B]",
-            )}
-          >
-            <div className="flex items-start justify-between gap-2">
-              <h3 className="font-black text-sm">{selectedTask.title}</h3>
-              <span
-                style={{ backgroundColor: getPriorityColor(selectedTask.priority) }}
-                className="shrink-0 rounded-[8px] border-2 border-[#121212] px-2 py-0.5 text-[8px] font-black text-[#121212] uppercase"
-              >
-                {selectedTask.priority}
-              </span>
-            </div>
-
-            <div className="mt-3 space-y-1.5 text-[10px]">
-              <p className="font-bold text-[#3E63DD]">Deskripsi:</p>
-              <p className="opacity-80">{selectedTask.description}</p>
-              <p className="font-mono font-bold mt-2">Deadline: {selectedTask.deadline}</p>
-            </div>
-
-            <div className="mt-4 flex gap-2">
-              <button
-                onClick={() => {
-                  toggleTask(selectedTask.id);
-                  setSelectedTask(null);
-                }}
-                className="flex-1 rounded-[10px] border-2 border-[#1B1B1B] bg-[#3E63DD] py-1.5 font-black text-white text-[10px] shadow-[2px_2px_0px_#121212]"
-              >
-                {selectedTask.completed ? "Buka Kembali" : "Selesaikan Tugas"}
-              </button>
-              <button
-                onClick={() => setSelectedTask(null)}
-                className="rounded-[10px] border-2 border-[#1B1B1B] px-3 py-1.5 font-bold text-[10px]"
-              >
-                Tutup
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ================= 5. BOTTOM NAVIGATION BAR (Destinations.kt) ================= */}
+      {/* ================= 3. BOTTOM NAVIGATION BAR ================= */}
       <div
         className={cn(
-          "absolute bottom-0 left-0 right-0 z-20 flex h-13 items-center justify-around border-t-[2.5px] px-1",
-          isDarkMode
-            ? "border-[#F0EBDF]/30 bg-[#141210] text-[#F0EBDF]"
-            : "border-[#1B1B1B] bg-[#F5F1E8] text-[#1B1B1B]",
+          "absolute bottom-0 left-0 right-0 z-20 flex h-14 items-center justify-around border-t-[2.5px] px-2",
+          isDark
+            ? "border-zinc-800 bg-[#18181B] text-[#F4F4F5]"
+            : "border-black bg-[#FAF7F2] text-[#121212]",
         )}
       >
         {[
-          { id: "dashboard" as TopTab, label: "Home", icon: Home },
-          { id: "calendar" as TopTab, label: "Calendar", icon: CalendarIcon },
-          { id: "tasks" as TopTab, label: "Tasks", icon: CheckSquare },
-          { id: "progress" as TopTab, label: "Progress", icon: BarChart3 },
-          { id: "settings" as TopTab, label: "Settings", icon: SettingsIcon },
+          { id: "dashboard" as MainTab, label: "Dashboard", icon: Home },
+          { id: "calendar" as MainTab, label: "Kalender", icon: CalendarIcon },
+          { id: "tasks" as MainTab, label: "Tugas", icon: CheckCircle2 },
+          { id: "progress" as MainTab, label: "Progres", icon: Sparkles },
+          { id: "settings" as MainTab, label: "Pengaturan", icon: SettingsIcon },
         ].map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.id;
@@ -862,17 +795,21 @@ export default function MotherAppPrototype() {
               key={item.id}
               onClick={() => {
                 setActiveTab(item.id);
-                setIsFocusOpen(false);
+                setIsTimerOpen(false);
               }}
               className={cn(
-                "flex flex-col items-center justify-center gap-0.5 rounded-lg py-1 px-2 font-black transition-all",
-                isActive
-                  ? "text-[#3E63DD] dark:text-[#7C93FF] scale-110"
-                  : "opacity-60 hover:opacity-100",
+                "flex flex-col items-center justify-center gap-0.5 transition-all",
+                isActive ? "text-black dark:text-white" : "opacity-60 hover:opacity-100",
               )}
             >
-              <Icon className={cn("h-4 w-4", isActive && "stroke-[3]")} />
-              <span className="text-[8px] tracking-tight">{item.label}</span>
+              {isActive ? (
+                <div className="flex items-center justify-center rounded-full bg-[#FFD43F] px-4 py-1 border-[2px] border-black shadow-[1px_1px_0px_#000]">
+                  <Icon className="h-4 w-4 stroke-[2.5] text-black" />
+                </div>
+              ) : (
+                <Icon className="h-4 w-4 stroke-[2]" />
+              )}
+              <span className="text-[9px] font-bold tracking-tight">{item.label}</span>
             </button>
           );
         })}

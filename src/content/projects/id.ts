@@ -39,7 +39,6 @@ export const projectCopyId: Record<string, ProjectCopy> = {
       "Monorepo memudahkan berbagi tipe antara situs publik dan admin panel, tapi itu lebih banyak tooling daripada yang sebenarnya dibutuhkan proyek berisi dua aplikasi.",
     ],
     futureImprovements: [
-      "Mengganti nomor WhatsApp placeholder dan sisa banner uji coba dengan data sebenarnya.",
       "Menyatukan penyimpanan gambar ke Supabase dan melepas ketergantungan pada Firebase.",
       "Menambahkan deskripsi menu versi Indonesia dan Inggris.",
     ],

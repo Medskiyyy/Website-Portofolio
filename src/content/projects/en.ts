@@ -34,7 +34,6 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
       "A monorepo made sharing types between the public site and the admin panel easy, but it is more tooling than a two-app project strictly needs.",
     ],
     futureImprovements: [
-      "Replace the placeholder WhatsApp number and the leftover test banner with real data.",
       "Consolidate image storage onto Supabase and drop the Firebase dependency.",
       "Add Indonesian and English versions of the menu descriptions.",
     ],
