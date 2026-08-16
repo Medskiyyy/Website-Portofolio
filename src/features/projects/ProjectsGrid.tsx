@@ -7,7 +7,6 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { StaggerGroup, StaggerItem } from "@/components/motion";
 import type { Project } from "@/types/project";
-import MotherAppPrototype from "@/components/prototypes/MotherAppPrototype";
 
 type ProjectsGridProps = {
   projects: Project[];
@@ -59,7 +58,6 @@ export default function ProjectsGrid({
           {projects.map((project, index) => {
             const CategoryIcon = categoryIcons[project.slug] ?? Layers;
             const isPortrait = project.aspectRatio === "portrait";
-            const isMother = project.slug === "mother";
 
             return (
               <StaggerItem key={project.slug} className="h-full">
@@ -77,11 +75,7 @@ export default function ProjectsGrid({
                         {/* Camera punch-hole */}
                         <div className="absolute top-1.5 left-1/2 -translate-x-1/2 z-30 h-2 w-2 rounded-full bg-foreground/30 pointer-events-none" />
                         <div className="relative flex-1 w-full h-full overflow-hidden">
-                          {isMother ? (
-                            <div className="pointer-events-none transform scale-[0.98] origin-top h-full">
-                              <MotherAppPrototype />
-                            </div>
-                          ) : project.imageUrl ? (
+                          {project.imageUrl ? (
                             <Image
                               src={project.imageUrl}
                               alt={`${project.title} interface`}
