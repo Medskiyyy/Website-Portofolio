@@ -2,7 +2,7 @@
 
 Bilingual (EN/ID) portfolio. Four projects with case studies, a resume page, and contact details.
 
-**Live:** https://website-portofolio-pi-ruby.vercel.app
+**Live:** https://ahmadhidayatullah.my.id
 
 ---
 
