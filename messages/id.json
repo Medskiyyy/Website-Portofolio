@@ -16,7 +16,10 @@
     "subtitle": "Mahasiswa Sistem Informasi yang membangun aplikasi web full-stack dengan Next.js dan TypeScript, serta aplikasi Android native dengan Kotlin. Di antaranya storefront dan CMS custom untuk usaha kuliner di Serpong, dan aplikasi keuangan yang berjalan sepenuhnya di perangkat.",
     "ctaProjects": "Lihat proyek",
     "ctaResume": "Unduh resume (PDF)",
-    "githubLink": "Profil GitHub"
+    "githubLink": "Profil GitHub",
+    "role": "Developer web full-stack & Android, Bekasi",
+    "availability": "Terbuka untuk internship & freelance, ~20 jam/minggu",
+    "index": "Daftar isi"
   },
   "AboutPreview": {
     "label": "Tentang",
@@ -51,11 +54,6 @@
     "mobileDesc": "Semua yang ada di Mother dan HitungUang berjalan langsung di perangkat Android native.",
     "tools": "Tooling & praktik",
     "deliveryDesc": "Cara kode disusun, direview, dan dirilis.",
-    "filterAll": "Semua",
-    "filterFrontend": "Frontend",
-    "filterBackend": "Backend & DB",
-    "filterMobile": "Android",
-    "filterTools": "Tooling",
     "usageProduction": "Dipakai di proyek yang live",
     "usagePersonal": "Dipakai di proyek pribadi",
     "usageLearning": "Masih dipelajari"
@@ -99,7 +97,6 @@
     "metaTitle": "Resume | Ahmad Hidayatullah",
     "metaDescription": "Resume Ahmad Hidayatullah, mahasiswa Sistem Informasi dan developer web full-stack serta Android native.",
     "label": "Resume",
-    "title": "Resume",
     "subtitle": "Developer web full-stack & Android · Mahasiswa Sistem Informasi · Sekitar 20 jam/minggu",
     "location": "Bekasi, Jawa Barat, Indonesia",
     "download": "Unduh PDF",
@@ -168,9 +165,9 @@
     "bio": "Mahasiswa Sistem Informasi di Bekasi yang membangun aplikasi web full-stack dan Android native. Tersedia sekarang untuk internship part-time atau freelance, sekitar 20 jam per minggu.",
     "sitemap": "Halaman",
     "rights": "Seluruh hak cipta dilindungi.",
-    "email": "Email",
-    "github": "GitHub",
-    "toTop": "Kembali ke atas"
+    "toTop": "Kembali ke atas",
+    "elsewhere": "Di tempat lain",
+    "colophon": "Diset dengan Newsreader dan IBM Plex. Dibangun dengan Next.js."
   },
   "NotFound": {
     "title": "Halaman tidak ditemukan",

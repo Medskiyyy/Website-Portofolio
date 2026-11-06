@@ -16,7 +16,10 @@
     "subtitle": "Information Systems student and developer. I build full-stack web apps with Next.js and TypeScript, and native Android apps with Kotlin. That includes a live storefront with a custom CMS for a food business in Serpong, and an offline-first finance app that runs entirely on the device.",
     "ctaProjects": "View projects",
     "ctaResume": "Download resume (PDF)",
-    "githubLink": "GitHub profile"
+    "githubLink": "GitHub profile",
+    "role": "Full-stack web & Android developer, Bekasi",
+    "availability": "Open to internships & freelance, ~20 hrs/week",
+    "index": "Contents"
   },
   "AboutPreview": {
     "label": "About",
@@ -51,11 +54,6 @@
     "mobileDesc": "Everything in Mother and HitungUang runs directly on-device with native Android.",
     "tools": "Tooling & practices",
     "deliveryDesc": "How the code gets organised, reviewed, and shipped.",
-    "filterAll": "All",
-    "filterFrontend": "Frontend",
-    "filterBackend": "Backend & DB",
-    "filterMobile": "Android",
-    "filterTools": "Tooling",
     "usageProduction": "Used in a live project",
     "usagePersonal": "Used in a personal project",
     "usageLearning": "Still learning"
@@ -99,7 +97,6 @@
     "metaTitle": "Resume | Ahmad Hidayatullah",
     "metaDescription": "Resume of Ahmad Hidayatullah, Information Systems student and full-stack web and native Android developer.",
     "label": "Resume",
-    "title": "Resume",
     "subtitle": "Full-stack web & Android developer · Information Systems student · About 20 hours a week",
     "location": "Bekasi, West Java, Indonesia",
     "download": "Download PDF",
@@ -168,9 +165,9 @@
     "bio": "Information Systems student in Bekasi building full-stack web apps and native Android apps. Available now for a part-time internship or freelance work, around 20 hours a week.",
     "sitemap": "Pages",
     "rights": "All rights reserved.",
-    "email": "Email",
-    "github": "GitHub",
-    "toTop": "Back to top"
+    "toTop": "Back to top",
+    "elsewhere": "Elsewhere",
+    "colophon": "Set in Newsreader and IBM Plex. Built with Next.js."
   },
   "NotFound": {
     "title": "Page not found",

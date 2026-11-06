@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
-import { Mail, Github, Phone, ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/Heading";
 import { Reveal } from "@/components/motion";
 import { profile } from "@/content/profile";
 
@@ -24,14 +25,12 @@ export default async function ContactPage({
 
   const contactMethods = [
     {
-      icon: <Mail className="h-6 w-6" />,
       label: "Email",
       value: profile.email,
       href: `mailto:${profile.email}`,
       description: t("emailDesc"),
     },
     {
-      icon: <Phone className="h-6 w-6" />,
       label: "WhatsApp / Phone",
       value: profile.phone,
       href: profile.whatsappUrl,
@@ -39,7 +38,6 @@ export default async function ContactPage({
       external: true,
     },
     {
-      icon: <Github className="h-6 w-6" />,
       label: "GitHub",
       value: profile.githubHandle,
       href: profile.githubUrl,
@@ -49,50 +47,41 @@ export default async function ContactPage({
   ];
 
   return (
-    <main className="relative overflow-hidden border-b border-border bg-transparent py-28 md:py-36">
-      <div className="pointer-events-none absolute inset-0 ambient-warm-glow opacity-70" />
-      <div className="section-shell relative">
-        <div className="mx-auto max-w-3xl text-center mb-16">
-          <Reveal delay={0.05}>
-            <p className="eyebrow">{t("label")}</p>
-            <h1 className="font-heading mt-4 text-4xl font-bold leading-[1.1] text-balance text-foreground sm:text-5xl">
-              {t("title")}
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground text-pretty">
-              {t("subtitle")}
-            </p>
-          </Reveal>
-        </div>
+    <main className="py-14 md:py-20">
+      <div className="section-shell">
+        <PageHeader label={t("label")} title={t("title")} subtitle={t("subtitle")} />
 
-        <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
-          {contactMethods.map((method, idx) => (
-            <Reveal key={method.label} delay={0.1 + idx * 0.1} className="h-full">
-              <a
-                href={method.href}
-                target={method.external ? "_blank" : undefined}
-                rel={method.external ? "noopener noreferrer" : undefined}
-                className="group surface-card block h-full rounded-2xl bg-card/90 backdrop-blur-xs p-5 sm:p-6 transition-colors duration-200 hover:border-primary/50 active:scale-[0.985]"
-              >
-                <div className="flex cursor-pointer items-start justify-between gap-3">
-                  <div className="flex min-w-0 flex-1 items-start gap-3.5">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-primary transition-shadow duration-300 group-hover:glow-ring">
-                      {method.icon}
+        <Reveal amount={0.1}>
+          <ul>
+            {contactMethods.map((method, i) => (
+              <li key={method.label} className="border-b border-border">
+                <a
+                  href={method.href}
+                  target={method.external ? "_blank" : undefined}
+                  rel={method.external ? "noopener noreferrer" : undefined}
+                  className="group grid gap-3 py-8 md:grid-cols-12 md:items-baseline md:gap-8 md:py-10"
+                >
+                  <span className="eyebrow md:col-span-3">
+                    <span className="mr-2 text-primary">{String(i + 1).padStart(2, "0")}</span>
+                    {method.label}
+                  </span>
+                  <span className="md:col-span-9">
+                    <span className="display inline-flex items-baseline gap-2 break-all text-2xl leading-tight transition-colors group-hover:text-primary sm:text-4xl">
+                      {method.value}
+                      <ArrowUpRight className="h-5 w-5 shrink-0 self-center text-muted-foreground transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" />
                     </span>
-                    <div className="min-w-0 flex-1">
-                      <p className="font-heading font-bold text-base text-card-foreground">{method.label}</p>
-                      <p className="mt-1 break-all text-sm font-semibold text-primary">{method.value}</p>
-                      <p className="mt-2 text-xs leading-relaxed text-muted-foreground text-pretty">{method.description}</p>
-                    </div>
-                  </div>
-                  <ExternalLink className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </div>
-              </a>
-            </Reveal>
-          ))}
-        </div>
+                    <span className="mt-3 block max-w-xl text-sm leading-relaxed text-muted-foreground">
+                      {method.description}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
 
-        <Reveal delay={0.3}>
-          <p className="mx-auto mt-16 max-w-2xl text-center text-base leading-relaxed text-muted-foreground text-pretty">
+        <Reveal delay={0.1} className="mt-16 md:grid md:grid-cols-12 md:gap-8">
+          <p className="display max-w-2xl text-xl leading-relaxed text-pretty text-muted-foreground italic md:col-span-9 md:col-start-4">
             {t("note")}
           </p>
         </Reveal>

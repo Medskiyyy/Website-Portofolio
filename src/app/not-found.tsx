@@ -13,8 +13,8 @@ export default function GlobalNotFound() {
           fontFamily: "system-ui, sans-serif",
           textAlign: "center",
           padding: "1.5rem",
-          background: "#fff",
-          color: "#111",
+          background: "#f3f0e8",
+          color: "#1c1a17",
         }}
       >
         <p style={{ fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#666", marginBottom: "1rem" }}>
@@ -32,9 +32,9 @@ export default function GlobalNotFound() {
             display: "inline-flex",
             alignItems: "center",
             padding: "0.5rem 1.5rem",
-            background: "#111",
-            color: "#fff",
-            borderRadius: "0.5rem",
+            background: "#1c1a17",
+            color: "#f3f0e8",
+            borderRadius: "0.25rem",
             textDecoration: "none",
             fontSize: "0.875rem",
           }}

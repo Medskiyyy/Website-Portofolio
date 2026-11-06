@@ -3,27 +3,34 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { Analytics } from '@vercel/analytics/next';
-import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
+import { Newsreader, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/shared/components/Navbar';
 import Footer from '@/shared/components/Footer';
-import AmbientSpotlight from '@/components/AmbientSpotlight';
 import { siteUrl } from '@/lib/site';
 import PersonSchema from '@/components/PersonSchema';
 import '@/app/globals.css';
 
-const jakarta = Plus_Jakarta_Sans({
+const newsreader = Newsreader({
   subsets: ['latin'],
-  variable: '--font-jakarta',
+  variable: '--font-newsreader',
   display: 'swap',
-  weight: ['400', '500', '600', '700', '800'],
+  style: ['normal', 'italic'],
+  axes: ['opsz'],
 });
 
-const jetbrains = JetBrains_Mono({
+const plexSans = IBM_Plex_Sans({
   subsets: ['latin'],
-  variable: '--font-jetbrains',
+  variable: '--font-plex-sans',
   display: 'swap',
   weight: ['400', '500', '600'],
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  variable: '--font-plex-mono',
+  display: 'swap',
+  weight: ['400', '500'],
 });
 
 export async function generateMetadata({
@@ -83,35 +90,10 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${jakarta.variable} ${jetbrains.variable} h-full antialiased`}
+      className={`${newsreader.variable} ${plexSans.variable} ${plexMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="relative min-h-full flex flex-col bg-background text-foreground selection:bg-primary/20 selection:text-foreground">
-        {/* Multi-point atmospheric ambient lighting wash */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
-        >
-          {/* Top center soft amber glow */}
-          <div className="absolute -top-[15%] left-1/2 h-[650px] w-[900px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px] dark:bg-primary/[0.14]" />
-          {/* Middle left subtle warmth */}
-          <div className="absolute top-[35%] -left-[12%] h-[500px] w-[500px] rounded-full bg-primary/[0.06] blur-[150px] dark:bg-primary/[0.09]" />
-          {/* Bottom right subtle warmth */}
-          <div className="absolute -bottom-[10%] -right-[10%] h-[600px] w-[600px] rounded-full bg-primary/[0.07] blur-[160px] dark:bg-primary/[0.10]" />
-        </div>
-
-        {/* Interactive mouse spotlight follower */}
-        <AmbientSpotlight />
-
-        {/* Film grain noise overlay */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none fixed inset-0 z-40 h-full w-full opacity-[0.045] dark:opacity-[0.06] mix-blend-overlay"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          }}
-        />
-
+      <body className="relative min-h-full flex flex-col bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
         <PersonSchema locale={locale} />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <NextIntlClientProvider messages={messages}>

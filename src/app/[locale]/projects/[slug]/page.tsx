@@ -50,9 +50,8 @@ export default async function ProjectDetailPage({
   }[project.status];
 
   return (
-    <main className="relative overflow-hidden border-b border-border bg-transparent py-28 md:py-36">
-      <div className="pointer-events-none absolute inset-0 ambient-warm-glow opacity-70" />
-      <div className="section-shell relative">
+    <main className="py-12 md:py-16">
+      <div className="section-shell">
         <ProjectDetailClient
           project={project}
           statusLabel={t(statusKey)}

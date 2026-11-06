@@ -1,13 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Code2, Database, Smartphone, Wrench } from "lucide-react";
 import { Reveal } from "@/components/motion";
-import { motion, AnimatePresence } from "framer-motion";
+import { SectionHeader } from "@/components/Heading";
 import { cn } from "@/lib/utils";
-
-type CategoryKey = "all" | "frontend" | "backend" | "mobile" | "tools";
 
 type Usage = "production" | "personal" | "learning";
 
@@ -20,8 +16,7 @@ const USAGE_LABEL_KEY: Record<Usage, string> = {
 };
 
 type SkillCategory = {
-  id: Exclude<CategoryKey, "all">;
-  icon: React.ReactNode;
+  id: string;
   titleKey: string;
   descriptionKey: string;
   skills: { name: string; usage: Usage }[];
@@ -30,7 +25,6 @@ type SkillCategory = {
 const skillCategories: SkillCategory[] = [
   {
     id: "frontend",
-    icon: <Code2 className="h-5 w-5" />,
     titleKey: "frontend",
     descriptionKey: "frontendDesc",
     skills: [
@@ -44,7 +38,6 @@ const skillCategories: SkillCategory[] = [
   },
   {
     id: "backend",
-    icon: <Database className="h-5 w-5" />,
     titleKey: "backend",
     descriptionKey: "backendDesc",
     skills: [
@@ -59,7 +52,6 @@ const skillCategories: SkillCategory[] = [
   },
   {
     id: "mobile",
-    icon: <Smartphone className="h-5 w-5" />,
     titleKey: "mobile",
     descriptionKey: "mobileDesc",
     skills: [
@@ -75,7 +67,6 @@ const skillCategories: SkillCategory[] = [
   },
   {
     id: "tools",
-    icon: <Wrench className="h-5 w-5" />,
     titleKey: "tools",
     descriptionKey: "deliveryDesc",
     skills: [
@@ -89,121 +80,83 @@ const skillCategories: SkillCategory[] = [
   },
 ];
 
+/** Only the usage levels that at least one skill actually has become columns. */
+const usageColumns = USAGE_ORDER.filter((usage) =>
+  skillCategories.some((cat) => cat.skills.some((s) => s.usage === usage)),
+);
+
 export default function SkillsSection() {
   const t = useTranslations("Skills");
-  const [activeFilter, setActiveFilter] = useState<CategoryKey>("all");
-
-  const filterOptions: { id: CategoryKey; labelKey: string }[] = [
-    { id: "all", labelKey: "filterAll" },
-    { id: "frontend", labelKey: "filterFrontend" },
-    { id: "backend", labelKey: "filterBackend" },
-    { id: "mobile", labelKey: "filterMobile" },
-    { id: "tools", labelKey: "filterTools" },
-  ];
-
-  const filteredCategories =
-    activeFilter === "all"
-      ? skillCategories
-      : skillCategories.filter((cat) => cat.id === activeFilter);
 
   return (
-    <section className="relative w-full border-b border-border/60 bg-transparent py-20 md:py-28">
+    <section className="w-full py-12 md:py-20">
       <div className="section-shell">
-        <div className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <Reveal direction="up">
-            <span className="eyebrow">{t("label")}</span>
-            <h2 className="font-heading mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              {t("title")}
-            </h2>
-          </Reveal>
-          <Reveal direction="left" delay={0.1}>
-            <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
-              {t("subtitle")}
-            </p>
-          </Reveal>
-        </div>
+        <SectionHeader number="02" label={t("label")} title={t("title")} intro={t("subtitle")} />
 
-        {/* Category filter */}
-        <Reveal direction="up" delay={0.15}>
-          <div className="mb-10 flex flex-wrap items-center gap-2 border-b border-border/40 pb-5">
-            {filterOptions.map((filter) => (
-              <button
-                key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-                aria-pressed={activeFilter === filter.id}
-                className={cn(
-                  "cursor-pointer rounded-full px-4 py-2 text-sm font-medium transition-all active:scale-[0.985]",
-                  activeFilter === filter.id
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "border border-border/60 bg-card/80 text-muted-foreground hover:border-primary/40 hover:text-foreground",
-                )}
+        <Reveal amount={0.1} className="mt-12 md:mt-16">
+          <div className="hidden border-b border-foreground pb-3 md:grid md:grid-cols-12 md:gap-8">
+            <span className="md:col-span-3" />
+            {usageColumns.map((usage) => (
+              <p
+                key={usage}
+                className="eyebrow md:col-span-4 last:md:col-span-5"
               >
-                {t(filter.labelKey)}
-              </button>
+                {usage === "production" && (
+                  <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-primary align-middle" aria-hidden />
+                )}
+                {t(USAGE_LABEL_KEY[usage])}
+              </p>
             ))}
           </div>
-        </Reveal>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeFilter}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.3 }}
-            className="grid gap-6 md:grid-cols-2 xl:grid-cols-4"
-          >
-            {filteredCategories.map((cat) => {
-              const groups = USAGE_ORDER.map((usage) => ({
-                usage,
-                skills: cat.skills.filter((s) => s.usage === usage),
-              })).filter((g) => g.skills.length > 0);
-
-              return (
-                <div
-                  key={cat.id}
-                  className="surface-card flex h-full flex-col rounded-2xl border border-border/80 bg-card/90 backdrop-blur-xs p-6 transition-all duration-200 hover:border-primary/40 hover:shadow-md"
-                >
-                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-border/60 bg-primary/10 text-primary">
-                    {cat.icon}
-                  </div>
-
-                  <h3 className="font-heading text-xl font-bold tracking-tight text-foreground">
-                    {t(cat.titleKey)}
-                  </h3>
+          <dl>
+            {skillCategories.map((cat) => (
+              <div
+                key={cat.id}
+                className="grid gap-5 border-b border-border py-8 md:grid-cols-12 md:gap-8"
+              >
+                <dt className="md:col-span-3">
+                  <p className="display text-2xl leading-tight">{t(cat.titleKey)}</p>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                     {t(cat.descriptionKey)}
                   </p>
+                </dt>
 
-                  <div className="mt-6 space-y-4 border-t border-border/40 pt-5">
-                    {groups.map((group) => (
-                      <div key={group.usage}>
-                        <p className="mb-2 text-xs font-semibold text-muted-foreground">
-                          {t(USAGE_LABEL_KEY[group.usage])}
-                        </p>
-                        <ul className="flex flex-wrap gap-1.5">
-                          {group.skills.map((skill) => (
-                            <li
-                              key={skill.name}
-                              className={cn(
-                                "rounded-md border px-2 py-1 text-sm font-medium",
-                                group.usage === "production"
-                                  ? "border-primary/25 bg-primary/5 text-foreground"
-                                  : "border-border/60 bg-muted/40 text-muted-foreground",
-                              )}
-                            >
-                              {skill.name}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </motion.div>
-        </AnimatePresence>
+                {usageColumns.map((usage) => {
+                  const skills = cat.skills.filter((s) => s.usage === usage);
+                  return (
+                    <dd
+                      key={usage}
+                      className={cn(
+                        "md:col-span-4 last:md:col-span-5",
+                        skills.length === 0 && "hidden md:block",
+                      )}
+                    >
+                      {skills.length > 0 && (
+                        <>
+                          <p className="eyebrow mb-2 md:hidden">{t(USAGE_LABEL_KEY[usage])}</p>
+                          <ul className="space-y-1.5">
+                            {skills.map((skill) => (
+                              <li
+                                key={skill.name}
+                                className={cn(
+                                  "text-[0.95rem]",
+                                  usage === "production" ? "text-foreground" : "text-muted-foreground",
+                                )}
+                              >
+                                {skill.name}
+                              </li>
+                            ))}
+                          </ul>
+                        </>
+                      )}
+                    </dd>
+                  );
+                })}
+              </div>
+            ))}
+          </dl>
+        </Reveal>
       </div>
     </section>
   );

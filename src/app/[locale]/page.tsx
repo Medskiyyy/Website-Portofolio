@@ -21,7 +21,7 @@ export default async function HomePage({
 
   return (
     <main>
-      <HeroSection />
+      <HeroSection projects={getProjects(locale)} />
       <FeaturedProjectSection projects={getProjects(locale)} />
       <SkillsSection />
       <AboutPreviewSection />

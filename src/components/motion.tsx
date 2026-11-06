@@ -9,7 +9,7 @@ export const EASE_OUT = [0.16, 1, 0.3, 1] as const;
 
 type Direction = "up" | "down" | "left" | "right" | "fade" | "scale";
 
-const offset = 36;
+const offset = 14;
 function variantsFor(direction: Direction): Variants {
   switch (direction) {
     case "up":

@@ -1,19 +1,11 @@
 "use client";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import {
-  ArrowLeft,
-  CheckCircle2,
-  ExternalLink,
-  Github,
-  Lightbulb,
-  Rocket,
-  Smartphone,
-} from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Github, Smartphone } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { EASE_OUT, Reveal, StaggerGroup, StaggerItem } from "@/components/motion";
+import { Reveal } from "@/components/motion";
+import { MarginSection } from "@/components/Heading";
 import type { Project } from "@/types/project";
 import MotherAppPrototype from "@/components/prototypes/MotherAppPrototype";
 import HitungUangPrototype from "@/components/prototypes/HitungUangPrototype";
@@ -53,268 +45,185 @@ export default function ProjectDetailClient({
 }: ProjectDetailClientProps) {
   const isPortrait = project.aspectRatio === "portrait";
 
+  const meta = [
+    statusLabel,
+    project.activeDevelopment ? inDevelopmentLabel : null,
+    project.role,
+    project.timeline,
+  ].filter(Boolean) as string[];
+
+  const headerText = (
+    <div>
+      <p className="eyebrow">{project.category}</p>
+      <h1 className="display mt-5 text-5xl leading-[1.02] text-balance sm:text-6xl lg:text-7xl">
+        {project.title}
+      </h1>
+      <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs text-muted-foreground">
+        {meta.map((item, i) => (
+          <li key={item} className={i === 0 ? "inline-flex items-center gap-2 text-foreground" : undefined}>
+            {i === 0 && <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />}
+            {item}
+          </li>
+        ))}
+      </ul>
+      <p className="mt-8 max-w-2xl text-lg leading-relaxed text-pretty text-foreground/85 sm:text-xl">
+        {project.description}
+      </p>
+    </div>
+  );
+
   return (
     <>
-      <Reveal direction="left" amount={0.05}>
-        <Link
-          href="/projects"
-          className={cn(
-            buttonVariants({ variant: "ghost", size: "sm" }),
-            "-ml-2 mb-8 cursor-pointer gap-2 active:scale-[0.985]",
-          )}
-        >
-          <ArrowLeft className="h-4 w-4" />
-          {back}
-        </Link>
-      </Reveal>
-
-      <header
-        className={cn(
-          "grid gap-10 lg:items-center",
-          isPortrait ? "lg:grid-cols-[1.1fr_0.9fr]" : "lg:grid-cols-[0.92fr_1.08fr]",
-        )}
+      <Link
+        href="/projects"
+        className="group mb-10 inline-flex items-center gap-2 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
       >
-        <div>
-          <Reveal direction="up">
-            <div className="mb-5 flex flex-wrap gap-2">
-              <span className="rounded-md border border-primary/25 bg-primary/5 px-2.5 py-1 text-xs font-semibold text-primary">
-                {statusLabel}
-              </span>
-              {project.activeDevelopment && (
-                <span className="rounded-md border border-border bg-muted px-2.5 py-1 text-xs font-semibold text-muted-foreground">
-                  {inDevelopmentLabel}
-                </span>
-              )}
-              <span className="rounded-md border border-border bg-muted px-2.5 py-1 text-xs font-semibold text-muted-foreground">
-                {project.role}
-              </span>
-              <span className="rounded-md border border-border bg-muted px-2.5 py-1 text-xs font-semibold text-muted-foreground">
-                {project.timeline}
-              </span>
-            </div>
-          </Reveal>
+        <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-x-0.5" />
+        {back}
+      </Link>
 
-          <Reveal direction="up" delay={0.05}>
-            <h1 className="font-heading text-4xl font-bold leading-[1.1] text-balance text-foreground sm:text-5xl">
-              {project.title}
-            </h1>
-          </Reveal>
-
-          <Reveal direction="up" delay={0.12}>
-            <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              {project.description}
-            </p>
-          </Reveal>
-        </div>
-
-        {/* Project Visual Showcase (Interactive Phone Frame or Browser Frame) */}
-        <Reveal direction="left" delay={0.1} amount={0.1}>
-          {isPortrait ? (
-            <div className="relative flex flex-col items-center justify-center py-2">
-              {/* Ambient dynamic back-glow */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="h-[460px] w-[280px] rounded-full bg-primary/20 blur-[90px]" />
-              </div>
-
-              {/* Android Smartphone Device Frame (9:20 exact Android aspect ratio) */}
-              <motion.div
-                className="relative z-10 h-[580px] sm:h-[640px] aspect-[9/20] rounded-[34px] border-[4px] border-border/90 bg-background shadow-2xl overflow-hidden flex flex-col"
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.4, ease: EASE_OUT }}
-              >
-                <div className="relative flex-1 w-full h-full overflow-hidden">
-                  {project.slug === "mother" ? (
-                    <MotherAppPrototype />
-                  ) : project.slug === "hitung-uang" ? (
-                    <HitungUangPrototype />
-                  ) : project.imageUrl ? (
-                    <Image
-                      src={project.imageUrl}
-                      alt={project.title}
-                      fill
-                      className="object-cover object-top"
-                      priority
-                      sizes="(max-width: 768px) 300px, 360px"
-                    />
-                  ) : (
-                    <div className="flex h-full flex-col items-center justify-center p-6 text-center text-muted-foreground">
-                      <Smartphone className="h-10 w-10 text-primary mb-2 opacity-50" />
-                      <p className="text-xs font-semibold">Screenshot belum diunggah</p>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            </div>
-          ) : (
-            /* Standard Desktop/Browser Card for Web Projects */
-            <motion.div
-              className="surface-card group overflow-hidden"
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.4, ease: EASE_OUT }}
-            >
-              <div className="relative aspect-video overflow-hidden bg-muted">
-                {project.imageUrl && (
+      <Reveal amount={0.05}>
+        {isPortrait ? (
+          <header className="grid gap-12 md:grid-cols-12 md:items-center md:gap-8">
+            <div className="md:col-span-7">{headerText}</div>
+            <div className="flex justify-center md:col-span-5">
+              <div className="relative h-[580px] aspect-[9/20] overflow-hidden rounded-[34px] border-[4px] border-foreground/85 bg-background sm:h-[640px]">
+                {project.slug === "mother" ? (
+                  <MotherAppPrototype />
+                ) : project.slug === "hitung-uang" ? (
+                  <HitungUangPrototype />
+                ) : project.imageUrl ? (
                   <Image
                     src={project.imageUrl}
                     alt={project.title}
                     fill
-                    className="object-cover object-top transition-opacity duration-300"
+                    className="object-cover object-top"
                     priority
-                    sizes="(max-width: 1024px) 100vw, 52vw"
+                    sizes="(max-width: 768px) 300px, 360px"
                   />
+                ) : (
+                  <div className="flex h-full flex-col items-center justify-center p-6 text-center text-muted-foreground">
+                    <Smartphone className="mb-2 h-10 w-10 opacity-50" />
+                    <p className="text-xs font-semibold">Screenshot belum diunggah</p>
+                  </div>
                 )}
               </div>
-            </motion.div>
+            </div>
+          </header>
+        ) : (
+          <header>
+            {headerText}
+            {project.imageUrl && (
+              <figure className="mt-12">
+                <div className="relative aspect-video overflow-hidden border border-border bg-muted">
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.title}
+                    fill
+                    className="object-cover object-top"
+                    priority
+                    sizes="(max-width: 1152px) 100vw, 1100px"
+                  />
+                </div>
+                <figcaption className="mt-3 font-mono text-xs text-muted-foreground">
+                  Fig. 01 / {project.title}
+                </figcaption>
+              </figure>
+            )}
+          </header>
+        )}
+      </Reveal>
+
+      <div className="mt-12 flex flex-col gap-6 border-y border-foreground py-6 md:flex-row md:items-center md:justify-between">
+        <p className="font-mono text-xs leading-relaxed text-muted-foreground">
+          {project.techStack.join("  /  ")}
+        </p>
+        <div className="flex shrink-0 flex-wrap gap-3">
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(buttonVariants({ size: "lg" }), "h-10 cursor-pointer gap-2 px-4 text-sm")}
+            >
+              {liveDemo}
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
           )}
-        </Reveal>
-      </header>
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "h-10 cursor-pointer gap-2 px-4 text-sm",
+              )}
+            >
+              <Github className="h-4 w-4" />
+              GitHub
+            </a>
+          )}
+        </div>
+      </div>
 
-      <Reveal direction="up" delay={0.15} amount={0.1}>
-        <div className="mt-10 flex flex-col gap-5 border-y border-border py-6 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-wrap gap-2">
-            {project.techStack.map((tech) => (
-              <span
-                key={tech}
-                className="rounded-md border border-border bg-card px-2.5 py-1 font-mono text-xs font-medium text-muted-foreground transition-colors duration-200 hover:border-primary/30 hover:text-foreground"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  buttonVariants({ size: "lg" }),
-                  "h-10 cursor-pointer gap-2 px-3 text-sm active:scale-[0.985]",
-                )}
-              >
-                {liveDemo}
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            )}
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  buttonVariants({ variant: "outline", size: "lg" }),
-                  "h-10 cursor-pointer gap-2 px-3 text-sm active:scale-[0.985]",
-                )}
-              >
-                <Github className="h-4 w-4" />
-                GitHub
-              </a>
-            )}
-          </div>
+      <Reveal amount={0.1}>
+        <div className="grid gap-10 border-b border-border py-12 md:grid-cols-3 md:gap-8">
+          {[
+            { title: problem, text: project.problem },
+            { title: goal, text: project.goal },
+            { title: solution, text: project.solution },
+          ].map((item, i) => (
+            <section key={item.title}>
+              <h2 className="eyebrow">
+                <span className="mr-2 text-primary">{String.fromCharCode(65 + i)}.</span>
+                {item.title}
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-pretty">{item.text}</p>
+            </section>
+          ))}
         </div>
       </Reveal>
 
-      <StaggerGroup
-        className="mt-10 grid gap-5 lg:grid-cols-3"
-        stagger={0.1}
-        amount={0.15}
-      >
-        <StaggerItem className="h-full">
-          <SummaryCard title={problem} text={project.problem} />
-        </StaggerItem>
-        <StaggerItem className="h-full" direction="up">
-          <SummaryCard title={goal} text={project.goal} />
-        </StaggerItem>
-        <StaggerItem className="h-full" direction="up">
-          <SummaryCard title={solution} text={project.solution} />
-        </StaggerItem>
-      </StaggerGroup>
-
-      <section className="mt-10 grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
-        <div className="space-y-5">
-          <Reveal direction="right" amount={0.1}>
-            <TextSection title={overview} text={project.overview} />
-          </Reveal>
-          <Reveal direction="right" delay={0.08} amount={0.1}>
-            <TextSection title={architecture} text={project.architecture} />
-          </Reveal>
-        </div>
-
-        <div className="space-y-5">
-          <Reveal direction="up" amount={0.1}>
-            <ListSection title={results} icon="rocket" items={project.results} />
-          </Reveal>
-          <Reveal direction="up" delay={0.06} amount={0.1}>
-            <ListSection title={challenges} icon="check" items={project.challenges} />
-          </Reveal>
-          <Reveal direction="up" delay={0.12} amount={0.1}>
-            <ListSection title={lessonsLearned} icon="lightbulb" items={project.lessonsLearned} />
-          </Reveal>
-          {project.futureImprovements && project.futureImprovements.length > 0 && (
-            <Reveal direction="up" delay={0.18} amount={0.1}>
-              <ListSection
-                title={futureImprovements}
-                icon="check"
-                items={project.futureImprovements}
-                ordered
-              />
-            </Reveal>
-          )}
-        </div>
-      </section>
+      <MarginSection title={overview}>
+        <Prose text={project.overview} />
+      </MarginSection>
+      <MarginSection title={architecture}>
+        <Prose text={project.architecture} />
+      </MarginSection>
+      <MarginSection title={results}>
+        <NumberedList items={project.results} />
+      </MarginSection>
+      <MarginSection title={challenges}>
+        <NumberedList items={project.challenges} />
+      </MarginSection>
+      <MarginSection title={lessonsLearned}>
+        <NumberedList items={project.lessonsLearned} />
+      </MarginSection>
+      {project.futureImprovements && project.futureImprovements.length > 0 && (
+        <MarginSection title={futureImprovements}>
+          <NumberedList items={project.futureImprovements} />
+        </MarginSection>
+      )}
     </>
   );
 }
 
-function TextSection({ title, text }: { title: string; text: string }) {
-  return (
-    <section className="surface-card p-5 md:p-6 shadow-sm">
-      <h2 className="font-heading border-b border-border pb-4 text-xl font-bold text-foreground">
-        {title}
-      </h2>
-      <p className="mt-5 text-base leading-8 text-muted-foreground">{text}</p>
-    </section>
-  );
+function Prose({ text }: { text: string }) {
+  return <p className="max-w-[68ch] text-lg leading-[1.75] text-pretty text-foreground/90">{text}</p>;
 }
 
-function SummaryCard({ title, text }: { title: string; text: string }) {
+function NumberedList({ items }: { items: string[] }) {
   return (
-    <section className="surface-card h-full p-5 md:p-6 shadow-sm">
-      <h2 className="font-heading text-xl font-bold text-foreground">{title}</h2>
-      <p className="mt-4 text-sm leading-7 text-muted-foreground">{text}</p>
-    </section>
-  );
-}
-
-function ListSection({
-  title,
-  icon,
-  items,
-  ordered = false,
-}: {
-  title: string;
-  icon: "rocket" | "check" | "lightbulb";
-  items: string[];
-  ordered?: boolean;
-}) {
-  const Icon = icon === "rocket" ? Rocket : icon === "check" ? CheckCircle2 : Lightbulb;
-
-  return (
-    <section className="surface-card p-5 md:p-6 shadow-sm">
-      <h2 className="font-heading border-b border-border pb-4 text-xl font-bold text-foreground">
-        {title}
-      </h2>
-      <ul className="mt-5 grid gap-3">
-        {items.map((item, index) => (
-          <li key={item} className="flex gap-3 text-sm leading-7 text-muted-foreground">
-            <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-border bg-background text-xs font-bold text-primary font-mono">
-              {ordered ? index + 1 : <Icon className="h-4 w-4" />}
-            </span>
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <ol className="max-w-[68ch] space-y-5">
+      {items.map((item, index) => (
+        <li key={item} className="flex gap-5 text-base leading-relaxed">
+          <span className="font-mono text-xs leading-7 text-primary">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <span className="text-pretty">{item}</span>
+        </li>
+      ))}
+    </ol>
   );
 }

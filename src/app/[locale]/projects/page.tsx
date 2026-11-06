@@ -1,7 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import { getProjects } from "@/content/projects";
 import type { Metadata } from "next";
-import ProjectsGrid from "@/features/projects/ProjectsGrid";
+import { PageHeader } from "@/components/Heading";
+import ProjectIndex from "@/features/projects/ProjectIndex";
 
 export async function generateMetadata({
   params,
@@ -20,20 +21,22 @@ export default async function ProjectsPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "ProjectsPage" });
+  const projects = getProjects(locale);
 
   return (
-    <main className="relative overflow-hidden border-b border-border bg-transparent py-28 md:py-36">
-      <div className="pointer-events-none absolute inset-0 ambient-warm-glow opacity-70" />
-      <div className="section-shell relative">
-        <ProjectsGrid
-          projects={getProjects(locale)}
-          caseStudyLabel={t("caseStudy")}
-          liveDemoLabel={t("liveDemo")}
-          emptyLabel={t("empty")}
-          title={t("title")}
-          eyebrow={t("label")}
-          subtitle={t("subtitle")}
-        />
+    <main className="py-14 md:py-20">
+      <div className="section-shell">
+        <PageHeader label={t("label")} title={t("title")} subtitle={t("subtitle")} />
+        {projects.length > 0 ? (
+          <ProjectIndex
+            projects={projects}
+            caseStudyLabel={t("caseStudy")}
+            liveDemoLabel={t("liveDemo")}
+            titleAs="h2"
+          />
+        ) : (
+          <p className="py-24 text-center text-muted-foreground">{t("empty")}</p>
+        )}
       </div>
     </main>
   );
