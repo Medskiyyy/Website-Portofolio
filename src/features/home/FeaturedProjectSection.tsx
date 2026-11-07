@@ -44,7 +44,10 @@ export default function FeaturedProjectSection({ projects }: { projects: Project
                     <ProjectStage
                       project={project}
                       priority={index === 0}
-                      className="aspect-[4/3] rounded-[28px] transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:-translate-y-1 sm:px-9 sm:pt-9"
+                      className={cn(
+                        "rounded-[28px] transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:-translate-y-1 sm:px-9 sm:pt-9",
+                        project.aspectRatio === "portrait" && "aspect-[4/3]",
+                      )}
                     />
                   </Link>
 

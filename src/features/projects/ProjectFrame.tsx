@@ -73,7 +73,11 @@ export function ProjectDevice({
   );
 }
 
-/** A rounded, project-tinted stage with the device anchored to its bottom edge. */
+/**
+ * A rounded, project-tinted stage with the device anchored to its bottom edge.
+ * A browser sizes the stage itself; a phone fills it, so give the stage a height
+ * (an aspect ratio) when the project is portrait.
+ */
 export function ProjectStage({
   project,
   priority,

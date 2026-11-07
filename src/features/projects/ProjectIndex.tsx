@@ -2,6 +2,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { StaggerGroup, StaggerItem } from "@/components/motion";
 import { ProjectStage } from "@/features/projects/ProjectFrame";
+import { cn } from "@/lib/utils";
 import type { Project } from "@/types/project";
 
 type ProjectIndexProps = {
@@ -29,7 +30,10 @@ export default function ProjectIndex({
               <ProjectStage
                 project={project}
                 priority={index < 2}
-                className="aspect-[16/11] transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:-translate-y-1"
+                className={cn(
+                  "transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:-translate-y-1",
+                  project.aspectRatio === "portrait" && "aspect-[16/11]",
+                )}
               />
             </Link>
 
