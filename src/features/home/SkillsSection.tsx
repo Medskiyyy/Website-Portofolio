@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Reveal } from "@/components/motion";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion";
 import { SectionHeader } from "@/components/Heading";
 import { cn } from "@/lib/utils";
 
@@ -80,83 +80,58 @@ const skillCategories: SkillCategory[] = [
   },
 ];
 
-/** Only the usage levels that at least one skill actually has become columns. */
-const usageColumns = USAGE_ORDER.filter((usage) =>
+/** Only the usage levels that at least one skill actually has get a legend entry. */
+const usageLevels = USAGE_ORDER.filter((usage) =>
   skillCategories.some((cat) => cat.skills.some((s) => s.usage === usage)),
 );
+
+const USAGE_CHIP: Record<Usage, string> = {
+  production: "bg-foreground text-background",
+  personal: "text-body shadow-[inset_0_0_0_1px_var(--border)] bg-background",
+  learning: "text-muted-foreground shadow-[inset_0_0_0_1px_var(--border)]",
+};
 
 export default function SkillsSection() {
   const t = useTranslations("Skills");
 
   return (
-    <section className="w-full py-12 md:py-20">
+    <section className="w-full pb-16 md:pb-24">
       <div className="section-shell">
-        <SectionHeader number="02" label={t("label")} title={t("title")} intro={t("subtitle")} />
+        <SectionHeader title={t("title")} intro={t("subtitle")} />
 
-        <Reveal amount={0.1} className="mt-12 md:mt-16">
-          <div className="hidden border-b border-foreground pb-3 md:grid md:grid-cols-12 md:gap-8">
-            <span className="md:col-span-3" />
-            {usageColumns.map((usage) => (
-              <p
-                key={usage}
-                className="eyebrow md:col-span-4 last:md:col-span-5"
-              >
-                {usage === "production" && (
-                  <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-primary align-middle" aria-hidden />
-                )}
-                {t(USAGE_LABEL_KEY[usage])}
-              </p>
-            ))}
-          </div>
-
-          <dl>
-            {skillCategories.map((cat) => (
-              <div
-                key={cat.id}
-                className="grid gap-5 border-b border-border py-8 md:grid-cols-12 md:gap-8"
-              >
-                <dt className="md:col-span-3">
-                  <p className="display text-2xl leading-tight">{t(cat.titleKey)}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {t(cat.descriptionKey)}
-                  </p>
-                </dt>
-
-                {usageColumns.map((usage) => {
-                  const skills = cat.skills.filter((s) => s.usage === usage);
-                  return (
-                    <dd
-                      key={usage}
-                      className={cn(
-                        "md:col-span-4 last:md:col-span-5",
-                        skills.length === 0 && "hidden md:block",
-                      )}
-                    >
-                      {skills.length > 0 && (
-                        <>
-                          <p className="eyebrow mb-2 md:hidden">{t(USAGE_LABEL_KEY[usage])}</p>
-                          <ul className="space-y-1.5">
-                            {skills.map((skill) => (
-                              <li
-                                key={skill.name}
-                                className={cn(
-                                  "text-[0.95rem]",
-                                  usage === "production" ? "text-foreground" : "text-muted-foreground",
-                                )}
-                              >
-                                {skill.name}
-                              </li>
-                            ))}
-                          </ul>
-                        </>
-                      )}
-                    </dd>
-                  );
-                })}
-              </div>
-            ))}
-          </dl>
+        <Reveal amount={0.1} className="mt-8 flex flex-wrap gap-2">
+          {usageLevels.map((usage) => (
+            <span
+              key={usage}
+              className={cn("rounded-full px-3 py-1.5 text-sm font-medium", USAGE_CHIP[usage])}
+            >
+              {t(USAGE_LABEL_KEY[usage])}
+            </span>
+          ))}
         </Reveal>
+
+        <StaggerGroup className="mt-6 grid gap-4 md:grid-cols-2" amount={0.1}>
+          {skillCategories.map((cat) => (
+            <StaggerItem key={cat.id} className="h-full">
+              <div className="h-full rounded-[24px] bg-muted p-6 sm:p-7">
+                <h3 className="display text-xl">{t(cat.titleKey)}</h3>
+                <p className="mt-1.5 text-[15px] leading-relaxed text-muted-foreground">
+                  {t(cat.descriptionKey)}
+                </p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {cat.skills.map((skill) => (
+                    <li
+                      key={skill.name}
+                      className={cn("rounded-full px-3 py-1.5 text-sm font-medium", USAGE_CHIP[skill.usage])}
+                    >
+                      {skill.name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
       </div>
     </section>
   );

@@ -1,128 +1,117 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { EASE_OUT } from "@/components/motion";
-import { profile } from "@/content/profile";
+import { ProjectDevice, accentStyle } from "@/features/projects/ProjectFrame";
+import CopyEmailButton from "@/shared/components/CopyEmailButton";
+import { cn } from "@/lib/utils";
 import type { Project } from "@/types/project";
-
-const stack = ["Next.js", "TypeScript", "Postgres & Supabase", "Kotlin & Compose"];
 
 export default function HeroSection({ projects }: { projects: Project[] }) {
   const t = useTranslations("Hero");
-  const [firstName, ...rest] = t("title").split(" ");
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const current = projects[active];
 
   return (
-    <section className="pt-10 pb-12 md:pt-14 md:pb-20">
-      <div className="section-shell">
+    <section
+      style={current ? accentStyle(current) : undefined}
+      className="pt-8 pb-20 md:pt-12 md:pb-28"
+    >
+      <div className="section-shell grid items-center gap-12 lg:grid-cols-2 lg:gap-14">
         <motion.div
-          className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b border-border pb-4 font-mono text-xs text-muted-foreground"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, ease: EASE_OUT }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: EASE_OUT }}
         >
-          <span>{t("role")}</span>
-          <span className="inline-flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
+          <span className="text-body inline-flex items-start gap-2 rounded-2xl bg-muted px-3 py-1.5 text-[13px] font-medium sm:items-center sm:rounded-full sm:text-sm">
+            <i className="pulse-dot mt-[5px] sm:mt-0" aria-hidden />
             {t("availability")}
           </span>
+          <h1 className="display mt-6 text-[2.5rem] leading-[1.08] text-balance sm:text-5xl lg:text-[3.5rem]">
+            {t("headlineLead")} <mark className="mark-hl">{t("headlineMark")}</mark>
+          </h1>
+          <p className="text-body mt-6 max-w-[520px] text-lg leading-relaxed text-pretty">{t("subtitle")}</p>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Link href="/projects" className="btn-pill btn-dark group h-[46px]">
+              {t("ctaProjects")}
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </Link>
+            <CopyEmailButton className="h-[46px]" />
+          </div>
         </motion.div>
 
-        <motion.h1
-          className="display mt-12 text-[3.4rem] leading-[0.95] sm:text-7xl md:mt-16 lg:text-[7.5rem]"
-          initial={{ opacity: 0, y: 14 }}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EASE_OUT }}
+          transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.1 }}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
         >
-          {firstName}
-          {rest.length > 0 && (
-            <>
-              <br />
-              <em className="text-primary">{rest.join(" ")}</em>
-            </>
-          )}
-        </motion.h1>
-
-        <div className="mt-14 grid gap-14 md:mt-20 md:grid-cols-12 md:gap-8">
-          <motion.div
-            className="md:col-span-7"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.12 }}
-          >
-            <p className="max-w-xl text-lg leading-relaxed text-pretty text-foreground/85 sm:text-xl">
-              {t("subtitle")}
-            </p>
-            <p className="mt-6 font-mono text-xs text-muted-foreground">{stack.join("  /  ")}</p>
-
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-7">
+          <div className="tint relative h-[250px] overflow-hidden rounded-[28px] transition-[background-color] duration-500 sm:h-[400px] lg:h-[460px]">
+            {projects.map((project, i) => (
               <Link
-                href="/projects"
+                key={project.slug}
+                href={`/projects/${project.slug}`}
+                aria-hidden={i !== active}
+                tabIndex={i === active ? 0 : -1}
+                aria-label={project.title}
                 className={cn(
-                  buttonVariants({ size: "lg" }),
-                  "h-12 cursor-pointer gap-2.5 px-6 text-sm font-medium transition-colors",
+                  "absolute inset-x-6 top-6 bottom-0 flex items-end justify-center transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] sm:inset-x-7 sm:top-7",
+                  i === active
+                    ? "opacity-100"
+                    : "pointer-events-none translate-y-3.5 scale-[0.985] opacity-0",
                 )}
               >
-                {t("ctaProjects")}
-                <ArrowRight className="h-4 w-4" />
+                <ProjectDevice project={project} priority={i === 0} />
               </Link>
-              <a
-                href={profile.resumeUrl}
-                download
-                className="ink-link inline-flex items-center gap-2 text-sm font-medium text-foreground"
-              >
-                {t("ctaResume")}
-                <ArrowDown className="h-4 w-4" />
-              </a>
-              <a
-                href={profile.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ink-link inline-flex items-center gap-1 text-sm font-medium text-foreground"
-              >
-                {t("githubLink")}
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
-            </div>
-          </motion.div>
+            ))}
+          </div>
 
-          <motion.nav
-            aria-label={t("index")}
-            className="md:col-span-5 md:pl-6"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.22 }}
-          >
-            <p className="eyebrow border-b border-foreground pb-3">{t("index")}</p>
-            <ol>
-              {projects.map((project, index) => (
-                <li key={project.slug} className="border-b border-border">
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="group flex items-baseline gap-4 py-4"
-                  >
-                    <span className="font-mono text-xs text-primary">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span className="flex-1">
-                      <span className="display block text-xl leading-snug transition-colors group-hover:text-primary">
-                        {project.title}
-                      </span>
-                      <span className="mt-1 block font-mono text-xs text-muted-foreground">
-                        {project.category}
-                      </span>
-                    </span>
-                    <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-primary" />
-                  </Link>
-                </li>
-              ))}
-            </ol>
-          </motion.nav>
-        </div>
+          <div className="mt-3.5 grid grid-cols-4 gap-2" role="group" aria-label={t("showcase")}>
+            {projects.map((project, i) => (
+              <button
+                key={project.slug}
+                type="button"
+                aria-pressed={i === active}
+                onClick={() => setActive(i)}
+                onMouseEnter={() => setActive(i)}
+                className={cn(
+                  "relative min-w-0 cursor-pointer border-t-2 border-border px-1 pt-2.5 text-left transition-colors hover:text-foreground",
+                  i === active ? "text-foreground" : "text-muted-foreground",
+                )}
+              >
+                {/* The progress bar's own animation drives the autoplay: when it
+                    ends, the next project comes up. Reduced motion removes the
+                    animation entirely, which also turns autoplay off. */}
+                {i === active && (
+                  <span
+                    key={active}
+                    aria-hidden
+                    onAnimationEnd={() => setActive((active + 1) % projects.length)}
+                    className={cn(
+                      "absolute -top-0.5 left-0 h-0.5 w-full origin-left bg-foreground animate-[tab-progress_4.5s_linear_forwards] motion-reduce:animate-none",
+                      paused && "[animation-play-state:paused]",
+                    )}
+                  />
+                )}
+                <span className="flex items-center gap-1.5 text-[13px] font-semibold sm:text-sm">
+                  <i
+                    className="h-2 w-2 shrink-0 rounded-full"
+                    style={{ background: project.accent }}
+                    aria-hidden
+                  />
+                  <span className="truncate">{project.title.split(" ")[0]}</span>
+                </span>
+                <span className="mt-0.5 hidden truncate text-[12.5px] sm:block">{project.category}</span>
+              </button>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -35,12 +35,12 @@ export default async function AboutPage({
   ];
 
   return (
-    <main className="py-14 md:py-20">
+    <main className="pt-10 pb-20 md:pt-14 md:pb-28">
       <div className="section-shell">
         <PageHeader label={t("label")} title={t("title")} subtitle={t("intro")} />
 
         <MarginSection title={t("backgroundTitle")}>
-          <p className="max-w-[68ch] text-lg leading-[1.75] text-pretty text-foreground/90">
+          <p className="text-body max-w-[68ch] text-lg leading-[1.75] text-pretty">
             {t("backgroundText")}
           </p>
         </MarginSection>
@@ -49,31 +49,32 @@ export default async function AboutPage({
           <p className="display max-w-[40ch] text-2xl leading-snug text-pretty sm:text-3xl">
             {t("philosophyText")}
           </p>
-          <ol className="mt-10 grid gap-8 md:grid-cols-3 md:gap-8">
-            {principles.map((p, i) => (
-              <li key={p.title} className="border-t border-foreground pt-4">
-                <span className="font-mono text-xs text-primary">{String(i + 1).padStart(2, "0")}</span>
-                <p className="display mt-2 text-xl leading-snug">{p.title}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+          <ul className="mt-8 grid gap-4 lg:grid-cols-3">
+            {principles.map((p) => (
+              <li key={p.title} className="rounded-[24px] bg-muted p-6">
+                <p className="display text-lg leading-snug">{p.title}</p>
+                <p className="mt-2.5 text-[15px] leading-relaxed text-muted-foreground">{p.desc}</p>
               </li>
             ))}
-          </ol>
+          </ul>
         </MarginSection>
 
         <MarginSection title={t("workflowTitle")}>
           <p className="text-base leading-relaxed text-muted-foreground">{t("workflowText")}</p>
           <ol className="mt-6 max-w-[68ch]">
             {workflowSteps.map((step, i) => (
-              <li key={step} className="flex gap-5 border-b border-border py-4 last:border-b-0">
-                <span className="font-mono text-xs leading-7 text-primary">{String(i + 1).padStart(2, "0")}</span>
-                <span className="text-base leading-relaxed">{step}</span>
+              <li key={step} className="flex gap-4 border-b border-border py-4 last:border-b-0">
+                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-muted text-sm font-semibold tabular-nums">
+                  {i + 1}
+                </span>
+                <span className="text-body pt-0.5 text-base leading-relaxed">{step}</span>
               </li>
             ))}
           </ol>
         </MarginSection>
 
         <MarginSection title={t("goalsTitle")}>
-          <p className="max-w-[68ch] text-lg leading-[1.75] text-pretty text-foreground/90">{t("goalsText")}</p>
+          <p className="text-body max-w-[68ch] text-lg leading-[1.75] text-pretty">{t("goalsText")}</p>
         </MarginSection>
       </div>
     </main>

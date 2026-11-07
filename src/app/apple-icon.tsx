@@ -14,15 +14,15 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#1c1a17",
-          color: "#e0703f",
-          fontSize: 104,
+          background: "#141414",
+          color: "#ffffff",
+          fontSize: 84,
           fontWeight: 700,
           letterSpacing: -4,
           fontFamily: "sans-serif",
         }}
       >
-        A
+        AH
       </div>
     ),
     size,

@@ -24,7 +24,7 @@ export default async function ProjectsPage({
   const projects = getProjects(locale);
 
   return (
-    <main className="py-14 md:py-20">
+    <main className="pt-10 pb-20 md:pt-14 md:pb-28">
       <div className="section-shell">
         <PageHeader label={t("label")} title={t("title")} subtitle={t("subtitle")} />
         {projects.length > 0 ? (
@@ -32,6 +32,7 @@ export default async function ProjectsPage({
             projects={projects}
             caseStudyLabel={t("caseStudy")}
             liveDemoLabel={t("liveDemo")}
+            liveLabel={t("live")}
             titleAs="h2"
           />
         ) : (

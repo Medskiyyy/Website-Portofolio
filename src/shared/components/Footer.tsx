@@ -23,22 +23,31 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-foreground text-background">
-      <div className="section-shell pt-16 pb-10">
-        <div className="grid gap-12 md:grid-cols-12 md:gap-8">
+    <footer className="w-full">
+      <div className="section-shell">
+        <div className="grid gap-10 border-t border-border pt-12 pb-10 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-6">
-            <Link href="/" className="display text-3xl text-background decoration-1 underline-offset-4 hover:underline">
-              Ahmad Hidayatullah
+            <Link href="/" className="flex items-center gap-3 font-semibold">
+              <span
+                aria-hidden
+                className="grid h-9 w-9 place-items-center rounded-full bg-muted text-[13px] font-semibold text-muted-foreground shadow-[inset_0_0_0_1px_var(--border)]"
+              >
+                AH
+              </span>
+              {profile.name}
             </Link>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-background/70">{t("bio")}</p>
+            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-muted-foreground">{t("bio")}</p>
           </div>
 
           <nav className="md:col-span-3" aria-label={t("sitemap")}>
-            <p className="font-mono text-xs uppercase tracking-[0.12em] text-background/60">{t("sitemap")}</p>
-            <ul className="mt-4 space-y-2">
+            <p className="text-sm font-semibold">{t("sitemap")}</p>
+            <ul className="mt-3 space-y-2">
               {footerLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-background/85 decoration-1 underline-offset-4 hover:underline">
+                  <Link
+                    href={link.href}
+                    className="text-[15px] text-muted-foreground transition-colors hover:text-foreground"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -47,12 +56,12 @@ export default function Footer() {
           </nav>
 
           <div className="md:col-span-3">
-            <p className="font-mono text-xs uppercase tracking-[0.12em] text-background/60">{t("elsewhere")}</p>
-            <ul className="mt-4 space-y-2 text-sm">
+            <p className="text-sm font-semibold">{t("elsewhere")}</p>
+            <ul className="mt-3 space-y-2 text-[15px]">
               <li>
                 <a
                   href={`mailto:${profile.email}`}
-                  className="break-all text-background/85 decoration-1 underline-offset-4 hover:underline"
+                  className="break-all text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {profile.email}
                 </a>
@@ -62,7 +71,7 @@ export default function Footer() {
                   href={profile.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-background/85 decoration-1 underline-offset-4 hover:underline"
+                  className="inline-flex items-center gap-1 text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {profile.githubHandle}
                   <ArrowUpRight className="h-3.5 w-3.5" />
@@ -72,14 +81,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-background/20 pt-6 font-mono text-xs text-background/60 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 border-t border-border py-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>
             &copy; {currentYear} {profile.name}. {t("rights")}
           </p>
           <p>{t("colophon")}</p>
           <button
             onClick={scrollToTop}
-            className="group inline-flex cursor-pointer items-center gap-1.5 self-start text-background/80 decoration-1 underline-offset-4 hover:underline sm:self-auto"
+            className="group inline-flex cursor-pointer items-center gap-1.5 self-start font-medium transition-colors hover:text-foreground sm:self-auto"
           >
             {t("toTop")}
             <ArrowUp className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5" />

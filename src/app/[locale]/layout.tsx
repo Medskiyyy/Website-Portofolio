@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { Analytics } from '@vercel/analytics/next';
-import { Newsreader, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google';
+import { Onest } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/shared/components/Navbar';
 import Footer from '@/shared/components/Footer';
@@ -11,26 +11,11 @@ import { siteUrl } from '@/lib/site';
 import PersonSchema from '@/components/PersonSchema';
 import '@/app/globals.css';
 
-const newsreader = Newsreader({
+const onest = Onest({
   subsets: ['latin'],
-  variable: '--font-newsreader',
+  variable: '--font-onest',
   display: 'swap',
-  style: ['normal', 'italic'],
-  axes: ['opsz'],
-});
-
-const plexSans = IBM_Plex_Sans({
-  subsets: ['latin'],
-  variable: '--font-plex-sans',
-  display: 'swap',
-  weight: ['400', '500', '600'],
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  variable: '--font-plex-mono',
-  display: 'swap',
-  weight: ['400', '500'],
+  weight: ['400', '500', '600', '700'],
 });
 
 export async function generateMetadata({
@@ -90,16 +75,16 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${newsreader.variable} ${plexSans.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${onest.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="relative min-h-full flex flex-col bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
+      <body className="relative min-h-full flex flex-col bg-background text-foreground selection:bg-foreground selection:text-background">
         <PersonSchema locale={locale} />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <NextIntlClientProvider messages={messages}>
             <a
               href="#content"
-              className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground"
+              className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-foreground focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-background"
             >
               {locale === 'id' ? 'Lewati ke konten' : 'Skip to content'}
             </a>

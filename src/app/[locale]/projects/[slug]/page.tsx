@@ -50,7 +50,7 @@ export default async function ProjectDetailPage({
   }[project.status];
 
   return (
-    <main className="py-12 md:py-16">
+    <main className="pt-8 pb-20 md:pt-10 md:pb-28">
       <div className="section-shell">
         <ProjectDetailClient
           project={project}

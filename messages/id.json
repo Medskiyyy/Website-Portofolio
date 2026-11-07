@@ -9,20 +9,18 @@
     "switchLanguage": "Ganti bahasa",
     "toggleTheme": "Ganti tema",
     "lightMode": "Mode terang",
-    "darkMode": "Mode gelap"
+    "darkMode": "Mode gelap",
+    "contactCta": "Hubungi saya"
   },
   "Hero": {
-    "title": "Ahmad Hidayatullah",
-    "subtitle": "Mahasiswa Sistem Informasi yang membangun aplikasi web full-stack dengan Next.js dan TypeScript, serta aplikasi Android native dengan Kotlin. Di antaranya storefront dan CMS custom untuk usaha kuliner di Serpong, dan aplikasi keuangan yang berjalan sepenuhnya di perangkat.",
+    "subtitle": "Mahasiswa Sistem Informasi di Gunadarma. Saya membangun storefront dan CMS untuk usaha kuliner di Serpong, dan aplikasi keuangan yang berjalan sepenuhnya di perangkat.",
     "ctaProjects": "Lihat proyek",
-    "ctaResume": "Unduh resume (PDF)",
-    "githubLink": "Profil GitHub",
-    "role": "Developer web full-stack & Android, Bekasi",
-    "availability": "Terbuka untuk internship & freelance, ~20 jam/minggu",
-    "index": "Daftar isi"
+    "availability": "Terbuka untuk internship & freelance · ~20 jam/minggu",
+    "headlineLead": "Developer web full-stack & Android yang pegang fitur",
+    "headlineMark": "dari skema database sampai rilis.",
+    "showcase": "Pilih proyek yang ditampilkan"
   },
   "AboutPreview": {
-    "label": "Tentang",
     "title": "Saya peduli pada kode yang masih bisa dipahami enam bulan kemudian.",
     "summary": "Saya mahasiswa Sistem Informasi di Universitas Gunadarma. Saya mengerjakan proyek dari hulu ke hilir: mencari tahu apa yang sebenarnya dibutuhkan, merancang model datanya, membangunnya, lalu merilisnya. Sebagian besar dengan TypeScript di web dan Kotlin di Android.",
     "highlightProduct": "Dua aplikasi web live di domain masing-masing, dan dua aplikasi Android native di GitHub",
@@ -43,7 +41,6 @@
     "glanceLinks": "Tautan"
   },
   "Skills": {
-    "label": "Tech stack",
     "title": "Yang saya pakai, dan di mana saya benar-benar memakainya",
     "subtitle": "Dikelompokkan berdasarkan sejauh mana saya memakainya di proyek nyata, bukan berdasarkan skor yang saya beri sendiri.",
     "frontend": "Frontend web",
@@ -59,11 +56,8 @@
     "usageLearning": "Masih dipelajari"
   },
   "FeaturedProject": {
-    "label": "Karya",
-    "title": "Empat proyek terpilih, dari web full-stack hingga Android native",
-    "intro": "Setiap proyek punya studi kasus yang membahas masalahnya, keputusan arsitekturnya, dan apa yang akan saya ubah kalau mengerjakannya lagi.",
-    "liveDemo": "Situs live",
-    "caseStudy": "Baca studi kasus"
+    "title": "Proyek pilihan",
+    "allProjects": "Semua proyek"
   },
   "ProjectsPage": {
     "metaTitle": "Proyek | Ahmad Hidayatullah",
@@ -73,7 +67,8 @@
     "subtitle": "Dua aplikasi web full-stack dan dua aplikasi Android native. Setiap tulisan membahas masalahnya, arsitekturnya, dan trade-off yang saya ambil.",
     "liveDemo": "Situs live",
     "caseStudy": "Baca studi kasus",
-    "empty": "Belum ada yang dipublikasikan di sini."
+    "empty": "Belum ada yang dipublikasikan di sini.",
+    "live": "Live"
   },
   "ProjectDetail": {
     "back": "Semua proyek",
@@ -142,13 +137,14 @@
     "goalsText": "Internship part-time atau proyek freelance di mana saya bisa bekerja bersama engineer yang lebih berpengalaman dan mendapat review kode yang layak. Saya punya sekitar 20 jam per minggu dan bisa mulai segera. Full-time harus menunggu sampai saya lulus, tapi saya lebih ingin belajar di tim nyata daripada terus membangun sendiri."
   },
   "ContactPreview": {
-    "label": "Kontak",
+    "label": "Tersedia sekarang",
     "title": "Terbuka untuk internship, freelance, dan ngobrol soal teknis",
     "subtitle": "Saat ini saya punya sekitar 20 jam per minggu untuk internship atau freelance. Full-time belum bisa sampai kuliah selesai, tapi perkenalan baru juga selalu terbuka. Email biasanya saya balas dalam sehari.",
     "sendEmail": "Kirim email",
     "copyEmail": "Salin email",
     "copiedEmail": "Tersalin",
-    "viewGithub": "GitHub"
+    "viewGithub": "GitHub",
+    "copiedToast": "Tersalin ke clipboard"
   },
   "ContactPage": {
     "metaTitle": "Kontak | Ahmad Hidayatullah",
@@ -167,7 +163,7 @@
     "rights": "Seluruh hak cipta dilindungi.",
     "toTop": "Kembali ke atas",
     "elsewhere": "Di tempat lain",
-    "colophon": "Diset dengan Newsreader dan IBM Plex. Dibangun dengan Next.js."
+    "colophon": "Diset dengan Onest. Dibangun dengan Next.js."
   },
   "NotFound": {
     "title": "Halaman tidak ditemukan",

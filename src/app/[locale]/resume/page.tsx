@@ -1,6 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { ArrowUpRight, Download } from "lucide-react";
 import { getProjects } from "@/content/projects";
 import { profile } from "@/content/profile";
@@ -69,11 +67,11 @@ export default async function ResumePage({
   const t = await getTranslations({ locale, namespace: "ResumePage" });
 
   return (
-    <main className="py-14 md:py-20">
+    <main className="pt-10 pb-20 md:pt-14 md:pb-28">
       <div className="section-shell">
         <PageHeader label={t("label")} title={profile.name} subtitle={t("subtitle")}>
           <div className="mt-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <ul className="flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs text-muted-foreground">
+            <ul className="flex flex-wrap gap-x-5 gap-y-2 text-[15px] text-muted-foreground">
               <li>{t("location")}</li>
               <li>
                 <a href={`mailto:${profile.email}`} className="ink-link">
@@ -94,10 +92,7 @@ export default async function ResumePage({
             <a
               href={profile.resumeUrl}
               download
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "h-11 shrink-0 cursor-pointer gap-2 self-start px-5 text-sm font-medium md:self-auto",
-              )}
+              className="btn-pill btn-dark shrink-0 self-start md:self-auto"
             >
               <Download className="h-4 w-4" />
               {t("download")}
@@ -106,7 +101,7 @@ export default async function ResumePage({
         </PageHeader>
 
         <MarginSection title={t("summaryTitle")}>
-          <p className="max-w-[68ch] text-lg leading-[1.75] text-pretty text-foreground/90">{t("summaryText")}</p>
+          <p className="text-body max-w-[68ch] text-lg leading-[1.75] text-pretty">{t("summaryText")}</p>
         </MarginSection>
 
         <MarginSection title={t("projectsTitle")}>
@@ -141,9 +136,9 @@ export default async function ResumePage({
             <div>
               <p className="display text-2xl">{t("educationDegree")}</p>
               <p className="mt-1 text-sm text-muted-foreground">{t("educationSchool")}</p>
-              <p className="mt-2 font-mono text-xs text-foreground">GPA {profile.gpa}</p>
+              <p className="mt-3 inline-flex rounded-full bg-muted px-3 py-1 text-sm font-semibold tabular-nums">GPA {profile.gpa}</p>
             </div>
-            <span className="shrink-0 font-mono text-xs text-muted-foreground">{t("educationPeriod")}</span>
+            <span className="shrink-0 text-sm text-muted-foreground tabular-nums">{t("educationPeriod")}</span>
           </div>
         </MarginSection>
       </div>
@@ -154,8 +149,8 @@ export default async function ResumePage({
 function SkillGroup({ label, items }: { label: string; items: string[] }) {
   return (
     <div className="grid gap-2 py-4 first:pt-0 sm:grid-cols-[11rem_1fr] sm:gap-6">
-      <dt className="font-mono text-xs leading-6 text-muted-foreground">{label}</dt>
-      <dd className="text-[0.95rem] leading-relaxed">{items.join(", ")}</dd>
+      <dt className="text-sm leading-6 font-medium text-muted-foreground">{label}</dt>
+      <dd className="text-body text-[15px] leading-relaxed">{items.join(", ")}</dd>
     </div>
   );
 }
@@ -180,18 +175,18 @@ function ProjectEntry({
   return (
     <article className="py-6 first:pt-0 last:pb-0">
       <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-        <h3 className="display text-2xl">{title}</h3>
-        <span className="shrink-0 font-mono text-xs text-muted-foreground">{period}</span>
+        <h3 className="display text-xl">{title}</h3>
+        <span className="shrink-0 text-sm text-muted-foreground tabular-nums">{period}</span>
       </div>
       <p className="mt-1 text-sm text-muted-foreground">{role}</p>
-      <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-relaxed text-pretty">{description}</p>
-      <p className="mt-3 font-mono text-xs leading-relaxed text-muted-foreground">{tech.join("  /  ")}</p>
+      <p className="text-body mt-3 max-w-[68ch] text-[15px] leading-relaxed text-pretty">{description}</p>
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{tech.join(" · ")}</p>
       {liveUrl && (
         <a
           href={liveUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="ink-link mt-3 inline-flex items-center gap-1 text-sm font-medium"
+          className="ink-link mt-3 inline-flex items-center gap-1 text-[15px] font-semibold"
         >
           {liveLabel}
           <ArrowUpRight className="h-3.5 w-3.5" />

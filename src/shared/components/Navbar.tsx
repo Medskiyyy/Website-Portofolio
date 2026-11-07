@@ -1,11 +1,40 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useSyncExternalStore } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { profile } from "@/content/profile";
+
+/** Local time in Bekasi, so a visitor can tell at a glance whether a reply is likely soon. */
+const subscribeToClock = (tick: () => void) => {
+  const id = setInterval(tick, 15000);
+  return () => clearInterval(id);
+};
+
+function LocalClock() {
+  const locale = useLocale();
+  const time = useSyncExternalStore(
+    subscribeToClock,
+    () =>
+      new Intl.DateTimeFormat(locale === "id" ? "id-ID" : "en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        timeZone: profile.timeZone,
+      }).format(new Date()),
+    () => null,
+  );
+
+  return (
+    <span className="block text-[13px] font-medium text-muted-foreground tabular-nums">
+      {profile.city}
+      {time && <> · {time} WIB</>}
+    </span>
+  );
+}
 
 export default function Navbar() {
   const t = useTranslations("Navigation");
@@ -104,53 +133,49 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
-          isScrolled || isOpen
-            ? "border-border bg-background/92 backdrop-blur-md"
-            : "border-transparent bg-background"
+        className={`sticky top-0 z-50 w-full transition-colors duration-300 ${
+          isScrolled || isOpen ? "bg-background/90 backdrop-blur-md" : "bg-background"
         }`}
       >
-        <div className="section-shell flex h-16 items-center justify-between gap-6">
-          <Link
-            href="/"
-            className="display relative z-50 text-xl leading-none transition-colors hover:text-primary"
-          >
-            Ahmad Hidayatullah
+        <div className="section-shell flex h-[76px] items-center justify-between gap-6">
+          <Link href="/" className="relative z-50 flex items-center gap-3">
+            <span
+              aria-hidden
+              className="grid h-9 w-9 place-items-center rounded-full bg-muted text-[13px] font-semibold text-muted-foreground shadow-[inset_0_0_0_1px_var(--border)]"
+            >
+              AH
+            </span>
+            <span className="leading-tight">
+              <span className="block font-semibold">{profile.name}</span>
+              <LocalClock />
+            </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden items-center gap-7 md:flex">
-            {navLinks.map((link, i) => {
+          <nav className="hidden items-center gap-0.5 md:flex">
+            {navLinks.slice(0, 4).map((link) => {
               const active = isActive(link.href);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   aria-current={active ? "page" : undefined}
-                  className={`group inline-flex items-baseline gap-1.5 text-sm transition-colors ${
-                    active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  className={`rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors ${
+                    active
+                      ? "bg-muted text-foreground"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                 >
-                  <span className="font-mono text-[0.65rem] text-primary">
-                    {String(i).padStart(2, "0")}
-                  </span>
-                  <span
-                    className={`decoration-primary decoration-1 underline-offset-[6px] ${
-                      active ? "underline" : "group-hover:underline"
-                    }`}
-                  >
-                    {link.label}
-                  </span>
+                  {link.label}
                 </Link>
               );
             })}
           </nav>
 
-          <div className="hidden items-center gap-1 md:flex">
+          <div className="hidden items-center gap-2 md:flex">
             <Link
               href={pathname}
               locale={nextLocale}
-              className="flex h-9 items-center gap-1 px-2 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
+              className="flex h-9 items-center gap-1 px-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               aria-label={t("switchLanguage")}
             >
               <span className={currentLocale === "id" ? "text-foreground" : undefined}>ID</span>
@@ -160,7 +185,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-              className="flex h-9 w-9 cursor-pointer items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
+              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               aria-label={t("toggleTheme")}
             >
               {/* Swapped by CSS rather than a mounted flag: next-themes puts
@@ -169,9 +194,12 @@ export default function Navbar() {
               <Moon className="h-4 w-4 dark:hidden" />
               <Sun className="hidden h-4 w-4 dark:block" />
             </button>
+
+            <Link href="/contact" className="btn-pill btn-dark ml-1 h-10">
+              {t("contactCta")}
+            </Link>
           </div>
 
-          {/* Mobile Toggle with Morph Hamburger animation */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="relative z-50 -mr-2 flex h-11 w-11 items-center justify-center text-foreground md:hidden"
@@ -199,7 +227,7 @@ export default function Navbar() {
             role="dialog"
             aria-modal="true"
             aria-label={t("menu")}
-            className="fixed inset-0 z-40 flex h-[100dvh] w-full flex-col bg-background px-5 pt-24 pb-10 md:hidden"
+            className="fixed inset-0 z-40 flex h-[100dvh] w-full flex-col bg-background px-5 pt-28 pb-10 md:hidden"
           >
             <motion.nav
               variants={menuVariants}
@@ -208,33 +236,30 @@ export default function Navbar() {
               exit="closed"
               className="flex flex-1 flex-col"
             >
-              {navLinks.map((link, i) => {
+              {navLinks.map((link) => {
                 const active = isActive(link.href);
                 return (
-                  <motion.div key={link.href} variants={itemVariants} className="border-b border-border">
+                  <motion.div key={link.href} variants={itemVariants}>
                     <Link
                       href={link.href}
                       onClick={() => setIsOpen(false)}
                       aria-current={active ? "page" : undefined}
-                      className="flex items-baseline gap-4 py-4"
+                      className={`display block py-2.5 text-[2.5rem] leading-tight transition-colors ${
+                        active ? "text-foreground" : "text-muted-foreground"
+                      }`}
                     >
-                      <span className="font-mono text-xs text-primary">
-                        {String(i).padStart(2, "0")}
-                      </span>
-                      <span className={`display text-4xl ${active ? "italic text-primary" : ""}`}>
-                        {link.label}
-                      </span>
+                      {link.label}
                     </Link>
                   </motion.div>
                 );
               })}
 
-              <motion.div variants={itemVariants} className="mt-auto flex items-center gap-3 font-mono text-xs">
+              <motion.div variants={itemVariants} className="mt-auto flex items-center gap-3 text-sm font-medium">
                 <Link
                   href={pathname}
                   locale={nextLocale}
                   onClick={() => setIsOpen(false)}
-                  className="flex h-11 items-center gap-2 border border-foreground px-4"
+                  className="btn-pill btn-outline"
                   aria-label={t("switchLanguage")}
                 >
                   <span className={currentLocale === "id" ? "text-foreground" : "text-muted-foreground"}>ID</span>
@@ -246,7 +271,7 @@ export default function Navbar() {
                     setTheme(resolvedTheme === "dark" ? "light" : "dark");
                     setIsOpen(false);
                   }}
-                  className="flex h-11 items-center gap-2 border border-foreground px-4"
+                  className="btn-pill btn-outline"
                 >
                   <Moon className="h-4 w-4 dark:hidden" />
                   <Sun className="hidden h-4 w-4 dark:block" />

@@ -7,6 +7,7 @@ import type { ProjectMeta } from "@/types/project";
 export const projectMeta: ProjectMeta[] = [
   {
     slug: "pempek-cek-lis",
+    accent: "#205B23",
     techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "Turborepo"],
     liveUrl: "https://pempekceklis.biz.id",
     githubUrl: "https://github.com/Medskiyyy/Website-Pempek",
@@ -17,6 +18,7 @@ export const projectMeta: ProjectMeta[] = [
   },
   {
     slug: "synclancer",
+    accent: "#2563EB",
     techStack: [
       "Next.js 16",
       "React 19",
@@ -36,6 +38,7 @@ export const projectMeta: ProjectMeta[] = [
   },
   {
     slug: "mother",
+    accent: "#E0B400",
     techStack: [
       "Kotlin",
       "Jetpack Compose",
@@ -52,6 +55,7 @@ export const projectMeta: ProjectMeta[] = [
   },
   {
     slug: "hitung-uang",
+    accent: "#0F6E62",
     techStack: [
       "Kotlin 2.x",
       "Jetpack Compose",

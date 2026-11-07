@@ -5,11 +5,11 @@ export const alt = "Ahmad Hidayatullah, full-stack web and Android developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const BG = "#1c1a17";
-const FG = "#f3f0e8";
-const PRIMARY = "#e0703f";
-const MUTED = "#a8a296";
-const BORDER = "rgba(255,255,255,0.12)";
+const BG = "#ffffff";
+const FG = "#141414";
+const PRIMARY = "#16a34a";
+const MUTED = "#6b6b68";
+const BORDER = "#e6e6e2";
 
 const STACK = ["Next.js", "TypeScript", "Postgres", "Kotlin", "Jetpack Compose"];
 
@@ -66,7 +66,7 @@ export default async function OpengraphImage({
           >
             {profile.name}
           </div>
-          <div style={{ fontSize: 38, color: PRIMARY, marginTop: 18, fontFamily: "sans-serif", fontWeight: 600 }}>{copy.role}</div>
+          <div style={{ fontSize: 38, color: FG, marginTop: 18, fontFamily: "sans-serif", fontWeight: 600 }}>{copy.role}</div>
           <div style={{ fontSize: 26, color: MUTED, marginTop: 14, fontFamily: "sans-serif" }}>{copy.student}</div>
         </div>
 
@@ -87,16 +87,16 @@ export default async function OpengraphImage({
                   fontSize: 20,
                   color: MUTED,
                   border: `1px solid ${BORDER}`,
-                  borderRadius: 8,
+                  borderRadius: 999,
                   padding: "8px 16px",
-                  fontFamily: "monospace",
+                  fontFamily: "sans-serif",
                 }}
               >
                 {tech}
               </div>
             ))}
           </div>
-          <div style={{ fontSize: 22, color: MUTED, fontFamily: "monospace" }}>{profile.githubHandle}</div>
+          <div style={{ fontSize: 22, color: MUTED, fontFamily: "sans-serif" }}>{profile.githubHandle}</div>
         </div>
       </div>
     ),

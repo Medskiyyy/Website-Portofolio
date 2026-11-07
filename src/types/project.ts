@@ -14,6 +14,8 @@ export type ProjectMeta = {
   status: "live" | "source available" | "in-progress" | "planned";
   /** Still being worked on — surfaces an extra badge on the case study page. */
   activeDevelopment?: boolean;
+  /** Brand colour of the project; drives its dot, tint, and highlight across the site. */
+  accent: string;
   /** Presentation format: landscape for web apps, portrait for mobile/Android apps */
   aspectRatio?: "landscape" | "portrait";
 };

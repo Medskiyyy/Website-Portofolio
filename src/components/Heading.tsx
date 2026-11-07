@@ -1,46 +1,32 @@
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/motion";
 
-/**
- * Section opener used on the home page: a heavy rule, a numbered label in the
- * left margin, and the heading plus intro in the main column — the same
- * margin-note layout a printed notebook or technical report uses.
- */
+/** Section opener on the home page: a hairline, the heading, and an optional link on the right. */
 export function SectionHeader({
-  number,
-  label,
   title,
   intro,
+  action,
 }: {
-  number: string;
-  label: string;
   title: string;
   intro?: string;
+  action?: ReactNode;
 }) {
   return (
-    <Reveal className="grid gap-4 border-t border-foreground pt-5 md:grid-cols-12 md:gap-8">
-      <p className="eyebrow md:col-span-3">
-        <span className="text-primary">§ {number}</span>
-        <span className="mx-2" aria-hidden>
-          /
-        </span>
-        {label}
-      </p>
-      <div className="md:col-span-9">
-        <h2 className="display max-w-3xl text-3xl leading-[1.1] text-balance sm:text-4xl lg:text-[2.75rem]">
-          {title}
-        </h2>
-        {intro && (
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-pretty text-muted-foreground">
-            {intro}
-          </p>
-        )}
+    <Reveal className="border-t border-border pt-6">
+      <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+        <h2 className="display max-w-3xl text-3xl leading-[1.1] text-balance sm:text-4xl">{title}</h2>
+        {action}
       </div>
+      {intro && (
+        <p className="text-body mt-4 max-w-2xl text-base leading-relaxed text-pretty sm:text-[17px]">
+          {intro}
+        </p>
+      )}
     </Reveal>
   );
 }
 
-/** Page opener for the inner pages: label, large serif title, optional lead and actions. */
+/** Page opener for the inner pages: a soft label pill, a large title, optional lead and actions. */
 export function PageHeader({
   label,
   title,
@@ -53,22 +39,22 @@ export function PageHeader({
   children?: ReactNode;
 }) {
   return (
-    <Reveal className="border-b border-foreground pb-10 md:pb-14">
-      <p className="eyebrow">{label}</p>
-      <h1 className="display mt-5 max-w-4xl text-5xl leading-[1.02] text-balance sm:text-6xl lg:text-7xl">
+    <Reveal className="pb-12 md:pb-16">
+      <span className="text-body inline-flex rounded-full bg-muted px-3 py-1.5 text-sm font-medium">
+        {label}
+      </span>
+      <h1 className="display mt-6 max-w-4xl text-[2.75rem] leading-[1.05] text-balance sm:text-6xl">
         {title}
       </h1>
       {subtitle && (
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground">
-          {subtitle}
-        </p>
+        <p className="text-body mt-6 max-w-2xl text-lg leading-relaxed text-pretty">{subtitle}</p>
       )}
       {children}
     </Reveal>
   );
 }
 
-/** One row of a document-style page: heading in the margin, content in the main column. */
+/** One row of a document-style page: heading on the left, content on the right. */
 export function MarginSection({
   title,
   children,
@@ -78,9 +64,9 @@ export function MarginSection({
 }) {
   return (
     <Reveal amount={0.1}>
-      <section className="grid gap-4 border-b border-border py-10 md:grid-cols-12 md:gap-8 md:py-12">
-        <h2 className="eyebrow md:col-span-3 md:pt-1">{title}</h2>
-        <div className="md:col-span-9">{children}</div>
+      <section className="grid gap-5 border-t border-border py-10 md:grid-cols-12 md:gap-8 md:py-14">
+        <h2 className="display text-xl leading-snug md:col-span-4">{title}</h2>
+        <div className="md:col-span-8">{children}</div>
       </section>
     </Reveal>
   );
