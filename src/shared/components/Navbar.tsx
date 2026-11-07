@@ -1,40 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef, useSyncExternalStore } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { profile } from "@/content/profile";
-
-/** Local time in Bekasi, so a visitor can tell at a glance whether a reply is likely soon. */
-const subscribeToClock = (tick: () => void) => {
-  const id = setInterval(tick, 15000);
-  return () => clearInterval(id);
-};
-
-function LocalClock() {
-  const locale = useLocale();
-  const time = useSyncExternalStore(
-    subscribeToClock,
-    () =>
-      new Intl.DateTimeFormat(locale === "id" ? "id-ID" : "en-GB", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-        timeZone: profile.timeZone,
-      }).format(new Date()),
-    () => null,
-  );
-
-  return (
-    <span className="block text-[13px] font-medium text-muted-foreground tabular-nums">
-      {profile.city}
-      {time && <> · {time} WIB</>}
-    </span>
-  );
-}
 
 export default function Navbar() {
   const t = useTranslations("Navigation");
@@ -145,10 +117,7 @@ export default function Navbar() {
             >
               AH
             </span>
-            <span className="leading-tight">
-              <span className="block font-semibold">{profile.name}</span>
-              <LocalClock />
-            </span>
+            <span className="font-semibold">{profile.name}</span>
           </Link>
 
           <nav className="hidden items-center gap-0.5 md:flex">

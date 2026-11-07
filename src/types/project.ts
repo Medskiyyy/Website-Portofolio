@@ -27,6 +27,10 @@ export type ProjectCopy = {
   role: string;
   timeline: string;
   description: string;
+  /** One sentence on what the project does for the people who use it; leads its card on the home page. */
+  outcome: string;
+  /** Three short, verifiable points shown under the outcome on the home page. */
+  highlights: string[];
   overview: string;
   problem: string;
   goal: string;

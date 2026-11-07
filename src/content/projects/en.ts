@@ -4,10 +4,17 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
   "pempek-cek-lis": {
     title: "Pempek Palembang Cek Lis",
     category: "Storefront & CMS",
-    role: "Solo developer, real business, unpaid",
+    role: "Solo developer, for a working local business",
     timeline: "May - Jul 2026",
     description:
       "A storefront and custom CMS for a pempek shop in Serpong, South Tangerang. The owner manages the menu, promo banners, reviews, and contact details from an admin panel instead of asking me to change the code.",
+    outcome:
+      "The owner changes the menu, prices, and promos from an admin panel, and orders go straight to WhatsApp.",
+    highlights: [
+      "Still used by the shop today",
+      "Row-Level Security: visitors can only read, only the admin can write",
+      "Static pages that pick up edits without a redeploy",
+    ],
     overview:
       "A public storefront plus an admin panel for a local pempek business. I built it unpaid for a family friend's shop, which made it the first thing I have written that someone other than me depends on. The public side shows the menu with prices, promo banners, customer reviews, delivery areas, and shop hours, and sends orders to WhatsApp with the product already filled into the message. The admin side covers the menu, banners, reviews, and site settings such as the WhatsApp number and social links.",
     problem:
@@ -21,10 +28,9 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
     challenges: [
       "Getting the Row-Level Security policies right so the public site could read the catalogue with the anon key while writes stayed locked to the admin session. The first version leaked write access through a policy that only checked authentication, not role.",
       "Choosing revalidation windows per content type. Prices need to update quickly; the about text does not. Revalidating everything aggressively removed the point of static generation.",
-      "Designing a lightweight custom CMS flow so the business owner can manage menus, banners, and delivery areas intuitively without technical knowledge.",
     ],
     results: [
-      "Live at pempekceklis.biz.id with a 6-item menu, 3 promo banners, 4 customer reviews, and 5 delivery areas, all of it stored in Postgres and editable from the admin panel.",
+      "Live at pempekceklis.biz.id and still used by the shop, with the menu, promo banners, reviews, and delivery areas all stored in Postgres and editable from the admin panel.",
       "The owner can change a price, swap a banner, or update the WhatsApp number without a code change or a redeploy.",
       "Orders open WhatsApp with the product already written into the message, so there is no order form or cart to maintain.",
     ],
@@ -42,7 +48,14 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
     role: "Solo developer, personal product",
     timeline: "Jun 2026 - present",
     description:
-      "A self-initiated multi-tenant project management app for freelancers: leads, clients, proposals, projects, tasks, invoices, and time tracking in one place, with a portal clients can log into.",
+      "A multi-tenant project management app for freelancers: leads, clients, proposals, projects, tasks, invoices, and time tracking in one place, with a portal clients can log into.",
+    outcome:
+      "One workspace for freelancers: leads, proposals, projects, invoices, and a portal for their clients.",
+    highlights: [
+      "Each workspace's data is isolated through one shared query layer",
+      "Recurring invoices generated automatically by a cron job",
+      "Invoice and proposal PDFs rendered in the browser",
+    ],
     overview:
       "SyncLancer is my own product, not client work. I built it to find out what multi-tenancy actually involves. Each freelancer gets an isolated workspace covering a lead pipeline, clients, proposals, projects, milestones, tasks, invoices, time tracking, and files. Clients get a separate scoped login where they can see their own milestones, download files, and view invoices.",
     problem:
@@ -81,33 +94,40 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
     role: "Solo developer, personal project",
     timeline: "Aug 2026 - present",
     description:
-      "A personal productivity Android app combining daily habit tracking, focus sessions with persistent background timer, and visual task urgency in a Neobrutalist design.",
+      "An offline Android planner I use myself: habits, focus sessions, tasks with deadlines, and reminders, with no account and no server.",
+    outcome:
+      "Habits, a focus timer, and tasks with deadlines in one Android app, released as an installable APK on GitHub.",
+    highlights: [
+      "Focus timer runs as a Foreground Service with controls in the notification",
+      "Task colours change automatically as the deadline gets closer",
+      "New versions ship through GitHub Releases with an in-app updater",
+    ],
     overview:
-      "Mother is a personal productivity system I built in August 2026 to consolidate my daily habits, study focus sessions, and task scheduling into a single distraction-free app. Designed with a high-contrast Neobrutalist UI in Jetpack Compose, it prioritizes immediate scannability and reliable execution. Its focus timer runs as a Foreground Service that never drops sessions when switching apps or locking the phone, complete with live lock-screen controls.",
+      "Mother is the planner I built for myself in August 2026 so I could stop splitting my day across a habit tracker, a Pomodoro timer, and a to-do app. It runs entirely offline on Room: habits with reminders, study sessions with a focus timer, tasks with required deadlines, a calendar, search, backups, and a home-screen widget. The interface uses a neobrutalist design system I built in Compose, with separate light and dark themes. It is past version 3.6, and new versions ship as APKs through GitHub Releases, which the app checks for on its own.",
     problem:
-      "Most productivity workflows are scattered across standalone habit trackers, Pomodoro timers, and todo apps. On Android, background timers frequently get terminated by system battery optimization, causing lost study records, while overly decorated apps introduce unnecessary friction.",
+      "My study routine lived in three apps that knew nothing about each other, so a focus session never counted toward a habit and a deadline never showed up next to the day's schedule. Android is also strict about background work, so a timer or an alarm that is not built for it simply stops once the screen is off.",
     goal:
-      "Build a focused, robust Android productivity app that combines streak-based habit tracking, a bulletproof background focus chronometer with lock-screen controls, and an urgency-coded task list in a bold Neobrutalist interface.",
+      "One offline app where a study session, a habit, and a task deadline are part of the same data, and where a running timer or a reminder keeps working with the phone locked.",
     solution:
-      "A native Android app built with Kotlin, Jetpack Compose, Material 3, and Room DB. Focus tracking uses an Android Foreground Service tied to a Live Chronometer Notification with interactive controls. Daily habits support streak tracking with recovery, and task cards automatically adapt their color based on deadline urgency.",
+      "A native Kotlin app with Jetpack Compose and Room in an MVVM structure. The focus timer runs as a Foreground Service with a live chronometer and controls in its notification. The dashboard streak counts consecutive days with a study session. Task cards change colour by how close the deadline is, and reminders can be set per habit, task, and schedule item.",
     architecture:
-      "Clean Architecture with MVI/MVVM StateFlow patterns. Jetpack Compose for UI components, Room Database for local structured persistence, Kotlin Coroutines and Flow for reactive data streams, and Android Foreground Service with custom notification channels for persistent background execution.",
+      "MVVM with StateFlow between the Compose screens and Room. Reminders and attachments live in separate tables per owner (tasks, schedules, habits) instead of one shared table, with versioned migrations between schema changes. Kotlin Coroutines and Flow carry data to the UI, a Foreground Service runs the timer, and reminders go through a broadcast receiver and a full-screen alarm activity.",
     challenges: [
-      "Keeping the Foreground Service timer running reliably without drift or state loss under Android's aggressive battery optimizations (Doze mode), and syncing state bi-directionally with lock-screen notification action buttons.",
-      "Building a custom Neobrutalism design system in Jetpack Compose from scratch: implementing bold borders, solid offset shadows, and tabular numbers for timers and statistics without relying on skeuomorphic or bloated libraries.",
+      "Habit alarms did not appear over the lock screen on my own phone. The cause was not the alarm code: from Android 14 the USE_FULL_SCREEN_INTENT permission is no longer granted automatically, and on my phone it was denied. The fix was a prompt that checks the permission whenever the app resumes and opens the right settings page.",
+      "Keeping the timer correct after the app is closed or the phone is locked meant moving it out of the UI entirely and into a Foreground Service that both the notification and the app read from.",
+      "Reminders, backups, and undo affect each other more than they seem to: restoring a backup has to reschedule every reminder, and undoing a deleted task has to bring its reminders back as well.",
     ],
     results: [
-      "Habit tracking with streak counter, one-tap instant completion for routine tasks, and missed-day streak recovery.",
-      "Rock-solid background focus timer with live lock-screen action buttons and an active in-app bottom banner.",
-      "Visual task priority matrix that dynamically color-codes urgency (Urgent, Tight, Warning, Safe) and logs daily study stats.",
+      "Version 3.6.4 released as an installable APK through GitHub Releases, with an in-app updater.",
+      "A focus timer with lock-screen controls, a streak counted by study days, and tasks coloured by deadline.",
+      "Calendar, search, reminders, backup and restore, and a home-screen widget, all without a network connection.",
     ],
     lessonsLearned: [
-      "Foreground Services paired with Live Notification Chronometers are essential for reliable time-tracking on modern Android versions.",
-      "Neobrutalism's flat, high-contrast visual style drastically improves scannability and keeps the focus purely on getting things done.",
-      "Reactive StateFlow paired with Room makes multi-screen state synchronization clean and predictable.",
+      "Alarms and background work depend on the permissions and battery rules of the actual phone, so they have to be tested there, not just read in the code.",
+      "Separate reminder tables per owner meant more code up front, in exchange for real foreign keys and simpler queries.",
     ],
     futureImprovements: [
-      "Add push notifications and alarms for missed or overdue reminders.",
+      "Test the latest reminder and alarm fixes on more phones than my own.",
     ],
   },
 
@@ -118,6 +138,13 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
     timeline: "Jun 2026 - present",
     description:
       "An offline-first Android expense tracker that keeps everything on the device: no account, no server, no sync. Receipt scanning and charts run locally.",
+    outcome:
+      "An expense tracker with no account and no server. All the data stays on the user's phone.",
+    highlights: [
+      "Receipt scanning with OCR that runs on the device",
+      "Instant transaction search with Room FTS4",
+      "ZIP backups the user keeps",
+    ],
     overview:
       "A native Android personal finance app with no backend at all. Transactions live in Room on the device, the app locks behind a PIN or biometrics, receipts are scanned with on-device OCR, spending charts are drawn with Compose Canvas, and backups export to a ZIP file the user controls. Not published to the Play Store, but the source is on GitHub and I am still building on it.",
     problem:

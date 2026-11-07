@@ -186,6 +186,10 @@
   .btn-outline {
     @apply bg-background text-foreground shadow-[inset_0_0_0_1.5px_var(--border)] hover:shadow-[inset_0_0_0_1.5px_var(--foreground)];
   }
+
+  .btn-outline-inverted {
+    @apply text-background shadow-[inset_0_0_0_1.5px_color-mix(in_oklch,var(--background)_25%,transparent)] hover:shadow-[inset_0_0_0_1.5px_var(--background)];
+  }
 }
 
 @keyframes pulse-ring {

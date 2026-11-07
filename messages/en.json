@@ -13,51 +13,20 @@
     "contactCta": "Get in touch"
   },
   "Hero": {
-    "subtitle": "Information Systems student at Gunadarma. I built a storefront and CMS for a food business in Serpong, and a finance app that runs entirely on the device.",
+    "subtitle": "The catalogue site I built for a pempek shop in Serpong is still how the owner updates the menu and prices. I'm an Information Systems student at Gunadarma, open to internships and freelance projects.",
     "ctaProjects": "View projects",
-    "availability": "Open to internships & freelance · ~20 hrs/week",
-    "headlineLead": "Full-stack web & Android developer who owns a feature",
-    "headlineMark": "from database schema to release.",
-    "showcase": "Choose which project to show"
-  },
-  "AboutPreview": {
-    "title": "I care about code that still makes sense six months later.",
-    "summary": "I'm an Information Systems student at Gunadarma University. I work on projects end to end: figuring out what the person actually needs, modelling the data, building it, and shipping it. Mostly TypeScript on the web and Kotlin on Android.",
-    "highlightProduct": "Two live web applications on their own domains, and two native Android apps on GitHub",
-    "highlightEngineering": "Each one has a written case study, including the trade-offs",
-    "highlightDelivery": "Comfortable owning a feature from database schema to deploy",
-    "cta": "More about me",
-    "glanceLabel": "At a glance",
-    "glanceLocation": "Based in",
-    "glanceLocationValue": "Bekasi, West Java, Indonesia (WIB, UTC+7). Happy to work remotely or on-site around Jakarta.",
-    "glanceEducation": "Education",
-    "glanceEducationValue": "Information Systems, Gunadarma University (2025 - present)",
-    "glanceFocus": "Focus",
-    "glanceFocusValue": "Full-stack web (Next.js, TypeScript, Postgres) and native Android (Kotlin, Compose)",
-    "glanceOpenTo": "Open to",
-    "glanceOpenToValue": "A part-time internship of about 20 hours a week, freelance projects, and getting to know other developers.",
-    "glanceLanguages": "Languages",
-    "glanceLanguagesValue": "Indonesian (native), English (professional)",
-    "glanceLinks": "Links"
-  },
-  "Skills": {
-    "title": "What I use, and where I've actually used it",
-    "subtitle": "Grouped by how far I've taken each one in a real project, rather than by a score I gave myself.",
-    "frontend": "Web frontend",
-    "frontendDesc": "The stack behind both of my live sites and this portfolio.",
-    "backend": "Backend & database",
-    "backendDesc": "Schema design, access rules, and the query layer above them.",
-    "mobile": "Android",
-    "mobileDesc": "Everything in Mother and HitungUang runs directly on-device with native Android.",
-    "tools": "Tooling & practices",
-    "deliveryDesc": "How the code gets organised, reviewed, and shipped.",
-    "usageProduction": "Used in a live project",
-    "usagePersonal": "Used in a personal project",
-    "usageLearning": "Still learning"
+    "headlineLead": "I build web and Android apps",
+    "kicker": "Ahmad Hidayatullah · Full-stack web & Android developer · Bekasi",
+    "headlineSoft": "from the database schema to the day people use them.",
+    "stackWeb": "Web",
+    "stackAndroid": "Android"
   },
   "FeaturedProject": {
     "title": "Selected projects",
-    "allProjects": "All projects"
+    "allProjects": "All projects",
+    "caseStudy": "Read case study",
+    "liveSite": "Live site",
+    "live": "Live"
   },
   "ProjectsPage": {
     "metaTitle": "Projects | Ahmad Hidayatullah",
@@ -92,11 +61,11 @@
     "metaTitle": "Resume | Ahmad Hidayatullah",
     "metaDescription": "Resume of Ahmad Hidayatullah, Information Systems student and full-stack web and native Android developer.",
     "label": "Resume",
-    "subtitle": "Full-stack web & Android developer · Information Systems student · About 20 hours a week",
+    "subtitle": "Full-stack web & Android developer · Information Systems student",
     "location": "Bekasi, West Java, Indonesia",
     "download": "Download PDF",
     "summaryTitle": "Summary",
-    "summaryText": "Software Engineer and Information Systems student specializing in Full-Stack Web and Native Android development. Proven track record in architecting modular applications (Clean Architecture & Multi-Tenant SaaS), managing relational and local databases (PostgreSQL & Room FTS4), and implementing scalable backend logic, RBAC authentication, and background services. Experienced with modern Git/CI-CD workflows, automated testing, and delivering high-performance, user-centric software solutions.",
+    "summaryText": "Information Systems student at Universitas Gunadarma (GPA 3.88) building full-stack web apps with Next.js and TypeScript, and native Android apps with Kotlin and Jetpack Compose. Built the catalogue site and admin panel that a food business in Serpong still uses, and a multi-tenant SaaS for freelancers. Comfortable owning a feature from the database schema and access rules through to deployment.",
     "skillsTitle": "Technical Skills",
     "skillsLanguages": "Programming languages",
     "skillsBackend": "Backend & API",
@@ -134,31 +103,30 @@
     "workflowStep4": "Test on a real phone and a slow connection, not just on my laptop.",
     "workflowStep5": "Ship it, then fix what actually breaks.",
     "goalsTitle": "What I'm looking for",
-    "goalsText": "A part-time internship or freelance projects where I can work alongside more experienced engineers and have my code reviewed properly. I have around 20 hours a week free and can start immediately. Full-time has to wait until I graduate, but I would rather learn on a real team than keep building on my own."
+    "goalsText": "A part-time internship or freelance projects where I can work alongside more experienced engineers and get my code reviewed properly. I can start now. Full-time has to wait until I graduate, but I would rather learn on a real team than keep building on my own."
   },
   "ContactPreview": {
-    "label": "Available now",
-    "title": "Open to internships, freelance work, and just talking shop",
-    "subtitle": "I have around 20 hours a week free right now for an internship or freelance work. Full-time isn't possible until I finish my degree, but introductions are welcome too. I usually reply to email within a day.",
+    "title": "Have a project, or need an intern who can get going right away?",
+    "subtitle": "I can start now, about 20 hours a week. I usually reply to email within a day.",
     "sendEmail": "Email me",
     "copyEmail": "Copy email",
     "copiedEmail": "Copied",
-    "viewGithub": "GitHub",
-    "copiedToast": "Copied to clipboard"
+    "copiedToast": "Copied to clipboard",
+    "whatsapp": "WhatsApp"
   },
   "ContactPage": {
     "metaTitle": "Contact | Ahmad Hidayatullah",
     "metaDescription": "Get in touch with Ahmad Hidayatullah about internships, freelance projects, or anything technical.",
     "label": "Contact",
-    "title": "Get in touch",
-    "subtitle": "Internships, freelance projects, or a question about something I built are all fine. I have roughly 20 hours a week available and can start now; full-time has to wait until I graduate.",
+    "title": "Email is the fastest way to reach me",
+    "subtitle": "Internships, freelance projects, or a question about something I built. I can start now; full-time has to wait until I graduate.",
     "emailDesc": "The fastest way to reach me. I usually reply within a day.",
     "phoneDesc": "Direct WhatsApp message or call for quick communication.",
     "githubDesc": "Source code for everything on this site, including the site itself.",
     "note": "If you're a student or developer who just wants to compare notes, that counts too. You don't need a job offer to email me."
   },
   "Footer": {
-    "bio": "Information Systems student in Bekasi building full-stack web apps and native Android apps. Available now for a part-time internship or freelance work, around 20 hours a week.",
+    "bio": "Information Systems student in Bekasi building full-stack web apps and native Android apps. Open to internships and freelance work.",
     "sitemap": "Pages",
     "rights": "All rights reserved.",
     "toTop": "Back to top",
@@ -174,5 +142,16 @@
     "title": "Ahmad Hidayatullah | Full-Stack Web & Android Developer",
     "description": "Portfolio of Ahmad Hidayatullah, an Information Systems student in Bekasi, Indonesia, building full-stack web apps with Next.js and TypeScript and native Android apps with Kotlin. Open to part-time internships and freelance work.",
     "keywords": "Ahmad Hidayatullah, full stack developer, Android developer, web developer Bekasi, developer Jakarta, Next.js, TypeScript, Kotlin, Jetpack Compose, Supabase, Postgres, portfolio, internship, freelance"
+  },
+  "Process": {
+    "title": "How I take on a project",
+    "step1Title": "Understand the need",
+    "step1Desc": "It is usually narrower than the first request. The Pempek owner didn't want features, they wanted to stop answering the same DM.",
+    "step2Title": "Model the data first",
+    "step2Desc": "Tables, relations, and who is allowed to read what, before a single line of UI.",
+    "step3Title": "Build and test on a real phone",
+    "step3Desc": "Tested on an actual phone and a slow connection, not just on my laptop.",
+    "step4Title": "Ship, then look after it",
+    "step4Desc": "Fix what actually breaks, and leave the owner able to change the content themselves."
   }
 }

@@ -16,7 +16,7 @@ export async function generateMetadata({
 }
 
 const skills = {
-  languages: ["TypeScript", "JavaScript", "Kotlin", "SQL", "Python"],
+  languages: ["TypeScript", "JavaScript", "Kotlin", "SQL"],
   backend: [
     "Next.js (App Router / Server Actions)",
     "Node.js",
@@ -50,11 +50,6 @@ const skills = {
     "Google ML Kit (OCR)",
     "Android Foreground Service",
     "WorkManager",
-    "Postman",
-    "Vitest",
-    "Playwright",
-    "JUnit4",
-    "CMS",
   ],
 };
 

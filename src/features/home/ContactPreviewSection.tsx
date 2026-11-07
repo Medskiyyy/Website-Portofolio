@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/motion";
 import CopyEmailButton from "@/shared/components/CopyEmailButton";
 import { profile } from "@/content/profile";
@@ -12,30 +11,28 @@ export default function ContactPreviewSection() {
   return (
     <section className="w-full pb-20 md:pb-28">
       <div className="section-shell">
-        <Reveal className="rounded-[28px] bg-muted px-6 py-12 sm:px-12 md:py-16">
-          <span className="text-body inline-flex items-center gap-2 rounded-full bg-background px-3 py-1.5 text-sm font-medium">
-            <i className="pulse-dot" aria-hidden />
-            {t("label")}
-          </span>
-          <h2 className="display mt-6 max-w-3xl text-3xl leading-[1.1] text-balance sm:text-[2.75rem]">
+        <Reveal className="rounded-[32px] bg-foreground px-6 py-12 text-background sm:px-14 md:py-16">
+          <h2 className="display max-w-3xl text-[2rem] leading-[1.08] text-balance sm:text-[3.25rem]">
             {t("title")}
           </h2>
-          <p className="text-body mt-5 max-w-2xl text-base leading-relaxed text-pretty sm:text-lg">
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-pretty text-background/70 sm:text-lg">
             {t("subtitle")}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a href={`mailto:${profile.email}`} className="btn-pill btn-dark h-[46px]">
+            <a
+              href={`mailto:${profile.email}`}
+              className="btn-pill h-[46px] bg-background text-foreground hover:bg-background/90"
+            >
               {t("sendEmail")}
             </a>
-            <CopyEmailButton className="h-[46px]" />
+            <CopyEmailButton inverted className="h-[46px]" />
             <a
-              href={profile.githubUrl}
+              href={profile.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-1 inline-flex items-center gap-1 text-[15px] font-semibold text-muted-foreground transition-colors hover:text-foreground"
+              className="btn-pill btn-outline-inverted h-[46px]"
             >
-              {t("viewGithub")}
-              <ArrowUpRight className="h-4 w-4" />
+              {t("whatsapp")}
             </a>
           </div>
         </Reveal>
