@@ -9,7 +9,6 @@ type ProjectIndexProps = {
   projects: Project[];
   caseStudyLabel: string;
   liveDemoLabel: string;
-  liveLabel: string;
   titleAs?: "h2" | "h3";
 };
 
@@ -18,7 +17,6 @@ export default function ProjectIndex({
   projects,
   caseStudyLabel,
   liveDemoLabel,
-  liveLabel,
   titleAs: Title = "h3",
 }: ProjectIndexProps) {
   return (
@@ -39,12 +37,6 @@ export default function ProjectIndex({
 
             <div className="mt-6 px-1">
               <div className="flex flex-wrap items-center gap-2 text-sm font-medium">
-                {project.status === "live" && (
-                  <span className="text-body inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 shadow-[inset_0_0_0_1px_var(--border)]">
-                    <i className="h-1.5 w-1.5 rounded-full bg-[var(--live)]" aria-hidden />
-                    {liveLabel}
-                  </span>
-                )}
                 <span className="text-body rounded-full px-2.5 py-1 shadow-[inset_0_0_0_1px_var(--border)]">
                   {project.category}
                 </span>

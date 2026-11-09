@@ -25,8 +25,7 @@
     "title": "Selected projects",
     "allProjects": "All projects",
     "caseStudy": "Read case study",
-    "liveSite": "Live site",
-    "live": "Live"
+    "liveSite": "Live site"
   },
   "ProjectsPage": {
     "metaTitle": "Projects | Ahmad Hidayatullah",
@@ -36,8 +35,7 @@
     "subtitle": "Two full-stack web apps and two native Android apps. Each write-up covers the problem, the architecture, and the trade-offs I made.",
     "liveDemo": "Live site",
     "caseStudy": "Read case study",
-    "empty": "Nothing published here yet.",
-    "live": "Live"
+    "empty": "Nothing published here yet."
   },
   "ProjectDetail": {
     "back": "All projects",

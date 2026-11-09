@@ -32,7 +32,6 @@ export default async function ProjectsPage({
             projects={projects}
             caseStudyLabel={t("caseStudy")}
             liveDemoLabel={t("liveDemo")}
-            liveLabel={t("live")}
             titleAs="h2"
           />
         ) : (

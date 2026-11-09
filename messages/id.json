@@ -25,8 +25,7 @@
     "title": "Proyek pilihan",
     "allProjects": "Semua proyek",
     "caseStudy": "Baca studi kasus",
-    "liveSite": "Situs live",
-    "live": "Live"
+    "liveSite": "Situs live"
   },
   "ProjectsPage": {
     "metaTitle": "Proyek | Ahmad Hidayatullah",
@@ -36,8 +35,7 @@
     "subtitle": "Dua aplikasi web full-stack dan dua aplikasi Android native. Setiap tulisan membahas masalahnya, arsitekturnya, dan trade-off yang saya ambil.",
     "liveDemo": "Situs live",
     "caseStudy": "Baca studi kasus",
-    "empty": "Belum ada yang dipublikasikan di sini.",
-    "live": "Live"
+    "empty": "Belum ada yang dipublikasikan di sini."
   },
   "ProjectDetail": {
     "back": "Semua proyek",

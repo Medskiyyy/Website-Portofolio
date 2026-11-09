@@ -53,12 +53,6 @@ export default function FeaturedProjectSection({ projects }: { projects: Project
 
                   <div className={cn(flip && "md:order-1")}>
                     <div className="flex flex-wrap items-center gap-2 text-sm font-medium">
-                      {project.status === "live" && (
-                        <span className="text-body inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 shadow-[inset_0_0_0_1px_var(--border)]">
-                          <i className="h-1.5 w-1.5 rounded-full bg-[var(--live)]" aria-hidden />
-                          {t("live")}
-                        </span>
-                      )}
                       <span className="text-body rounded-full px-2.5 py-1 shadow-[inset_0_0_0_1px_var(--border)]">
                         {project.category}
                       </span>
