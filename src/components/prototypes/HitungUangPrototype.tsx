@@ -14,32 +14,32 @@ interface ScreenMeta {
 
 const SCREENS: Record<string, ScreenMeta> = {
   dashboard: {
-    src: "/75a10438-5f47-4ce5-bf62-1682d349a46e.jpg",
+    src: "/screens/hitung-dashboard.jpg",
     label: "Dashboard",
     tab: "dashboard",
   },
   transaksi: {
-    src: "/195ca552-358e-41f3-934f-340aa9ac1f20.jpg",
+    src: "/screens/hitung-transactions.jpg",
     label: "Riwayat Transaksi",
     tab: "transaksi",
   },
   scan: {
-    src: "/0b10a410-8ae5-4bb2-a875-016a6f0cc104.jpg",
+    src: "/screens/hitung-scan.jpg",
     label: "Scan Struk (OCR)",
     tab: "scan",
   },
   akun: {
-    src: "/49220d1e-85fb-4adb-a9c6-c438bafa1b02.jpg",
+    src: "/screens/hitung-accounts.jpg",
     label: "Akun & Dompet",
     tab: "akun",
   },
   "budget-aktif": {
-    src: "/b7e42da1-ffba-4c1f-ba4a-d2fb98bd9d8e.jpg",
+    src: "/screens/hitung-budget-active.jpg",
     label: "Anggaran Aktif",
     tab: "budget",
   },
   "budget-riwayat": {
-    src: "/ce815785-81e7-4cb7-aa1c-04e700ce497f.jpg",
+    src: "/screens/hitung-budget-history.jpg",
     label: "Riwayat Anggaran",
     tab: "budget",
   },

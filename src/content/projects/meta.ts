@@ -45,7 +45,7 @@ export const projectMeta: ProjectMeta[] = [
       "Coroutines Flow",
     ],
     githubUrl: "https://github.com/Medskiyyy/Mother.git",
-    imageUrl: "/thumb-mother.jpg",
+    imageUrl: "/screens/mother-dashboard.jpg",
     aspectRatio: "portrait",
   },
   {
@@ -60,7 +60,7 @@ export const projectMeta: ProjectMeta[] = [
       "Google ML Kit",
     ],
     githubUrl: "https://github.com/Medskiyyy/HitungUang",
-    imageUrl: "/thumb-hitung.jpg",
+    imageUrl: "/screens/hitung-dashboard.jpg",
     aspectRatio: "portrait",
   },
 ];
