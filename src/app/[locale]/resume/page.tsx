@@ -17,40 +17,31 @@ export async function generateMetadata({
 
 const skills = {
   languages: ["TypeScript", "JavaScript", "Kotlin", "SQL"],
-  backend: [
-    "Next.js (App Router / Server Actions)",
-    "Node.js",
-    "RESTful API",
-    "Prisma ORM",
-    "Auth.js v5 (NextAuth)",
-    "Argon2",
-    "Cron Jobs / Automated Endpoints",
-  ],
-  database: [
-    "PostgreSQL (Supabase)",
-    "Room Database (FTS4)",
-    "DataStore Preferences",
-    "Row Level Security (RLS)",
-    "Supabase Storage",
-    "Triggers & Functions",
-  ],
-  frontend: [
+  web: [
+    "Next.js (App Router, Server Actions)",
     "React 19",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "Prisma ORM",
+    "Auth.js v5",
+    "REST APIs",
+  ],
+  data: [
+    "PostgreSQL",
+    "Supabase (Auth, Storage, Row-Level Security, triggers)",
+    "Room (FTS4)",
+    "DataStore",
+  ],
+  android: [
     "Jetpack Compose",
     "Material 3",
-    "Tailwind CSS v4",
-    "shadcn/ui",
-    "Radix UI",
-    "Dagger Hilt",
     "Coroutines & Flow",
-  ],
-  tools: [
-    "Git & GitHub",
-    "Turborepo (Monorepo)",
-    "Google ML Kit (OCR)",
-    "Android Foreground Service",
+    "Dagger Hilt",
     "WorkManager",
+    "Foreground Services",
+    "ML Kit",
   ],
+  tools: ["Git", "GitHub", "Turborepo", "pnpm", "Vercel"],
 };
 
 export default async function ResumePage({
@@ -119,9 +110,9 @@ export default async function ResumePage({
         <MarginSection title={t("skillsTitle")}>
           <dl className="divide-y divide-border">
             <SkillGroup label={t("skillsLanguages")} items={skills.languages} />
-            <SkillGroup label={t("skillsBackend")} items={skills.backend} />
-            <SkillGroup label={t("skillsDatabase")} items={skills.database} />
-            <SkillGroup label={t("skillsFrontend")} items={skills.frontend} />
+            <SkillGroup label={t("skillsWeb")} items={skills.web} />
+            <SkillGroup label={t("skillsData")} items={skills.data} />
+            <SkillGroup label={t("skillsAndroid")} items={skills.android} />
             <SkillGroup label={t("skillsTools")} items={skills.tools} />
           </dl>
         </MarginSection>

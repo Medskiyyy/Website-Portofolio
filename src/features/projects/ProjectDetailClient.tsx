@@ -11,8 +11,6 @@ import HitungUangPrototype from "@/components/prototypes/HitungUangPrototype";
 
 type ProjectDetailClientProps = {
   project: Project;
-  statusLabel: string;
-  inDevelopmentLabel: string;
   back: string;
   liveDemo: string;
   overview: string;
@@ -28,8 +26,6 @@ type ProjectDetailClientProps = {
 
 export default function ProjectDetailClient({
   project,
-  statusLabel,
-  inDevelopmentLabel,
   back,
   liveDemo,
   overview,
@@ -47,17 +43,6 @@ export default function ProjectDetailClient({
   const headerText = (
     <div>
       <div className="flex flex-wrap items-center gap-2 text-sm font-medium">
-        <span className="text-body inline-flex items-center gap-1.5 rounded-full bg-muted px-3 py-1.5">
-          <i
-            aria-hidden
-            className="h-2 w-2 rounded-full"
-            style={{ background: project.status === "live" ? "var(--live)" : project.accent }}
-          />
-          {statusLabel}
-        </span>
-        {project.activeDevelopment && (
-          <span className="text-body rounded-full bg-muted px-3 py-1.5">{inDevelopmentLabel}</span>
-        )}
         <span className="text-body rounded-full bg-muted px-3 py-1.5">{project.category}</span>
       </div>
       <h1 className="display mt-6 text-[2.75rem] leading-[1.05] text-balance sm:text-6xl">
@@ -99,7 +84,7 @@ export default function ProjectDetailClient({
           <header className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-8">
             <div className="lg:col-span-7">{headerText}</div>
             <div className="tint flex justify-center rounded-[28px] px-6 pt-8 pb-8 lg:col-span-5">
-              <div className="relative h-[580px] aspect-[9/20] overflow-hidden rounded-[34px] border-[6px] border-[#141414] bg-background shadow-[0_24px_48px_-24px_rgba(0,0,0,0.35)] sm:h-[640px]">
+              <div className="relative box-content h-[580px] aspect-[9/20] overflow-hidden rounded-[34px] border-[6px] border-[#141414] bg-background shadow-[0_24px_48px_-24px_rgba(0,0,0,0.35)] sm:h-[640px]">
                 {project.slug === "mother" ? (
                   <MotherAppPrototype />
                 ) : project.slug === "hitung-uang" ? (

@@ -43,7 +43,7 @@ export default function ProjectIndex({
                 <span className="text-muted-foreground tabular-nums">{project.timeline}</span>
               </div>
 
-              <Title className="display mt-4 text-2xl sm:text-[28px]">
+              <Title className="display mt-4 text-2xl text-balance sm:text-[28px]">
                 <Link href={`/projects/${project.slug}`} className="hover:underline hover:decoration-2 hover:underline-offset-4">
                   {project.title}
                 </Link>

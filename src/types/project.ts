@@ -1,6 +1,6 @@
 /**
  * A project is split in two: `ProjectMeta` holds the facts that are identical
- * in every language (slug, stack, links, status), and `ProjectCopy` holds the
+ * in every language (slug, stack, links), and `ProjectCopy` holds the
  * prose, which exists once per locale. `Project` is the two merged together,
  * which is what components receive.
  */
@@ -11,9 +11,6 @@ export type ProjectMeta = {
   githubUrl?: string;
   imageUrl?: string;
   isFeatured?: boolean;
-  status: "live" | "source available" | "in-progress" | "planned";
-  /** Still being worked on — surfaces an extra badge on the case study page. */
-  activeDevelopment?: boolean;
   /** Brand colour of the project; drives its dot, tint, and highlight across the site. */
   accent: string;
   /** Presentation format: landscape for web apps, portrait for mobile/Android apps */

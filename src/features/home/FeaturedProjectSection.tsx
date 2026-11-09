@@ -59,7 +59,7 @@ export default function FeaturedProjectSection({ projects }: { projects: Project
                       <span className="text-muted-foreground tabular-nums">{project.timeline}</span>
                     </div>
 
-                    <h3 className="display mt-4 text-3xl leading-[1.05] sm:text-[40px] sm:tracking-[-0.03em]">
+                    <h3 className="display mt-4 text-3xl leading-[1.05] text-balance sm:text-[40px] sm:tracking-[-0.03em]">
                       <Link href={`/projects/${project.slug}`}>{project.title}</Link>
                     </h3>
                     <p className="text-body mt-3.5 text-lg leading-relaxed text-pretty">{project.outcome}</p>

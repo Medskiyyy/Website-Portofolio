@@ -42,20 +42,11 @@ export default async function ProjectDetailPage({
 
   const t = await getTranslations({ locale, namespace: "ProjectDetail" });
 
-  const statusKey = {
-    live: "statusLive",
-    "source available": "statusSourceAvailable",
-    "in-progress": "statusInProgress",
-    planned: "statusPlanned",
-  }[project.status];
-
   return (
     <main className="pt-8 pb-20 md:pt-10 md:pb-28">
       <div className="section-shell">
         <ProjectDetailClient
           project={project}
-          statusLabel={t(statusKey)}
-          inDevelopmentLabel={t("inDevelopment")}
           back={t("back")}
           liveDemo={t("liveDemo")}
           overview={t("overview")}

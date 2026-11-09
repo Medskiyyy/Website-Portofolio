@@ -13,7 +13,7 @@
     "contactCta": "Hubungi saya"
   },
   "Hero": {
-    "subtitle": "Saya mahasiswa Sistem Informasi di Gunadarma. Dua aplikasi web saya sudah live dan dipakai, dan dua aplikasi Android saya kodenya ada di GitHub. Terbuka untuk internship dan proyek freelance.",
+    "subtitle": "Storefront yang saya buat untuk kedai pempek di Serpong masih dipakai pemiliknya untuk mengubah menu dan harga sendiri. Saya mahasiswa Sistem Informasi di Gunadarma, terbuka untuk internship dan proyek freelance.",
     "ctaProjects": "Lihat proyek",
     "headline": "Saya membangun aplikasi web dan Android.",
     "kicker": "Developer web full-stack & Android · Bekasi",
@@ -47,12 +47,7 @@
     "challenges": "Bagian sulit & trade-off",
     "results": "Yang berhasil dirilis",
     "lessonsLearned": "Yang saya pelajari",
-    "futureImprovements": "Rencana berikutnya",
-    "statusLive": "Sudah live",
-    "statusSourceAvailable": "Kode di GitHub",
-    "statusInProgress": "Sedang dikerjakan",
-    "statusPlanned": "Direncanakan",
-    "inDevelopment": "Masih aktif dikembangkan"
+    "futureImprovements": "Rencana berikutnya"
   },
   "ResumePage": {
     "metaTitle": "Resume | Ahmad Hidayatullah",
@@ -64,11 +59,11 @@
     "summaryTitle": "Ringkasan",
     "summaryText": "Mahasiswa Sistem Informasi Universitas Gunadarma (IPK 3,88) yang membangun aplikasi web full-stack dengan Next.js dan TypeScript, serta aplikasi Android native dengan Kotlin dan Jetpack Compose. Membangun storefront dan admin panel yang masih dipakai usaha kuliner di Serpong, dan SaaS multi-tenant untuk freelancer. Biasa memegang satu fitur secara utuh: skema, aturan akses, UI, dan deploy.",
     "skillsTitle": "Keahlian Teknis",
-    "skillsLanguages": "Bahasa pemrograman",
-    "skillsBackend": "Backend & API",
-    "skillsDatabase": "Basis data & penyimpanan",
-    "skillsFrontend": "Frontend & mobile",
-    "skillsTools": "Tools & testing",
+    "skillsLanguages": "Bahasa",
+    "skillsWeb": "Web",
+    "skillsData": "Data",
+    "skillsAndroid": "Android",
+    "skillsTools": "Tools",
     "projectsTitle": "Proyek Teknis",
     "educationTitle": "Pendidikan",
     "educationDegree": "Sarjana Sistem Informasi",
@@ -118,7 +113,7 @@
     "title": "Paling cepat lewat email",
     "subtitle": "Internship, proyek freelance, atau pertanyaan soal sesuatu yang saya bangun. Saya bisa mulai sekarang; full-time harus menunggu sampai saya lulus.",
     "emailDesc": "Biasanya saya balas dalam sehari.",
-    "phoneDesc": "Pesan langsung via WhatsApp atau telepon untuk komunikasi cepat.",
+    "phoneDesc": "WhatsApp atau telepon, untuk urusan yang cepat.",
     "githubDesc": "Source code untuk semua proyek di situs ini, termasuk situs ini sendiri.",
     "note": "Mahasiswa atau developer yang sekadar ingin bertukar pikiran juga boleh kirim email."
   },

@@ -13,7 +13,6 @@ export const projectMeta: ProjectMeta[] = [
     githubUrl: "https://github.com/Medskiyyy/Website-Pempek",
     imageUrl: "/thumb-pempek.webp",
     isFeatured: true,
-    status: "live",
     aspectRatio: "landscape",
   },
   {
@@ -32,8 +31,6 @@ export const projectMeta: ProjectMeta[] = [
     liveUrl: "https://synclancer.web.id/",
     githubUrl: "https://github.com/Medskiyyy/SyncLancer.git",
     imageUrl: "/thumb-saas.webp",
-    status: "live",
-    activeDevelopment: true,
     aspectRatio: "landscape",
   },
   {
@@ -49,8 +46,6 @@ export const projectMeta: ProjectMeta[] = [
     ],
     githubUrl: "https://github.com/Medskiyyy/Mother.git",
     imageUrl: "/thumb-mother.jpg",
-    status: "source available",
-    activeDevelopment: true,
     aspectRatio: "portrait",
   },
   {
@@ -66,8 +61,6 @@ export const projectMeta: ProjectMeta[] = [
     ],
     githubUrl: "https://github.com/Medskiyyy/HitungUang",
     imageUrl: "/thumb-hitung.jpg",
-    status: "source available",
-    activeDevelopment: true,
     aspectRatio: "portrait",
   },
 ];

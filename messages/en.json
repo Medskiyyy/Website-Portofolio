@@ -13,7 +13,7 @@
     "contactCta": "Get in touch"
   },
   "Hero": {
-    "subtitle": "I'm an Information Systems student at Gunadarma. Two of my web apps are live and in use, and two Android apps have their source on GitHub. Open to internships and freelance projects.",
+    "subtitle": "The storefront I built for a pempek shop in Serpong is still how the owner updates the menu and prices. I'm an Information Systems student at Gunadarma, open to internships and freelance projects.",
     "ctaProjects": "View projects",
     "headline": "I build web and Android apps.",
     "kicker": "Full-stack web & Android developer · Bekasi",
@@ -47,12 +47,7 @@
     "challenges": "Hard parts & trade-offs",
     "results": "What shipped",
     "lessonsLearned": "What I learned",
-    "futureImprovements": "What's next",
-    "statusLive": "Live",
-    "statusSourceAvailable": "Source on GitHub",
-    "statusInProgress": "In progress",
-    "statusPlanned": "Planned",
-    "inDevelopment": "Still in active development"
+    "futureImprovements": "What's next"
   },
   "ResumePage": {
     "metaTitle": "Resume | Ahmad Hidayatullah",
@@ -64,11 +59,11 @@
     "summaryTitle": "Summary",
     "summaryText": "Information Systems student at Universitas Gunadarma (GPA 3.88) building full-stack web apps with Next.js and TypeScript, and native Android apps with Kotlin and Jetpack Compose. Built the storefront and admin panel that a food business in Serpong still uses, and a multi-tenant SaaS for freelancers. Usually owns a feature end to end: schema, access rules, UI, and deployment.",
     "skillsTitle": "Technical Skills",
-    "skillsLanguages": "Programming languages",
-    "skillsBackend": "Backend & API",
-    "skillsDatabase": "Databases & storage",
-    "skillsFrontend": "Frontend & mobile",
-    "skillsTools": "Tools & testing",
+    "skillsLanguages": "Languages",
+    "skillsWeb": "Web",
+    "skillsData": "Data",
+    "skillsAndroid": "Android",
+    "skillsTools": "Tools",
     "projectsTitle": "Technical Projects",
     "educationTitle": "Education",
     "educationDegree": "Bachelor of Information Systems",
@@ -118,7 +113,7 @@
     "title": "Email is the fastest way to reach me",
     "subtitle": "Internships, freelance projects, or a question about something I built. I can start now; full-time has to wait until I graduate.",
     "emailDesc": "I usually reply within a day.",
-    "phoneDesc": "Direct WhatsApp message or call for quick communication.",
+    "phoneDesc": "WhatsApp or a call, for anything quick.",
     "githubDesc": "Source code for everything on this site, including the site itself.",
     "note": "Students and developers who just want to compare notes are welcome to email too."
   },

@@ -179,7 +179,7 @@ export default function MotherAppPrototype() {
             onClick={() =>
               setDashboardScroll((prev) => (prev === "top" ? "bottom" : "top"))
             }
-            className="absolute bottom-[16%] right-4 z-30 flex items-center gap-1.5 rounded-full border-[1.5px] border-black bg-white/90 backdrop-blur-xs px-2.5 py-1 text-[9px] font-black text-black shadow-[2px_2px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5"
+            className="absolute bottom-[16%] left-4 z-30 flex items-center gap-1.5 rounded-full border-[1.5px] border-black bg-white/90 backdrop-blur-xs px-2.5 py-1 text-[9px] font-black text-black shadow-[2px_2px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5"
             title="Gulir Tampilan Dashboard"
           >
             <span>{dashboardScroll === "top" ? "⬇ Lihat Bawah" : "⬆ Lihat Atas"}</span>
