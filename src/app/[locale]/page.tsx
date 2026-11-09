@@ -1,7 +1,6 @@
 import { getProjects } from "@/content/projects";
 import HeroSection from "@/features/home/HeroSection";
 import FeaturedProjectSection from "@/features/home/FeaturedProjectSection";
-import ProcessSection from "@/features/home/ProcessSection";
 import ContactPreviewSection from "@/features/home/ContactPreviewSection";
 
 /*
@@ -22,7 +21,6 @@ export default async function HomePage({
     <main>
       <HeroSection />
       <FeaturedProjectSection projects={getProjects(locale)} />
-      <ProcessSection />
       <ContactPreviewSection />
     </main>
   );

@@ -147,6 +147,12 @@ export default function ProjectDetailClient({
         ))}
       </ul>
 
+      <div className="mt-16">
+        <MarginSection title={overview}>
+          <Prose text={project.overview} />
+        </MarginSection>
+      </div>
+
       <Reveal amount={0.1}>
         <div className="mt-12 grid gap-4 md:grid-cols-3">
           {[
@@ -163,9 +169,6 @@ export default function ProjectDetailClient({
       </Reveal>
 
       <div className="mt-16">
-        <MarginSection title={overview}>
-          <Prose text={project.overview} />
-        </MarginSection>
         <MarginSection title={architecture}>
           <Prose text={project.architecture} />
         </MarginSection>

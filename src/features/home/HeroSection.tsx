@@ -25,7 +25,7 @@ export default function HeroSection() {
       >
         <p className="text-[15px] font-medium text-muted-foreground sm:text-base">{t("kicker")}</p>
         <h1 className="display mt-5 max-w-[1000px] text-[2.75rem] leading-[1.04] text-balance sm:text-6xl lg:text-[4.75rem] lg:tracking-[-0.035em]">
-          {t("headlineLead")} <span className="text-muted-foreground/70">{t("headlineSoft")}</span>
+          {t("headline")}
         </h1>
         <p className="text-body mt-7 max-w-[640px] text-lg leading-relaxed text-pretty sm:text-xl">
           {t("subtitle")}

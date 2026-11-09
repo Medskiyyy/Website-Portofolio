@@ -13,11 +13,10 @@
     "contactCta": "Hubungi saya"
   },
   "Hero": {
-    "subtitle": "Website katalog yang saya buat untuk kedai pempek di Serpong masih dipakai pemiliknya untuk mengubah menu dan harga sendiri. Saya mahasiswa Sistem Informasi di Gunadarma, terbuka untuk internship dan proyek freelance.",
+    "subtitle": "Saya mahasiswa Sistem Informasi di Gunadarma. Dua aplikasi web saya sudah live dan dipakai, dan dua aplikasi Android saya kodenya ada di GitHub. Terbuka untuk internship dan proyek freelance.",
     "ctaProjects": "Lihat proyek",
-    "headlineLead": "Saya membangun aplikasi web dan Android",
-    "kicker": "Ahmad Hidayatullah · Developer web full-stack & Android · Bekasi",
-    "headlineSoft": "dari skema database sampai dipakai orang.",
+    "headline": "Saya membangun aplikasi web dan Android.",
+    "kicker": "Developer web full-stack & Android · Bekasi",
     "stackWeb": "Web",
     "stackAndroid": "Android"
   },
@@ -63,7 +62,7 @@
     "location": "Bekasi, Jawa Barat, Indonesia",
     "download": "Unduh PDF",
     "summaryTitle": "Ringkasan",
-    "summaryText": "Mahasiswa Sistem Informasi Universitas Gunadarma (IPK 3,88) yang membangun aplikasi web full-stack dengan Next.js dan TypeScript, serta aplikasi Android native dengan Kotlin dan Jetpack Compose. Membangun website katalog dan admin panel yang masih dipakai usaha kuliner di Serpong, dan SaaS multi-tenant untuk freelancer. Terbiasa memegang satu fitur dari skema database dan aturan aksesnya sampai deploy.",
+    "summaryText": "Mahasiswa Sistem Informasi Universitas Gunadarma (IPK 3,88) yang membangun aplikasi web full-stack dengan Next.js dan TypeScript, serta aplikasi Android native dengan Kotlin dan Jetpack Compose. Membangun storefront dan admin panel yang masih dipakai usaha kuliner di Serpong, dan SaaS multi-tenant untuk freelancer. Biasa memegang satu fitur secara utuh: skema, aturan akses, UI, dan deploy.",
     "skillsTitle": "Keahlian Teknis",
     "skillsLanguages": "Bahasa pemrograman",
     "skillsBackend": "Backend & API",
@@ -84,15 +83,15 @@
     "title": "Tentang saya",
     "intro": "Mahasiswa Sistem Informasi Universitas Gunadarma, membangun aplikasi web dan Android sejak 2025.",
     "backgroundTitle": "Latar belakang",
-    "backgroundText": "Saya mulai dari web karena itu cara tercepat melihat sesuatu yang saya buat dipakai orang lain. Android datang belakangan, ketika saya ingin mengerti apa yang terjadi kalau tidak ada server untuk bersandar. Keduanya mengajarkan hal yang sama: bagian menariknya bukan framework-nya, tapi menentukan bentuk datanya sebelum menulis satu baris UI.",
+    "backgroundText": "Saya mulai dari web karena itu cara tercepat melihat sesuatu yang saya buat dipakai orang lain. Android datang belakangan, ketika saya ingin mengerti apa yang terjadi kalau tidak ada server untuk bersandar. Keduanya membentuk kebiasaan yang sama: tentukan dulu bentuk datanya sebelum menulis UI.",
     "philosophyTitle": "Cara saya memandang kode",
-    "philosophyText": "Saya berusaha memilih opsi yang paling membosankan lebih dulu. Sebagian besar kerumitan yang harus saya bongkar ulang di proyek sendiri berasal dari menyelesaikan masalah yang belum saya punya.",
-    "principle1Title": "Tipe dulu, abstraksi kemudian",
+    "philosophyText": "Saya mulai dari cara paling sederhana yang berhasil. Sebagian besar kerumitan yang harus saya bongkar ulang di proyek sendiri berasal dari menyelesaikan masalah yang belum saya punya.",
+    "principle1Title": "Biar tipe yang memeriksa",
     "principle1Desc": "TypeScript dan Kotlin memungkinkan saya menuliskan satu aturan sekali saja, bukan memeriksanya ulang di setiap fungsi. Saya bersandar ke situ sebelum mengambil sebuah pattern.",
-    "principle2Title": "Cepat sejak awal, bukan lewat sesi optimasi di akhir",
+    "principle2Title": "Performa sejak awal",
     "principle2Desc": "Server component, incremental static regeneration, dan ukuran gambar yang tepat sudah membawa sebagian besar jalan tanpa perlu sprint performa di ujung.",
-    "principle3Title": "Dibangun untuk orang yang memakainya",
-    "principle3Desc": "Admin panel Pempek Cek Lis ada supaya pemiliknya tidak perlu menghubungi saya hanya untuk mengubah harga.",
+    "principle3Title": "Dibangun sesuai cara dipakainya",
+    "principle3Desc": "Timer fokus Mother berjalan sebagai foreground service, karena timer belajar yang berhenti saat layar mati tidak ada gunanya.",
     "workflowTitle": "Cara saya bekerja",
     "workflowText": "Kurang lebih alur yang sama di setiap proyek.",
     "workflowStep1": "Mendiskusikan apa yang sebenarnya dibutuhkan, yang biasanya lebih sempit dari permintaan awal.",
@@ -118,18 +117,17 @@
     "label": "Kontak",
     "title": "Paling cepat lewat email",
     "subtitle": "Internship, proyek freelance, atau pertanyaan soal sesuatu yang saya bangun. Saya bisa mulai sekarang; full-time harus menunggu sampai saya lulus.",
-    "emailDesc": "Cara tercepat menghubungi saya. Biasanya saya balas dalam sehari.",
+    "emailDesc": "Biasanya saya balas dalam sehari.",
     "phoneDesc": "Pesan langsung via WhatsApp atau telepon untuk komunikasi cepat.",
     "githubDesc": "Source code untuk semua proyek di situs ini, termasuk situs ini sendiri.",
-    "note": "Kalau Anda mahasiswa atau developer yang sekadar ingin bertukar pikiran, itu juga dihitung. Tidak perlu ada tawaran kerja untuk mengirim email."
+    "note": "Mahasiswa atau developer yang sekadar ingin bertukar pikiran juga boleh kirim email."
   },
   "Footer": {
     "bio": "Mahasiswa Sistem Informasi di Bekasi yang membangun aplikasi web full-stack dan Android native. Terbuka untuk internship dan freelance.",
     "sitemap": "Halaman",
     "rights": "Seluruh hak cipta dilindungi.",
     "toTop": "Kembali ke atas",
-    "elsewhere": "Di tempat lain",
-    "colophon": "Diset dengan Onest. Dibangun dengan Next.js."
+    "elsewhere": "Di tempat lain"
   },
   "NotFound": {
     "title": "Halaman tidak ditemukan",
@@ -139,17 +137,6 @@
   "Metadata": {
     "title": "Ahmad Hidayatullah | Developer Web Full-Stack & Android",
     "description": "Portofolio Ahmad Hidayatullah, mahasiswa Sistem Informasi di Bekasi yang membangun aplikasi web full-stack dengan Next.js dan TypeScript, serta aplikasi Android native dengan Kotlin. Terbuka untuk internship part-time dan freelance.",
-    "keywords": "Ahmad Hidayatullah, full stack developer, Android developer, web developer Bekasi, developer Jakarta, Next.js, TypeScript, Kotlin, Jetpack Compose, Supabase, Postgres, portofolio, internship, freelance"
-  },
-  "Process": {
-    "title": "Cara saya mengerjakan proyek",
-    "step1Title": "Pahami kebutuhannya",
-    "step1Desc": "Biasanya lebih sempit dari permintaan pertama. Yang dicari pemilik Pempek bukan fitur, tapi berhenti menjawab DM yang sama.",
-    "step2Title": "Rancang datanya dulu",
-    "step2Desc": "Tabel, relasi, dan siapa yang boleh membaca apa, sebelum satu baris UI ditulis.",
-    "step3Title": "Bangun dan uji di HP asli",
-    "step3Desc": "Diuji di ponsel dan koneksi lambat, bukan cuma di laptop saya.",
-    "step4Title": "Rilis, lalu dirawat",
-    "step4Desc": "Yang benar-benar rusak diperbaiki, dan pemiliknya bisa mengubah kontennya sendiri."
+    "keywords": "Ahmad Hidayatullah, full stack developer, Android developer, web developer Bekasi, Next.js, TypeScript, Kotlin, Jetpack Compose, Supabase, Postgres, portofolio, internship, freelance"
   }
 }

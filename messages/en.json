@@ -13,11 +13,10 @@
     "contactCta": "Get in touch"
   },
   "Hero": {
-    "subtitle": "The catalogue site I built for a pempek shop in Serpong is still how the owner updates the menu and prices. I'm an Information Systems student at Gunadarma, open to internships and freelance projects.",
+    "subtitle": "I'm an Information Systems student at Gunadarma. Two of my web apps are live and in use, and two Android apps have their source on GitHub. Open to internships and freelance projects.",
     "ctaProjects": "View projects",
-    "headlineLead": "I build web and Android apps",
-    "kicker": "Ahmad Hidayatullah · Full-stack web & Android developer · Bekasi",
-    "headlineSoft": "from the database schema to the day people use them.",
+    "headline": "I build web and Android apps.",
+    "kicker": "Full-stack web & Android developer · Bekasi",
     "stackWeb": "Web",
     "stackAndroid": "Android"
   },
@@ -63,7 +62,7 @@
     "location": "Bekasi, West Java, Indonesia",
     "download": "Download PDF",
     "summaryTitle": "Summary",
-    "summaryText": "Information Systems student at Universitas Gunadarma (GPA 3.88) building full-stack web apps with Next.js and TypeScript, and native Android apps with Kotlin and Jetpack Compose. Built the catalogue site and admin panel that a food business in Serpong still uses, and a multi-tenant SaaS for freelancers. Comfortable owning a feature from the database schema and access rules through to deployment.",
+    "summaryText": "Information Systems student at Universitas Gunadarma (GPA 3.88) building full-stack web apps with Next.js and TypeScript, and native Android apps with Kotlin and Jetpack Compose. Built the storefront and admin panel that a food business in Serpong still uses, and a multi-tenant SaaS for freelancers. Usually owns a feature end to end: schema, access rules, UI, and deployment.",
     "skillsTitle": "Technical Skills",
     "skillsLanguages": "Programming languages",
     "skillsBackend": "Backend & API",
@@ -84,15 +83,15 @@
     "title": "About me",
     "intro": "Information Systems student at Gunadarma University, building web and Android apps since 2025.",
     "backgroundTitle": "Background",
-    "backgroundText": "I started with the web because it was the fastest way to see something I built being used by someone who wasn't me. Android came later, when I wanted to understand what happens when there is no server to fall back on. Both taught me the same thing: the interesting part isn't the framework, it's deciding what the data should look like before writing any UI.",
+    "backgroundText": "I started with the web because it was the fastest way to see something I built being used by someone who wasn't me. Android came later, when I wanted to understand what happens when there is no server to fall back on. Both pushed me toward the same habit: decide what the data looks like before writing any UI.",
     "philosophyTitle": "How I think about code",
-    "philosophyText": "I try to pick the boring option first. Most of the complexity I've had to undo in my own projects came from solving a problem I didn't have yet.",
-    "principle1Title": "Types before abstractions",
+    "philosophyText": "I start with the simplest thing that works. Most of the complexity I've had to undo in my own projects came from solving a problem I didn't have yet.",
+    "principle1Title": "Let the types do the checking",
     "principle1Desc": "TypeScript and Kotlin let me state a rule once instead of re-checking it in every function. I lean on that before reaching for a pattern.",
-    "principle2Title": "Fast by default, not by a later optimisation pass",
+    "principle2Title": "Performance from the start",
     "principle2Desc": "Server components, incremental static regeneration, and correctly sized images get most of the way there without a performance sprint at the end.",
-    "principle3Title": "Built for the person who has to use it",
-    "principle3Desc": "The Pempek Cek Lis admin panel exists so the owner never has to message me to change a price.",
+    "principle3Title": "Built around how it gets used",
+    "principle3Desc": "Mother's focus timer runs as a foreground service, because a study timer that stops when the screen turns off is no use to anyone.",
     "workflowTitle": "How I work",
     "workflowText": "Roughly the same loop on every project.",
     "workflowStep1": "Talk through what the person actually needs, which is usually narrower than the first request.",
@@ -118,18 +117,17 @@
     "label": "Contact",
     "title": "Email is the fastest way to reach me",
     "subtitle": "Internships, freelance projects, or a question about something I built. I can start now; full-time has to wait until I graduate.",
-    "emailDesc": "The fastest way to reach me. I usually reply within a day.",
+    "emailDesc": "I usually reply within a day.",
     "phoneDesc": "Direct WhatsApp message or call for quick communication.",
     "githubDesc": "Source code for everything on this site, including the site itself.",
-    "note": "If you're a student or developer who just wants to compare notes, that counts too. You don't need a job offer to email me."
+    "note": "Students and developers who just want to compare notes are welcome to email too."
   },
   "Footer": {
     "bio": "Information Systems student in Bekasi building full-stack web apps and native Android apps. Open to internships and freelance work.",
     "sitemap": "Pages",
     "rights": "All rights reserved.",
     "toTop": "Back to top",
-    "elsewhere": "Elsewhere",
-    "colophon": "Set in Onest. Built with Next.js."
+    "elsewhere": "Elsewhere"
   },
   "NotFound": {
     "title": "Page not found",
@@ -139,17 +137,6 @@
   "Metadata": {
     "title": "Ahmad Hidayatullah | Full-Stack Web & Android Developer",
     "description": "Portfolio of Ahmad Hidayatullah, an Information Systems student in Bekasi, Indonesia, building full-stack web apps with Next.js and TypeScript and native Android apps with Kotlin. Open to part-time internships and freelance work.",
-    "keywords": "Ahmad Hidayatullah, full stack developer, Android developer, web developer Bekasi, developer Jakarta, Next.js, TypeScript, Kotlin, Jetpack Compose, Supabase, Postgres, portfolio, internship, freelance"
-  },
-  "Process": {
-    "title": "How I take on a project",
-    "step1Title": "Understand the need",
-    "step1Desc": "It is usually narrower than the first request. The Pempek owner didn't want features, they wanted to stop answering the same DM.",
-    "step2Title": "Model the data first",
-    "step2Desc": "Tables, relations, and who is allowed to read what, before a single line of UI.",
-    "step3Title": "Build and test on a real phone",
-    "step3Desc": "Tested on an actual phone and a slow connection, not just on my laptop.",
-    "step4Title": "Ship, then look after it",
-    "step4Desc": "Fix what actually breaks, and leave the owner able to change the content themselves."
+    "keywords": "Ahmad Hidayatullah, full stack developer, Android developer, web developer Bekasi, Next.js, TypeScript, Kotlin, Jetpack Compose, Supabase, Postgres, portfolio, internship, freelance"
   }
 }

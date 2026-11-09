@@ -85,7 +85,6 @@ export default function Footer() {
           <p>
             &copy; {currentYear} {profile.name}. {t("rights")}
           </p>
-          <p>{t("colophon")}</p>
           <button
             onClick={scrollToTop}
             className="group inline-flex cursor-pointer items-center gap-1.5 self-start font-medium transition-colors hover:text-foreground sm:self-auto"

@@ -161,7 +161,7 @@ export const projectCopyId: Record<string, ProjectCopy> = {
     architecture:
       "Clean Architecture feature-first dengan lapisan domain di antara UI Compose dan Room. Dagger Hilt untuk dependency injection, Room dengan KSP untuk basis data lokal, DataStore untuk preferensi, WorkManager untuk pekerjaan terjadwal, ML Kit untuk pengenalan teks di perangkat, dan AndroidX Biometric untuk kunci aplikasinya.",
     challenges: [
-      "Keluaran OCR itu teks tak berstruktur, bukan field. Memetakan struk ke nominal dan nama merchant butuh heuristik, dan solusi yang jujur adalah selalu menampilkan hasil bacanya untuk dikoreksi pengguna alih-alih mempercayainya.",
+      "Keluaran OCR itu teks tak berstruktur, bukan field. Memetakan struk ke nominal dan nama merchant butuh heuristik, jadi aplikasi selalu menampilkan hasil bacanya untuk dikoreksi pengguna alih-alih langsung mempercayainya.",
       "Grafik Canvas custom menghindari satu dependency, tapi hit-testing, label, dan aksesibilitasnya jadi tanggungan sendiri. Library akan jadi pilihan yang benar begitu grafiknya perlu melakukan lebih dari yang sekarang.",
       "Tanpa server, satu migrasi basis data yang salah berarti data hilang permanen. Tes migrasi jauh lebih berarti di sini dibanding di proyek lain yang pernah saya kerjakan.",
     ],

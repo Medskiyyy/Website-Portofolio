@@ -156,7 +156,7 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
     architecture:
       "Feature-first Clean Architecture with a domain layer between the Compose UI and Room. Dagger Hilt for dependency injection, Room with KSP for the local database, DataStore for preferences, WorkManager for scheduled work, ML Kit for on-device text recognition, and AndroidX Biometric for the app lock.",
     challenges: [
-      "OCR output is unstructured text, not fields. Mapping a receipt to an amount and a merchant needed heuristics, and the honest fix was to always show the parsed result for the user to correct rather than trusting it.",
+      "OCR output is unstructured text, not fields. Mapping a receipt to an amount and a merchant needed heuristics, so the app always shows the parsed result for the user to correct instead of trusting it.",
       "Custom Canvas charts avoid a dependency but you own hit-testing, labels, and accessibility yourself. A library would have been the right call if the charts needed to do any more than they do.",
       "With no server, a bad database migration means permanently lost data. Migration tests mattered more here than anywhere else I've worked.",
     ],
