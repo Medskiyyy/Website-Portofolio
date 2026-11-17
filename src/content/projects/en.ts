@@ -46,7 +46,7 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
     title: "SyncLancer",
     category: "Multi-tenant SaaS",
     role: "Solo developer, personal product",
-    timeline: "Jun 2026 - present",
+    timeline: "Jun - Nov 2026",
     description:
       "A multi-tenant project management app for freelancers: leads, clients, proposals, projects, tasks, invoices, and time tracking in one place, with a portal clients can log into.",
     outcome:
@@ -72,7 +72,7 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
       "The client portal shares tables with the owner view, so every field had to be classified as client-visible or not. That classification, not the UI, was the actual work.",
     ],
     results: [
-      "Live at synclancer.web.id with the lead pipeline, projects, milestones, tasks, invoicing, and time tracking working end to end. I am still adding to it.",
+      "Live at synclancer.web.id with the lead pipeline, proposals, projects, milestones, tasks, invoicing, and time tracking working end to end.",
       "Client portal ships with scoped roles and an invitation flow, so a client only ever loads their own workspace's rows.",
       "Invoices are generated as PDFs in the browser, which kept the server out of document rendering entirely.",
     ],
@@ -118,7 +118,7 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
       "Reminders, backups, and undo affect each other more than they seem to: restoring a backup has to reschedule every reminder, and undoing a deleted task has to bring its reminders back as well.",
     ],
     results: [
-      "Version 3.6.4 released as an installable APK through GitHub Releases, with an in-app updater.",
+      "Version 3.6.5 released as an installable APK through GitHub Releases, with an in-app updater.",
       "A focus timer with lock-screen controls, a streak counted by study days, and tasks coloured by deadline.",
       "Calendar, search, reminders, backup and restore, and a home-screen widget, all without a network connection.",
     ],
@@ -146,7 +146,7 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
       "ZIP backups the user keeps",
     ],
     overview:
-      "A native Android personal finance app with no backend at all. Transactions live in Room on the device, the app locks behind a PIN or biometrics, receipts are scanned with on-device OCR, spending charts are drawn with Compose Canvas, and backups export to a ZIP file the user controls. Not published to the Play Store, but the source is on GitHub and I am still building on it.",
+      "A native Android personal finance app with no backend at all. Transactions live in Room on the device, the app locks behind a PIN or biometrics, receipts are scanned with on-device OCR, recurring transactions and category budgets run locally, spending charts are drawn with Compose Canvas, and backups export to a ZIP file the user controls. Signed builds ship as APKs through GitHub Releases.",
     problem:
       "Most expense trackers ask you to create an account and upload your spending history to someone else's server, and then still need a connection to open. I wanted to know whether a useful version could exist with no server in the picture, and what that costs you in return.",
     goal:
@@ -161,7 +161,7 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
       "With no server, a bad database migration means permanently lost data. Migration tests mattered more here than anywhere else I've worked.",
     ],
     results: [
-      "Fully functional with no network permission needed: Room for storage, PIN and biometric lock, and no account to create.",
+      "Version 2.4.0 released as a signed APK on GitHub Releases, with Room storage, recurring transactions, category budgets, PIN and biometric lock, and no network permission.",
       "On-device receipt scanning through ML Kit, with the parsed result always shown for confirmation before it is saved.",
       "Backup and restore as a user-held ZIP archive, with schema migrations covered by tests so an import cannot silently drop records.",
     ],
@@ -172,8 +172,6 @@ export const projectCopyEn: Record<string, ProjectCopy> = {
     ],
     futureImprovements: [
       "CSV import and export, so records can be moved in and out without going through the ZIP backup.",
-      "Recurring transactions and per-category budgets.",
-      "Publish a signed build so it can be installed without cloning the repo.",
     ],
   },
 };

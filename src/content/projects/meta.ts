@@ -17,7 +17,7 @@ export const projectMeta: ProjectMeta[] = [
   },
   {
     slug: "synclancer",
-    accent: "#2563EB",
+    accent: "#059669",
     techStack: [
       "Next.js 16",
       "React 19",

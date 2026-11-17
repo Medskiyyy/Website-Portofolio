@@ -51,7 +51,7 @@ export const projectCopyId: Record<string, ProjectCopy> = {
     title: "SyncLancer",
     category: "SaaS multi-tenant",
     role: "Developer tunggal, produk pribadi",
-    timeline: "Jun 2026 - sekarang",
+    timeline: "Jun - Nov 2026",
     description:
       "Aplikasi manajemen proyek multi-tenant untuk freelancer: lead, klien, proposal, proyek, tugas, invoice, dan pencatatan waktu di satu tempat, lengkap dengan portal yang bisa diakses klien.",
     outcome:
@@ -77,7 +77,7 @@ export const projectCopyId: Record<string, ProjectCopy> = {
       "Portal klien memakai tabel yang sama dengan tampilan pemilik, jadi setiap field harus diklasifikasikan boleh dilihat klien atau tidak. Klasifikasi itulah pekerjaan sebenarnya, bukan UI-nya.",
     ],
     results: [
-      "Live di synclancer.web.id dengan pipeline lead, proyek, milestone, tugas, invoicing, dan pencatatan waktu yang berjalan dari hulu ke hilir. Masih terus saya tambah.",
+      "Live di synclancer.web.id dengan pipeline lead, proposal, proyek, milestone, tugas, invoicing, dan pencatatan waktu yang berjalan dari hulu ke hilir.",
       "Portal klien sudah punya role bercakupan dan alur undangan, jadi klien hanya pernah memuat baris dari workspace-nya sendiri.",
       "Invoice dibuat sebagai PDF di browser, sehingga server sama sekali tidak ikut merender dokumen.",
     ],
@@ -123,7 +123,7 @@ export const projectCopyId: Record<string, ProjectCopy> = {
       "Pengingat, backup, dan undo saling memengaruhi lebih dari kelihatannya: memulihkan backup harus menjadwalkan ulang semua pengingat, dan membatalkan hapus tugas juga harus mengembalikan pengingatnya.",
     ],
     results: [
-      "Versi 3.6.4 dirilis sebagai APK yang bisa dipasang lewat GitHub Releases, lengkap dengan updater di dalam aplikasi.",
+      "Versi 3.6.5 dirilis sebagai APK yang bisa dipasang lewat GitHub Releases, lengkap dengan updater di dalam aplikasi.",
       "Timer fokus dengan kontrol di layar kunci, streak yang dihitung dari hari belajar, dan tugas yang diwarnai sesuai tenggat.",
       "Kalender, pencarian, pengingat, backup dan restore, serta widget layar utama, semuanya tanpa koneksi internet.",
     ],
@@ -151,7 +151,7 @@ export const projectCopyId: Record<string, ProjectCopy> = {
       "Backup ZIP yang dipegang pengguna sendiri",
     ],
     overview:
-      "Aplikasi keuangan pribadi Android native tanpa backend sama sekali. Transaksi tinggal di Room di dalam perangkat, aplikasinya terkunci di balik PIN atau biometrik, struk dipindai dengan OCR on-device, grafik pengeluaran digambar dengan Compose Canvas, dan backup diekspor ke berkas ZIP yang dipegang penggunanya. Belum dipublikasikan ke Play Store, tapi kodenya ada di GitHub dan masih terus saya kembangkan.",
+      "Aplikasi keuangan pribadi Android native tanpa backend sama sekali. Transaksi tinggal di Room di dalam perangkat, aplikasinya terkunci di balik PIN atau biometrik, struk dipindai dengan OCR on-device, transaksi berulang dan anggaran per kategori berjalan lokal, grafik pengeluaran digambar dengan Compose Canvas, dan backup diekspor ke berkas ZIP yang dipegang penggunanya. Build bertanda tangan rilis dibagikan sebagai APK lewat GitHub Releases.",
     problem:
       "Sebagian besar aplikasi pencatat pengeluaran meminta Anda membuat akun dan mengunggah riwayat pengeluaran ke server orang lain, lalu tetap butuh koneksi hanya untuk dibuka. Saya ingin tahu apakah versi yang tetap berguna bisa ada tanpa server sama sekali, dan apa harga yang harus dibayar sebagai gantinya.",
     goal:
@@ -166,7 +166,7 @@ export const projectCopyId: Record<string, ProjectCopy> = {
       "Tanpa server, satu migrasi basis data yang salah berarti data hilang permanen. Tes migrasi jauh lebih berarti di sini dibanding di proyek lain yang pernah saya kerjakan.",
     ],
     results: [
-      "Berfungsi penuh tanpa perlu izin jaringan: Room untuk penyimpanan, kunci PIN dan biometrik, dan tidak ada akun yang harus dibuat.",
+      "Versi 2.4.0 dirilis sebagai APK bertanda tangan di GitHub Releases, dengan penyimpanan Room, transaksi berulang, anggaran kategori, kunci PIN dan biometrik, serta tanpa izin jaringan.",
       "Pemindaian struk on-device lewat ML Kit, dengan hasil bacanya selalu ditampilkan untuk dikonfirmasi sebelum disimpan.",
       "Backup dan restore sebagai arsip ZIP yang dipegang pengguna, dengan migrasi skema yang tertutup tes sehingga proses impor tidak bisa membuang catatan tanpa diketahui.",
     ],
@@ -177,8 +177,6 @@ export const projectCopyId: Record<string, ProjectCopy> = {
     ],
     futureImprovements: [
       "Impor dan ekspor CSV, supaya catatan bisa dipindahkan masuk dan keluar tanpa lewat backup ZIP.",
-      "Transaksi berulang dan anggaran per kategori.",
-      "Merilis build yang sudah ditandatangani supaya bisa dipasang tanpa perlu clone repo-nya.",
     ],
   },
 };

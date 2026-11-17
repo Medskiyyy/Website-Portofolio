@@ -23,8 +23,8 @@ Bilingual (EN/ID) portfolio. Four projects with case studies, a resume page, and
 | :--- | :--- | :--- | :--- |
 | **Pempek Palembang Cek Lis** | Full-stack web (Next.js + Supabase) | Live | [Site](https://pempekceklis.biz.id) · [GitHub](https://github.com/Medskiyyy/Website-Pempek) |
 | **SyncLancer** | Full-stack SaaS (Next.js + Supabase) | Live | [Site](https://synclancer.web.id) · [GitHub](https://github.com/Medskiyyy/SyncLancer) |
-| **Mother** | Native Android (Kotlin + Jetpack Compose) | In progress | [GitHub](https://github.com/Medskiyyy/Mother) |
-| **HitungUang** | Native Android (Kotlin + Jetpack Compose) | In progress | [GitHub](https://github.com/Medskiyyy/HitungUang) |
+| **Mother** | Native Android (Kotlin + Jetpack Compose) | Released | [GitHub](https://github.com/Medskiyyy/Mother) |
+| **HitungUang** | Native Android (Kotlin + Jetpack Compose) | Released | [GitHub](https://github.com/Medskiyyy/HitungUang) |
 
 The Mother project card on the site shows a live interactive prototype built directly from the Jetpack Compose source, so visitors can see the actual app UI without installing anything.
 
